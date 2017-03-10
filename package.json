@@ -1,0 +1,28 @@
+{
+  "name": "IZtrading.console",
+  "version": "1.0.1",
+  "description": "IZ TRADING CONSOLE",
+  "main": "",
+  "private": true,
+  "dependencies": {
+  },
+  "devDependencies": {
+    "graceful-fs": "^4.0.0",
+    "grunt": "^0.4.5",
+    "grunt-contrib-clean": "^1.0.0",
+    "grunt-contrib-compress": "^1.3.0",
+    "grunt-contrib-concat": "^0.5.1",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-jshint": "^1.1.0",
+    "grunt-contrib-less": "^1.4.0",
+    "grunt-contrib-uglify": "^0.11.1",
+    "grunt-githash": "^0.1.3",
+    "grunt-processhtml": "^0.4.1",
+    "minimatch": "^3.0.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "BINARYWARE LLC.",
+  "license": "ISC"
+}

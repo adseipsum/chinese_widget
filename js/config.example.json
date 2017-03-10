@@ -1,0 +1,12 @@
+{
+  "js_env": "release",
+  "wss_url": "wss://host:port",
+  "language": "en",
+  "currency": "$",
+  "s_username": "",
+  "s_password": "",
+  "s_userhash": "user hash",
+  "reset_consoles":"false",
+  "balanceUrl" : "/balance_ajax",
+  "account_type": "real"
+}

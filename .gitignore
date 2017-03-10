@@ -1,0 +1,9 @@
+# Created by .ignore support plugin (hsz.mobi)
+/node_modules
+/js/config.dev
+/js/config.prod
+/js/config.json
+.idea
+.DS_Store
+/index.html
+/build/

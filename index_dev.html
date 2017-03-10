@@ -1,0 +1,2003 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- build:template -->
+<!-- <%= description %> Version: <%= ver %> -->
+<!-- /build -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tradestation</title>
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.png">
+
+    <!-- build:template:dist
+    <link rel="stylesheet" type="text/css" href="css/s.css?v=<%= ver %>">
+    /build -->
+    <!-- build:remove:dist -->
+    <link rel="stylesheet" href="css/s.css">
+    <!-- /build -->
+
+    <link rel="stylesheet" href="fonts/md/md.css">
+</head>
+
+<script type="text/javascript">
+    var
+        <!-- build:template:dist -->
+            version = '<%= ver %>',
+        <!-- /build -->
+        <!-- build:remove:dist -->
+            version = '1.0.15',
+        <!-- /build -->
+
+            wss_url = '',
+            language = 'en',
+            currency = "$",
+            s_username = '',
+            s_password = '',
+            s_userhash = '',
+            s_token = '',
+            language_url = 'js/lang.json',
+            WEB_SOCKET_SWF_LOCATION = "js/WebSocketMain.swf",
+            consoles_ls_default = [
+                {id: 1, tool_id: 1, kind: "classic", invest: 5, timeframe: 1},
+                {id: 2, tool_id: 1, kind: "touch_advanced", invest: 5, timeframe: 4},
+                {id: 3, tool_id: 1, kind: "range_advanced", invest: 5, timeframe: 4},
+                {id: 4, tool_id: 1, kind: "touch", invest: 5, timeframe: 4},
+                {id: 5, tool_id: 1, kind: "range", invest: 5, timeframe: 4},
+                {id: 6, tool_id: 1, kind: "range_classic", invest: 5, timeframe: 4}
+            ],
+            js_params;
+    var dynLoad = {
+        configUrl: '/my/trade/terminal/config.json',
+        errorUrl: '/signin/',
+        jsSrc: {
+            <!-- build:remove:dist -->
+            dev: [
+                "js/jquery-1.12.0.min.js",
+                "js/jquery-migrate-1.2.1.min.js",
+                "js/jquery.easing.1.3.js",
+                "js/jquery.transit.min.js",
+                "js/jquery.slimscroll.min.js",
+                "js/jquery.simpleTip.js",
+                "js/underscore-min.js",
+                "js/backbone-min.js",
+                "js/mustache.min.js",
+                "js/swfobject.min.js",
+                "js/web_socket.min.js",
+                "js/src/l100n.js",
+                "js/jquery.colorhelpers.js",
+
+                "js/src/flot/jquery.flot.plot.js",
+                "js/src/flot/jquery.flot.navigate.js",
+                "js/src/flot/jquery.flot.fillbetween.js",
+                "js/src/flot/jquery.flot.time.js",
+                "js/src/flot/jquery.flot.crosshair.js",
+                "js/src/flot/jquery.flot.multiple.threshold.js",
+
+//                "js/c.js",
+                "js/src/common.js?v="+version,
+                "js/src/binarystation.js?v="+version
+            ],
+            default: [
+                "js/concat/common.full.js?v="+version,
+                "js/concat/chart.full.js?v="+version,
+                "js/concat/binarystation.full.js?v="+version
+            ],
+            <!-- /build -->
+            release: [
+                "js/binarystation.min.js?v="+version
+            ]
+        },
+        addScript: function (src, toHead) {
+            var script = document.createElement('script');
+            script.src = src;
+            script.async = false; // чтобы гарантировать порядок
+            if (toHead) {
+                document.head.appendChild(script);
+            } else {
+                document.body.appendChild(script);
+            }
+        },
+        getConfig: function (ready) {
+            var xhr = new XMLHttpRequest();
+            <!-- build:remove:dist -->
+            this.configUrl = 'js/config.json';
+            <!-- /build -->
+            xhr.open('GET', this.configUrl, true);
+            xhr.onreadystatechange = function () {
+                if (this.readyState == 4 ) {
+                    if(this.status == 200) {
+                        ready(this.responseText);
+                    }else{
+                        window.location.replace(dynLoad.errorUrl);
+                    }
+                }
+            };
+            xhr.send();
+        }
+    };
+
+//    if (window.location.href.split("#").length == 3) {
+//        wss_url = 'wss://' + window.location.href.split("#")[1];
+//        s_userhash = window.location.href.split("#").length > 2 ? window.location.href.split("#")[2] : '7ab776aa478ecc544f8d8b3475051072';
+//    }
+</script>
+
+<body>
+
+<!-- TEST -->
+<!--// TEST -->
+<div class="bsw_loader">
+    <div class="label_loading">Loading</div>
+</div>
+<!-- WRAPPER -->
+<div id="wrapper" class="clearfix">
+    <!-- WIDGET -->
+    <div id="bsw">
+
+
+        <!-- TOP LINE -->
+        <div class="top clearfix">
+
+            <!-- left side -->
+            <div class="pull-left">
+
+                <!-- TABS -->
+
+                <div class="tabs clearfix optionTypeSwitch">
+                    <div class="tab bin_options_type b_options_types_item active set-kind" data-kind='classic'>
+                        <span>Call/Put</span></div>
+                    <div class="tab bin_options_type b_options_types_item set-kind" data-kind='touch'><span>Touch</span>
+                    </div>
+                    <div class="tab bin_options_type b_options_types_item set-kind" data-kind='range'><span>Range</span>
+                    </div>
+                </div>
+
+            </div>
+            <!--// left side -->
+
+            <!-- right side -->
+            <div class="pull-right clearfix">
+
+                <!-- BALANCE OPS -->
+                <div class="balanceOps clearfix">
+                    <!--<div class="balance">-->
+                        <!--<span class="currency user-available-value"></span>-->
+                    <!--</div>-->
+                    <!--<div class="addFunds">-->
+                        <!--Add funds-->
+                    <!--</div>-->
+                </div>
+                <!--// BALANCE OPS -->
+
+            </div>
+            <!--// right side -->
+
+        </div>
+        <!--// TOP LINE -->
+
+        <div id="widgets-classic" class="console-tab bsWidget"></div>
+        <div id="widgets-touch" class="console-tab bsWidget hidden_tab"></div>
+        <div id="widgets-range" class="console-tab bsWidget hidden_tab"></div>
+        <div id="widgets-range_classic" class="console-tab bsWidget hidden_tab"></div>
+        <div id="widgets"></div>
+
+        <!-- NO TRADES -->
+        <div class="noTrades">
+            <div class="vertical">
+                <div class="inner centered">
+                    <h3>No trades available</h3>
+
+                    <p>The next trading session starts in <strong>00:45:32</strong></p>
+                </div>
+            </div>
+        </div>
+        <!--// NO TRADES -->
+
+        <!-- TOP LINE -->
+        <div class="deals-tabs top clearfix">
+
+            <!-- left side -->
+            <div class="pull-left">
+
+                <!-- TABS -->
+                <div class="tabs clearfix open-options-tab">
+                    <div data-tab="opened" class="tab opened-tab opened binsta_oo__switcher__item active">Open options
+                    </div>
+                    <div data-tab="journal" class="tab opened-tab journal binsta_oo__switcher__item journal">History
+                    </div>
+                </div>
+                <!--// TABS -->
+
+            </div>
+            <!--// left side -->
+
+            <!-- right side -->
+            <div class="pull-right clearfix">
+
+                <div id="closed-pages-container" class="pager clearfix"></div>
+
+            </div>
+            <!--// right side -->
+
+        </div>
+        <!--// TOP LINE -->
+
+        <!-- DEALS -->
+        <div class="deals openDeals options_block_hider active">
+
+            <table class="open_options_bar  dealsTable">
+
+                <thead class="dealsHead summary">
+                <tr>
+                    <td class="expander open"></td>
+                    <td class="deal-type label_kind">Type</td>
+                    <td class="deal-type label_dir">Dir</td>
+                    <td class="deal-asset label_tool">Asset</td>
+                    <td class="deal-timeframe label_duration">Timeframe</td>
+                    <td class="deal-expires label_expires">Expires</td>
+                    <td class="deal-rate label_current_price">Rate</td>
+                    <td class="deal-forecast label_forecast">Forecast</td>
+                    <td class="deal-bet label_investment">Investment</td>
+                    <td class="deal-payout label_payout">Payout</td>
+                </tr>
+
+                </thead>
+                <!-- summary -->
+                <tbody class="dealsHead summary">
+
+                </tbody>
+            </table>
+
+        </div>
+        <!--// DEALS -->
+
+        <!-- HISTORY -->
+        <div class="deals history journal_options_block_hider hidden_tab">
+
+            <div class="journal_options_bars_holder">
+
+                <table class="dealsTable">
+                    <thead class="summary dealsHead">
+                    <tr>
+                        <td class="deal-type label_kind">Type</td>
+                        <td class="deal-type label_dir">Dir</td>
+                        <td class="deal-asset label_tool">Asset</td>
+                        <td class="deal-timeframe label_duration">Timeframe</td>
+                        <td class="deal-expires label_expires">Expires</td>
+                        <td class="deal-rate label_current_price">Rate</td>
+                        <td class="deal-forecast label_forecast">Forecast</td>
+                        <td class="deal-bet label_investment">Investment</td>
+                        <td class="deal-payout label_payout">Payout</td>
+                    </tr>
+                    </thead>
+                    <!-- HEAD -->
+                    <tbody class="summary dealsHead">
+
+                    </tbody>
+                    <!--// HEAD -->
+
+                </table>
+
+            </div>
+
+        </div>
+        <!--// HISTORY -->
+
+    </div>
+    <!--// WIDGET -->
+
+</div>
+<!--// WRAPPER -->
+
+<!-- MESSAGES -->
+<div id="messages" style="display: none;">
+    <div class="new-price" style="display: none;"></div>
+    <div class="finished" style="display: none;"></div>
+    <div class="error-wrong_sum" style="display: none;"></div>
+    <div class="error-min_sum" style="display: none;"></div>
+    <div class="error-insufficient_funds" style="display: none;"></div>
+    <div class="error-wrong_timeframe" style="display: none;"></div>
+    <div class="error-undefined_error" style="display: none;"></div>
+    <div class="error-wrong_pair" style="display: none;"></div>
+    <div class="error-inactive_user" style="display: none;"></div>
+    <div class="error-demo_period_ends" style="display: none;"></div>
+    <div class="error-connection-reload" style="display: none;"></div>
+    <div class="error-no-connection" style="display: none;"></div>
+    <div class="error-no-trading-time" style="display: none;"></div>
+    <div class="error-lock-time" style="display: none;"></div>
+    <div class="not_liq_symbol" style="display: none;"></div>
+    <div class="error-not_liq_symbol" style="display: none;"></div>
+    <div class="only_if_less_10000" style="display: none;"></div>
+    <div class="deposit-refilled" style="display: none;"></div>
+    <div class="error_auth" style="display: none;"></div>
+    <div class="all" style="display: none;"></div>
+    <div class="starred" style="display: none;"></div>
+    <div class="quote_changed" style="display: none;"></div>
+
+    <div class="classic_call" style="display: none;"></div>
+    <div class="classic_put" style="display: none;"></div>
+    <div class="touch_up" style="display: none;"></div>
+    <div class="touch_up_down" style="display: none;"></div>
+    <div class="touch_updown" style="display: none;"></div>
+    <div class="touch_down" style="display: none;"></div>
+    <div class="range_in" style="display: none;"></div>
+    <div class="range_out" style="display: none;"></div>
+    <div class="range_up" style="display: none;"></div>
+    <div class="range_down" style="display: none;"></div>
+    <div class="range_classic_up" style="display: none;"></div>
+    <div class="range_classic_down" style="display: none;"></div>
+    <div class="bin_buy_hidden_msg" style="display: none;"></div>
+
+    <div class="error-forbidden_option_kind" style="display: none;"></div>
+    <div class="error-forbidden_tool" style="display: none;"></div>
+    <div class="error-forbidden_group" style="display: none;"></div>
+    <div class="error-forbidden_loan" style="display: none;"></div>
+    <div class="error-forbidden_max_rev" style="display: none;"></div>
+    <div class="error-forbidden_max_opened" style="display: none;"></div>
+    <div class="error-forbidden_max_bid" style="display: none;"></div>
+
+    <div class="label_or" style="display: none;"></div>
+    <div class="label_and" style="display: none;"></div>
+    <div class="label_early_header" style="display: none;"></div>
+    <div class="old_browser" style="display: none;"></div>
+    <div class="not_avialible_for_guest" style="display: none;">Not available for guest</div>
+    <div class="sell_option_text" style="display: none;"></div>
+
+    <div class="days" style="display: none;"></div>
+</div>
+
+<!-- SCRIPT -->
+<!--<script src="js/jquery-1.12.0.min.js"></script>
+<script src="js/jquery.slimscroll.min.js"></script>
+
+<script src="js/jquery-migrate-1.2.1.min.js"></script>
+<script src="js/jquery.easing.1.3.js"></script>
+<script src="js/jquery.transit.min.js"></script>
+<script src="js/underscore-min.js"></script>
+<script src="js/backbone-min.js"></script>
+<script src="js/mustache.min.js"></script>
+<script src="js/swfobject.min.js"></script>
+<script src="js/web_socket.min.js"></script>-->
+
+<!--<script src="js/concat/common.full.js"></script>-->
+<!--<script src="js/min/chart.min.js"></script>-->
+<!--<script src="js/concat/binarystation.full.js"></script>-->
+
+<script type="text/javascript">
+    setTimeout(function () {
+        dynLoad.getConfig(function (data) {
+            try {
+                window.js_conf = JSON.parse(data);
+                window.js_env = js_conf.hasOwnProperty('js_env') ? js_conf.js_env : 'release';
+                window.wss_url = js_conf.hasOwnProperty('wss_url') ? js_conf.wss_url : '';
+                window.language = js_conf.hasOwnProperty('language') ? js_conf.language : 'en';
+                window.currency = js_conf.hasOwnProperty('currency') ? js_conf.currency : '$';
+                window.s_username = js_conf.hasOwnProperty('s_username') ? js_conf.s_username : '';
+                window.s_password = js_conf.hasOwnProperty('s_password') ? js_conf.s_password : '';
+                window.s_userhash = js_conf.hasOwnProperty('s_userhash') ? js_conf.s_userhash : '';
+                window.account_type = js_conf.hasOwnProperty('account_type') ? js_conf.account_type : 'demo';
+                window.js_params = '{"guestDeposit":"10000","thousandsSeparator":" ","decimalSeparator":".","plugins":[""],"quote_interval": "1000","quote_interval_slow": "2000", "isLondonInSummerTime": "true","p":"12","reset_consoles":"' + (js_conf.hasOwnProperty('reset_consoles') ? js_conf.reset_consoles : 'false') + '","consoles_ls_default":' + JSON.stringify(consoles_ls_default) +',"profiling":'+JSON.stringify(js_conf.hasOwnProperty('profiling')&&js_conf.profiling=="true")+  '}';
+                window.balanceUrl = js_conf.hasOwnProperty('balanceUrl') ? js_conf.balanceUrl : null;
+                for (i = 0; i < dynLoad.jsSrc[js_env].length; i++) {
+                    dynLoad.addScript(dynLoad.jsSrc[js_env][i], false);
+                    console.log(dynLoad.jsSrc[js_env][i]);
+                }
+            } catch (e) {
+                console.log(e);
+                window.location.replace(dynLoad.errorUrl);
+            }
+        });
+    }, 0);
+</script>
+
+
+<!--<script src="js/demo.js"></script>-->
+
+</body>
+
+<script type="text/javasript" id="console-tools">
+		<div class="change-tool option clearfix {{active}} {{inFavorite}}" data-value="{{tool_id}}" data-tool-type="{{tool_type}}"><div class="favorite " data-value="{{tool_id}}"></div><span class="val">{{tool_name}}</span></div>
+
+
+</script>
+
+<script type="text/javasript" id="console-timeframes">
+        <div class="option clearfix {{active}} change-timeframe" data-value="{{timeframe_id}}">{{timeframe_name}}</div>
+
+
+</script>
+
+<!-- pain paginator -->
+<script type="text/template" style="display:none" id="template_pager_page">
+    <div class="page closed-pages post_page {class}" data-page="{page}">{page}</div>
+</script>
+
+<script type="text/template" style="display:none" id="template_pager_divider">
+    <div class="dots"></div>
+</script>
+
+<!-- paint options history -->
+<script type="text/template" style="display:none" id="binary_closed_line">
+    <tbody class="deal {{win}} {{direction}} {{direction_call_put}}">
+    <tr class="dealData">
+        <td class="deal-type">{{direction_text}}</td>
+        <td class="deal-direction">{{direction_td}}</td>
+        <td class="deal-asset">{{tool_name}}</td>
+        <td class="deal-timeframe">{{timeframe_name}}</td>
+        <td class="deal-expires"><span>{{expiration_date}}</span> {{expiration}}</td>
+        <td class="deal-rate">{{price_close}}</td>
+        <td class="deal-forecast">{{{forecast}}}</td>
+        <td class="deal-bet currency">{{sum}}</td>
+        <td class="deal-payout currency">{{payment}}</td>
+    </tr>
+    </tbody>
+</script>
+
+<!-- paint opened option -->
+<script type="text/javasript" id="opened-option">
+		<tbody class="deal {{direction}} {{direction_call_put}} open open_options_bar" id="opened-{{id}}" data-id="{{id}}" data-kind-id="{{kind_id}}">
+			<tr class="sell_tr">
+				<td colspan="8">
+				    <div class="sell">
+                        <div class="sellTxt">
+                            <p class="early_percent_sum_value"></p>
+                        </div>
+                    </div/>
+				</td>
+				<td>
+				    <div class="sell"><span class="option_sell_now_timer"></span></div>
+                </td>
+				<td class="sell_td">
+				    <div class="button sell sell_now sell_now_button"><span class=sel_now_label"></span></div>
+                </td>
+			</tr>
+			<tr class="dealHead">
+				<td class="expander"></td>
+				<td class="deal-type">{{direction_text}}</td>
+                <td class="deal-direction">{{direction_tb}}</td>
+				<td class="deal-asset">{{tool_name}}</td>
+				<td class="deal-timeframe">{{timeframe_name}}</td>
+				<td class="deal-expires open_options_bar_body_optionends_time"></td>
+				<td class="deal-rate option_rate bin_open_option__info__values cource"> - </td>
+				<td class="deal-forecast">{{{forecast}}}</td>
+				<td class="deal-bet currency">{{invest}}</td>
+				<td class="deal-payout currency option_payout"><span class="bin_open_option__info__values__payout"> - </span></td>
+			</tr>
+
+			<tr class="dealChart option_body dealBody">
+				<td colspan="11" class="option_chart_container">
+					<div class="chart">
+						<div id="plot-opened-{{id}}" class="option_graph"></div>
+						<div class="graph-mark course"></div>
+						<div style="display:none;" class="graph-mark line1 "></div>
+						<div style="display:none;" class="graph-mark line2 "></div>
+						<div style="display:none;" class="graph-mark line3 "></div>
+						<div style="display:none;" class="graph-mark line4 "></div>
+					</div>
+				</td>
+			</tr>
+		</tbody>
+
+
+</script>
+
+<script id="console-classic" type="text/template">
+    <div id="console-{{id}}" data-id="{{id}}" class="bsConsole console classic">
+        <!-- classic || touch || range || spread -->
+        <!-- CLOSE -->
+        <div class="console_close w_close"><i class="zmdi zmdi-hc-fw zmdi-close"></i></div>
+        <!--// CLOSE -->
+        <!-- FILTER -->
+        <div class="filter clearfix">
+
+            <!-- left side -->
+            <div class="pull-left clearfix b_instruments_filter_content">
+
+                <div class="filter_item active">
+                    <span>All assets</span>
+                </div>
+                <div class="filter_item">
+                    <span>Currencies</span>
+                </div>
+                <div class="filter_item">
+                    <span>Indices</span>
+                </div>
+                <div class="filter_item">
+                    <span>Stocks</span>
+                </div>
+                <div class="filter_item">
+                    <span>Commodities</span>
+                </div>
+                <div class="filter_item">
+                    <span><i class="zmdi zmdi-star"></i> Favorites</span>
+                </div>
+
+            </div>
+            <!--// left side -->
+
+            <!-- right side -->
+            <div class="pull-right clearfix">
+                <div class="serverTime b_server_block"><span class="time"></span></div>
+            </div>
+            <!--// right side -->
+
+        </div>
+        <!--// FILTER -->
+
+        <!-- ASSETS -->
+        <div class="assets clearfix">
+
+            <!-- left side -->
+            <div class="pull-left clearfix">
+
+                <!-- asset -->
+                <div class="asset clearfix b_instrument_block">
+                    <div class="title colon label_asset">Asset</div>
+                    <div class="value">
+                        <div class="input">
+                            <div class="field noCloseDropdown b_block_value"></div>
+                        </div>
+
+                        <!-- dropdown -->
+                        <div class="dropdown chooseAsset drop_a">
+                            <div class="container dropdown_list">
+                                <div class="scroll">
+                                    <div class="select b_list"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--// dropdown -->
+
+                    </div>
+                </div>
+
+                <!-- asset -->
+                <div class="asset clearfix b_duration_block">
+                    <div class="title colon label_timeframe">Timeframe</div>
+                    <div class="value">
+                        <div class="input">
+                            <div class="field noCloseDropdown b_block_value"></div>
+                        </div>
+
+                        <!-- dropdown -->
+                        <div class="dropdown chooseTime drop_a">
+                            <div class="container dropdown_list">
+                                <div class="scroll">
+                                    <div class="select b_list tf_scroll"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--// dropdown -->
+
+                    </div>
+                </div>
+
+                <!-- info -->
+                <div class="asset clearfix b_available_block">
+                    <div class="title colon label_available">Available</div>
+                    <div class="value">
+                        <div class="info">
+                            <span class="b_block_value"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- info -->
+                <div class="asset clearfix b_expires_block">
+                    <div class="title colon label_expires">Expires</div>
+                    <div class="value">
+                        <div class="info">
+                            <span class="b_block_value"></span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!--// left side -->
+
+            <!-- right side -->
+            <div class="pull-right clearfix">
+                <!-- * -->
+            </div>
+            <!--// right side -->
+
+        </div>
+        <!--// ASSETS -->
+
+        <!-- BODY -->
+        <div class="body clearfix">
+
+            <!-- INFO WINDOW -->
+            <div class="infoWindow">
+                <div class="vertical">
+                    <div class="inner">
+                        <h3>We're loading neccessary data</h3>
+
+                        <p>It may take a few seconds. Please, wait.</p>
+
+                        <div class="loader"></div>
+                    </div>
+                </div>
+            </div>
+            <!--// INFO WINDOW -->
+
+            <!-- CHARTS -->
+            <div class="charts">
+                <!-- MAIN CHART -->
+                <div class="main_chart">
+
+                    <div class="chart">
+                        <div class="chartjs-tooltip"></div>
+
+                        <div class="graph-mark course"></div>
+
+                        <div class="bin_graph_range_line bin_graph_range_line_available allowed_line_txt"><span></span>
+                        </div>
+                        <div class="bin_graph_range_line bin_graph_range_line_expires end_line_txt"><span></span></div>
+
+                        <div class="b_graph_block_overlay"></div>
+                        <div class="b_graph_block_overlay_not_avalable"></div>
+
+                        <!--<div class="crosshair-elements">
+                            <div style="display:none;" class="graph-mark line1 left"></div>
+                            <div style="display:none;" class="graph-mark line2 left"></div>
+                            <div style="display:none;" class="graph-mark line3 left"></div>
+                            <div style="display:none;" class="graph-mark line4 left"></div>
+
+                          <div class="hover_value" style="display:none;"></div>
+                            <div class="hover_date" style="display:none;"></div>
+                            <div class="hover_crosshair_hor" style="display:none;"></div>
+                            <div class="hover_crosshair_ver" style="display:none;"></div>
+                            <div class="hover_crosshair_center" style="display:none;"></div>
+                        </div>-->
+
+                        <div class="b_gradient"></div>
+                        <div id="plot-{{id}}" class="b_content"></div>
+                    </div>
+                </div>
+                <!--// MAIN CHART -->
+
+                <!-- CHART -->
+
+                <!-- TREND -->
+                <div class="trend">
+                    <div class="title colon trader_choise">Traders' choice</div>
+                    <div class="colors clearfix">
+                        <div class="color binary_traders_choice__middle_block_chart call_chart call"></div>
+                        <div class="color binary_traders_choice__middle_block_chart put_chart put"></div>
+                    </div>
+                    <div class="percents clearfix">
+                        <div class="percent call"><span class="name colon">Call</span> <span
+                                class="value binary_traders_choice__percent call">50</span></div>
+                        <div class="percent put"><span class="name colon">Put</span> <span
+                                class="value binary_traders_choice__percent put">50</span></div>
+                    </div>
+                </div>
+                <!-- TREND -->
+
+            </div>
+            <!--// CHARTS -->
+
+            <!-- ACTIONS -->
+            <div class="actions clearfix">
+
+                <!-- REQUOTE POPUP -->
+                <div class="requote">
+                    <div class="quote_changed">
+
+                    </div>
+                    <div class="buttonHolder righted">
+                        <span class="button blue closeReqoute button_buy"><span class="b_buy_value">Buy</span></span>
+                        <span class="button closeReqoute label_cancel"><span>Cancel</span></span>
+                    </div>
+                </div>
+
+                <!-- SET -->
+                <div class="set">
+
+                    <!-- BUTTONS -->
+                    <div class="buttons">
+
+                        <!-- call -->
+                        <div class="actionBtn call dirButton   bb_click_all binary_actions__btn"
+                             data-action="set-direction"
+                             data-value="CALL">
+                            <div class="vertical">
+                                <div class="inner">
+                                    <div class="icon"></div>
+                                    <div class="name">Call</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- rate -->
+                        <div class="actionRate">
+                            <div class="title colon label_current_price">Our rate</div>
+                            <div class="rate b_rate"></div>
+                        </div>
+
+                        <!-- put -->
+                        <div class="actionBtn put dirButton  bb_click_all binary_actions__btn"
+                             data-action="set-direction"
+                             data-value="PUT">
+                            <div class="vertical">
+                                <div class="inner">
+                                    <div class="name">Put</div>
+                                    <div class="icon"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!--// BUTTONS -->
+
+                    <!-- SUM -->
+                    <div class="sum">
+                        <div class="title colon centered label_investment">Investment</div>
+                        <div class="value">
+                            <div class="input currency">
+                                <input type="text"
+                                       class="noCloseDropdown b_invest_select deposit_invest bb_keyup bb_change"
+                                       data-action="set-invest" value="" maxlength="8">
+                            </div>
+
+                            <!-- dropdown -->
+                            <div class="dropdown chooseBet">
+                                <div class="container">
+                                    <div class="scroll">
+                                        <div class="select">
+
+                                            <div class="option clearfix">
+                                                <span class="val currency">1</span>
+                                            </div>
+                                            <div class="option clearfix">
+                                                <span class="val currency">5</span>
+                                            </div>
+                                            <div class="option clearfix">
+                                                <span class="val currency">10</span>
+                                            </div>
+                                            <div class="option clearfix">
+                                                <span class="val currency">50</span>
+                                            </div>
+                                            <div class="option clearfix">
+                                                <span class="val currency">100</span>
+                                            </div>
+                                            <div class="option clearfix">
+                                                <span class="val currency">500</span>
+                                            </div>
+                                            <div class="option clearfix">
+                                                <span class="val currency">1000</span>
+                                            </div>
+                                            <div class="option clearfix">
+                                                <span class="val currency">5000</span>
+                                            </div>
+                                            <div class="option clearfix">
+                                                <span class="val currency">10000</span>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--// dropdown -->
+
+                        </div>
+                    </div>
+                    <!--// SUM -->
+
+                </div>
+                <!--// SET -->
+
+                <!-- BET -->
+                <div class="bet">
+
+                    <!-- PAYOUTS -->
+                    <div class="payouts">
+                        <div class="payout">
+                            <div class="title colon label_payout">Payout</div>
+                            <div class="value currency win"></div>
+                        </div>
+                        <div class="payout">
+                            <div class="value percent percent_win"></div>
+                        </div>
+                        <div class="payout">
+                            <div class="title colon label_return">Return</div>
+                            <div class="value currency refund"></div>
+                        </div>
+                    </div>
+                    <!--// PAYOUTS -->
+
+                    <!-- SUBMIT -->
+                    <div class="badInvest-buy-hover hidden">
+                        <div style="display:table-cell;vertical-align: middle"></div>
+                    </div>
+                    <div class="submit">
+
+                        <!-- buy -->
+                        <div class="buyBtn inactive bin_buy">
+                            <div class="vertical mainSubmit">
+                                <div class="inner">
+                                    <div class="icon"></div>
+                                    <div class="name">Buy</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- one click -->
+                        <div class="oneClick toggleActive ">
+                            <div class="vertical console__one_click">
+                                <div class="inner one_click label_one_click">
+                                    One-click trade
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- success msg -->
+                        <div class="successMsg">
+                            <div class="vertical">
+                                <div class="inner">Option is open!</div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!--// SUBMIT -->
+
+                </div>
+                <!--// BET -->
+
+            </div>
+            <!--// ACTIONS -->
+
+        </div>
+        <!--// BODY -->
+
+    </div>
+    <div class="button add_console w_dub classic_w_dub">ADD CONSOLE</div>
+    <!--// CONSOLE -->
+</script>
+<script id="console-touch" type="text/template">
+    <div id="console-{{id}}" data-id="{{id}}" class="bsConsole console touch">
+        <!-- classic || touch || range || spread -->
+        <!-- CLOSE -->
+        <div class="console_close w_close"><i class="zmdi zmdi-hc-fw zmdi-close"></i></div>
+        <!--// CLOSE -->
+        <!-- FILTER -->
+        <div class="filter clearfix">
+
+            <!-- left side -->
+            <div class="pull-left clearfix b_instruments_filter_content">
+
+                <div class="filter_item active">
+                    <span>All assets</span>
+                </div>
+                <div class="filter_item">
+                    <span>Currencies</span>
+                </div>
+                <div class="filter_item">
+                    <span>Indices</span>
+                </div>
+                <div class="filter_item">
+                    <span>Stocks</span>
+                </div>
+                <div class="filter_item">
+                    <span>Commodities</span>
+                </div>
+                <div class="filter_item">
+                    <span><i class="zmdi zmdi-star"></i> Favorites</span>
+                </div>
+
+            </div>
+            <!--// left side -->
+
+            <!-- right side -->
+            <div class="pull-right clearfix">
+                <div class="serverTime b_server_block"><span class="time"></span></div>
+            </div>
+            <!--// right side -->
+
+        </div>
+        <!--// FILTER -->
+
+        <!-- ASSETS -->
+        <div class="assets clearfix">
+
+            <!-- left side -->
+            <div class="pull-left clearfix">
+
+                <!-- asset -->
+                <div class="asset clearfix b_instrument_block">
+                    <div class="title colon label_asset">Asset</div>
+                    <div class="value">
+                        <div class="input">
+                            <div class="field noCloseDropdown b_block_value"></div>
+                        </div>
+
+                        <!-- dropdown -->
+                        <div class="dropdown chooseAsset drop_a">
+                            <div class="container dropdown_list">
+                                <div class="scroll">
+                                    <div class="select b_list"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--// dropdown -->
+
+                    </div>
+                </div>
+
+                <!-- asset -->
+                <div class="asset clearfix b_duration_block">
+                    <div class="title colon label_timeframe">Timeframe</div>
+                    <div class="value">
+                        <div class="input">
+                            <div class="field noCloseDropdown b_block_value"></div>
+                        </div>
+
+                        <!-- dropdown -->
+                        <div class="dropdown chooseTime drop_a">
+                            <div class="container dropdown_list">
+                                <div class="scroll">
+                                    <div class="select b_list tf_scroll"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--// dropdown -->
+
+                    </div>
+                </div>
+
+                <!-- info -->
+                <div class="asset clearfix b_available_block">
+                    <div class="title colon label_available">Available</div>
+                    <div class="value">
+                        <div class="info">
+                            <span class="b_block_value"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- info -->
+                <div class="asset clearfix b_expires_block">
+                    <div class="title colon label_expires">Expires</div>
+                    <div class="value">
+                        <div class="info">
+                            <span class="b_block_value"></span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!--// left side -->
+
+            <!-- right side -->
+            <div class="pull-right clearfix">
+                <!-- * -->
+            </div>
+            <!--// right side -->
+
+        </div>
+        <!--// ASSETS -->
+
+        <!-- BODY -->
+        <div class="body clearfix">
+
+            <!-- INFO WINDOW -->
+            <div class="infoWindow">
+                <div class="vertical">
+                    <div class="inner">
+                        <h3>We're loading neccessary data</h3>
+
+                        <p>It may take a few seconds. Please, wait.</p>
+
+                        <div class="loader"></div>
+                    </div>
+                </div>
+            </div>
+            <!--// INFO WINDOW -->
+
+            <!-- CHARTS -->
+            <div class="charts">
+                <!-- MAIN CHART -->
+                <div class="main_chart">
+
+                    <div class="chart">
+                        <div class="chartjs-tooltip"></div>
+
+                        <div class="graph-mark course"></div>
+
+                        <div class="bin_graph_range_line bin_graph_range_line_available allowed_line_txt"><span></span></div>
+                        <div class="bin_graph_range_line bin_graph_range_line_expires end_line_txt"><span></span></div>
+
+                        <div class="b_graph_block_overlay"></div>
+                        <div class="b_graph_block_overlay_not_avalable"></div>
+
+                        <!--<div class="crosshair-elements">
+                            <div style="display:none;" class="graph-mark line1 left"></div>
+                            <div style="display:none;" class="graph-mark line2 left"></div>
+                            <div style="display:none;" class="graph-mark line3 left"></div>
+                            <div style="display:none;" class="graph-mark line4 left"></div>
+
+                          <div class="hover_value" style="display:none;"></div>
+                            <div class="hover_date" style="display:none;"></div>
+                            <div class="hover_crosshair_hor" style="display:none;"></div>
+                            <div class="hover_crosshair_ver" style="display:none;"></div>
+                            <div class="hover_crosshair_center" style="display:none;"></div>
+                        </div>-->
+
+                        <div class="b_gradient"></div>
+                        <div id="plot-{{id}}" class="b_content"></div>
+                    </div>
+                </div>
+                <!--// MAIN CHART -->
+
+                <!-- CHART -->
+
+                <!-- TREND -->
+                <div class="trend">
+                    <div class="title colon trader_choise">Traders' choice</div>
+                    <div class="colors clearfix">
+                        <div class="color binary_traders_choice__middle_block_chart call_chart call"></div>
+                        <div class="color binary_traders_choice__middle_block_chart put_chart put"></div>
+                    </div>
+                    <div class="percents clearfix">
+                        <div class="percent call"><span class="name colon">Top</span> <span
+                                class="value binary_traders_choice__percent call">50</span></div>
+                        <div class="percent put"><span class="name colon">Bottom</span> <span
+                                class="value binary_traders_choice__percent put">50</span></div>
+                    </div>
+                </div>
+                <!-- TREND -->
+
+            </div>
+            <!--// CHARTS -->
+
+            <!-- ACTIONS -->
+            <div class="actions clearfix">
+
+                <!-- REQUOTE POPUP -->
+                <div class="requote">
+                    <div class="quote_changed">
+
+                    </div>
+                    <div class="buttonHolder righted">
+                        <span class="button blue closeReqoute button_buy"><span>Buy</span></span>
+                        <span class="button closeReqoute"><span>Cancel</span></span>
+                    </div>
+                </div>
+
+                <!-- SET -->
+                <div class="set">
+
+                    <!-- BUTTONS -->
+                    <div class="buttons">
+
+                        <!-- call -->
+                        <div class="actionBtn call dirButton   bb_click_all binary_actions__btn"
+                             data-action="set-direction"
+                             data-value="TOUCHUP">
+                            <div class="vertical">
+                                <div class="inner">
+                                    <div class="icon"></div>
+                                    <div class="name">TOP</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- rate -->
+                        <div class="actionRate">
+                            <div class="title colon label_current_price">Our rate</div>
+                            <div class="rate b_rate"></div>
+                        </div>
+
+                        <!-- put -->
+                        <div class="actionBtn put dirButton  bb_click_all binary_actions__btn"
+                             data-action="set-direction"
+                             data-value="TOUCHDOWN">
+                            <div class="vertical">
+                                <div class="inner">
+                                    <div class="name">BOTTOM</div>
+                                    <div class="icon"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!--// BUTTONS -->
+
+                    <!-- SUM -->
+                    <div class="sum">
+                        <div class="title colon centered">Investment</div>
+                        <div class="value">
+                            <div class="input currency">
+                                <input type="text"
+                                       class="noCloseDropdown b_invest_select deposit_invest bb_keyup bb_change"
+                                       data-action="set-invest" value="" maxlength="8">
+                            </div>
+
+                            <!-- dropdown -->
+                            <div class="dropdown chooseBet">
+                                <div class="container">
+                                    <div class="scroll">
+                                        <div class="select">
+
+                                            <div class="option clearfix">
+                                                <span class="val currency">1</span>
+                                            </div>
+                                            <div class="option clearfix">
+                                                <span class="val currency">5</span>
+                                            </div>
+                                            <div class="option clearfix">
+                                                <span class="val currency">10</span>
+                                            </div>
+                                            <div class="option clearfix">
+                                                <span class="val currency">50</span>
+                                            </div>
+                                            <div class="option clearfix">
+                                                <span class="val currency">100</span>
+                                            </div>
+                                            <div class="option clearfix">
+                                                <span class="val currency">500</span>
+                                            </div>
+                                            <div class="option clearfix">
+                                                <span class="val currency">1000</span>
+                                            </div>
+                                            <div class="option clearfix">
+                                                <span class="val currency">5000</span>
+                                            </div>
+                                            <div class="option clearfix">
+                                                <span class="val currency">10000</span>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--// dropdown -->
+
+                        </div>
+                    </div>
+                    <!--// SUM -->
+
+                </div>
+                <!--// SET -->
+
+                <!-- BET -->
+                <div class="bet">
+
+                    <!-- PAYOUTS -->
+                    <div class="payouts">
+                        <div class="payout">
+                            <div class="title colon label_payout">Payout</div>
+                            <div class="value currency win"></div>
+                        </div>
+                        <div class="payout">
+                            <div class="value percent percent_win"></div>
+                        </div>
+                        <div class="payout">
+                            <div class="title colon label_return">Return</div>
+                            <div class="value currency refund"></div>
+                        </div>
+                    </div>
+                    <!--// PAYOUTS -->
+
+                    <!-- SUBMIT -->
+                    <div class="badInvest-buy-hover hidden">
+                        <div style="display:table-cell;vertical-align: middle"></div>
+                    </div>
+                    <div class="submit">
+
+                        <!-- buy -->
+                        <div class="buyBtn inactive bin_buy">
+                            <div class="vertical mainSubmit">
+                                <div class="inner">
+                                    <div class="icon"></div>
+                                    <div class="name">Buy</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- one click -->
+                        <div class="oneClick toggleActive ">
+                            <div class="vertical console__one_click">
+                                <div class="inner one_click">
+                                    One-click trade
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- success msg -->
+                        <div class="successMsg">
+                            <div class="vertical">
+                                <div class="inner">Option is open!</div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!--// SUBMIT -->
+
+                </div>
+                <!--// BET -->
+
+            </div>
+            <!--// ACTIONS -->
+
+        </div>
+        <!--// BODY -->
+
+    </div>
+    <div class="button add_console w_dub touch_w_dub">ADD CONSOLE</div>
+    <!--// CONSOLE -->
+</script>
+<script id="console-range" type="text/template">
+    <div id="console-{{id}}" data-id="{{id}}" class="bsConsole console range">
+        <!-- classic || touch || range || spread -->
+        <!-- CLOSE -->
+        <div class="console_close w_close"><i class="zmdi zmdi-hc-fw zmdi-close"></i></div>
+        <!--// CLOSE -->
+        <!-- FILTER -->
+        <div class="filter clearfix">
+
+            <!-- left side -->
+            <div class="pull-left clearfix b_instruments_filter_content">
+
+                <div class="filter_item active">
+                    <span>All assets</span>
+                </div>
+                <div class="filter_item">
+                    <span>Currencies</span>
+                </div>
+                <div class="filter_item">
+                    <span>Indices</span>
+                </div>
+                <div class="filter_item">
+                    <span>Stocks</span>
+                </div>
+                <div class="filter_item">
+                    <span>Commodities</span>
+                </div>
+                <div class="filter_item">
+                    <span><i class="zmdi zmdi-star"></i> Favorites</span>
+                </div>
+
+            </div>
+            <!--// left side -->
+
+            <!-- right side -->
+            <div class="pull-right clearfix">
+                <div class="serverTime b_server_block"><span class="time"></span></div>
+            </div>
+            <!--// right side -->
+
+        </div>
+        <!--// FILTER -->
+
+        <!-- ASSETS -->
+        <div class="assets clearfix">
+
+            <!-- left side -->
+            <div class="pull-left clearfix">
+
+                <!-- asset -->
+                <div class="asset clearfix b_instrument_block">
+                    <div class="title colon label_asset">Asset</div>
+                    <div class="value">
+                        <div class="input">
+                            <div class="field noCloseDropdown b_block_value"></div>
+                        </div>
+
+                        <!-- dropdown -->
+                        <div class="dropdown chooseAsset drop_a">
+                            <div class="container dropdown_list">
+                                <div class="scroll">
+                                    <div class="select b_list"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--// dropdown -->
+
+                    </div>
+                </div>
+
+                <!-- asset -->
+                <div class="asset clearfix b_duration_block">
+                    <div class="title colon label_timeframe">Timeframe</div>
+                    <div class="value">
+                        <div class="input">
+                            <div class="field noCloseDropdown b_block_value"></div>
+                        </div>
+
+                        <!-- dropdown -->
+                        <div class="dropdown chooseTime drop_a">
+                            <div class="container dropdown_list">
+                                <div class="scroll">
+                                    <div class="select b_list tf_scroll"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--// dropdown -->
+
+                    </div>
+                </div>
+
+                <!-- info -->
+                <div class="asset clearfix b_available_block">
+                    <div class="title colon label_available">Available</div>
+                    <div class="value">
+                        <div class="info">
+                            <span class="b_block_value"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- info -->
+                <div class="asset clearfix b_expires_block">
+                    <div class="title colon label_expires">Expires</div>
+                    <div class="value">
+                        <div class="info">
+                            <span class="b_block_value"></span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!--// left side -->
+
+            <!-- right side -->
+            <div class="pull-right clearfix">
+                <!-- * -->
+            </div>
+            <!--// right side -->
+
+        </div>
+        <!--// ASSETS -->
+
+        <!-- BODY -->
+        <div class="body clearfix">
+
+            <!-- INFO WINDOW -->
+            <div class="infoWindow">
+                <div class="vertical">
+                    <div class="inner">
+                        <h3>We're loading neccessary data</h3>
+
+                        <p>It may take a few seconds. Please, wait.</p>
+
+                        <div class="loader"></div>
+                    </div>
+                </div>
+            </div>
+            <!--// INFO WINDOW -->
+
+            <!-- CHARTS -->
+            <div class="charts">
+                <!-- MAIN CHART -->
+                <div class="main_chart">
+
+                    <div class="chart">
+                        <div class="chartjs-tooltip"></div>
+
+                        <div class="graph-mark course"></div>
+                        <div class="graph-mark line1"></div>
+                        <div class="graph-mark line2"></div>
+                        <div class="graph-mark line3"></div>
+                        <div class="graph-mark line4"></div>
+
+                        <div class="bin_graph_range_line bin_graph_range_line_available allowed_line_txt"><span></span>
+                        </div>
+                        <div class="bin_graph_range_line bin_graph_range_line_expires end_line_txt"><span></span></div>
+
+                        <div class="b_graph_block_overlay"></div>
+                        <div class="b_graph_block_overlay_not_avalable"></div>
+
+                        <!--<div class="crosshair-elements">
+                            <div style="display:none;" class="graph-mark line1 left"></div>
+                            <div style="display:none;" class="graph-mark line2 left"></div>
+                            <div style="display:none;" class="graph-mark line3 left"></div>
+                            <div style="display:none;" class="graph-mark line4 left"></div>
+
+                          <div class="hover_value" style="display:none;"></div>
+                            <div class="hover_date" style="display:none;"></div>
+                            <div class="hover_crosshair_hor" style="display:none;"></div>
+                            <div class="hover_crosshair_ver" style="display:none;"></div>
+                            <div class="hover_crosshair_center" style="display:none;"></div>
+                        </div>-->
+
+                        <div class="b_gradient"></div>
+                        <div id="plot-{{id}}" class="b_content"></div>
+                    </div>
+                </div>
+                <!--// MAIN CHART -->
+
+                <!-- CHART -->
+
+                <!-- TREND -->
+                <div class="trend">
+                    <div class="title colon trader_choise">Traders' choice</div>
+                    <div class="colors clearfix">
+                        <div class="color binary_traders_choice__middle_block_chart call_chart call"></div>
+                        <div class="color binary_traders_choice__middle_block_chart put_chart put"></div>
+                    </div>
+                    <div class="percents clearfix">
+                        <div class="percent call"><span class="name colon">In</span> <span
+                                class="value binary_traders_choice__percent call">50</span></div>
+                        <div class="percent put"><span class="name colon">Out</span> <span
+                                class="value binary_traders_choice__percent put">50</span></div>
+                    </div>
+                </div>
+                <!-- TREND -->
+
+            </div>
+            <!--// CHARTS -->
+
+            <!-- ACTIONS -->
+            <div class="actions clearfix">
+
+                <!-- REQUOTE POPUP -->
+                <div class="requote">
+                    <div class="quote_changed">
+
+                    </div>
+                    <div class="buttonHolder righted">
+                        <span class="button blue closeReqoute button_buy"><span>Buy</span></span>
+                        <span class="button closeReqoute"><span>Cancel</span></span>
+                    </div>
+                </div>
+
+                <!-- SET -->
+                <div class="set">
+
+                    <!-- BUTTONS -->
+                    <div class="buttons">
+
+                        <!-- call -->
+                        <div class="actionBtn call dirButton  bb_click_all binary_actions__btn"
+                             data-action="set-direction"
+                             data-value="IN">
+                            <div class="vertical">
+                                <div class="inner">
+                                    <div class="icon"></div>
+                                    <div class="name">IN</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- rate -->
+                        <div class="actionRate">
+                            <div class="title colon label_current_price">Our rate</div>
+                            <div class="rate b_rate"></div>
+                        </div>
+
+                        <!-- put -->
+                        <div class="actionBtn put dirButton  bb_click_all binary_actions__btn"
+                             data-action="set-direction"
+                             data-value="OUT">
+                            <div class="vertical">
+                                <div class="inner">
+                                    <div class="name">OUT</div>
+                                    <div class="icon"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!--// BUTTONS -->
+
+                    <!-- SUM -->
+                    <div class="sum">
+                        <div class="title colon centered">Investment</div>
+                        <div class="value">
+                            <div class="input currency">
+                                <input type="text"
+                                       class="noCloseDropdown b_invest_select deposit_invest bb_keyup bb_change"
+                                       data-action="set-invest" value="" maxlength="8">
+                            </div>
+
+                            <!-- dropdown -->
+                            <div class="dropdown chooseBet">
+                                <div class="container">
+                                    <div class="scroll">
+                                        <div class="select">
+
+                                            <div class="option clearfix">
+                                                <span class="val currency">1</span>
+                                            </div>
+                                            <div class="option clearfix">
+                                                <span class="val currency">5</span>
+                                            </div>
+                                            <div class="option clearfix">
+                                                <span class="val currency">10</span>
+                                            </div>
+                                            <div class="option clearfix">
+                                                <span class="val currency">50</span>
+                                            </div>
+                                            <div class="option clearfix">
+                                                <span class="val currency">100</span>
+                                            </div>
+                                            <div class="option clearfix">
+                                                <span class="val currency">500</span>
+                                            </div>
+                                            <div class="option clearfix">
+                                                <span class="val currency">1000</span>
+                                            </div>
+                                            <div class="option clearfix">
+                                                <span class="val currency">5000</span>
+                                            </div>
+                                            <div class="option clearfix">
+                                                <span class="val currency">10000</span>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--// dropdown -->
+
+                        </div>
+                    </div>
+                    <!--// SUM -->
+
+                </div>
+                <!--// SET -->
+
+                <!-- BET -->
+                <div class="bet">
+
+                    <!-- PAYOUTS -->
+                    <div class="payouts">
+                        <div class="payout">
+                            <div class="title colon label_payout">Payout</div>
+                            <div class="value currency win"></div>
+                        </div>
+                        <div class="payout">
+                            <div class="value percent percent_win"></div>
+                        </div>
+                        <div class="payout">
+                            <div class="title colon label_return">Return</div>
+                            <div class="value currency refund"></div>
+                        </div>
+                    </div>
+                    <!--// PAYOUTS -->
+
+                    <!-- SUBMIT -->
+                    <div class="badInvest-buy-hover hidden">
+                        <div style="display:table-cell;vertical-align: middle"></div>
+                    </div>
+                    <div class="submit">
+
+                        <!-- buy -->
+                        <div class="buyBtn inactive bin_buy">
+                            <div class="vertical mainSubmit">
+                                <div class="inner">
+                                    <div class="icon"></div>
+                                    <div class="name">Buy</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- one click -->
+                        <div class="oneClick toggleActive ">
+                            <div class="vertical console__one_click">
+                                <div class="inner one_click">
+                                    One-click trade
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- success msg -->
+                        <div class="successMsg">
+                            <div class="vertical">
+                                <div class="inner">Option is open!</div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!--// SUBMIT -->
+
+                </div>
+                <!--// BET -->
+
+            </div>
+            <!--// ACTIONS -->
+
+        </div>
+        <!--// BODY -->
+
+    </div>
+    <div class="button add_console w_dub range_w_dub">ADD CONSOLE</div>
+    <!--// CONSOLE -->
+</script>
+<script id="console-range_classic" type="text/template">
+    <div id="console-{{id}}" data-id="{{id}}" class="bsConsole console range_classic">
+        <!-- classic || touch || range || spread -->
+        <!-- CLOSE -->
+        <div class="console_close w_close"><i class="zmdi zmdi-hc-fw zmdi-close"></i></div>
+        <!--// CLOSE -->
+        <!-- FILTER -->
+        <div class="filter clearfix">
+
+            <!-- left side -->
+            <div class="pull-left clearfix b_instruments_filter_content">
+
+                <div class="filter_item active">
+                    <span>All assets</span>
+                </div>
+                <div class="filter_item">
+                    <span>Currencies</span>
+                </div>
+                <div class="filter_item">
+                    <span>Indices</span>
+                </div>
+                <div class="filter_item">
+                    <span>Stocks</span>
+                </div>
+                <div class="filter_item">
+                    <span>Commodities</span>
+                </div>
+                <div class="filter_item">
+                    <span><i class="zmdi zmdi-star"></i> Favorites</span>
+                </div>
+
+            </div>
+            <!--// left side -->
+
+            <!-- right side -->
+            <div class="pull-right clearfix">
+                <div class="serverTime b_server_block"><span class="time"></span></div>
+            </div>
+            <!--// right side -->
+
+        </div>
+        <!--// FILTER -->
+
+        <!-- ASSETS -->
+        <div class="assets clearfix">
+
+            <!-- left side -->
+            <div class="pull-left clearfix">
+
+                <!-- asset -->
+                <div class="asset clearfix b_instrument_block">
+                    <div class="title colon label_asset">Asset</div>
+                    <div class="value">
+                        <div class="input">
+                            <div class="field noCloseDropdown b_block_value"></div>
+                        </div>
+
+                        <!-- dropdown -->
+                        <div class="dropdown chooseAsset drop_a">
+                            <div class="container dropdown_list">
+                                <div class="scroll">
+                                    <div class="select b_list"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--// dropdown -->
+
+                    </div>
+                </div>
+
+                <!-- asset -->
+                <div class="asset clearfix b_duration_block">
+                    <div class="title colon label_timeframe">Timeframe</div>
+                    <div class="value">
+                        <div class="input">
+                            <div class="field noCloseDropdown b_block_value"></div>
+                        </div>
+
+                        <!-- dropdown -->
+                        <div class="dropdown chooseTime drop_a">
+                            <div class="container dropdown_list">
+                                <div class="scroll">
+                                    <div class="select b_list tf_scroll"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--// dropdown -->
+
+                    </div>
+                </div>
+
+                <!-- info -->
+                <div class="asset clearfix b_available_block">
+                    <div class="title colon label_available">Available</div>
+                    <div class="value">
+                        <div class="info">
+                            <span class="b_block_value"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- info -->
+                <div class="asset clearfix b_expires_block">
+                    <div class="title colon label_expires">Expires</div>
+                    <div class="value">
+                        <div class="info">
+                            <span class="b_block_value"></span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!--// left side -->
+
+            <!-- right side -->
+            <div class="pull-right clearfix">
+                <!-- * -->
+            </div>
+            <!--// right side -->
+
+        </div>
+        <!--// ASSETS -->
+
+        <!-- BODY -->
+        <div class="body clearfix">
+
+            <!-- INFO WINDOW -->
+            <div class="infoWindow">
+                <div class="vertical">
+                    <div class="inner">
+                        <h3>We're loading neccessary data</h3>
+
+                        <p>It may take a few seconds. Please, wait.</p>
+
+                        <div class="loader"></div>
+                    </div>
+                </div>
+            </div>
+            <!--// INFO WINDOW -->
+
+            <!-- CHARTS -->
+            <div class="charts">
+                <!-- MAIN CHART -->
+                <div class="main_chart">
+
+                    <div class="chart">
+                        <div class="chartjs-tooltip"></div>
+
+                        <div class="graph-mark course"></div>
+
+                        <div class="bin_graph_range_line bin_graph_range_line_available allowed_line_txt"><span></span>
+                        </div>
+                        <div class="bin_graph_range_line bin_graph_range_line_expires end_line_txt"><span></span></div>
+
+                        <div class="b_graph_block_overlay"></div>
+                        <div class="b_graph_block_overlay_not_avalable"></div>
+
+                        <!--<div class="crosshair-elements">
+                            <div style="display:none;" class="graph-mark line1 left"></div>
+                            <div style="display:none;" class="graph-mark line2 left"></div>
+                            <div style="display:none;" class="graph-mark line3 left"></div>
+                            <div style="display:none;" class="graph-mark line4 left"></div>
+
+                          <div class="hover_value" style="display:none;"></div>
+                            <div class="hover_date" style="display:none;"></div>
+                            <div class="hover_crosshair_hor" style="display:none;"></div>
+                            <div class="hover_crosshair_ver" style="display:none;"></div>
+                            <div class="hover_crosshair_center" style="display:none;"></div>
+                        </div>-->
+
+                        <div class="b_gradient"></div>
+                        <div id="plot-{{id}}" class="b_content"></div>
+                    </div>
+                </div>
+                <!--// MAIN CHART -->
+
+                <!-- CHART -->
+
+                <!-- TREND -->
+                <div class="trend">
+                    <div class="title colon trader_choise">Traders' choice</div>
+                    <div class="colors clearfix">
+                        <div class="color binary_traders_choice__middle_block_chart call_chart call"></div>
+                        <div class="color binary_traders_choice__middle_block_chart put_chart put"></div>
+                    </div>
+                    <div class="percents clearfix">
+                        <div class="percent call"><span class="name colon">Higher</span> <span
+                                class="value binary_traders_choice__percent call">50</span></div>
+                        <div class="percent put"><span class="name colon">Lower</span> <span
+                                class="value binary_traders_choice__percent put">50</span></div>
+                    </div>
+                </div>
+                <!-- TREND -->
+
+            </div>
+            <!--// CHARTS -->
+
+            <!-- ACTIONS -->
+            <div class="actions clearfix">
+
+                <!-- REQUOTE POPUP -->
+                <div class="requote">
+                    <div class="quote_changed">
+
+                    </div>
+                    <div class="buttonHolder righted">
+                        <span class="button blue closeReqoute button_buy"><span>Buy</span></span>
+                        <span class="button closeReqoute"><span>Cancel</span></span>
+                    </div>
+                </div>
+
+                <!-- SET -->
+                <div class="set">
+
+                    <!-- BUTTONS -->
+                    <div class="buttons">
+
+                        <!-- call -->
+                        <div class="actionBtn call dirButton   bb_click_all binary_actions__btn"
+                             data-action="set-direction"
+                             data-value="CALL">
+                            <div class="vertical">
+                                <div class="inner">
+                                    <div class="icon"></div>
+                                    <div class="name">Call</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- rate -->
+                        <div class="actionRate">
+                            <div class="title colon label_current_price">Our rate</div>
+                            <div class="rate b_rate"></div>
+                        </div>
+
+                        <!-- put -->
+                        <div class="actionBtn put dirButton  bb_click_all binary_actions__btn"
+                             data-action="set-direction"
+                             data-value="PUT">
+                            <div class="vertical">
+                                <div class="inner">
+                                    <div class="name">Put</div>
+                                    <div class="icon"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!--// BUTTONS -->
+
+                    <!-- SUM -->
+                    <div class="sum">
+                        <div class="title colon centered">Investment</div>
+                        <div class="value">
+                            <div class="input currency">
+                                <input type="text"
+                                       class="noCloseDropdown b_invest_select deposit_invest bb_keyup bb_change"
+                                       data-action="set-invest" value="" maxlength="8">
+                            </div>
+
+                            <!-- dropdown -->
+                            <div class="dropdown chooseBet">
+                                <div class="container">
+                                    <div class="scroll">
+                                        <div class="select">
+
+                                            <div class="option clearfix">
+                                                <span class="val currency">1</span>
+                                            </div>
+                                            <div class="option clearfix">
+                                                <span class="val currency">5</span>
+                                            </div>
+                                            <div class="option clearfix">
+                                                <span class="val currency">10</span>
+                                            </div>
+                                            <div class="option clearfix">
+                                                <span class="val currency">50</span>
+                                            </div>
+                                            <div class="option clearfix">
+                                                <span class="val currency">100</span>
+                                            </div>
+                                            <div class="option clearfix">
+                                                <span class="val currency">500</span>
+                                            </div>
+                                            <div class="option clearfix">
+                                                <span class="val currency">1000</span>
+                                            </div>
+                                            <div class="option clearfix">
+                                                <span class="val currency">5000</span>
+                                            </div>
+                                            <div class="option clearfix">
+                                                <span class="val currency">10000</span>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--// dropdown -->
+
+                        </div>
+                    </div>
+                    <!--// SUM -->
+
+                </div>
+                <!--// SET -->
+
+                <!-- BET -->
+                <div class="bet">
+
+                    <!-- PAYOUTS -->
+                    <div class="payouts">
+                        <div class="payout">
+                            <div class="title colon label_payout">Payout</div>
+                            <div class="value currency win"></div>
+                        </div>
+                        <div class="payout">
+                            <div class="value percent percent_win"></div>
+                        </div>
+                        <div class="payout">
+                            <div class="title colon label_return">Return</div>
+                            <div class="value currency refund"></div>
+                        </div>
+                    </div>
+                    <!--// PAYOUTS -->
+
+                    <!-- SUBMIT -->
+                    <div class="badInvest-buy-hover hidden">
+                        <div style="display:table-cell;vertical-align: middle"></div>
+                    </div>
+                    <div class="submit">
+
+                        <!-- buy -->
+                        <div class="buyBtn inactive bin_buy">
+                            <div class="vertical mainSubmit">
+                                <div class="inner">
+                                    <div class="icon"></div>
+                                    <div class="name">Buy</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- one click -->
+                        <div class="oneClick toggleActive ">
+                            <div class="vertical console__one_click">
+                                <div class="inner one_click">
+                                    One-click trade
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- success msg -->
+                        <div class="successMsg">
+                            <div class="vertical">
+                                <div class="inner">Option is open!</div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!--// SUBMIT -->
+
+                </div>
+                <!--// BET -->
+
+            </div>
+            <!--// ACTIONS -->
+
+        </div>
+        <!--// BODY -->
+
+    </div>
+    <div class="button add_console w_dub range_classic_w_dub">ADD CONSOLE</div>
+    <!--// CONSOLE -->
+</script>
+
+
+<script type="text/javasript" id="modal-alert">
+
+        <div class="binsta__popup modal" id="{{id}}">
+            <div class="vert_centr">
+                <h3>{{header}}</h3>
+                {{{text}}}
+                <div class="popup_btns">
+                    <button class="button ok modal-button-ok {{button_class}}">{{button_name}}</button>
+                    <button class="button cancel bin_popup_cancel_btn modal-button-cancel label_cancel"></button>
+                </div>
+            </div>
+        </div>
+
+
+
+</script>
+
+
+</html>

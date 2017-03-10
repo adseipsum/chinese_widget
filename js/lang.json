@@ -1,0 +1,1280 @@
+{
+    "mes1": {
+        "selector": ".widget.h3 .w_title",
+        "en": "Binary Options Console",
+        "ru": "Консоль бинарных опционов",
+        "zh": "二元期權控制台"
+    },
+    "mes2": {
+        "selector": ".label_asset",
+        "en": "Asset",
+        "ru": "Инстр.",
+        "zh": "儀器"
+    },
+    "mes3": {
+        "selector": ".b_duration_block .b_title",
+        "en": "Timeframe",
+        "ru": "Интервал",
+        "zh": "時間表"
+    },
+    "mes4": {
+        "selector": ".b_duration_block .b_add_title",
+        "en": "Duration",
+        "ru": "Срок исполнения",
+        "zh": "選項將持續"
+    },
+    "mes5": {
+        "selector": ".b_available_block .b_title",
+        "en": "Available",
+        "ru": "Доступен",
+        "zh": "可用"
+    },
+    "mes6": {
+        "selector": ".b_available_block .b_add_title",
+        "en": "Open an option in",
+        "ru": "Доступен для покупки",
+        "zh": "在打開的選項"
+    },
+    "mes7": {
+        "selector": ".b_expires_block .b_add_title",
+        "en": "Expires at",
+        "ru": "Истекает",
+        "zh": "過期"
+    },
+    "mes8": {
+        "selector": ".b_payouts_block .b_title",
+        "en": "Your Payouts",
+        "ru": "Ваши выплаты",
+        "zh": "你的取款"
+    },
+    "mes9": {
+        "selector": "#widgets-classic .actionBtn.call .name",
+        "en": "CALL",
+        "ru": "ВЫШЕ",
+        "zh": "上面"
+    },
+    "mes10": {
+        "selector": "#widgets-classic .actionBtn.put .name",
+        "en": "PUT",
+        "ru": "НИЖЕ",
+        "zh": "下面"
+    },
+    "mes11": {
+        "selector": ".classic .b_payouts_line.call .b_payouts_dir_name",
+        "en": "call",
+        "ru": "выше",
+        "zh": "上面"
+    },
+    "mes12": {
+        "selector": ".classic .b_payouts_line.put .b_payouts_dir_name",
+        "en": "put",
+        "ru": "ниже",
+        "zh": "下面"
+    },
+    "mes13": {
+        "selector": ".touch .b_payouts_line.call .b_payouts_dir_name",
+        "en": "touch",
+        "ru": "коснётся",
+        "zh": "摸"
+    },
+    "mes14": {
+        "selector": ".touch .b_payouts_line.put .b_payouts_dir_name",
+        "en": "won't touch",
+        "ru": "не коснётся",
+        "zh": "不能碰"
+    },
+    "mes15": {
+        "selector": ".range .b_payouts_line.call .b_payouts_dir_name",
+        "en": "inside",
+        "ru": "внутри",
+        "zh": "內部"
+    },
+    "mes16": {
+        "selector": ".range .b_payouts_line.put .b_payouts_dir_name",
+        "en": "outside",
+        "ru": "снаружи",
+        "zh": "外面"
+    },
+    "mes17": {
+        "selector": ".label_investment",
+        "en": "Investment",
+        "ru": "Ставка",
+        "zh": "投資”"
+    },
+    "mes18": {
+        "selector": ".b_buy_value",
+        "en": "Buy",
+        "ru": "Купить",
+        "zh": "買入"
+    },
+    "mes19": {
+        "selector": ".you_think",
+        "en": "You bet that in",
+        "ru": "Вы решили, что через",
+        "zh": "你打賭，在"
+    },
+    "mes20": {
+        "selector": ".classic .will_be",
+        "en": "will be",
+        "ru": "будет",
+        "zh": "將"
+    },
+    "mes21": {
+        "selector": "#widgets-range_classic .actionBtn.put .name",
+        "en": "LOWER",
+        "ru": "НИЖЕ",
+        "zh": "下面"
+    },
+    "mes22": {
+        "selector": "#widgets-range_classic .actionBtn.call .name",
+        "en": "HIGHER",
+        "ru": "ВЫШЕ",
+        "zh": "上面"
+    },
+    "mes23": {
+        "selector": ".b_instrument_block .b_add_title",
+        "en": "Active",
+        "ru": "Актив",
+        "zh": "上面"
+    },
+    "mes24": {
+        "selector": "#widgets-range .actionBtn.put .name",
+        "en": "OUT",
+        "ru": "СНАРУЖИ",
+        "zh": "外"
+    },
+    "mes25": {
+        "selector": "#widgets-range .actionBtn.call .name",
+        "en": "IN",
+        "ru": "ВНУТРИ",
+        "zh": "內"
+    },
+    "mes26": {
+        "selector": "#widgets-touch .actionBtn.put .name",
+        "en": "Bottom",
+        "ru": "НИЗ",
+        "zh": "底部"
+    },
+    "mes27": {
+        "selector": "#widgets-touch .actionBtn.call .name",
+        "en": "Top",
+        "ru": "ВЕРХ",
+        "zh": "頂部"
+    },
+    "mes28": {
+        "selector": ".touch .will_be",
+        "en": "Touch",
+        "ru": "Коснётся",
+        "zh": "觸摸"
+    },
+    "mes29": {
+        "selector": ".range .will_be",
+        "en": "will be",
+        "ru": "будет",
+        "zh": "將"
+    },
+    "mes30": {
+        "selector": ".b_payouts_line_or",
+        "en": "or",
+        "ru": "или",
+        "zh": "或"
+    },
+    "mes31": {
+        "selector": ".range .b_chosen_dir.higher",
+        "en": "inside the tunnels",
+        "ru": "внутри туннелей",
+        "zh": "隧道內"
+    },
+    "mes32": {
+        "selector": ".range .b_chosen_dir.lower",
+        "en": "outside the tunnels",
+        "ru": "вне туннелей",
+        "zh": "隧道外"
+    },
+    "mes32b": {
+        "selector": ".label_kind",
+        "en": "Type",
+        "ru": "Тип",
+        "zh": "金融商品"
+    },
+    "mes33": {
+        "selector": ".label_tool",
+        "en": "Symbol",
+        "ru": "Символ",
+        "zh": "金融商品"
+    },
+    "mes34": {
+        "selector": ".label_expires",
+        "en": "Expires",
+        "ru": "Истекает",
+        "zh": "期限"
+    },
+    "mes35": {
+        "selector": ".label_invest",
+        "en": "Current payout",
+        "ru": "Текущая выплата",
+        "zh": "率"
+    },
+    "mes35b": {
+        "selector": ".label_invest_closed",
+        "en": "Payout",
+        "ru": "Выплата",
+        "zh": "率"
+    },
+    "mes36": {
+        "selector": ".label_price_open",
+        "en": "Strike price",
+        "ru": "Цена открытия",
+        "zh": "開盤價"
+    },
+    "mes37": {
+        "selector": ".label_price_close",
+        "en": "Close price",
+        "ru": "Цена закрытия",
+        "zh": "收盤價"
+    },
+    "mes38": {
+        "selector": ".label_payout",
+        "en": "Payout",
+        "ru": "Прибыльность",
+        "zh": "付款"
+    },
+    "mes39": {
+        "selector": ".opened-tab.opened",
+        "en": "Open options",
+        "ru": "Открытые опционы",
+        "zh": "打開選項"
+    },
+    "mes40": {
+        "selector": ".opened-tab.closed",
+        "en": "Closed options",
+        "ru": "Закрытые опционы",
+        "zh": "封閉選項"
+    },
+    "mes41": {
+        "selector": ".opened-tab.journal",
+        "en": "Trade history",
+        "ru": "История торговли",
+        "zh": "交易歷史"
+    },
+    "mes42": {
+        "selector": ".b_options_types_item[data-kind='classic']",
+        "en": "Classic",
+        "ru": "Бинарный",
+        "zh": "二進制"
+    },
+    "mes43": {
+        "selector": ".b_options_types_item[data-kind='touch']",
+        "en": "Touch",
+        "ru": "Касание",
+        "zh": "接觸"
+    },
+    "mes43b": {
+        "selector": ".b_options_types_item[data-kind='touch_advanced']",
+        "en": "One Touch",
+        "ru": "Касание2",
+        "zh": "接觸"
+    },
+    "mes44": {
+        "selector": ".b_options_types_item[data-kind='range']",
+        "en": "Range",
+        "ru": "Диапазон",
+        "zh": "隧道"
+    },
+    "mes44b": {
+        "selector": ".b_options_types_item[data-kind='range_advanced']",
+        "en": "Range",
+        "ru": "Туннельные2",
+        "zh": "隧道"
+    },
+    "mes44c": {
+        "selector": ".b_options_types_item[data-kind='range_classic']",
+        "en": "Spread",
+        "ru": "Спред",
+        "zh": "隧道"
+    },
+    "mes45": {
+        "selector": ".user-deposit-label",
+        "en": "Balance",
+        "ru": "Баланс",
+        "zh": ""
+    },
+    "mes46": {
+        "selector": ".opened-options-count-label",
+        "en": "Open options",
+        "ru": "Открыто опционов",
+        "zh": "開"
+    },
+    "mes47": {
+        "selector": ".trades-closed-header",
+        "en": "Trading is closed during the weekend",
+        "ru": "В выходные дни торговля не ведётся",
+        "zh": "週末貿易不進行"
+    },
+    "mes48": {
+        "selector": ".trades-closed-before",
+        "en": "Trading will resume in:",
+        "ru": "До открытия:",
+        "zh": "前開口"
+    },
+    "mes49": {
+        "selector": ".backToMain",
+        "en": "Back to main page",
+        "ru": "Вернуться на главную",
+        "zh": "回到首頁"
+    },
+    "mes50": {
+        "selector": ".styleMenu",
+        "en": "Style",
+        "ru": "Стиль",
+        "zh": "風格"
+    },
+    "mes51": {
+        "selector": ".open_options_bar_open_rate .open_options_bar_body_col_2_title",
+        "en": "Open rate",
+        "ru": "Курс открытия",
+        "zh": "開盤價"
+    },
+    "mes52": {
+        "selector": ".label_options_summary_info",
+        "en": "Option summary",
+        "ru": "Детали опциона",
+        "zh": ""
+    },
+    "mes53": {
+        "selector": ".open_options_bar_invested .open_options_bar_body_col_2_title",
+        "en": "Investment",
+        "ru": "Инвестиция",
+        "zh": "投資"
+    },
+    "mes54": {
+        "selector": ".open_options_expiration_title",
+        "en": "Expiration time",
+        "ru": "Истекает",
+        "zh": "期限"
+    },
+    "mes55": {
+        "selector": ".open_options_payout_title",
+        "en": "Payout (if win / if lose)",
+        "ru": "Выплата (выигрыш / проигрыш)",
+        "zh": "付款"
+    },
+    "mes56": {
+        "selector": ".open_options_bar_body_optionends .open_options_bar_body_col_1_title",
+        "en": "Option ends in",
+        "ru": "Опцион заканчивается",
+        "zh": "選項結束"
+    },
+    "mes57": {
+        "selector": ".open_options_share_title",
+        "en": "Share",
+        "ru": "Поделиться",
+        "zh": "共享"
+    },
+    "mes58": {
+        "selector": ".open_options_share_title.screen_shot",
+        "en": "Screenshot",
+        "ru": "Скриншот",
+        "zh": "截圖"
+    },
+    "mes59": {
+        "selector": "#messages .new-price",
+        "en": "Buy at the new strike price?",
+        "ru": "Хотите купить по новой цене?",
+        "zh": "行情變了，買了新的報價？"
+    },
+    "mes60": {
+        "selector": "#messages .finished",
+        "en": "Finished",
+        "ru": "Завершен",
+        "zh": "已完成"
+    },
+    "mes61": {
+        "selector": "#messages .error-wrong_sum",
+        "en": "Please enter right amount",
+        "ru": "Неправильно введена сумма",
+        "zh": "已完成"
+    },
+    "mes62": {
+        "selector": "#messages .error-insufficient_funds",
+        "en": "Insufficient funds",
+        "ru": "Недостаточно средств",
+        "zh": "已完成"
+    },
+    "mes63": {
+        "selector": "#messages .error-wrong_timeframe",
+        "en": "This option is currently closed for purchasing. Please try another asset or timeframe",
+        "ru": "Покупка этого опциона сейчас невозможна, но вы можете выбрать другой срок исполнения или актив",
+        "zh": "已完成"
+    },
+    "mes64": {
+        "selector": "#messages .error-undefined_error",
+        "en": "Undefuned error",
+        "ru": "Неизвестная ошибка",
+        "zh": "已完成"
+    },
+    "mes65": {
+        "selector": "#messages .error-wrong_pair",
+        "en": "This option is unavailable.  Please choose another asset or timeframe.",
+        "ru": "Торговля недоступна по данному опциону. Выберите другой доступный инструмент или период.",
+        "zh": "已完成"
+    },
+    "mes66": {
+        "selector": "#messages .error-inactive_user",
+        "en": "User is inactive",
+        "ru": "Пользователь не активен",
+        "zh": "已完成"
+    },
+    "mes67": {
+        "selector": "#messages .error-demo_period_ends",
+        "en": "Demo period has ended",
+        "ru": "Демо период истёк",
+        "zh": "已完成"
+    },
+    "mes68": {
+        "selector": "#refill-deposit",
+        "en": "Reset balance to $10000",
+        "ru": "Обновить до $10000",
+        "zh": "已完成"
+    },
+    "mes69": {
+        "selector": ".only_if_less_10000",
+        "en": "Only if your balance is less than $10000",
+        "ru": "Только при депозите менее $10000",
+        "zh": "已完成"
+    },
+    "mes70": {
+        "selector": ".error-min_sum",
+        "en": "Investment must be more than {min} and less than {max}",
+        "ru": "Размер ставки должен быть не менее {min} и не превышать {max}",
+        "zh": "已完成 {min} .. {max}"
+    },
+    "mes71": {
+        "selector": ".deposit-refilled",
+        "en": "Balance has been reset",
+        "ru": "Депозит обновлен",
+        "zh": "已完成 "
+    },
+    "mes72": {
+        "selector": ".error-connection-reload",
+        "en": "Connection error, page will be reloaded",
+        "ru": "Ошибка подключения, страница будет перезагружена",
+        "zh": "已完成 "
+    },
+    "mes74": {
+        "selector": ".error-lock-time",
+        "en": "Insufficient time left until the option expiration. Please try another timeframe",
+        "ru": "До конца опциона осталось мало времени, попробуйте другой временной интервал",
+        "zh": "已完成 "
+    },
+    "mes75": {
+        "selector": ".error_auth",
+        "en": "Authorization error, please fund your account",
+        "ru": "Ошибка авторизации, пожалуйста, пополните счёт",
+        "zh": "已完成 "
+    },
+    "mes76": {
+        "selector": "#messages .not_liq_symbol",
+        "en": "This option is temporarily unavailable. Please choose another one.",
+        "ru": "Торговля по данному инструменту временно  недоступна.",
+        "zh": " "
+    },
+    "mes77": {
+        "selector": ".b_payouts_line_header",
+        "en": "Payout",
+        "ru": "Прибыльность",
+        "zh": ""
+    },
+    "mes78": {
+        "selector": ".b_refund_header",
+        "en": "Protected amount",
+        "ru": "Возврат",
+        "zh": ""
+    },
+    "mes79": {
+        "selector": ".b_rate_header_profit",
+        "en": "Potential payout",
+        "ru": "Планируемая выплата",
+        "zh": ""
+    },
+    "mes80": {
+        "selector": ".b_rate_header_balanse",
+        "en": "Current price",
+        "ru": "Текущая цена:",
+        "zh": "current price:"
+    },
+    "mes81": {
+        "selector": "#messages .not_liq_symbol, #messages .error-not_liq_symbol",
+        "en": "This option is temporarily unavailable.  Please choose another one.",
+        "ru": "Торговля по данному инструменту временно недоступна.",
+        "zh": " "
+    },
+
+
+    "mes82": {
+        "selector": "#messages .all",
+        "en": "All assets",
+        "ru": "Все активы",
+        "zh": ""
+    },
+    "mes83": {
+        "selector": ".error-empty_symbols",
+        "en": "Currently, the selected options are unavailable for trading. Please, try again later.",
+        "ru": "В настоящий момент торги по выбранным опционам не доступны.<br> Пожалуйста, попробуйте позже",
+        "zh": ""
+    },
+    "mes84": {
+        "selector": ".empty-symbols",
+        "en": "No available symbols",
+        "ru": "Нет доступных символов",
+        "zh": ""
+    },
+    "mes85": {
+        "selector": ".accept_autochartist_message",
+        "en": "Disclaimer: Autochartist is an automated financial market analysis service. There are potential risks relating to investing and trading. You must be aware of such risks and familiarize yourself in regard to such risks and to seek independent advice relating thereto. You should not trade with money that you cannot afford to lose .The Autochartist service and its content should not be construed as a solicitation to invest and/or trade. You should seek independent advice in this regard. Past performance is not indicative of future performance. No representation is being made that any results discussed within the service and its related media content will be achieved. All opinions, news, research, analyses, prices or other information is provided as general market commentary and not as investment advice. Autochartist, MDIO Software, their members, shareholders, employees, agents, representatives and resellers do not warrant the completeness, accuracy or timeliness of the information supplied, and they shall not be liable for any loss or damages, consequential or otherwise, which may arise from the use or reliance of the Autochartist service and its content.",
+        "ru": "Disclaimer: Autochartist is an automated financial market analysis service. There are potential risks relating to investing and trading. You must be aware of such risks and familiarize yourself in regard to such risks and to seek independent advice relating thereto. You should not trade with money that you cannot afford to lose .The Autochartist service and its content should not be construed as a solicitation to invest and/or trade. You should seek independent advice in this regard. Past performance is not indicative of future performance. No representation is being made that any results discussed within the service and its related media content will be achieved. All opinions, news, research, analyses, prices or other information is provided as general market commentary and not as investment advice. Autochartist, MDIO Software, their members, shareholders, employees, agents, representatives and resellers do not warrant the completeness, accuracy or timeliness of the information supplied, and they shall not be liable for any loss or damages, consequential or otherwise, which may arise from the use or reliance of the Autochartist service and its content.",
+        "zh": ""
+    },
+    "mes86": {
+        "selector": ".accept",
+        "en": "Accept",
+        "ru": "Accept",
+        "zh": ""
+    },
+    "mes87": {
+        "selector": ".label_early",
+        "en": "You may sell the option before it expires",
+        "ru": "Вы можете закрыть опцион досрочно",
+        "zh": ""
+    },
+    "mes88": {
+        "selector": ".sell_now",
+        "en": "Sell now",
+        "ru": "Продать",
+        "zh": ""
+    },
+    "mes89": {
+        "selector": ".label_return",
+        "en": "Return",
+        "ru": "Возврат",
+        "zh": ""
+    },
+    "mes90": {
+        "selector": ".label_sum",
+        "en": "Amount",
+        "ru": "Сумма",
+        "zh": ""
+    },
+    "mes91": {
+        "selector": "#messages .starred",
+        "en": "Favorites",
+        "ru": "Избранное",
+        "zh": ""
+    },
+    "mes92": {
+        "selector": ".label_scale",
+        "en": "Chart",
+        "ru": "График",
+        "zh": ""
+    },
+    "mes93": {
+        "selector": ".label_scale_1hour",
+        "en": "1 hour",
+        "ru": "1 час",
+        "zh": ""
+    },
+    "mes94": {
+        "selector": ".label_scale_2hours",
+        "en": "2 hours",
+        "ru": "2 часа",
+        "zh": ""
+    },
+    "mes95": {
+        "selector": ".label_scale_3hours",
+        "en": "3 hours",
+        "ru": "3 часа",
+        "zh": ""
+    },
+    "mes96": {
+        "selector": ".label_scale_5hours",
+        "en": "5 hours",
+        "ru": "5 часов",
+        "zh": ""
+    },
+    "mes97": {
+        "selector": ".label_scale_10hours",
+        "en": "10 hours",
+        "ru": "10 часов",
+        "zh": ""
+    },
+    "mes98": {
+        "selector": ".label_scale_2days",
+        "en": "2 days",
+        "ru": "2 дня",
+        "zh": ""
+    },
+    "mes99": {
+        "selector": ".user-available-label",
+        "en": "Available amount",
+        "ru": "Доступно средств",
+        "zh": ""
+    },
+    "mes100": {
+        "selector": "#widgets-range_classic .actionBtn.call .name",
+        "en": "Higher",
+        "ru": "ВЫШЕ",
+        "zh": "上面"
+    },
+    "mes101": {
+        "selector": "#widgets-range_classic .actionBtn.put .name",
+        "en": "Lower",
+        "ru": "НИЖЕ",
+        "zh": "下面"
+    },
+    "mes102": {
+        "selector": ".label_invest_block",
+        "en": "Amount",
+        "ru": "Сумма",
+        "zh": ""
+    },
+    "mes111": {
+        "selector": "#messages .bin_buy_hidden_msg",
+        "en": "Option bought",
+        "ru": "Опцион куплен",
+        "zh": ""
+    },
+    "mes122": {
+        "selector": "#messages .classic_call",
+        "en": "Binary",
+        "ru": "Бинарный",
+        "zh": ""
+    },
+    "mes123": {
+        "selector": "#messages .classic_put",
+        "en": "Binary",
+        "ru": "Бинарный",
+        "zh": ""
+    },
+    "mes124": {
+        "selector": "#messages .touch_up",
+        "en": "Touch",
+        "ru": "Касание",
+        "zh": ""
+    },
+    "mes125": {
+        "selector": "#messages .touch_updown",
+        "en": "Touch",
+        "ru": "Касание",
+        "zh": ""
+    },
+    "mes126": {
+        "selector": "#messages .touch_down",
+        "en": "Touch",
+        "ru": "Касание",
+        "zh": ""
+    },
+    "mes127": {
+        "selector": "#messages .range_in",
+        "en": "Range",
+        "ru": "Диапазон",
+        "zh": ""
+    },
+    "mes128": {
+        "selector": "#messages .range_out",
+        "en": "Range",
+        "ru": "Диапазон",
+        "zh": ""
+    },
+    "mes129": {
+        "selector": ".label_symbol",
+        "en": "Symbol",
+        "ru": "Актив",
+        "zh": ""
+    },
+    "mes131": {
+        "selector": ".label_precent_win",
+        "en": "Payout",
+        "ru": "Прибыльность",
+        "zh": ""
+    },
+    "mes132": {
+        "selector": ".label_duration",
+        "en": "Timeframe",
+        "ru": "Длительность",
+        "zh": ""
+    },
+    "mes133": {
+        "selector": ".label_available",
+        "en": "Available",
+        "ru": "Доступен",
+        "zh": ""
+    },
+    "mes134": {
+        "selector": ".label_cancel",
+        "en": "Cancel",
+        "ru": "Отмена",
+        "zh": ""
+    },
+    "mes135": {
+        "selector": ".label_one_click",
+        "en": "One-click trade",
+        "ru": "Торговля в один клик",
+        "zh": ""
+    },
+    "mes136": {
+        "selector": ".trader_choise",
+        "en": "Trader's сhoice",
+        "ru": "Настроение трейдеров",
+        "zh": ""
+    },
+    "mes137": {
+        "selector": ".allowed_line_txt span",
+        "en": "Available",
+        "ru": "Доступен",
+        "zh": ""
+    },
+    "mes138": {
+        "selector": ".end_line_txt span",
+        "en": "",
+        "ru": "",
+        "zh": ""
+    },
+    "mes139": {
+        "selector": ".label_time_buy",
+        "en": "Buy",
+        "ru": "Покупка",
+        "zh": ""
+    },
+    "mes140": {
+        "selector": ".label_expired",
+        "en": "Expired",
+        "ru": "Погашен",
+        "zh": ""
+    },
+    "mes141": {
+        "selector": ".label_sell_now",
+        "en": "Sell",
+        "ru": "Продать",
+        "zh": ""
+    },
+    "mes142": {
+        "selector": ".label_early_content",
+        "en": "In the case of early close payment amount",
+        "ru": "В случае досрочного погашения выплата составит",
+        "zh": ""
+    },
+    "mes143": {
+        "selector": ".label_early_header",
+        "en": "Option early close",
+        "ru": "Досрочное погашение опциона",
+        "zh": ""
+    },
+    "mes144": {
+        "selector": ".label_sell",
+        "en": "Put out",
+        "ru": "Погасить",
+        "zh": ""
+    },
+    "mes145": {
+        "selector": ".label_no_data",
+        "en": "Loading data",
+        "ru": "Загрузка данных",
+        "zh": ""
+    },
+    "mes146": {
+        "selector": ".label_refresh",
+        "en": "Refresh",
+        "ru": "Обновить",
+        "zh": ""
+    },
+    "mes147": {
+        "selector": ".label_fav_help",
+        "en": "Add current symbol to Favorites",
+        "ru": "Добавить текущий актив в Избранное",
+        "zh": ""
+    },
+    "mes148": {
+        "selector": "#messages .quote_changed",
+        "en": "The price has changed. Buy at the new price?",
+        "ru": "Котировка изменилась. Купить по новой цене?",
+        "zh": "行情變了"
+    },
+    "mes149": {
+        "selector": ".label_shedule_closed",
+        "en": "Trading with this asset will resume in: ",
+        "ru": "Торговля инструментом будет возобновлена через: ",
+        "zh": "行情變了"
+    },
+    "mes150": {
+        "selector": ".label_timeframe",
+        "en": "Timeframe",
+        "ru": "Длительность",
+        "zh": "行情變了"
+    },
+    "mes151": {
+        "selector": ".label_before_close",
+        "en": "Time left",
+        "ru": "До закрытия",
+        "zh": "行情變了"
+    },
+    "mes152": {
+        "selector": ".label_current_price",
+        "en": "Current price",
+        "ru": "Текущая цена",
+        "zh": "行情變了"
+    },
+    "mes153": {
+        "selector": ".label_or",
+        "en": "or",
+        "ru": "или",
+        "zh": "行變了"
+    },
+    "mes154": {
+        "selector": ".label_and",
+        "en": "and",
+        "ru": "и",
+        "zh": "情變了"
+    },
+    "mes155": {
+        "selector": ".label_forecast",
+        "en": "Forecast",
+        "ru": "Прогноз",
+        "zh": "情變了"
+    },
+    "mes156": {
+        "selector": "#messages .range_up, #messages .range_down",
+        "en": "Spread",
+        "ru": "Спред",
+        "zh": "情變了"
+    },
+    "mes157": {
+        "selector": ".label_payout_hint",
+        "en": "Current payout",
+        "ru": "Текущая выплата",
+        "zh": "情變了"
+    },
+    "mes158": {
+        "selector": ".error-no-connection",
+        "en": "Connection error, page will be reloaded",
+        "ru": "Ошибка соединения с сервером. Попробуйте перезагрузить страницу.",
+        "zh": "情變了"
+    },
+    "mes159": {
+        "selector": ".label_current_price",
+        "en": "Current price",
+        "ru": "Текущая цена",
+        "zh": "Current price"
+    },
+    "mes160": {
+        "selector": ".label_buy_at_new",
+        "en": "Buy at the new price?",
+        "ru": "Купить по новой цене?",
+        "zh": "行情變了，買了新的報價？"
+    },
+    "mes161": {
+        "selector": ".al_popup__action__btn.button_buy",
+        "en": "Buy at the new price",
+        "ru": "Купить по новой цене",
+        "zh": "行情變了，買了新的報價？"
+    },
+    "mes162": {
+        "selector": "#messages .old_browser",
+        "en": "Please use IE9+ or another modern browser",
+        "ru": "Пожалуйста, используйте IE9 + или другой современный браузер",
+        "zh": "行情變了，買了新的報價？"
+    },
+    "mes163": {
+        "selector": ".label_fav_help_remove",
+        "en": "Remove current symbol from Favorites",
+        "ru": "Убрать текущий актив из Избранного",
+        "zh": ""
+    },
+    "mes164": {
+        "selector": "#messages .error-forbidden_option_kind",
+        "en": "This type of  option is unavailable right now. Please choose another one.",
+        "ru": "Этот тип опциона недоступен в настоящее для торговли.",
+        "zh": "已完成"
+    },
+    "mes165": {
+        "selector": "#messages .error-forbidden_tool",
+        "en": "This asset is unavailable. Please choose another one.",
+        "ru": "Торговля по данному инструменту недоступна.",
+        "zh": "已完成"
+    },
+    "mes166": {
+        "selector": "#messages .error-forbidden_group",
+        "en": "This asset is unavailable. Please choose another one.",
+        "ru": "Торговля по данному инструменту недоступна.",
+        "zh": "已完成"
+    },
+    "mes167": {
+        "selector": "#messages .error-forbidden_loan",
+        "en": "Insufficient funds.",
+        "ru": "Недостаточно средств.",
+        "zh": "已完成"
+    },
+    "mes168": {
+        "selector": "#messages .error-forbidden_max_rev",
+        "en": "Operations limit has exceeded.",
+        "ru": "Превышен лимит операций.",
+        "zh": "已完成"
+    },
+    "mes169": {
+        "selector": "#messages .error-forbidden_max_opened",
+        "en": "Reached the maximum amount of open options",
+        "ru": "Достигнуто максимальное количество открытых позиций",
+        "zh": "已完成"
+    },
+    "mes170": {
+        "selector": "#messages .error-forbidden_max_bid",
+        "en": "Operations limit has exceeded",
+        "ru": "Превышен лимит операций",
+        "zh": "已完成"
+    },
+    "mes171": {
+        "selector": "#messages .error-token",
+        "en": "Non-existent account",
+        "ru": "Данный аккаунт не существует",
+        "zh": "已完成"
+    },
+    "mes172": {
+        "selector": ".user-bonus-label",
+        "en": "Bonus",
+        "ru": "Бонус",
+        "zh": "已完成"
+    },
+    "mes173": {
+        "selector": ".label_kind_operation",
+        "en": "Type",
+        "ru": "Тип",
+        "zh": "已完成"
+    },
+    "mes174": {
+        "selector": ".label_comment",
+        "en": "Comment",
+        "ru": "Комментарий",
+        "zh": "已完成"
+    },
+    "mes175": {
+        "selector": ".label_time",
+        "en": "Time",
+        "ru": "Время",
+        "zh": "已完成"
+    },
+    "mes176": {
+        "selector": ".label_operation_sum",
+        "en": "Amount",
+        "ru": "Cумма",
+        "zh": "已完成"
+    },
+    "mes177": {
+        "selector": ".opened-tab.history",
+        "en": "Balance history",
+        "ru": "История операций",
+        "zh": "交易歷史"
+    },
+    "mes178": {
+        "selector": ".label_operation_in",
+        "en": "Deposit",
+        "ru": "Пополнение",
+        "zh": "交易歷史"
+    },
+    "mes179": {
+        "selector": ".label_operation_out",
+        "en": "Withdraval",
+        "ru": "Вывод",
+        "zh": "交易歷史"
+    },
+    "mes180": {
+        "selector": ".label_operation_comp",
+        "en": "Compensation",
+        "ru": "Компенсация",
+        "zh": "交易歷史"
+    },
+    "mes181": {
+        "selector": ".label_operation_bonus",
+        "en": "Bonus",
+        "ru": "Бонус",
+        "zh": "交易歷史"
+    },
+    "mes182": {
+        "selector": ".label_operation_credit",
+        "en": "Credit",
+        "ru": "Кредит",
+        "zh": "交易歷史"
+    },
+    "mes183": {
+        "selector": ".add_console",
+        "en": "Add console",
+        "ru": "Добавить консоль"
+    },
+    "mes184": {
+        "selector": ".close_btn_label",
+        "en": "Close",
+        "ru": "Закрыть"
+    },
+    "mes185": {
+        "selector": ".label_id",
+        "en": "Deal ID",
+        "ru": "№ сделки"
+    },
+    "mes186": {
+        "selector": ".hint_one_click_on",
+        "en": "Turn off One-click trade",
+        "ru": "Выключить торговлю в один клик"
+    },
+    "mes187": {
+        "selector": ".hint_one_click",
+        "en": "Turn on One-click trade",
+        "ru": "Включить торговлю в один клик"
+    },
+    "mes188": {
+        "selector": ".hint_binary_call",
+        "en": "Above current price",
+        "ru": "Выше текущей цены"
+    },
+    "mes189": {
+        "selector": ".hint_binary_put",
+        "en": "Below current price",
+        "ru": "Ниже текущей цены"
+    },
+    "mes190": {
+        "selector": ".hint_touch_up",
+        "en": "Touch upper line",
+        "ru": "Касание верхней линии"
+    },
+    "mes191": {
+        "selector": ".hint_touch_down",
+        "en": "Touch lower line",
+        "ru": "Касание нижней линии"
+    },
+    "mes192": {
+        "selector": ".hint_range_in",
+        "en": "Inside Range",
+        "ru": "Внутри  диапазона"
+    },
+    "mes193": {
+        "selector": ".hint_range_out",
+        "en": "Outside Range",
+        "ru": "Снаружи диапазона"
+    },
+    "mes194": {
+        "selector": ".hint_spread_call",
+        "en": "Above the range",
+        "ru": "Выше диапазона"
+    },
+    "mes195": {
+        "selector": ".hint_spread_put",
+        "en": "Below the range",
+        "ru": "Ниже диапазона"
+    },
+    "mes196": {
+        "selector": ".hint_current_price",
+        "en": "Current (strike) price",
+        "ru": "Текущая (страйк) цена"
+    },
+    "mes197": {
+        "selector": ".hint_payout_win",
+        "en": "Reward",
+        "ru": "Премия"
+    },
+    "mes198": {
+        "selector": ".hint_payout_percent",
+        "en": "Percentage payout",
+        "ru": "Процент выплаты"
+    },
+    "mes199": {
+        "selector": ".hint_payout_refund",
+        "en": "Refund",
+        "ru": "Возврат"
+    },
+    "mes200": {
+        "selector": ".hint_buy_btn",
+        "en": "Invest",
+        "ru": "Инвестировать"
+    },
+    "mes201": {
+        "selector": ".hint_invest",
+        "en": "Investment amount",
+        "ru": "Размер инвестирования"
+    },
+    "mes202": {
+        "selector": ".hint_sell_button",
+        "en": "You may sell the option before it expires",
+        "ru": "Вы можете продать опцион до срока погашения"
+    },
+    "mes203": {
+        "selector": ".hint_favorits",
+        "en": "Favorites",
+        "ru": "Избранное"
+    },
+    "mes204": {
+        "selector": ".label_scale_5minutes",
+        "en": "5 minutes",
+        "ru": "5 минут",
+        "zh": ""
+    },
+    "mes205": {
+        "selector": ".label_scale_15minutes",
+        "en": "15 minutes",
+        "ru": "15 минут",
+        "zh": ""
+    },
+    "mes206": {
+        "selector": ".label_scale_30minutes",
+        "en": "30 minutes",
+        "ru": "30 минут",
+        "zh": ""
+    },
+    "mes207": {
+        "selector": ".label_scale_4hours",
+        "en": "4 hours",
+        "ru": "4 часа",
+        "zh": ""
+    },
+    "mes208": {
+        "selector": ".label_scale_1day",
+        "en": "1 day",
+        "ru": "1 день",
+        "zh": ""
+    },
+    "mes209": {
+        "selector": ".deposit_plus",
+        "en": "Deposit",
+        "ru": "Пополнение",
+        "zh": ""
+    },
+    "mes210": {
+        "selector": ".deposit_minus",
+        "en": "Withdraw",
+        "ru": "Снятие",
+        "zh": ""
+    },
+    "mes211": {
+        "selector": ".empty-symbols",
+        "en": "Trading is not available, please try again later",
+        "ru": "В настоящий момент торги по выбранным опционам не доступны.<br> Пожалуйста, попробуйте позже",
+        "zh": ""
+    },
+    "mes212": {
+        "selector": ".disclaimer-text",
+        "en": "<p>Banh mi lomo dreamcatcher, celiac tattooed flannel chillwave locavore chia letterpress. Butcher bushwick 8-bit kogi retro venmo post-ironic tattooed fixie ramps. Williamsburg post-ironic lomo messenger bag, squid quinoa yuccie four dollar toast. 90's marfa flexitarian celiac four dollar toast, meggings YOLO food truck chia ugh pug offal. Vegan tilde pork belly raw denim keffiyeh, health goth fap neutra tousled squid organic. Portland man bun plaid you probably haven't heard of them, vice YOLO readymade hella brunch. Tote bag hashtag scenester heirloom raw denim cold-pressed poutine, artisan authentic asymmetrical bushwick.</p><p>Neutra keffiyeh bicycle rights ethical franzen trust fund, +1 gastropub wayfarers mixtape quinoa gentrify iPhone schlitz. Health goth put a bird on it celiac distillery biodiesel, post-ironic tousled crucifix twee. Seitan kogi +1 franzen sartorial pop-up gastropub, PBR&B waistcoat blog taxidermy fanny pack chia chartreuse umami. XOXO austin photo booth beard portland kitsch. Synth health goth art party, bicycle rights sriracha pitchfork deep v small batch roof party chicharrones street art. Normcore plaid roof party, blue bottle hashtag chillwave sartorial synth occupy yuccie blog pork belly semiotics cold-pressed twee. Farm-to-table artisan 90's, irony semiotics roof party chambray keytar seitan.</p>",
+        "ru": "Дисклеймер на русском",
+        "zh": ""
+    },
+    "mes213": {
+        "selector": ".label-agreement",
+        "en": "I accept these Terms and Conditions",
+        "ru": "Я согласен с этими требования и условиями",
+        "zh": ""
+    },
+    "mes214": {
+        "selector": ".account-disabled",
+        "en": "Your account is disabled",
+        "ru": "Ваш аккаунт заблокирован",
+        "zh": ""
+
+    },
+    "mes215": {
+        "selector": ".quote_changed",
+        "en": "<h4>The price has changed</h4><p>New price is <strong class='b_rate'>{{price}}</strong>.</p><p>Would you like to buy at the new price?</p>",
+        "ru": "<h4>Цена изменилась. </h4><p>Новая цена <strong class='b_rate'>{{price}}</strong>. </p><p>Купить по новой цене?</p>"
+    },
+    "mes216": {
+        "selector": ".finished",
+        "en": "Finished",
+        "ru": "Окончен"
+
+    },
+    "mes217": {
+        "selector": "#messages .classic_call",
+        "en": "Binary",
+        "ru": "Бинарный",
+        "zh": ""
+    },
+    "mes218": {
+        "selector": "#messages .classic_put",
+        "en": "Binary",
+        "ru": "Бинарный",
+        "zh": ""
+    },
+    "mes219": {
+        "selector": "#messages .touch_up",
+        "en": "Touch",
+        "ru": "Касание",
+        "zh": ""
+    },
+    "mes220": {
+        "selector": "#messages .touch_updown",
+        "en": "Touch",
+        "ru": "Касание",
+        "zh": ""
+    },
+    "mes221": {
+        "selector": "#messages .touch_down",
+        "en": "Touch",
+        "ru": "Касание",
+        "zh": ""
+    },
+    "mes222": {
+        "selector": "#messages .range_in",
+        "en": "Range",
+        "ru": "Диапазон",
+        "zh": ""
+    },
+    "mes223": {
+        "selector": "#messages .range_out",
+        "en": "Range",
+        "ru": "Диапазон",
+        "zh": ""
+    },
+
+    "mes224": {
+        "selector": "#messages .sell_option_text",
+        "en": "Sell the option and get <strong class='currency'>{payout}</strong> back.",
+        "ru": "Продать отцион и вернуть <strong class='currency'>{payout}</strong>.",
+        "zh": ""
+    },
+    "mes225": {
+        "selector": ".infoWindow h3",
+        "en": "We're loading neccessary data",
+        "ru": "Загрузка данных",
+        "zh": ""
+    },
+    "mes226":{
+        "selector":".infoWindow .inner p",
+        "en":"It may take a few seconds. Please wait.",
+        "ru":"Пожалуйста подождите. Это может занять некоторое время.",
+        "zh": ""
+    },
+    "mes227": {
+        "selector": "#messages .range_up",
+        "en": "Range",
+        "ru": "Диапазон",
+        "zh": ""
+    },
+    "mes228": {
+        "selector": "#messages .range_down",
+        "en": "Range",
+        "ru": "Диапазон",
+        "zh": ""
+    },
+    "mes229": {
+        "selector": "#messages .all",
+        "en": "All assets",
+        "ru": "Все активы",
+        "zh": ""
+    },
+    "mes230": {
+        "selector": "#messages .range_classic_up",
+        "en": "Spread",
+        "ru": "Диапазон",
+        "zh": ""
+    },
+    "mes231": {
+        "selector": "#messages .range_classic_down",
+        "en": "Spread",
+        "ru": "Диапазон",
+        "zh": ""
+    }
+}
