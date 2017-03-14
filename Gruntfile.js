@@ -20,12 +20,19 @@ module.exports = function (grunt) {
             concat: {
                 flot: {
                     src: [
-                        "js/src/flot/jquery.flot.plot.js",
-                        "js/src/flot/jquery.flot.navigate.js",
-                        "js/src/flot/jquery.flot.fillbetween.js",
-                        "js/src/flot/jquery.flot.time.js",
-                        "js/src/flot/jquery.flot.crosshair.js",
-                        "js/src/flot/jquery.flot.multiple.threshold.js",
+                        // "js/plot/excanvas.min.js",
+                        "js/plot/jquery.flot.js",
+                        "js/plot/jquery.flot.navigate.js",
+                        "js/plot/jquery.flot.fillbetween.js",
+                        "js/plot/jquery.flot.time.js",
+                        "js/plot/jquery.flot.crosshair.js",
+                        "js/plot/jquery.flot.threshold.js",
+                        "js/plot/jquery.flot.resize.js",
+                        // "js/plot/jquery.flot.dashes.js",
+                        // "js/plot/jquery.flot.valuelabels.js",
+                        // "js/plot/jquery.flot.image.js",
+                        // "js/plot/jquery.flot.tooltip.js",
+                        "js/plot/jquery.flot.symbol.js",
 
                     ],
                     dest: "js/concat/chart.full.js"
@@ -78,12 +85,18 @@ module.exports = function (grunt) {
                     "js/jquery.colorhelpers.js",
                     "js/phpdate.js",
 
-                    "js/src/flot/jquery.flot.plot.js",
-                    "js/src/flot/jquery.flot.navigate.js",
-                    "js/src/flot/jquery.flot.fillbetween.js",
-                    "js/src/flot/jquery.flot.time.js",
-                    "js/src/flot/jquery.flot.crosshair.js",
-                    "js/src/flot/jquery.flot.multiple.threshold.js",
+                    "js/plot/excanvas.min.js",
+                    "js/plot/jquery.flot.js",
+                    "js/plot/jquery.flot.time.js",
+                    "js/plot/jquery.flot.crosshair.js",
+                    "js/plot/jquery.flot.resize.js",
+                    "js/plot/jquery.flot.navigate.js",
+                    "js/plot/jquery.flot.dashes.js",
+                    "js/plot/jquery.flot.valuelabels.js",
+                    "js/plot/jquery.flot.image.js",
+                    "js/plot/jquery.flot.tooltip.js",
+                    "js/plot/jquery.flot.symbol.js",
+
 
                     "js/src/common.js",
                     "js/src/binarystation.js"

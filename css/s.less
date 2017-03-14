@@ -52,8 +52,8 @@ html, body {
 }
 
 #wrapper {
-  margin: 20px auto;
-  width: 760px;
+  margin: 20px;
+  width:auto;
 }
 
 #test {
@@ -655,7 +655,7 @@ html, body {
       position: relative;
       float: right;
       z-index: 2;
-      color: @dark;
+      color: @text;
       background: @contrast;
       padding: 3px;
       right: -10px;
@@ -663,7 +663,7 @@ html, body {
       border-radius: 50%;
       border: 1px solid @border;
       &:hover {
-        color: @contrast;
+        color: @text_active;
         background: -webkit-linear-gradient(@grad_s, @grad_e);
         background: -o-linear-gradient(@grad_s, @grad_e);
         background: linear-gradient(@grad_s, @grad_e);
@@ -768,7 +768,6 @@ html, body {
       border-top: 0;
       position: relative;
 
-      /* INFO WINDOW */
       .infoWindow {
         position: absolute;
         top: 0;
@@ -847,12 +846,15 @@ html, body {
           }
         }
       }
+      /* INFO WINDOW */
 
       /* CHARTS */
       .charts {
-        float: left;
-        width: 478px;
+        //float: left;
+        width: auto;
+        vertical-align: top;
         position: relative;
+        padding-right: 10px;
 
         /* MAIN CHART */
         .chart {
@@ -860,8 +862,10 @@ html, body {
           height: 210px;
           position: relative;
           margin-bottom: 10px;
-
           //background: url('../img/chart.png') no-repeat bottom right;
+          .b_content{
+            height: 210px;
+          }
         }
 
         .graph-mark {
@@ -955,7 +959,7 @@ html, body {
 
       /* ACTIONS */
       .actions {
-        float: right;
+        //float: right;
         width: 250px;
         position: relative;
 
@@ -1863,6 +1867,7 @@ td.deal-payout {
 
 .option_chart_container {
   vertical-align: top;
+  height: 220px;
   .chart {
     .graph-mark {
       position: relative;
@@ -1880,6 +1885,10 @@ td.deal-payout {
       //&.line2,&.line3,&.line4{
       //  margin-right: -50px;
       //}
+    }
+    .option_graph{
+      width: 100%;
+      height: 200px;
     }
   }
 }

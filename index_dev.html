@@ -66,12 +66,27 @@
                 "js/src/l100n.js",
                 "js/jquery.colorhelpers.js",
 
-                "js/src/flot/jquery.flot.plot.js",
-                "js/src/flot/jquery.flot.navigate.js",
-                "js/src/flot/jquery.flot.fillbetween.js",
-                "js/src/flot/jquery.flot.time.js",
-                "js/src/flot/jquery.flot.crosshair.js",
-                "js/src/flot/jquery.flot.multiple.threshold.js",
+
+                "js/plot/excanvas.min.js",
+                "js/plot/jquery.flot.js",
+                "js/plot/jquery.flot.navigate.js",
+                "js/plot/jquery.flot.fillbetween.js",
+                "js/plot/jquery.flot.time.js",
+                "js/plot/jquery.flot.crosshair.js",
+                "js/plot/jquery.flot.threshold.js",
+                "js/plot/jquery.flot.resize.js",
+                "js/plot/jquery.flot.symbol.js",
+
+//                "js/plot/excanvas.min.js",
+//                "js/plot/jquery.flot.js",
+//                "js/plot/jquery.flot.navigate.js",
+//                "js/plot/jquery.flot.time.js",
+//                "js/plot/jquery.flot.crosshair.js",
+//                "js/plot/jquery.flot.resize.js",
+//                "js/plot/jquery.flot.dashes.js",
+//                "js/plot/jquery.flot.valuelabels.js",
+//                "js/plot/jquery.flot.image.js",
+//                "js/plot/jquery.flot.tooltip.js",
 
 //                "js/c.js",
                 "js/src/common.js?v="+version,
@@ -346,23 +361,6 @@
     <div class="days" style="display: none;"></div>
 </div>
 
-<!-- SCRIPT -->
-<!--<script src="js/jquery-1.12.0.min.js"></script>
-<script src="js/jquery.slimscroll.min.js"></script>
-
-<script src="js/jquery-migrate-1.2.1.min.js"></script>
-<script src="js/jquery.easing.1.3.js"></script>
-<script src="js/jquery.transit.min.js"></script>
-<script src="js/underscore-min.js"></script>
-<script src="js/backbone-min.js"></script>
-<script src="js/mustache.min.js"></script>
-<script src="js/swfobject.min.js"></script>
-<script src="js/web_socket.min.js"></script>-->
-
-<!--<script src="js/concat/common.full.js"></script>-->
-<!--<script src="js/min/chart.min.js"></script>-->
-<!--<script src="js/concat/binarystation.full.js"></script>-->
-
 <script type="text/javascript">
     setTimeout(function () {
         dynLoad.getConfig(function (data) {
@@ -391,7 +389,6 @@
 </script>
 
 
-<!--<script src="js/demo.js"></script>-->
 
 </body>
 
@@ -467,12 +464,12 @@
 			<tr class="dealChart option_body dealBody">
 				<td colspan="11" class="option_chart_container">
 					<div class="chart">
-						<div id="plot-opened-{{id}}" class="option_graph"></div>
 						<div class="graph-mark course"></div>
 						<div style="display:none;" class="graph-mark line1 "></div>
 						<div style="display:none;" class="graph-mark line2 "></div>
 						<div style="display:none;" class="graph-mark line3 "></div>
 						<div style="display:none;" class="graph-mark line4 "></div>
+						<div id="plot-opened-{{id}}" class="option_graph"></div>
 					</div>
 				</td>
 			</tr>
@@ -606,7 +603,6 @@
 
         <!-- BODY -->
         <div class="body clearfix">
-
             <!-- INFO WINDOW -->
             <div class="infoWindow">
                 <div class="vertical">
@@ -620,9 +616,9 @@
                 </div>
             </div>
             <!--// INFO WINDOW -->
-
             <!-- CHARTS -->
-            <div class="charts">
+            <div class="table fix">
+            <div class="charts table-cell">
                 <!-- MAIN CHART -->
                 <div class="main_chart">
 
@@ -679,7 +675,7 @@
             <!--// CHARTS -->
 
             <!-- ACTIONS -->
-            <div class="actions clearfix">
+            <div class="actions table-cell clearfix">
 
                 <!-- REQUOTE POPUP -->
                 <div class="requote">
@@ -847,7 +843,7 @@
 
             </div>
             <!--// ACTIONS -->
-
+            </div>
         </div>
         <!--// BODY -->
 
@@ -994,9 +990,9 @@
                 </div>
             </div>
             <!--// INFO WINDOW -->
-
+            <div class="table fix">
             <!-- CHARTS -->
-            <div class="charts">
+            <div class="charts table-cell">
                 <!-- MAIN CHART -->
                 <div class="main_chart">
 
@@ -1052,7 +1048,7 @@
             <!--// CHARTS -->
 
             <!-- ACTIONS -->
-            <div class="actions clearfix">
+            <div class="actions table-cell clearfix">
 
                 <!-- REQUOTE POPUP -->
                 <div class="requote">
@@ -1220,7 +1216,7 @@
 
             </div>
             <!--// ACTIONS -->
-
+            </div>
         </div>
         <!--// BODY -->
 
@@ -1367,9 +1363,9 @@
                 </div>
             </div>
             <!--// INFO WINDOW -->
-
+            <div class="table fix">
             <!-- CHARTS -->
-            <div class="charts">
+            <div class="charts table-cell">
                 <!-- MAIN CHART -->
                 <div class="main_chart">
 
@@ -1430,7 +1426,7 @@
             <!--// CHARTS -->
 
             <!-- ACTIONS -->
-            <div class="actions clearfix">
+            <div class="actions table-cell clearfix">
 
                 <!-- REQUOTE POPUP -->
                 <div class="requote">
@@ -1598,7 +1594,7 @@
 
             </div>
             <!--// ACTIONS -->
-
+            </div>
         </div>
         <!--// BODY -->
 
@@ -1745,7 +1741,7 @@
                 </div>
             </div>
             <!--// INFO WINDOW -->
-
+            <div class="table fix">
             <!-- CHARTS -->
             <div class="charts">
                 <!-- MAIN CHART -->
@@ -1804,7 +1800,7 @@
             <!--// CHARTS -->
 
             <!-- ACTIONS -->
-            <div class="actions clearfix">
+            <div class="actions table-cell clearfix">
 
                 <!-- REQUOTE POPUP -->
                 <div class="requote">
@@ -1972,7 +1968,7 @@
 
             </div>
             <!--// ACTIONS -->
-
+            </div>
         </div>
         <!--// BODY -->
 

@@ -11197,7 +11197,7 @@
                 "crosshair": crosshair,
                 grid: {
                     markings: markings,
-                    hoverable: true,
+                    hoverable: false,
                     clickable: false,
                     autoHighlight: false,
 

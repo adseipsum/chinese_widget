@@ -10,8 +10,8 @@ body {
   position: relative;
 }
 #wrapper {
-  margin: 20px auto;
-  width: 760px;
+  margin: 20px;
+  width: auto;
 }
 #test {
   position: fixed;
@@ -357,7 +357,7 @@ body {
   margin-right: 5px;
   cursor: pointer;
   color: #23a5b0;
-  text-shadow: 0 -1px 1px 1;
+  text-shadow: 0 -1px 1px 1px;
 }
 #bsw .tabs .tab:hover {
   color: #23a5b0;
@@ -555,7 +555,7 @@ body {
   position: relative;
   float: right;
   z-index: 2;
-  color: #444444;
+  color: #23a5b0;
   background: #18232c;
   padding: 3px;
   right: -10px;
@@ -564,7 +564,7 @@ body {
   border: 1px solid #233847;
 }
 #bsw .console .console_close:hover {
-  color: #18232c;
+  color: #badfe5;
   background: -webkit-linear-gradient(#071329, #233847);
   background: -o-linear-gradient(#071329, #233847);
   background: linear-gradient(#071329, #233847);
@@ -729,9 +729,10 @@ body {
   }
 }
 #bsw .console .body .charts {
-  float: left;
-  width: 478px;
+  width: auto;
+  vertical-align: top;
   position: relative;
+  padding-right: 10px;
   /* MAIN CHART */
   /* TREND CHART */
 }
@@ -740,6 +741,9 @@ body {
   height: 210px;
   position: relative;
   margin-bottom: 10px;
+}
+#bsw .console .body .charts .chart .b_content {
+  height: 210px;
 }
 #bsw .console .body .charts .graph-mark {
   position: relative;
@@ -816,7 +820,6 @@ body {
   text-align: right;
 }
 #bsw .console .body .actions {
-  float: right;
   width: 250px;
   position: relative;
   /* REQUOTE POPUP */
@@ -1582,6 +1585,7 @@ td.deal-payout {
 }
 .option_chart_container {
   vertical-align: top;
+  height: 220px;
 }
 .option_chart_container .chart .graph-mark {
   position: relative;
@@ -1596,4 +1600,8 @@ td.deal-payout {
   font-weight: normal;
   z-index: 3;
   border-radius: 0;
+}
+.option_chart_container .chart .option_graph {
+  width: 100%;
+  height: 200px;
 }
