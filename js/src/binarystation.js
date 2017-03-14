@@ -11122,6 +11122,22 @@
                     shadowSize: 0
                 });
 
+            var drawPoint = function(ctx, x, y, radius, shadow) {
+                var addRadius = 30;
+                    // Radius of the entire circle.
+                var gradient = ctx.createRadialGradient(x, y, radius, x, y, radius+addRadius);
+                gradient.addColorStop(0, "rgba(186,223,229,0.15)");
+                gradient.addColorStop(1, "rgba(24,35,44,0.05)");
+                ctx.beginPath();
+                ctx.arc(x, y, radius+addRadius, 0, 2 * Math.PI, false);
+                ctx.fillStyle = gradient;
+                ctx.fill();
+                ctx.beginPath();
+                ctx.arc(x, y, radius, 0, 2 * Math.PI, false);
+                ctx.fillStyle = '#badfe5';
+                ctx.fill();
+            };
+
             dataObjects.push(
                 {//круг
                     data: [
@@ -11130,8 +11146,11 @@
                     ],
                     points: {
                         show: graph_style.globalToolPointShow,
+                        symbol:drawPoint,
+                        fill:false,
                         radius: graph_style.globalToolPointSize,
-                        lineWidth: graph_style.globalToolLineWidth
+                        lineWidth: 0
+
                     },
                     color: color,
                     shadowSize: 0

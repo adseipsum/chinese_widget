@@ -357,7 +357,7 @@ body {
   margin-right: 5px;
   cursor: pointer;
   color: #23a5b0;
-  text-shadow: 0 -1px 1px 1px;
+  text-shadow: 0 -1px 1px 1;
 }
 #bsw .tabs .tab:hover {
   color: #23a5b0;
@@ -1594,7 +1594,7 @@ td.deal-payout {
   text-align: right;
   width: 50px;
   right: 0;
-  background-color: #988f2f;
+  background-color: rgba(28, 122, 152, 0.5);
   padding: 3px 3px 2px;
   font-size: 12px;
   font-weight: normal;
