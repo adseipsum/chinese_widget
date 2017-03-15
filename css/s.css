@@ -349,6 +349,13 @@ body {
 #bsw .top {
   margin-bottom: 10px;
 }
+#bsw .top .logo {
+  float: left;
+  margin-top: 7px;
+  font-size: 20px;
+  font-weight: 700;
+  margin-right: 20px;
+}
 #bsw .tabs .tab {
   float: left;
   border: 1px solid #414141;
@@ -357,7 +364,7 @@ body {
   margin-right: 5px;
   cursor: pointer;
   color: #23a5b0;
-  text-shadow: 0 -1px 1px 1;
+  text-shadow: 0 -1px 1px rgba(35, 165, 176, 0.3);
 }
 #bsw .tabs .tab:hover {
   color: #23a5b0;
@@ -400,14 +407,14 @@ body {
   font-size: 17px;
   font-weight: 700;
   padding: 10px 20px 8px;
-  color: #23a5b0;
+  color: #badfe5;
 }
 #bsw .balanceOps .balance:before {
   content: '\f111';
   font-family: Material-Design-Iconic-Font;
   font-weight: normal !important;
   margin-right: 2px;
-  color: #444444;
+  color: #23a5b0;
   font-size: 16px;
 }
 #bsw .balanceOps .addFunds {

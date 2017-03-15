@@ -414,6 +414,13 @@ html, body {
   /* TOP */
   .top {
     margin-bottom: 10px;
+    .logo{
+      float: left;
+      margin-top: 7px;
+      font-size: 20px;
+      font-weight: 700;
+      margin-right: 20px;
+    }
   }
 
   /* TABS */
@@ -430,7 +437,7 @@ html, body {
       margin-right: 5px;
       cursor: pointer;
       color: @text;
-      text-shadow: 0 -1px 1px alpha(@text,30%);
+      text-shadow: 0 -1px 1px fade(@text,30%);
 
       //&:first-child {
       //  border-radius: 3px 0 0 3px;
@@ -489,13 +496,13 @@ html, body {
       font-size: 17px;
       font-weight: 700;
       padding: 10px 20px 8px;
-      color: @corporate;
+      color: @text_active;
 
       &:before {
         content: '\f111';
         .material();
         margin-right: 2px;
-        color: @dark;
+        color: @text;
         font-size: 16px;
       }
     }
