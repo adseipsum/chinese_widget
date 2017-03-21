@@ -3338,9 +3338,8 @@
             } catch (e) {
                 log(e);
             }
-
-            $(view.el).find(".bin_options_type[data-kind={1}]".replace("{1}", user_data.kind)).trigger("click");
-
+            // $(view.el).find(".bin_options_type[data-kind={1}]".replace("{1}", user_data.kind)).trigger("click");
+            $(view.el).find(".dropdown.chooseKind").removeClass('show');
             view.user.accept_autochartist = user_data.accept_autochartist;
 
             _(view.consoles.models).each(function (item) {
@@ -14292,6 +14291,9 @@
             DOMException = o
         })()
     }
+
+    var ac = new Autochartist(window.acConf);
+    ac.start();
 
     var view = new PageView();
     view.kind = "classic";
