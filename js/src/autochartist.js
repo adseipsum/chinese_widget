@@ -135,12 +135,16 @@ var Autochartist = function (options) {
         setTimeout(function () {
             that.getCharts();
         }, 1000);
-        that.timersInterval = setInterval(function () {
-            that.updateTimers();
-        }, 1000);
-        that.renewInterval = setInterval(function () {
-            that.getCharts();
-        }, 2 * 60 * 1000);
+        if(typeof that.timersInterval == 'udefined') {
+            that.timersInterval = setInterval(function () {
+                that.updateTimers();
+            }, 1000);
+        }
+        if(typeof that.renewIntervall == 'udefined') {
+            that.renewInterval = setInterval(function () {
+                that.getCharts();
+            }, 2 * 60 * 1000);
+        }
     };
 
     this.stop = function () {

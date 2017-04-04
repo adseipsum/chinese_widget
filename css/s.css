@@ -6,7 +6,7 @@ html,
 body {
   margin: 0;
   padding: 0;
-  background: #000000;
+  background: #111111;
   position: relative;
 }
 #wrapper {
@@ -59,8 +59,12 @@ body {
 }
 #bsw .left-content {
   vertical-align: top;
-  width: 240px;
+  min-width: 211px;
   margin-right: 10px;
+}
+#bsw .right-content {
+  vertical-align: top;
+  min-width: 700px;
 }
 #bsw .clearfix:after {
   content: '';
@@ -183,7 +187,7 @@ body {
   font-family: inherit;
   font-weight: 500;
   font-size: 15px;
-  color: #23a5b0;
+  color: #badfe5;
   box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5);
   -webkit-transition: all 0.1s ease-out;
   transition: all 0.1s ease-out;
@@ -289,7 +293,7 @@ body {
 #bsw .value:hover .input .field,
 #bsw .value.active .input .field {
   background: #2a3041;
-  color: #23a5b0;
+  color: #badfe5;
 }
 #bsw .button {
   position: relative;
@@ -502,7 +506,7 @@ body {
   /* spread */
 }
 #bsw .console .filter {
-  background: #1a1a1a;
+  background: #1e1e1e;
   border: 1px solid #233847;
   border-bottom-color: transparent;
   border-radius: 5px 5px 0 0;
@@ -622,7 +626,7 @@ body {
   border: 1px solid #414141;
   border-left-color: #233847;
   border-right-color: #233847;
-  background: #1a1a1a;
+  background: #1e1e1e;
 }
 #bsw .console .assets .asset {
   float: left;
@@ -964,7 +968,7 @@ body {
 #bsw .console .body .actions .set .actionRate .rate {
   font-weight: 700;
   font-size: 19px;
-  color: #23a5b0;
+  color: #badfe5;
 }
 #bsw .console .body .actions .set .sum {
   padding-bottom: 8px;
@@ -987,7 +991,7 @@ body {
   line-height: 30px;
   font-weight: 500;
   font-size: 15px;
-  color: #23a5b0;
+  color: #badfe5;
   pointer-events: none;
 }
 #bsw .console .body .actions .set .sum .value .input input {
@@ -1024,7 +1028,7 @@ body {
   margin-bottom: 5px;
 }
 #bsw .console .body .actions .bet .payouts .payout .value {
-  color: #23a5b0;
+  color: #badfe5;
 }
 #bsw .console .body .actions .bet .payouts .payout .value.currency {
   font-size: 19px;
@@ -1431,7 +1435,7 @@ body {
   right: 0;
   bottom: 0;
   left: 0;
-  background: #000000;
+  background: #111111;
   padding: 20px;
   line-height: 1.4;
   display: block;
@@ -1481,7 +1485,7 @@ td.deal-payout {
   bottom: 0;
   left: 0;
   z-index: 999999;
-  background-color: #000000;
+  background-color: #111111;
 }
 .bsw_loader:before {
   content: '';
@@ -1634,9 +1638,10 @@ td.deal-payout {
   padding: 0 12px 10px;
 }
 .signal .signal_container {
+  min-width: 175px;
   border-radius: 6px;
   border: 1px solid #233847;
-  background: #1a1a1a;
+  background: #1e1e1e;
   cursor: pointer;
 }
 .signal .signal_container .signal_chart {
@@ -1754,7 +1759,7 @@ td.deal-payout {
   text-transform: uppercase;
   font-weight: 700;
   color: #23a5b0;
-  background: #2a3d4d;
+  background: #21303d;
   white-space: nowrap;
   padding: 12px;
   border-radius: 6px 6px 0 0;
@@ -1774,7 +1779,7 @@ td.deal-payout {
   opacity: 1;
   box-shadow: inset 0 0 0 1px #2a3041;
   color: #badfe5;
-  background: #2a3d4d;
+  background: #21303d;
 }
 #user_menu #user_menu_dropdown .item {
   font-size: 16px;
@@ -1796,7 +1801,7 @@ td.deal-payout {
 }
 #user_menu #user_menu_dropdown .item:hover {
   color: #badfe5;
-  background: #2a3d4d;
+  background: #21303d;
 }
 #user_menu:hover .user_menu:before {
   top: -56px;

@@ -2,10 +2,10 @@
 
 /* VARS */
 @dark: #444444;
-@bg: #000000;
-@panel_bg: lighten(@bg,10%);
+@bg: #111111;
+@panel_bg: lighten(@bg,5%);
 @panel_bg1:#18232c;
-@panel_bg2:lighten(@panel_bg1,10%);
+@panel_bg2:lighten(@panel_bg1,5%);
 @corporate: #23a5b0;
 @border: #233847;
 @liteBorder: #414141;
@@ -19,6 +19,8 @@
 @info: #f2f3f4;
 @win: #73a81c;
 @los: #f25268;
+
+@g:rgb(75, 103, 160);
 
 @buy_button: #208e9e;
 
@@ -43,6 +45,10 @@
 .material() {
   font-family: Material-Design-Iconic-Font;
   font-weight: normal !important;
+}
+
+.colorBox{
+
 }
 
 /* TEMP */
@@ -97,8 +103,12 @@ html, body {
 
   .left-content{
     vertical-align: top;
-    width: 240px;
+    min-width: 211px;
     margin-right: 10px;
+  }
+  .right-content{
+    vertical-align: top;
+    min-width: 700px;
   }
 
   .clearfix:after {
@@ -225,7 +235,7 @@ html, body {
       font-family: inherit;
       font-weight: 500;
       font-size: 15px;
-      color: @corporate;
+      color: @text_active;
       box-shadow: inset 0 1px 3px rgba(0, 0, 0, .5);
       -webkit-transition: all @easy;
       transition: all @easy;
@@ -345,7 +355,7 @@ html, body {
         }
         input[type=text], .field {
           background: @shaded;
-          color: @text;
+          color: @text_active;
         }
       }
     }
@@ -595,6 +605,7 @@ html, body {
 
   /* CONSOLE */
   .console {
+
     margin-bottom: 10px;
 
     /* FILTER */
@@ -1178,7 +1189,7 @@ html, body {
             .rate {
               font-weight: 700;
               font-size: 19px;
-              color: @corporate;
+              color: @text_active;
             }
           }
 
@@ -1205,7 +1216,7 @@ html, body {
                   line-height: 30px;
                   font-weight: 500;
                   font-size: 15px;
-                  color: @corporate;
+                  color: @text_active;
                   pointer-events: none;
                 }
                 input {
@@ -1249,7 +1260,7 @@ html, body {
                 margin-bottom: 5px;
               }
               .value {
-                color: @corporate;
+                color: @text_active;
 
                 &.currency {
                   font-size: 19px;
@@ -2000,6 +2011,7 @@ td.deal-payout {
 .signal {
   padding: 0 12px 10px;
   .signal_container {
+    min-width: 175px;
     border-radius: 6px;
     border: 1px solid @border;
     background: @panel_bg;

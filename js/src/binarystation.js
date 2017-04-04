@@ -287,15 +287,18 @@
 
     var graph_style = {
         globalToolLineWidth: 1,
-        globalToolColor: "rgb(75, 103, 160)",
-        globalToolColorTouch: "rgb(75, 103, 160)",
-        globalToolColorRange: "rgb(75, 103, 160)",
+        // globalToolColor: "rgb((75, 103, 160)",
+        globalToolColor: "rgb(186, 223, 229)",
+        // globalToolColorTouch: "rgb(75, 103, 160)",
+        globalToolColorTouch: "rgb(186, 223, 229)",
+        // globalToolColorRange: "rgb(75, 103, 160)",
+        globalToolColorRange: "rgb(186, 223, 229)",
         globalToolShadowSize: 0,
         globalToolPointShow: true,
         globalToolHorizontalLineWidth: .5,
         globalToolPointSize: 3,
         globalToolFillColor: "rgba(75, 103, 160, .2)",
-        globalToolMinMaxlineColor: "rgba(0,0,0,0.3)",
+        globalToolMinMaxlineColor: "rgba(70,100,120,0.3)",
         globalToolMinMaxHorizontalLineWidth: 1,
         globalGridColorText: "gray",
         globalOptionColorUp: "#73a81c",
@@ -7702,7 +7705,7 @@
         try {
             json_data = Jp(data);
         } catch (e) {
-            console.log(["wsserror", e.name, data]);//error log
+            console.log(["wsserror", e.name, data]);
             json_data = null;
             return;
         }

@@ -59,49 +59,50 @@ module.exports = function (grunt) {
                     ],
                     dest: "js/concat/common.full.js"
                 },
-                bs:{
-                    src:[
+                bs: {
+                    src: [
                         "js/src/common.js",
                         "js/src/binarystation.js"
                     ],
                     dest: "js/concat/binarystation.full.js"
                 },
 
-                full:{
-                    src:[
-                    "js/jquery-1.12.0.min.js",
-                    "js/jquery-migrate-1.2.1.min.js",
-                    "js/jquery.easing.1.3.js",
-                    "js/jquery.transit.min.js",
-                    "js/jquery.slimscroll.min.js",
-                    "js/jquery.simpleTip.js",
-                    "js/underscore-min.js",
-                    "js/backbone-min.js",
-                    "js/mustache.min.js",
-                    "js/swfobject.min.js",
-                    "js/web_socket.min.js",
-                    "js/jquery.animateNumber.js",
-                    "js/src/l100n.js",
-                    "js/jquery.colorhelpers.js",
-                    "js/phpdate.js",
+                full: {
+                    src: [
+                        "js/jquery-1.12.0.min.js",
+                        "js/jquery-migrate-1.2.1.min.js",
+                        "js/jquery.easing.1.3.js",
+                        "js/jquery.transit.min.js",
+                        "js/jquery.slimscroll.min.js",
+                        "js/jquery.simpleTip.js",
+                        "js/underscore-min.js",
+                        "js/backbone-min.js",
+                        "js/mustache.min.js",
+                        "js/swfobject.min.js",
+                        "js/web_socket.min.js",
+                        "js/jquery.animateNumber.js",
+                        "js/src/l100n.js",
+                        "js/jquery.colorhelpers.js",
+                        "js/phpdate.js",
 
-                    "js/plot/excanvas.min.js",
-                    "js/plot/jquery.flot.js",
-                    "js/plot/jquery.flot.time.js",
-                    "js/plot/jquery.flot.crosshair.js",
-                    "js/plot/jquery.flot.resize.js",
-                    "js/plot/jquery.flot.navigate.js",
-                    "js/plot/jquery.flot.dashes.js",
-                    "js/plot/jquery.flot.valuelabels.js",
-                    "js/plot/jquery.flot.image.js",
-                    "js/plot/jquery.flot.tooltip.js",
-                    "js/plot/jquery.flot.symbol.js",
+                        "js/plot/excanvas.min.js",
+                        "js/plot/jquery.flot.js",
+                        "js/plot/jquery.flot.time.js",
+                        "js/plot/jquery.flot.crosshair.js",
+                        "js/plot/jquery.flot.resize.js",
+                        "js/plot/jquery.flot.navigate.js",
+                        "js/plot/jquery.flot.dashes.js",
+                        "js/plot/jquery.flot.valuelabels.js",
+                        "js/plot/jquery.flot.image.js",
+                        "js/plot/jquery.flot.tooltip.js",
+                        "js/plot/jquery.flot.symbol.js",
 
 
-                    "js/src/common.js",
-                    "js/src/binarystation.js"
-                        ],
-                    dest:"js/concat/binarystation.all.js"
+                        "js/src/common.js",
+                        "js/src/autochartist.js",
+                        "js/src/binarystation.js"
+                    ],
+                    dest: "js/concat/binarystation.all.js"
                 }
 
             },
@@ -153,7 +154,7 @@ module.exports = function (grunt) {
                         {expand: true, src: ["js/lang.json"], dest: "build/web/", filter: "isFile"},
                         {
                             flatten: true,
-                            src:"js/min/binarystation.min.js",
+                            src: "js/min/binarystation.min.js",
                             dest: "build/web/js/binarystation.min.js",
                             filter: "isFile"
                         },
@@ -184,7 +185,7 @@ module.exports = function (grunt) {
                         archive: "build/release/<%= package.name %>-<%= package.version %>-<%= githash.main.branch %>-<%= githash.main.short %>.zip"
                     },
                     files: [
-                        {expand:true, cwd: 'build/web/', src: ['**'], dest:'widget/', filter: "isFile"}
+                        {expand: true, cwd: 'build/web/', src: ['**'], dest: 'widget/', filter: "isFile"}
                     ]
                 }
             }
@@ -202,5 +203,5 @@ module.exports = function (grunt) {
 
     grunt.registerTask('dev', ['less']);
     grunt.registerTask('default', ['concat']);
-    grunt.registerTask('release', ['less', 'concat', 'uglify', 'processhtml:dist',"clean", "copy"]);
+    grunt.registerTask('release', ['less', 'concat', 'uglify', 'processhtml:dist', "clean", "copy"]);
 };
