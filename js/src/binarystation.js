@@ -2114,8 +2114,8 @@
 
 
             if (item.el.find("." + instrument_filter_item.replaceAll(" ", "."))[0] == null) {
-                $("." + instrument_filter_item.replaceAll(" ", ".")).removeClass("active");
-                $("." + instrument_filter_item.replaceAll(" ", ".") + "[data-type='" + target_tool_type + "']").addClass("active");
+                $('.' + instrument_filter_item.replaceAll(" ", ".")).removeClass("active");
+                $('.' + instrument_filter_item.replaceAll(" ", ".") + "[data-type='" + target_tool_type + "']").addClass("active");
             } else {
                 item.el.find("." + instrument_filter_item.replaceAll(" ", ".")).removeClass("active");
                 item.el.find("." + instrument_filter_item.replaceAll(" ", ".") + "[data-type='" + target_tool_type + "']").addClass("active");
@@ -2188,32 +2188,32 @@
                 }
             }
 
-            if (settings_wss.classic == null || settings_wss.classic.enable != "true") {
+            if (settings_wss.classic == undefined || settings_wss.classic == null || settings_wss.classic.enable != "true") {
                 $(".bin_options_type[data-kind='classic']").each(function (key, elem) {
                     $(elem).remove();
                 });
             }
-            if (settings_wss.touch == null || settings_wss.touch.enable != "true") {
+            if (settings_wss.touch == undefined || settings_wss.touch == null || settings_wss.touch.enable != "true") {
                 $(".bin_options_type[data-kind='touch']").each(function (key, elem) {
                     $(elem).remove();
                 });
             }
-            if (settings_wss.touch_advanced == null || settings_wss.touch_advanced.enable != "true") {
+            if (settings_wss.touch_advanced == undefined || settings_wss.touch_advanced == null || settings_wss.touch_advanced.enable != "true") {
                 $(".bin_options_type[data-kind='touch_advanced']").each(function (key, elem) {
                     $(elem).remove();
                 });
             }
-            if (settings_wss.range == null || settings_wss.range.enable != "true") {
+            if (settings_wss.range==undefined || settings_wss.range == null || settings_wss.range.enable != "true") {
                 $(".bin_options_type[data-kind='range']").each(function (key, elem) {
                     $(elem).remove();
                 });
             }
-            if (settings_wss.range_advanced == null || settings_wss.range_advanced.enable != "true") {
+            if (settings_wss.range_advanced==undefined || settings_wss.range_advanced == null || settings_wss.range_advanced.enable != "true") {
                 $(".bin_options_type[data-kind='range_advanced']").each(function (key, elem) {
                     $(elem).remove();
                 });
             }
-            if (settings_wss.range_classic == null || settings_wss.range_classic.enable != "true") {
+            if (settings_wss.range_clasic==undefined || settings_wss.range_classic == null || settings_wss.range_classic.enable != "true") {
                 $(".bin_options_type[data-kind='range_classic']").each(function (key, elem) {
                     $(elem).remove();
                 });
@@ -7909,19 +7909,28 @@
 
                 // console.timeEnd("получены настройки");
                 settings_wss = {};
-                //console.log(json_data);
-
-                //(Js(json_data).length);
-
-                settings_wss.classic = (json_data.options_settings[0] == undefined) ? null : json_data.options_settings[0];
-                settings_wss.touch = (json_data.options_settings[1] == undefined) ? null : json_data.options_settings[1];
-                settings_wss.range = (json_data.options_settings[2] == undefined) ? null : json_data.options_settings[2];
+                // console.log(Js(json_data));
+                for (var i = 0; i < json_data.options_settings.length; i++) {
+                    if(json_data.options_settings[i].hasOwnProperty('option_kind')) {
+                        settings_wss[view.option_kinds.getNameById(json_data.options_settings[i].option_kind)]=json_data.options_settings[i];
+                    }
+                }
+                view.option_kinds.forEach(function(model){
+                    var kind = model.get('name');
+                    if(!settings_wss.hasOwnProperty(kind)){
+                        settings_wss[kind]=null;
+                    }
+                });
+                // settings_wss.classic = (json_data.options_settings[0] == undefined) ? null : json_data.options_settings[0];
+                // settings_wss.touch = (json_data.options_settings[1] == undefined) ? null : json_data.options_settings[1];
+                // settings_wss.range = (json_data.options_settings[2] == undefined) ? null : json_data.options_settings[2];
                 // settings_wss.touch_advanced = (json_data.options_settings[3]==undefined) ? null : json_data.options_settings[3];
                 // settings_wss.range_advanced = (json_data.options_settings[4]==undefined) ? null : json_data.options_settings[4];
 
-                if (json_data.options_settings.length >= 6) {
-                    settings_wss.range_classic = (json_data.options_settings[5] == undefined) ? null : json_data.options_settings[5];
-                }
+
+                // if (json_data.options_settings.length >= 6) {
+                //     settings_wss.range_classic = (json_data.options_settings[5] == undefined) ? null : json_data.options_settings[5];
+                // }
 
 
                 tools = [];
@@ -8082,7 +8091,7 @@
                 status_recieved = true;
                 break;
             case "hook_quotes":
-                //(Js(json_data.quotes));
+                // console.log(Js(json_data.quotes));
                 delete json_data.error;
                 delete json_data.result;
                 var time1 = json_data.time;
