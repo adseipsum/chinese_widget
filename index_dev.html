@@ -20,15 +20,14 @@
 </head>
 
 <script type="text/javascript">
-    var
-        <!-- build:template:dist -->
-        version = '<%= ver %>',
-        <!-- /build -->
-        <!-- build:remove:dist -->
-        version = '1.0.6',
-        <!-- /build -->
-
-        wss_url = '',
+    var version;
+    <!-- build:template:dist -->
+    version = '<%= ver %>';
+    <!-- /build -->
+    <!-- build:remove:dist -->
+    version = '1.0.6';
+    <!-- /build -->
+    var wss_url = '',
         language = 'en',
         currency = "$",
         s_username = '',
@@ -105,11 +104,6 @@
                 "js/src/common.js?v=" + version,
                 "js/src/autochartist.js?v=" + version,
                 "js/src/binarystation.js?v=" + version
-            ],
-            default: [
-                "js/concat/common.full.js?v=" + version,
-                "js/concat/chart.full.js?v=" + version,
-                "js/concat/binarystation.full.js?v=" + version
             ],
             <!-- /build -->
             release: [
@@ -191,40 +185,40 @@
             <!-- right side -->
             <div class="pull-right clearfix">
                 <!-- USER MENU -->
-                    <div class="drop_trigger active" id="user_menu">
-                        <div id="user_menu_trigger" class="clearfix">
-                            <div class="icon"><i class="fa fa-2x fa-bars user_menu"></i></div>
-                            <div class="arr"><i class="fa fa-caret-down"></i></div>
-                        </div>
-
-                        <!-- USER MENU DROPDOWN -->
-                        <div class="drop" id="user_menu_dropdown">
-                            <div class="title user_menu_label"></div>
-                            <div class="item profile">
-                                <i class="fa fa-user"></i><span class="profile_label"></span>
-                            </div>
-                            <div class="item trans">
-                                <i class="fa fa-credit-card"></i><span class="trans_label"></span>
-                            </div>
-                            <div class="item add_funds">
-                                <i class="fa fa-plus-circle"></i><span class="add_funds_label"></span>
-                            </div>
-                            <div class="item get_funds">
-                                <i class="fa fa-dollar"></i><span class="get_funds_label"></span>
-                            </div>
-                            <!--<div class="item account_type_switch">-->
-                                <!--<i class="fa fa-share"></i><span></span>-->
-                            <!--</div>-->
-                            <!--<div class="item faq">-->
-                            <!--<i class="fa fa-question"></i><span class="faq_label">FAQ</span>-->
-                            <!--</div>-->
-                            <div class="item logout">
-                                <i class="fa fa-sign-out"></i><span class="exit_label"></span>
-                            </div>
-
-                        </div>
-                        <!--// USER MENU DROPDOWN -->
+                <div class="drop_trigger active" id="user_menu">
+                    <div id="user_menu_trigger" class="clearfix">
+                        <div class="icon"><i class="fa fa-2x fa-bars user_menu"></i></div>
+                        <div class="arr"><i class="fa fa-caret-down"></i></div>
                     </div>
+
+                    <!-- USER MENU DROPDOWN -->
+                    <div class="drop" id="user_menu_dropdown">
+                        <div class="title user_menu_label"></div>
+                        <div class="item profile">
+                            <i class="fa fa-user"></i><span class="profile_label"></span>
+                        </div>
+                        <div class="item trans">
+                            <i class="fa fa-credit-card"></i><span class="trans_label"></span>
+                        </div>
+                        <div class="item add_funds">
+                            <i class="fa fa-plus-circle"></i><span class="add_funds_label"></span>
+                        </div>
+                        <div class="item get_funds">
+                            <i class="fa fa-dollar"></i><span class="get_funds_label"></span>
+                        </div>
+                        <!--<div class="item account_type_switch">-->
+                        <!--<i class="fa fa-share"></i><span></span>-->
+                        <!--</div>-->
+                        <!--<div class="item faq">-->
+                        <!--<i class="fa fa-question"></i><span class="faq_label">FAQ</span>-->
+                        <!--</div>-->
+                        <div class="item logout">
+                            <i class="fa fa-sign-out"></i><span class="exit_label"></span>
+                        </div>
+
+                    </div>
+                    <!--// USER MENU DROPDOWN -->
+                </div>
                 <!--// USER MENU -->
 
                 <!-- BALANCE OPS -->
@@ -454,7 +448,7 @@
                 window.account_type = js_conf.hasOwnProperty('account_type') ? js_conf.account_type : 'demo';
                 window.js_params = '{"guestDeposit":"10000","thousandsSeparator":" ","decimalSeparator":".","plugins":[""],"quote_interval": "1000","quote_interval_slow": "2000", "isLondonInSummerTime": "true","p":"12","reset_consoles":"' + (js_conf.hasOwnProperty('reset_consoles') ? js_conf.reset_consoles : 'false') + '","consoles_ls_default":' + JSON.stringify(consoles_ls_default) + ',"profiling":' + JSON.stringify(js_conf.hasOwnProperty('profiling') && js_conf.profiling == "true") + '}';
                 window.balanceUrl = js_conf.hasOwnProperty('balanceUrl') ? js_conf.balanceUrl : null;
-                for (i = 0; i < dynLoad.jsSrc[js_env].length; i++) {
+                for (var i = 0; i < dynLoad.jsSrc[js_env].length; i++) {
                     dynLoad.addScript(dynLoad.jsSrc[js_env][i], false);
                     console.log(dynLoad.jsSrc[js_env][i]);
                 }
@@ -469,39 +463,28 @@
 
 </body>
 
-<script type="text/javasript" id="console-tools">
-		<div class="change-tool option clearfix {{active}} {{inFavorite}}" data-value="{{tool_id}}" data-tool-type="{{tool_type}}"><div class="favorite " data-value="{{tool_id}}"></div><span class="val">{{tool_name}}</span></div>
-
-
-
-
-
-
-
+<script type="text/template" id="console-tools">
+    <div class="change-tool option clearfix {{active}} {{inFavorite}}" data-value="{{tool_id}}"
+         data-tool-type="{{tool_type}}">
+        <div class="favorite " data-value="{{tool_id}}"></div>
+        <span class="val">{{tool_name}}</span></div>
 </script>
 
-<script type="text/javasript" id="console-timeframes">
-        <div class="option clearfix {{active}} change-timeframe" data-value="{{timeframe_id}}">{{timeframe_name}}</div>
-
-
-
-
-
-
-
+<script type="text/template" id="console-timeframes">
+    <div class="option clearfix {{active}} change-timeframe" data-value="{{timeframe_id}}">{{timeframe_name}}</div>
 </script>
 
 <!-- pain paginator -->
-<script type="text/template" style="display:none" id="template_pager_page">
+<script type="text/template" id="template_pager_page">
     <div class="page closed-pages post_page {class}" data-page="{page}">{page}</div>
 </script>
 
-<script type="text/template" style="display:none" id="template_pager_divider">
+<script type="text/template" id="template_pager_divider">
     <div class="dots"></div>
 </script>
 
 <!-- paint options history -->
-<script type="text/template" style="display:none" id="binary_closed_line">
+<script type="text/template" id="binary_closed_line">
     <tbody class="deal {{win}} {{direction}} {{direction_call_put}}">
     <tr class="dealData">
         <td class="deal-type">{{direction_text}}</td>
@@ -518,54 +501,51 @@
 </script>
 
 <!-- paint opened option -->
-<script type="text/javasript" id="opened-option">
-		<tbody class="deal {{direction}} {{direction_call_put}} open open_options_bar" id="opened-{{id}}" data-id="{{id}}" data-kind-id="{{kind_id}}">
-			<tr class="sell_tr">
-				<td colspan="8">
-				    <div class="sell">
-                        <div class="sellTxt">
-                            <p class="early_percent_sum_value"></p>
-                        </div>
-                    </div/>
-				</td>
-				<td>
-				    <div class="sell"><span class="option_sell_now_timer"></span></div>
-                </td>
-				<td class="sell_td">
-				    <div class="button sell sell_now sell_now_button"><span class=sel_now_label"></span></div>
-                </td>
-			</tr>
-			<tr class="dealHead">
-				<td class="expander"></td>
-				<td class="deal-type">{{direction_text}}</td>
-                <td class="deal-direction">{{direction_tb}}</td>
-				<td class="deal-asset">{{tool_name}}</td>
-				<td class="deal-timeframe">{{timeframe_name}}</td>
-				<td class="deal-expires open_options_bar_body_optionends_time"></td>
-				<td class="deal-rate option_rate bin_open_option__info__values cource"> - </td>
-				<td class="deal-forecast">{{{forecast}}}</td>
-				<td class="deal-bet currency">{{invest}}</td>
-				<td class="deal-payout currency option_payout"><span class="bin_open_option__info__values__payout"> - </span></td>
-			</tr>
+<script type="text/template" id="opened-option">
+    <tbody class="deal {{direction}} {{direction_call_put}} open open_options_bar" id="opened-{{id}}" data-id="{{id}}"
+           data-kind-id="{{kind_id}}">
+    <tr class="sell_tr">
+        <td colspan="8">
+            <div class="sell">
+                <div class="sellTxt">
+                    <p class="early_percent_sum_value"></p>
+                </div>
+            </div>
+        </td>
+        <td>
+            <div class="sell"><span class="option_sell_now_timer"></span></div>
+        </td>
+        <td class="sell_td">
+            <div class="button sell sell_now sell_now_button"><span class=sel_now_label"></span></div>
+        </td>
+    </tr>
+    <tr class="dealHead">
+        <td class="expander"></td>
+        <td class="deal-type">{{direction_text}}</td>
+        <td class="deal-direction">{{direction_tb}}</td>
+        <td class="deal-asset">{{tool_name}}</td>
+        <td class="deal-timeframe">{{timeframe_name}}</td>
+        <td class="deal-expires open_options_bar_body_optionends_time"></td>
+        <td class="deal-rate option_rate bin_open_option__info__values cource"> -</td>
+        <td class="deal-forecast">{{{forecast}}}</td>
+        <td class="deal-bet currency">{{invest}}</td>
+        <td class="deal-payout currency option_payout"><span class="bin_open_option__info__values__payout"> - </span>
+        </td>
+    </tr>
 
-			<tr class="dealChart option_body dealBody">
-				<td colspan="11" class="option_chart_container">
-					<div class="chart">
-						<div class="graph-mark course"></div>
-						<div style="display:none;" class="graph-mark line1 "></div>
-						<div style="display:none;" class="graph-mark line2 "></div>
-						<div style="display:none;" class="graph-mark line3 "></div>
-						<div style="display:none;" class="graph-mark line4 "></div>
-						<div id="plot-opened-{{id}}" class="option_graph"></div>
-					</div>
-				</td>
-			</tr>
-		</tbody>
-
-
-
-
-
+    <tr class="dealChart option_body dealBody">
+        <td colspan="11" class="option_chart_container">
+            <div class="chart">
+                <div class="graph-mark course"></div>
+                <div style="display:none;" class="graph-mark line1 "></div>
+                <div style="display:none;" class="graph-mark line2 "></div>
+                <div style="display:none;" class="graph-mark line3 "></div>
+                <div style="display:none;" class="graph-mark line4 "></div>
+                <div id="plot-opened-{{id}}" class="option_graph"></div>
+            </div>
+        </td>
+    </tr>
+    </tbody>
 
 
 </script>
@@ -2178,25 +2158,25 @@
 </script>
 
 
-<script type="text/javasript" id="modal-alert">
+<script type="text/template" id="modal-alert">
 
-        <div class="binsta__popup modal" id="{{id}}">
-            <div class="vert_centr">
-                <h3>{{header}}</h3>
-                {{{text}}}
-                <div class="popup_btns">
-                    <button class="button ok modal-button-ok {{button_class}}">{{button_name}}</button>
-                    <button class="button cancel bin_popup_cancel_btn modal-button-cancel label_cancel"></button>
-                </div>
+    <div class="binsta__popup modal" id="{{id}}">
+        <div class="vert_centr">
+            <h3>{{header}}</h3>
+            {{{text}}}
+            <div class="popup_btns">
+                <button class="button ok modal-button-ok {{button_class}}">{{button_name}}</button>
+                <button class="button cancel bin_popup_cancel_btn modal-button-cancel label_cancel"></button>
             </div>
         </div>
+    </div>
 
 
 </script>
 
 
 <!--autochartist item-->
-<script id="autochartist-item" type="text/javasript">
+<script id="autochartist-item" type="text/template">
     <div class="signal padding_right_when_scrollable {{direction}} signal_{{symbolDisplayName}}_{{interval}}-container">
         <div class="signal_container">
             <div class="signal_inf clearfix">
@@ -2206,7 +2186,8 @@
                     <div class="signal_dir"></div>
                 </div>
                 <div class="signal_time clearfix">
-                    <div class="signal_left"><span id="signal_ttl_value">{{ttl_value}}</span> <span id="signal_ttl_units" class="{{ttl_units}}"></span></div>
+                    <div class="signal_left"><span id="signal_ttl_value">{{ttl_value}}</span> <span
+                            id="signal_ttl_units" class="{{ttl_units}}"></span></div>
                 </div>
             </div>
             <div class="signal_chart">
