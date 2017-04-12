@@ -1343,5 +1343,23 @@
     "en": "Exit",
     "ru": "Выход",
     "zh": ""
+  },
+  "mse244": {
+    "selector": ".demo_account_label",
+    "en": "Demo",
+    "ru": "Демо",
+    "zh": ""
+  },
+  "mse245": {
+    "selector": ".real_account_label",
+    "en": "Real",
+    "ru": "Реал",
+    "zh": ""
+  },
+  "mse246": {
+    "selector": ".support_label",
+    "en": "Support",
+    "ru": "Поддержка",
+    "zh": ""
   }
 }

@@ -57,10 +57,16 @@
             ],
             updateTime: 60
         },
-        js_params;
-    var dynLoad = {
-        configUrl: 'js/config.json',
-        errorUrl: '',
+        js_params,
+        platform_type;
+        if (window.location.href.split("#").length == 2) {
+            platform_type = window.location.href.split("#")[1];
+        }else{
+            platform_type = "demo";
+        }
+        var dynLoad = {
+        configUrl: '/settings?platform_type="'+platform_type+'"',
+        errorUrl: '/erroraccess',
         jsSrc: {
             <!-- build:remove:dist -->
             dev: [
@@ -124,6 +130,7 @@
             var xhr = new XMLHttpRequest();
             <!-- build:remove:dist -->
             this.configUrl = 'js/config.json';
+            this.errorUrl = '';
             <!-- /build -->
             xhr.open('GET', this.configUrl, true);
             xhr.onreadystatechange = function () {
@@ -197,21 +204,24 @@
                         <div class="item profile">
                             <i class="fa fa-user"></i><span class="profile_label"></span>
                         </div>
-                        <div class="item trans">
-                            <i class="fa fa-credit-card"></i><span class="trans_label"></span>
-                        </div>
+                        <!--<div class="item trans">-->
+                            <!--<i class="fa fa-credit-card"></i><span class="trans_label"></span>-->
+                        <!--</div>-->
                         <div class="item add_funds">
                             <i class="fa fa-plus-circle"></i><span class="add_funds_label"></span>
                         </div>
                         <div class="item get_funds">
                             <i class="fa fa-dollar"></i><span class="get_funds_label"></span>
                         </div>
-                        <!--<div class="item account_type_switch">-->
-                        <!--<i class="fa fa-share"></i><span></span>-->
-                        <!--</div>-->
-                        <!--<div class="item faq">-->
-                        <!--<i class="fa fa-question"></i><span class="faq_label">FAQ</span>-->
-                        <!--</div>-->
+                        <div class="item help">
+                            <i class="fa fa-question"></i><span class="help_label">Help</span>
+                        </div>
+                        <div class="item support">
+                            <i class="fa fa-support"></i><span class="support_label">Support</span>
+                        </div>
+                        <div class="item account_type_switch">
+                            <i class="fa fa-share"></i><span></span>
+                        </div>
                         <div class="item logout">
                             <i class="fa fa-sign-out"></i><span class="exit_label"></span>
                         </div>
@@ -226,6 +236,7 @@
                     <div class="balance">
                         <span class="currency user-available-value"></span>
                     </div>
+                    <div id="platform_type"></div>
                     <!--<div class="addFunds">-->
                     <!--Add funds-->
                     <!--</div>-->

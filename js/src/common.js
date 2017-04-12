@@ -479,26 +479,26 @@ var ieVersion = (function () {
 
 function in_array(needle, haystack, strict) {
 
-    var  key, strict = !!strict;
+    var key, strict = !!strict;
 
     for (key in haystack) {
         if ((strict && haystack[key] === needle) || (!strict && haystack[key] == needle)) {
-           return true;
+            return true;
         }
     }
 
     return false;
 }
 
-var fixDropdownHeight = function() {
+var fixDropdownHeight = function () {
     var itemsToShow;
-    $('#bsw').find('.dropdown').each(function(){
+    $('#bsw').find('.dropdown').each(function () {
         var dropdown = $(this).find('.container');
         var item = dropdown.find('.option:visible');
         var itemsLength = item.length;
         var itemHeight = item.innerHeight();
 
-        if(dropdown.parents().hasClass('chooseBet')) {
+        if (dropdown.parents().hasClass('chooseBet')) {
             itemsToShow = 3;
         } else {
             itemsToShow = 6;
@@ -508,7 +508,7 @@ var fixDropdownHeight = function() {
             borderBottom: 0
         });
 
-        if(itemsLength > itemsToShow) {
+        if (itemsLength > itemsToShow) {
             dropdown
                 .height(itemsToShow * itemHeight + itemsToShow - 1);
         } else {
@@ -518,20 +518,20 @@ var fixDropdownHeight = function() {
     })
 };
 
-var checkExpandedDeals = function() {
+var checkExpandedDeals = function () {
     var deal = $('.openDeals').find('.deal');
     var dealsMin = deal.not('.open').length;
     var dealsMax = deal.filter('.open').length;
     var dealsExpander = $('.summary').find('.expander');
 
-    if(dealsMax >= dealsMin) {
+    if (dealsMax >= dealsMin) {
         dealsExpander.addClass('open');
     } else {
         dealsExpander.removeClass('open');
     }
 };
 
-$(function() {
+$(function () {
 
 
     $('.scroll').slimScroll({
@@ -550,15 +550,15 @@ $(function() {
         wheelStep: 10,
         allowPageScroll: false,
         disableFadeOut: false
-        });
+    });
 
     $('#bsw')
 
-        //	filter switch
-        .on('click', '.filter .filter_item', function() {
+    //	filter switch
+        .on('click', '.filter .filter_item', function () {
             var item = $(this);
 
-            if(item.hasClass('active')) {
+            if (item.hasClass('active')) {
                 return false;
             } else {
                 item.addClass('active').siblings(item.selector).removeClass('active');
@@ -567,21 +567,21 @@ $(function() {
         })
 
         //	toggle active
-        .on('click', '.toggleActive', function() {
+        .on('click', '.toggleActive', function () {
             $(this).toggleClass('active');
         })
 
         //	dropdown
-        .on('mouseenter', '.value', function() {
+        .on('mouseenter', '.value', function () {
             $(this).find('.dropdown').addClass('show');
         })
-        .on('mouseleave', '.value', function() {
+        .on('mouseleave', '.value', function () {
             $(this).find('.dropdown').removeClass('show');
         })
-        .on('click', '.value', function(e) {
+        .on('click', '.value', function (e) {
             var dropdown = $(this).find('.dropdown');
 
-            if(dropdown.hasClass('show') && !$(e.target).hasClass('noCloseDropdown')) {
+            if (dropdown.hasClass('show') && !$(e.target).hasClass('noCloseDropdown')) {
                 dropdown.removeClass('show');
             } else {
                 dropdown.addClass('show');
@@ -589,18 +589,18 @@ $(function() {
         })
 
         //	dropdown select
-        .on('click', '.option', function() {
+        .on('click', '.option', function () {
             var option = $(this);
 
-            if(option.hasClass('active')) {
+            if (option.hasClass('active')) {
                 return false;
             } else {
                 var newVal = option.find('.val').text();
 
-                if($(this).parents('.chooseBet').length != 1) {
+                if ($(this).parents('.chooseBet').length != 1) {
                     option.addClass('active').siblings().removeClass('active');
                 }
-                if(option.parents('.value').find('.input .field').length) {
+                if (option.parents('.value').find('.input .field').length) {
 
 
                 } else {
@@ -613,20 +613,20 @@ $(function() {
         })
 
         //	dropdown select
-        .on('click', '.option .favorite', function() {
+        .on('click', '.option .favorite', function () {
             $(this).parents('.option').toggleClass('inFavorites');
             return false;
         })
 
         //	deals expand
-        .on('click', '.deal .expander', function() {
+        .on('click', '.deal .expander', function () {
             $(this).parents('.deal').toggleClass('open');
             checkExpandedDeals();
         })
-        .on('click', '.summary .expander', function() {
+        .on('click', '.summary .expander', function () {
             var openDeal = $('.openDeals').find('.deal');
 
-            if($(this).hasClass('open')) {
+            if ($(this).hasClass('open')) {
                 openDeal.removeClass('open');
             } else {
                 openDeal.addClass('open');
@@ -634,6 +634,41 @@ $(function() {
             checkExpandedDeals();
         });
 
+//User menue
+    $('#user_menu .item.profile').on('click', function (e) {
+        window.location.replace("https://izoption.com/account");
+    });
+    $('#user_menu .item.add_funds').on('click', function (e) {
+        window.location.replace("https://izoption.com/deposit");
+    });
+    $('#user_menu .item.get_funds').on('click', function (e) {
+        window.location.replace("https://izoption.com/withdrawl");
+    });
+    $('#user_menu .item.help').on('click', function (e) {
+        window.location.replace("https://izoption.com/help");
+    });
+    $('#user_menu .item.support').on('click', function (e) {
+        window.location.replace("https://izoption.com/support");
+    });
+    $('#user_menu .item.logout').on('click', function (e) {
+        window.location.replace("https://izoption.com/logout");
+    });
+});
 
-
+// Platform switch
+$(function () {
+    var at_sw = $('#user_menu .item.account_type_switch');
+    var url;
+    $('#platform_type').addClass(window.platform_type + '_account_label');
+    if(window.platform_type=='real'){
+        at_sw.find('span').addClass('demo_account_label');
+        var url = window.location.href.split("#")[0] + '#demo';
+    }else if(window.platform_type=='demo'){
+        at_sw.find('span').addClass('real_account_label');
+        var url = window.location.href.split("#")[0] + '#real';
+    }
+    at_sw.on('click', function (e) {
+        window.location.replace(url);
+        window.location.reload(true);
+    });
 });

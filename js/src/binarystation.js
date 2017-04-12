@@ -8192,7 +8192,7 @@
                 //(["hook_user_status",Jps(json_data),json_data.options_opened,json_data.deposit]);
                 if (json_data.deposit != null && !isNaN(parseFloat(json_data.deposit)) && json_data.options_opened != null) {
                     //Post data to balaceUrl if it is configured
-                    if (window.hasOwnProperty('balanceUrl') && window.balanceUrl != null) {
+                    if (window.platform_type=="real" && window.hasOwnProperty('balanceUrl') && window.balanceUrl != null) {
                         try {
                             $.ajax({
                                 url: window.balanceUrl,
