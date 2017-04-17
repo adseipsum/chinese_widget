@@ -127,9 +127,6 @@ body {
 #bsw .colon:after {
   content: ':';
 }
-#bsw .currency:before {
-  content: '$';
-}
 #bsw .percent:after {
   content: '%';
 }

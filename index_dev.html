@@ -126,6 +126,14 @@
                 document.body.appendChild(script);
             }
         },
+        getCurrency:function (c) {
+            ca = {
+                "1": "\u0024", // 0 - usd
+                "2": "\u20AC"  // 1 - eur
+            };
+            return ca.hasOwnProperty(c)?ca[c]:"\u0024";
+        },
+
         getConfig: function (ready) {
             var xhr = new XMLHttpRequest();
             <!-- build:remove:dist -->
@@ -133,6 +141,7 @@
             this.errorUrl = '';
             <!-- /build -->
             xhr.open('GET', this.configUrl, true);
+            xhr.setRequestHeader("Cache-Control", "max-age=0");
             xhr.onreadystatechange = function () {
                 if (this.readyState == 4) {
                     if (this.status == 200) {
@@ -452,7 +461,7 @@
                 window.js_env = js_conf.hasOwnProperty('js_env') ? js_conf.js_env : 'release';
                 window.wss_url = js_conf.hasOwnProperty('wss_url') ? js_conf.wss_url : '';
                 window.language = js_conf.hasOwnProperty('language') ? js_conf.language : 'en';
-                window.currency = js_conf.hasOwnProperty('currency') ? js_conf.currency : '$';
+                window.currency = js_conf.hasOwnProperty('group_id') ? dynLoad.getCurrency(js_conf.group_id) : '$';
                 window.s_username = js_conf.hasOwnProperty('s_username') ? js_conf.s_username : '';
                 window.s_password = js_conf.hasOwnProperty('s_password') ? js_conf.s_password : '';
                 window.s_userhash = js_conf.hasOwnProperty('s_userhash') ? js_conf.s_userhash : '';
