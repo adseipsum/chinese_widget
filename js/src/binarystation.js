@@ -6247,7 +6247,7 @@
                             console.log('direction is null');
                         }
                         if (this.get("direction") != null) {
-                            log(["open_query", Jp(open_query)]);
+                            // console.log(open_query);
                             wss_conn.send(open_query);
                             lastOpenOptionQuery = open_query;
                         }
@@ -7695,8 +7695,8 @@
 
     common.handleWssMessage = function (data) {
 
-        //(["recieve",data]);
         var data = data.data;
+        // console.log(data);
 
         //data = data.toString().replaceAll('"}"', '"}');
         //data = data.toString().replaceAll('"{"', '{"');
@@ -8196,7 +8196,7 @@
                         try {
                             $.ajax({
                                 url: window.balanceUrl,
-                                type: "POST",
+                                method: "POST",
                                 data: {
                                     deposit: json_data.deposit,
                                     credit: json_data.credit,
