@@ -59,13 +59,13 @@
         },
         js_params,
         platform_type;
-        if (window.location.href.split("#").length == 2) {
-            platform_type = window.location.href.split("#")[1];
-        }else{
-            platform_type = "demo";
-        }
-        var dynLoad = {
-        configUrl: '/settings?platform_type='+platform_type,
+    if (window.location.href.split("#").length == 2) {
+        platform_type = window.location.href.split("#")[1];
+    } else {
+        platform_type = "demo";
+    }
+    var dynLoad = {
+        configUrl: '/settings?platform_type=' + platform_type,
         errorUrl: '/erroraccess',
         jsSrc: {
             <!-- build:remove:dist -->
@@ -126,12 +126,12 @@
                 document.body.appendChild(script);
             }
         },
-        getCurrency:function (c) {
+        getCurrency: function (c) {
             ca = {
                 "1": "\u0024", // 0 - usd
                 "2": "\u20AC"  // 1 - eur
             };
-            return ca.hasOwnProperty(c)?ca[c]:"\u0024";
+            return ca.hasOwnProperty(c) ? ca[c] : "\u0024";
         },
 
         getConfig: function (ready) {
@@ -179,9 +179,7 @@
 
             <!-- left side -->
 
-            <div class="logo">
-                IZ TRADING
-            </div>
+            <img class="logo" src="i/logo.jpg" alt="IZ TRADING"/>
 
             <div class="pull-left">
 
@@ -214,7 +212,7 @@
                             <i class="fa fa-user"></i><span class="profile_label"></span>
                         </div>
                         <!--<div class="item trans">-->
-                            <!--<i class="fa fa-credit-card"></i><span class="trans_label"></span>-->
+                        <!--<i class="fa fa-credit-card"></i><span class="trans_label"></span>-->
                         <!--</div>-->
                         <div class="item add_funds">
                             <i class="fa fa-plus-circle"></i><span class="add_funds_label"></span>
