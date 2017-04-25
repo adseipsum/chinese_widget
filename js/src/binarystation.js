@@ -2346,9 +2346,13 @@
             try {
                 global_last_buy_blocked = false;
                 var item = view.consoles.get(global_console_last_buy_id);
-
-                item.changeParam("set-direction", item.el.find(".binary_actions__btn.active").data('value'))
-                item.changeParam('buy-option');
+                var lq = JSON.parse(lastOpenOptionQuery);
+                if(lq.hasOwnProperty('direction')){
+                    item.changeParam("set-direction", lq.direction);
+                }else {
+                    item.changeParam("set-direction", item.el.find(".binary_actions__btn.active").data('value'));
+                }
+                    item.changeParam('buy-option');
                 /*
                  if (item.get("oneClickBuy")) {
                  item.el.find(".binary_actions__btn.active").trigger("click");
@@ -8921,12 +8925,12 @@
             };
 
 
-        $(el).prepend(Mustache.render(template, params));
+        $('#bsw').prepend(Mustache.render(template, params));
 
         try {
-            $('.binsta__overlay').fadeIn(200, function () {
+            // $('.binsta__overlay').fadeIn(200, function () {
                 $('.binsta__popup').fadeIn(200);
-            });
+            // });
         } catch (e) {
         }
 
@@ -9668,7 +9672,9 @@
                     graph.el.find('.option_timeleft').text(common.UTS2DateTime(json_data.options_close[i]['date_close'] * 1000));
                     graph.el.removeClass('win');
                     graph.el.removeClass('lose');
-                    graph.el.addClass(json_data.options_close[i]['revenue'] < 0 ? "win" : "lose");
+                    var win_lose = json_data.options_close[i]['revenue'] < 0 ? "win" : "lose";
+                    var sum = json_data.options_close[i]['revenue'] < 0 ? payout :(parseFloat(json_data.options_close[i]['bet'])-payout).toFixed(2);
+                    graph.el.addClass(win_lose);
                     if (view.user.isGuest()) {
                         view.user.setDeposit((parseFloat(view.user.getDeposit()) + parseFloat(json_data.options_close[i].bet) - parseFloat(json_data.options_close[i].revenue)).toFixed(2));
                     }
@@ -9685,7 +9691,7 @@
                     chart.drawOpened(graph, true, json_data.options_close[i].price_close, json_data.options_close[i].date_close);
 
                     $("#widget-line-" + json_data.options_close[i].option_hash).remove();
-
+                    bw_alert($('#messages .msg_closed_'+win_lose).html().replace('{{sum}}',sum));
                 }
             }
         }

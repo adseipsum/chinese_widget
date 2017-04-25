@@ -1361,5 +1361,17 @@
     "en": "Support",
     "ru": "Поддержка",
     "zh": ""
+  },
+  "mse247": {
+    "selector": "#messages .msg_closed_win",
+    "en": "<h3>Congratulations</h3><p>You win <strong class='currency'>{{sum}}</strong>. </p>",
+    "ru": "<h3>Поздравляем</h3><p>Вы выиграли <strong class='currency'>{{sum}}</strong>. </p>",
+    "zh": ""
+  },
+  "mse248": {
+    "selector": "#messages .msg_closed_lose",
+    "en": "<h3>Sorry</h3><p>You lose <strong class='currency'>{{sum}}</strong>. </p>",
+    "ru": "<h3>Сожалеем</h3><p>Вы проиграли <strong class='currency'>{{sum}}</strong>. </p>",
+    "zh": ""
   }
 }

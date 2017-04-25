@@ -294,10 +294,11 @@ body {
 }
 #bsw .button {
   position: relative;
+  color: #23a5b0;
   display: inline-block;
   margin-right: 5px;
   padding: 7px 12px 5px;
-  border: 1px solid #414141;
+  border: 1px solid #23a5b0;
   background: #18232c;
   border-radius: 5px;
   text-align: center;
@@ -310,6 +311,7 @@ body {
   transition: background 0.1s ease-out;
 }
 #bsw .button:hover {
+  color: #badfe5;
   background: #2a3041;
 }
 #bsw .button:last-child {
@@ -1432,7 +1434,7 @@ body {
   right: 0;
   bottom: 0;
   left: 0;
-  background: #111111;
+  background: #1e1e1e;
   padding: 20px;
   line-height: 1.4;
   display: block;
@@ -1444,7 +1446,7 @@ body {
   width: 600px;
   margin: auto;
   padding: 30px;
-  background: #2a3041;
+  background: #21303d;
   border: 1px solid #23a5b0;
   border-radius: 10px;
   left: 0;
@@ -1455,10 +1457,11 @@ body {
   transform: translateY(-50%);
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 }
-.binsta__popup .vert_centr h3 {
+.binsta__popup .vert_centr h3,
+.binsta__popup .vert_centr h4 {
   font-size: 16px;
   font-weight: bold;
-  color: #badfe5;
+  color: #ffffff;
   margin-bottom: 20px;
 }
 .binsta__popup .vert_centr strong {
@@ -1470,7 +1473,7 @@ body {
   margin-top: 20px;
   padding: 20px 0 0 0;
   text-align: right;
-  border-top: 1px solid #233847;
+  border-top: 1px solid #23a5b0;
 }
 td.deal-payout {
   min-width: 100px;

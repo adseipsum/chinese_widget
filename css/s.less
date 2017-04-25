@@ -365,10 +365,11 @@ html, body {
   /* BUTTONS */
   .button {
     position: relative;
+    color: @text;
     display: inline-block;
     margin-right: 5px;
     padding: 7px 12px 5px;
-    border: 1px solid @liteBorder;
+    border: 1px solid @text;
     background: @contrast;
     .radius();
     text-align: center;
@@ -381,6 +382,7 @@ html, body {
     transition: background @easy;
 
     &:hover {
+      color: @text_active;
       background: @shaded;
     }
 
@@ -1802,7 +1804,7 @@ html, body {
   right: 0;
   bottom: 0;
   left: 0;
-  background: @bg;
+  background: @panel_bg;
   padding: 20px;
   line-height: 1.4;
   display: block;
@@ -1814,7 +1816,7 @@ html, body {
     width: 600px;
     margin: auto;
     padding: 30px;
-    background: @shaded;
+    background: @panel_bg2;
     border: 1px solid @text;
     border-radius: 10px;
     left: 0;
@@ -1824,10 +1826,10 @@ html, body {
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-    h3 {
+    h3,h4 {
       font-size: 16px;
       font-weight: bold;
-      color: @text_active;
+      color: lighten(@text_active, 20%);
       margin-bottom: 20px;
     }
     strong {
@@ -1839,7 +1841,7 @@ html, body {
       margin-top: 20px;
       padding: 20px 0 0 0;
       text-align: right;
-      border-top: 1px solid @border;
+      border-top: 1px solid @text;
     }
   }
 }
