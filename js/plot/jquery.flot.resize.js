@@ -115,8 +115,8 @@
                 return;
 
             plot.resize();
-            plot.setupGrid();
-            plot.draw();
+            // plot.setupGrid();
+            // plot.draw();
         }
 
         function bindEvents(plot, eventHolder) {

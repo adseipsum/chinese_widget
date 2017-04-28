@@ -431,7 +431,7 @@
             var element = $("<div></div>").html(text)
                 .css({
                     position: "absolute",
-                    //'max-width': width,
+                    'max-width': width,
                     top: -9999
                 })
                 .appendTo(this.getTextLayer(layer));
@@ -980,7 +980,6 @@
         }
 
         function parseData(d) {
-
             var res = [];
             for (var i = 0; i < d.length; ++i) {
                 var s = $.extend(true, {}, options.series);
@@ -1642,8 +1641,10 @@
             // customize)
             if (minMargin == null) {
                 minMargin = 0;
-                for (i = 0; i < series.length; ++i)
-                    minMargin = Math.max(minMargin, 2 * (series[i].points.radius + series[i].points.lineWidth / 2));
+                if(series.count > 0) {
+                    for (i = 0; i < series.length; ++i)
+                        minMargin = Math.max(minMargin, 2 * (series[i].points.radius + series[i].points.lineWidth / 2));
+                }
             }
 
             var margins = {
@@ -2111,7 +2112,7 @@
 
                     if (xequal || yequal) {
                         var lineWidth = m.lineWidth || options.grid.markingsLineWidth,
-                            subPixel = 0;
+                            subPixel = lineWidth % 2 ? 0.5 : 0;
                         ctx.beginPath();
                         ctx.strokeStyle = m.color || options.grid.markingsColor;
                         ctx.lineWidth = lineWidth;
@@ -2142,7 +2143,7 @@
                 if (!axis.show || axis.ticks.length == 0)
                     continue;
 
-                ctx.lineWidth = options.grid.hasOwnProperty('lineWidth') ? options.grid.lineWidth : 1;
+                ctx.lineWidth = 1;
 
                 // find the edges
                 if (axis.direction == "x") {
@@ -2801,8 +2802,8 @@
             }
 
             var fillStyleCallback = series.bars.fill ? function (bottom, top) {
-                    return getFillStyle(series.bars, series.color, bottom, top);
-                } : null;
+                return getFillStyle(series.bars, series.color, bottom, top);
+            } : null;
             plotBars(series.datapoints, barLeft, barLeft + series.bars.barWidth, fillStyleCallback, series.xaxis, series.yaxis);
             ctx.restore();
         }
@@ -2837,20 +2838,20 @@
                 lf = options.legend.labelFormatter, s, label;
 
             // Build a list of legend entries, with each having a label and a color
-
-            for (var i = 0; i < series.length; ++i) {
-                s = series[i];
-                if (s.label) {
-                    label = lf ? lf(s.label, s) : s.label;
-                    if (label) {
-                        entries.push({
-                            label: label,
-                            color: s.color
-                        });
+            if(series.count > 0) {
+                for (var i = 0; i < series.length; ++i) {
+                    s = series[i];
+                    if (s.label) {
+                        label = lf ? lf(s.label, s) : s.label;
+                        if (label) {
+                            entries.push({
+                                label: label,
+                                color: s.color
+                            });
+                        }
                     }
                 }
             }
-
             // Sort the legend using either the default or a custom comparator
 
             if (options.legend.sorted) {
@@ -2862,8 +2863,8 @@
                     var ascending = options.legend.sorted != "descending";
                     entries.sort(function (a, b) {
                         return a.label == b.label ? 0 : (
-                                (a.label < b.label) != ascending ? 1 : -1   // Logical XOR
-                            );
+                            (a.label < b.label) != ascending ? 1 : -1   // Logical XOR
+                        );
                     });
                 }
             }
@@ -3265,7 +3266,7 @@
     $.plot = function (placeholder, data, options) {
         //var t0 = new Date();
         var plot = new Plot($(placeholder), data, options, $.plot.plugins);
-        //(window.console ? // : alert)("time used (msecs): " + ((new Date()).getTime() - t0.getTime()));
+        //(window.console ? console.log : alert)("time used (msecs): " + ((new Date()).getTime() - t0.getTime()));
         return plot;
     };
 

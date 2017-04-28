@@ -317,7 +317,9 @@
         globalOptionFillOpacity: 1,
         globalHorisontalLineWidth: 1,
         touchLineUp: "rgb(123, 172, 53)",
-        touchLineDown: "rgb(245, 125, 66)"
+        touchLineDown: "rgb(245, 125, 66)",
+        graph_point_top_offset: 1,
+        graph_point_left_offset: 13
     };
 
     var custom_timesize_for_tool_type = {};
@@ -6290,6 +6292,7 @@
 
             item.el = $("#console-" + item.id);
             item.mark_course = item.el.find(".graph-mark.course");
+            item.graph_point = item.el.find(".graph-point");
             item.mark_lines = {
                 1: item.el.find(".graph-mark.line1"),
                 2: item.el.find(".graph-mark.line2"),
@@ -11148,18 +11151,18 @@
                         show: graph_style.globalToolPointShow,
                         symbol:function(ctx, x, y, radius, shadow) {
                             var addRadius = 40;
-                            // Radius of the entire circle.
-                            var gradient = ctx.createRadialGradient(x, y, radius, x, y, radius+addRadius);
-                            gradient.addColorStop(0, "rgba(186,223,229,0.2)");
-                            gradient.addColorStop(1, "rgba(24,35,44,0.05)");
-                            ctx.beginPath();
+                                // Radius of the entire circle.
+                                var gradient = ctx.createRadialGradient(x, y, radius, x, y, radius+addRadius);
+                                gradient.addColorStop(0, "rgba(186,223,229,0.2)");
+                                gradient.addColorStop(1, "rgba(24,35,44,0.05)");
+                                ctx.beginPath();
                             ctx.arc(x, y, radius+addRadius, 0, 2 * Math.PI, false);
-                            ctx.fillStyle = gradient;
-                            ctx.fill();
-                            ctx.beginPath();
+                                ctx.fillStyle = gradient;
+                                ctx.fill();
+                                ctx.beginPath();
                             ctx.arc(x, y, radius, 0, 2 * Math.PI, false);
-                            ctx.fillStyle = '#badfe5';
-                            ctx.fill();
+                                ctx.fillStyle = '#badfe5';
+                                ctx.fill();
                         },
                         fill:false,
                         radius: graph_style.globalToolPointSize,
@@ -11266,7 +11269,7 @@
             var graphy = objOffset.top;
             $obj = null;
             var offset = data[2].yaxis.p2c(data[2].data[0][1]);
-
+            var x_offset = data[2].xaxis.p2c(data[2].data[0][0]);
             graph.set("plotData", data[0]);
             graph.set("getAxes", graph.plot.getAxes());
 
@@ -11282,6 +11285,14 @@
                 }
                 //}
 
+            }
+
+            if (graph.el != null && data[2].data[0][1] != null && data[2].data[0][0] != null) {
+                graph.graph_point
+                    .css({"top": offset + graph_style.graph_point_top_offset})
+                    .css({"left":x_offset+graph_style.graph_point_left_offset})
+                    .css({"position": partner_params.markPosition})
+                    .show();
             }
 
             var i = 5,
@@ -14349,6 +14360,14 @@
     $(window).on('beforeunload', function () {
         wss_conn.send('{"command":"disconnect"}');
         wss_conn.wss.close();
+    });
+
+    $(window).on('resize',function () {
+        $("#widgets-" + view.kind + " .console").each(function () {
+           var id = $(this).attr('data-id');
+           var item = view.consoles.get(id);
+            setTimeout(chart.drawConsole(item, true), 0);
+        });
     });
 
     var upd = "2015-02-10 17:45:27";

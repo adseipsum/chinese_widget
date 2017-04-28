@@ -777,6 +777,18 @@ body {
   z-index: 3;
   border-radius: 0;
 }
+#bsw .console .body .charts .graph-point {
+  position: relative;
+  float: left;
+  color: transparent;
+  height: 10px;
+  width: 10px;
+  left: 0;
+  background: url("../i/point.gif") no-repeat;
+  padding: 0;
+  z-index: 3;
+  border: none;
+}
 #bsw .console .body .charts .trend {
   padding-bottom: 13px;
   border-bottom: 1px solid #414141;

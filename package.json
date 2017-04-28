@@ -1,12 +1,14 @@
 {
   "name": "IZtrading.console",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "description": "IZ TRADING CONSOLE",
   "main": "",
   "private": true,
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
+    "canvas": "^1.6.5",
+    "fs": "0.0.1-security",
+    "gif-encoder": "^0.6.0",
     "graceful-fs": "^4.0.0",
     "grunt": "^0.4.5",
     "grunt-contrib-clean": "^1.0.0",
