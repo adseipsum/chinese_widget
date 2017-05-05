@@ -108,6 +108,7 @@
 
 //                "js/c.js",
                 "js/src/common.js?v=" + version,
+                "js/src/news.js?v=" + version,
                 "js/src/autochartist.js?v=" + version,
                 "js/src/binarystation.js?v=" + version
             ],
@@ -259,16 +260,26 @@
             <div class="left-content table-cell">
                 <!-- SIGNALS -->
                 <div id="signals_block" class="widget">
-                    <div class="title label_signals"></div>
-                    <div id="signals_choise">
-                        <div class=" scroll on_btm">
+                    <div class="block widget_tabs tabs clearfix">
+                        <div class="tab active"><span class="label_signals">Signals</span></div>
+                        <div class="tab"><span class="label_news">News</span></div>
+                    </div>
 
+                    <!--<div class="title label_signals"></div>-->
+                    <div class="tab_contents" id="signals_choise">
+                        <div class="tab_content active">
                             <!-- TAB CONTENT - SIGNALS -->
                             <div class="autochartist-container">
 
                             </div>
                             <!--// TAB CONTENT - SIGNALS -->
+                        </div>
+                        <div class="tab_content">
+                            <!-- TAB CONTENT - SIGNALS -->
+                            <div class="news-container">
 
+                            </div>
+                            <!--// TAB CONTENT - SIGNALS -->
                         </div>
                     </div>
                 </div>
@@ -677,7 +688,7 @@
                         </div>
 
                         <!-- dropdown -->
-                        <div class="dropdown chooseAsset drop_a">
+                        <div class="dropdown noCloseDropdown chooseAsset drop_a">
                             <div class="container dropdown_list">
                                 <div class="scroll">
                                     <div class="select b_list"></div>
@@ -723,7 +734,7 @@
                         </div>
 
                         <!-- dropdown -->
-                        <div class="dropdown chooseTime drop_a">
+                        <div class="dropdown noCloseDropdown chooseTime drop_a">
                             <div class="container dropdown_list">
                                 <div class="scroll">
                                     <div class="select b_list tf_scroll"></div>
@@ -845,7 +856,7 @@
                                 </div>
 
                                 <!-- dropdown -->
-                                <div class="dropdown chooseBet">
+                                <div class="dropdown noCloseDropdown chooseBet">
                                     <div class="container">
                                         <div class="scroll">
                                             <div class="select">
@@ -1102,7 +1113,7 @@
                         </div>
 
                         <!-- dropdown -->
-                        <div class="dropdown chooseAsset drop_a">
+                        <div class="dropdown noCloseDropdown chooseAsset drop_a">
                             <div class="container dropdown_list">
                                 <div class="scroll">
                                     <div class="select b_list"></div>
@@ -1128,7 +1139,7 @@
                         </div>
 
                         <!-- dropdown -->
-                        <div class="dropdown chooseTime drop_a">
+                        <div class="dropdown noCloseDropdown chooseTime drop_a">
                             <div class="container dropdown_list">
                                 <div class="scroll">
                                     <div class="select b_list tf_scroll"></div>
@@ -1248,7 +1259,7 @@
                                 </div>
 
                                 <!-- dropdown -->
-                                <div class="dropdown chooseBet">
+                                <div class="dropdown noCloseDropdown chooseBet">
                                     <div class="container">
                                         <div class="scroll">
                                             <div class="select">
@@ -1504,7 +1515,7 @@
                         </div>
 
                         <!-- dropdown -->
-                        <div class="dropdown chooseAsset drop_a">
+                        <div class="dropdown noCloseDropdown chooseAsset drop_a">
                             <div class="container dropdown_list">
                                 <div class="scroll">
                                     <div class="select b_list"></div>
@@ -1529,7 +1540,7 @@
                         </div>
 
                         <!-- dropdown -->
-                        <div class="dropdown chooseTime drop_a">
+                        <div class="dropdown noCloseDropdown chooseTime drop_a">
                             <div class="container dropdown_list">
                                 <div class="scroll">
                                     <div class="select b_list tf_scroll"></div>
@@ -1655,7 +1666,7 @@
                                 </div>
 
                                 <!-- dropdown -->
-                                <div class="dropdown chooseBet">
+                                <div class="dropdown noCloseDropdown chooseBet">
                                     <div class="container">
                                         <div class="scroll">
                                             <div class="select">
@@ -1861,7 +1872,7 @@
                         </div>
 
                         <!-- dropdown -->
-                        <div class="dropdown chooseAsset drop_a">
+                        <div class="dropdown noCloseDropdown chooseAsset drop_a">
                             <div class="container dropdown_list">
                                 <div class="scroll">
                                     <div class="select b_list"></div>
@@ -1882,7 +1893,7 @@
                         </div>
 
                         <!-- dropdown -->
-                        <div class="dropdown chooseTime drop_a">
+                        <div class="dropdown noCloseDropdown chooseTime drop_a">
                             <div class="container dropdown_list">
                                 <div class="scroll">
                                     <div class="select b_list tf_scroll"></div>
@@ -2067,7 +2078,7 @@
                                 </div>
 
                                 <!-- dropdown -->
-                                <div class="dropdown chooseBet">
+                                <div class="dropdown noCloseDropdown chooseBet">
                                     <div class="container">
                                         <div class="scroll">
                                             <div class="select">
@@ -2222,9 +2233,22 @@
 
     </div>
 
-
 </script>
 <!--//autochartist item-->
+
+
+<!--news item-->
+<script id="template-news-item" type="text/template">
+    <a href="{{link}}" target="_blank" class="news news-item padding_right_when_scrollable">
+        <div class="news_date">
+            <span class="date">{{pubDate}}</span>
+        </div>
+        <div class="news_text">
+            <p>{{title}}</p>
+        </div>
+    </a>
+</script>
+<!--//news item-->
 
 
 </html>

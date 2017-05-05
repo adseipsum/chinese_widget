@@ -552,6 +552,12 @@ $(function () {
         disableFadeOut: false
     });
 
+    $(document.body).click(function(e){
+        if(!$(e.target).parents('.noCloseDropdown.show').length){
+            $('.noCloseDropdown.show').removeClass('show');
+        }
+    });
+
     $('#bsw')
 
     //	filter switch
@@ -573,10 +579,14 @@ $(function () {
 
         //	dropdown
         .on('mouseenter', '.value', function () {
+            $('.dropdown.noCloseDropdown').removeClass('show');
             $(this).find('.dropdown').addClass('show');
         })
         .on('mouseleave', '.value', function () {
-            $(this).find('.dropdown').removeClass('show');
+            var dropdown = $(this).find('.dropdown');
+                if(!dropdown.hasClass('noCloseDropdown')) {
+                    dropdown.removeClass('show');
+                }
         })
         .on('click', '.value', function (e) {
             var dropdown = $(this).find('.dropdown');
@@ -670,5 +680,16 @@ $(function () {
     at_sw.on('click', function (e) {
         window.location.replace(url);
         window.location.reload(true);
+    });
+});
+
+$('.widget').each(function () {
+    var tab = $(this).find('.widget_tabs').find('.tab');
+    var tab_content = $(this).find('.tab_contents').find('.tab_content');
+
+    tab.click(function () {
+        var tab_index = $(this).index();
+        $(this).addClass('active').siblings('.tab').removeClass('active');
+        tab_content.eq(tab_index).addClass('active').siblings('.tab_content').removeClass('active');
     });
 });

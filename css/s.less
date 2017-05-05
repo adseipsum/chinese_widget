@@ -3,9 +3,9 @@
 /* VARS */
 @dark: #444444;
 @bg: #111111;
-@panel_bg: lighten(@bg,5%);
-@panel_bg1:#18232c;
-@panel_bg2:lighten(@panel_bg1,5%);
+@panel_bg: lighten(@bg, 5%);
+@panel_bg1: #18232c;
+@panel_bg2: lighten(@panel_bg1, 5%);
 @corporate: #23a5b0;
 //@corporate:#21abdc;
 @border: #233847;
@@ -21,7 +21,7 @@
 @win: #73a81c;
 @los: #f25268;
 
-@g:rgb(75, 103, 160);
+@g: rgb(75, 103, 160);
 
 @buy_button: #208e9e;
 
@@ -48,7 +48,7 @@
   font-weight: normal !important;
 }
 
-.colorBox{
+.colorBox {
 
 }
 
@@ -80,8 +80,8 @@ html, body {
     }
   }
 }
-/* endof TEMP */
 
+/* endof TEMP */
 
 /* WIDGET */
 #bsw {
@@ -102,12 +102,12 @@ html, body {
     outline: none;
   }
 
-  .left-content{
+  .left-content {
     vertical-align: top;
     min-width: 211px;
     margin-right: 10px;
   }
-  .right-content{
+  .right-content {
     vertical-align: top;
     min-width: 700px;
   }
@@ -202,7 +202,7 @@ html, body {
     padding-top: 20px;
   }
   .title {
-    color: darken(@text,10%);
+    color: darken(@text, 10%);
   }
   .input {
     min-width: 120px;
@@ -377,7 +377,7 @@ html, body {
     text-transform: uppercase;
     font-size: 15px;
     font-weight: 700;
-    text-shadow: 0 1px 1px darken(@text,30%);
+    text-shadow: 0 1px 1px darken(@text, 30%);
     -webkit-transition: background @easy;
     transition: background @easy;
 
@@ -436,7 +436,7 @@ html, body {
   /* TOP */
   .top {
     margin-bottom: 10px;
-    .logo{
+    .logo {
       float: left;
       margin-top: 7px;
       font-size: 20px;
@@ -459,7 +459,7 @@ html, body {
       margin-right: 5px;
       cursor: pointer;
       color: @text;
-      text-shadow: 0 -1px 1px fade(@text,30%);
+      text-shadow: 0 -1px 1px fade(@text, 30%);
 
       //&:first-child {
       //  border-radius: 3px 0 0 3px;
@@ -579,7 +579,7 @@ html, body {
       background: @contrast;
       cursor: pointer;
       color: @text;
-      text-shadow: 0 -1px 1px darken(@text,30%);
+      text-shadow: 0 -1px 1px darken(@text, 30%);
 
       &:hover {
         color: @text_active;
@@ -663,7 +663,7 @@ html, body {
           }
         }
       }
-      .filter_assets{
+      .filter_assets {
         padding-top: 5px;
         float: left;
         .asset {
@@ -704,7 +704,7 @@ html, body {
       .serverTime {
         float: right;
         padding: 8px 10px;
-        color: darken(@text,10%);
+        color: darken(@text, 10%);
         font-weight: 500;
 
         &:before {
@@ -966,7 +966,7 @@ html, body {
           position: relative;
           margin-bottom: 10px;
           //background: url('../img/chart.png') no-repeat bottom right;
-          .b_content{
+          .b_content {
             height: 450px;
           }
         }
@@ -978,7 +978,7 @@ html, body {
           text-align: right;
           width: 50px;
           right: 0;
-          background-color: fade(#1c7a98,50);
+          background-color: fade(#1c7a98, 50);
           padding: 3px 3px 2px;
           font-size: 12px;
           font-weight: normal;
@@ -991,7 +991,7 @@ html, body {
 
         .graph-point {
           position: relative;
-          float:left;
+          float: left;
           color: transparent;
           width: 10px;
           height: 10px;
@@ -1313,7 +1313,7 @@ html, body {
               &.inactive {
                 color: @shaded;
                 background: darken(@shaded, 10%);
-                .name{
+                .name {
                   color: @dark;
                 }
               }
@@ -1841,7 +1841,7 @@ html, body {
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-    h3,h4 {
+    h3, h4 {
       font-size: 16px;
       font-weight: bold;
       color: lighten(@text_active, 20%);
@@ -1994,7 +1994,7 @@ td.deal-payout {
       text-align: right;
       width: 50px;
       right: 0;
-      background-color: fade(#1c7a98,50);
+      background-color: fade(#1c7a98, 50);
       padding: 3px 3px 2px;
       font-size: 12px;
       font-weight: normal;
@@ -2004,26 +2004,53 @@ td.deal-payout {
       //  margin-right: -50px;
       //}
     }
-    .option_graph{
+    .option_graph {
       width: 100%;
       height: 200px;
     }
   }
 }
 
-.signal .signal_container .signal_inf .signal_time > div{
+.widget_tabs {
+    padding: 5px 10px;
+    .tab {
+      padding: 0;
+    }
+  }
+
+.tab_contents {
+  //position: absolute;
+  //top: 46px;
+  //right: 0;
+  //bottom: 0;
+  //left: 0;
+  border-radius: 0 0 6px 6px;
+  overflow: hidden;
+  & .tab_content {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: none;
+    &.active {
+      display: block;
+    }
+  }
+}
+
+.signal .signal_container .signal_inf .signal_time > div {
   float: right;
 }
 
-#signals_block.widget{
+#signals_block.widget {
   background: @panel_bg1;
   border: 1px solid @liteBorder;
   border-radius: 6px;
   margin-right: 10px;
-  .title{
-    padding: 10px 12px;
-    color: @text_active;
-  }
+  //.title{
+  //  padding: 10px 12px;
+  //  color: @text_active;
+  //}
+  //height: 800px;
 }
 
 .signal {
@@ -2040,7 +2067,7 @@ td.deal-payout {
         width: 100% !important;
       }
     }
-    .hidden{
+    .hidden {
       display: none;
     }
     .signal_inf {
@@ -2085,6 +2112,7 @@ td.deal-payout {
       }
     }
   }
+
   &.call {
     .signal_container {
       .signal_inf {
@@ -2219,7 +2247,7 @@ td.deal-payout {
         color: @text;
         margin-right: 10px;
       }
-      &:hover{
+      &:hover {
         color: @text_active;
         background: @panel_bg2;
       }
@@ -2231,6 +2259,33 @@ td.deal-payout {
         top: -56px;
         left: -110px;
       }
+    }
+  }
+}
+
+.news {
+  display: block;
+  background: @panel_bg;
+  cursor: pointer;
+  color: inherit;
+  text-decoration: none;
+  padding: 10px 12px;
+  &:hover {
+    background: @panel_bg2;
+  }
+  .news_date {
+    color: @text_active;
+    margin-bottom: 6px;
+  }
+  .news_text {
+    line-height: 18px;
+    color: @text;
+    &.open {
+      height: auto;
+    }
+    p {
+      margin-bottom: 12px;
+      color: @text;
     }
   }
 }

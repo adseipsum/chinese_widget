@@ -14324,6 +14324,8 @@
     var ac = new Autochartist(window.acConf);
     ac.start();
 
+    var news = new News(window.language);
+
     var view = new PageView();
     view.kind = "classic";
     var interval, intervalCheckConnection;
