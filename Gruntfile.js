@@ -99,6 +99,7 @@ module.exports = function (grunt) {
 
 
                         "js/src/common.js",
+                        "js/src/news.js",
                         "js/src/autochartist.js",
                         "js/src/binarystation.js"
                     ],
