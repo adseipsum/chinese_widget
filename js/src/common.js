@@ -652,7 +652,7 @@ $(function () {
         window.location.replace("https://izoption.com/deposit");
     });
     $('#user_menu .item.get_funds').on('click', function (e) {
-        window.location.replace("https://izoption.com/withdrawl");
+        window.location.replace("https://izoption.com/withdrawal");
     });
     $('#user_menu .item.help').on('click', function (e) {
         window.location.replace("https://izoption.com/help");
