@@ -318,8 +318,7 @@
         globalHorisontalLineWidth: 1,
         touchLineUp: "rgb(123, 172, 53)",
         touchLineDown: "rgb(245, 125, 66)",
-        graph_point_top_offset: 1,
-        graph_point_left_offset: 13
+        graph_point_top_offset: 1
     };
 
     var custom_timesize_for_tool_type = {};
@@ -10660,6 +10659,24 @@
         return timeformat;
     },
 
+    chart.getGraphPointLeftOffset = function (timeframe) {
+
+        var offset = 6;
+        timeframe = parseInt(timeframe);
+        if (timeframe == 1 ||
+            (timeframe > 12 && timeframe < 16)) {
+            offset = 13;
+        }
+
+        if (timeframe == 9 || timeframe == 10) {
+            offset= 19;
+        }
+
+        if (timeframe > 10 && timeframe < 13) {
+            offset = 7;
+        }
+        return offset;
+    },
         chart.setHistoryFromWss = function (json_data) {
 //(json_data);
             var tool = get_tool(json_data.tool_id), newdata = [];
@@ -11290,7 +11307,7 @@
             if (graph.el != null && data[2].data[0][1] != null && data[2].data[0][0] != null) {
                 graph.graph_point
                     .css({"top": offset + graph_style.graph_point_top_offset})
-                    .css({"left":x_offset+graph_style.graph_point_left_offset})
+                    .css({"left":x_offset+ chart.getGraphPointLeftOffset(graph.get('timeframe'))})
                     .css({"position": partner_params.markPosition})
                     .show();
             }
