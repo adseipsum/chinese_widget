@@ -337,7 +337,7 @@
     var use_left_widget = false;
     var use_left_widget_fxcl = true;
     var use_new_left_widget = false;
-    var el = $('#bsw');
+    var el = $('#main-container');
     var console_block = ".console";
     var option_block = ".open_options_bar";
     var instrument_filter_content = ".b_instruments_filter_content";
@@ -629,7 +629,9 @@
             //'click .binsta_assets__item__value.with_dropdown':'openMenu',
             //'click .binsta_assets__item__value__dropdown__list_item':'closeMenu'
             'click .drop_t': 'openMenu',
-            'keyup .drop_t': 'openMenu'
+            'keyup .drop_t': 'openMenu',
+            'click #slide-tools-left': 'slideToolsLeft',
+	        'click #slide-tools-right': 'slideToolsRight'
             //'click .prevent, .disabled, .active': 'closeСlosestMenu'
 
             //'mouseleave .binsta_assets__item__value.with_dropdown':'closeMenu'
@@ -1222,6 +1224,18 @@
                 this.saveUserData();
             }
         },
+	    slideToolsLeft: function () {
+		    var $last = $('.b_instruments_filter_content div:last'); 
+		    $last.remove().css({ 'margin-left': '-400px' });
+		    $('.b_instruments_filter_content div:first').before($last);
+		    $last.animate({ 'margin-left': '0px' }, 1000);
+	    },
+	    slideToolsRight: function () {
+		    var $last = $('.b_instruments_filter_content div:last');
+		    $last.remove().css({ 'margin-left': '-400px' });
+		    $('.b_instruments_filter_content div:first').before($last);
+		    $last.animate({ 'margin-left': '0px' }, 1000);
+	    },
         toggleCandle: function (e) {
             var $target = $(e.target),
                 $console = $target.parents(console_block),
@@ -2038,6 +2052,7 @@
             option.getHistoryBinaryOptionsWss($target.attr("data-page"));
         },
         updateToolType: function (e) {
+	        console.log('updateToolType');
             e.preventDefault();
             var $target = $(e.target),
                 target_tool_type = $target.attr("data-type"),
@@ -2061,8 +2076,7 @@
             this.setToolType(id, target_tool_type);
         },
         setToolType: function (console_id, tool_type) {
-
-
+            console.log('setToolType');
             var target_tool_type = tool_type,
                 item = this.consoles.get(console_id),
                 //timeframe = item.get("timeframe"),
@@ -2108,6 +2122,7 @@
 
                 }
             }
+
             item.tools.html(tools_html);
             if (item.left_panel != null && item.left_panel[0] != null) {
                 item.left_panel.html(tools_left_panel_html);
@@ -2150,9 +2165,9 @@
                 }
             }, 500);
 
-
         },
         setLang: function (e) {
+	        console.log('setLang');
             if ($(e.target).attr("data-lang") != null) {
                 language = $(e.target).attr("data-lang");
                 l100n.localize_all_pages(language);
@@ -2749,6 +2764,7 @@
 
         },
         changeTool: function (e, fromHook) {
+            console.log('changeTool');
             if (fromHook == true) {
                 var $target = e;
             } else {
@@ -5164,7 +5180,6 @@
                     this.el.find(".b_graph_block_overlay").show();
                     break;
                 case "menu-tools-show":
-
                     this.el.find(".b_instrument_block .b_list_holder").addClass("visible");
                     this.el.find(".b_graph_block_overlay").hide();
 
@@ -5468,7 +5483,7 @@
                     if ($("#template_tool_types")[0] != null) {
                         template = $("#template_tool_types").html();
                     } else {
-                        template = '<div data-type="{tool_type_id}" class="filter_item {class}">{tool_type_name}</div>';
+                        template = '<div data-type="{tool_type_id}" class="label brand-main-color text-uppercase overflow-hidden filter_item {class}">{tool_type_name}</div>';
                     }
 
                     var tool_type, new_html = "";
@@ -5481,8 +5496,8 @@
                             .replace("{class}", instrument_filter_item);
                     }
 
+                    this.el.find("#display-group-slider").html(new_html);
 
-                    this.el.find(".b_instruments_filter_content").html(new_html);
 
                     break;
                 case "invest":
@@ -6348,10 +6363,10 @@
             if ($("#template_tool_types")[0] != null) {
                 template = $("#template_tool_types").html();
             } else {
-                if (partner_params.tool_types_template = "with_span") {
-                    template = '<div data-type="{tool_type_id}" class="filter_item {class}"><span>{tool_type_name}</span></div>';
+                if (partner_params.tool_types_template == "with_span" && tool_type_name.length == 0) {
+                    template = '<div data-type="{tool_type_id}" class="label brand-main-color text-uppercase overflow-hidden filter_item {class}"><span>{tool_type_name}</span></div>';
                 } else {
-                    template = '<div data-type="{tool_type_id}" class=" {class}">{tool_type_name}</div>';
+                    template = '<div data-type="{tool_type_id}" class="label brand-main-color text-uppercase overflow-hidden {class}">{tool_type_name}</div>';
                 }
             }
 
@@ -6430,6 +6445,7 @@
 
         },
         setTools: function (tool_t) {
+            console.log('setTools');
 
             var body = $("#console-tools").html(),
                 body_left_panel = $("#left-panel-tools").html(),
@@ -6455,6 +6471,9 @@
             }
 
             this.tools.html(tools_html);
+
+	        $('.b_instrument_block').html(tools_html);
+
             if (this.left_panel != null && this.left_panel[0] != null) {
                 this.left_panel.html(tools_left_panel_html);
             }
@@ -6564,7 +6583,7 @@
                 }
         },
         getTools: function () {
-
+	        console.log('getTools');
             if (settings_wss[this.get("kind")] != null && settings_wss[this.get("kind")].tools != undefined) {
                 return settings_wss[this.get("kind")].tools;
             } else {
@@ -6595,6 +6614,7 @@
             }
         },
         getToolTypes: function () {
+            console.log('getToolTypes');
             if (settings_wss[this.get("kind")] != null && settings_wss[this.get("kind")] != undefined) {
                 return settings_wss[this.get("kind")].tool_types;
             } else {
@@ -7718,7 +7738,7 @@
 
         //([json_data.result,data]);
         //PROFILING
-        if (js_params.profiling && json_data != null && json_data.result)
+        //if (js_params.profiling && json_data != null && json_data.result)
             console.time(json_data.result);
         switch (json_data.result) {
 
@@ -10590,11 +10610,11 @@
         }
 
         drawTime = null;
-        setTimeout(updateAllCharts, graphMaxFrequency);
+        //setTimeout(updateAllCharts, graphMaxFrequency);
     };
 
     if (partner_params.drawGraphProcess) {
-        setTimeout(updateAllCharts, graphMaxFrequency);
+        //setTimeout(updateAllCharts, graphMaxFrequency);
     }
 
     chart.getHistoryWss = function (params) {
@@ -14388,6 +14408,18 @@
             setTimeout(chart.drawConsole(item, true), 0);
         });
     });
+
+	$('#trader-financial-control-panel').on('click', '.plus', function(){
+		$('#trade-amount').val(parseInt($('#trade-amount').val()) + 10);
+	});
+
+	$('#trader-financial-control-panel').on('click', '.minus', function(){
+	    var amount = parseInt($('#trade-amount').val());
+	    if(amount > 10) {
+		    $('#trade-amount').val(amount - 10);
+	    }
+	})
+
 
     var upd = "2015-02-10 17:45:27";
 })
