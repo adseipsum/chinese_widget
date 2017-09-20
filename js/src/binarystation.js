@@ -208,7 +208,7 @@
         tool_types_template: "without_span",
         use_candle: false,
         default_draw_type: "graph",
-        use_starred: true,
+        use_starred: false,
         consoleXAxisSize: 9,
         consoleYAxisSize: 10,
         directionsSetToInactivAfterBuy: true,
@@ -258,7 +258,7 @@
         consolePartEndLineText: ".end_line_txt",
         consolePartBinBuy: ".bin_buy",
         consolePartInvest: ".b_invest_select",
-        consolePartChoosedTool: ".b_instrument_block .b_block_value",
+        consolePartChoosedTool: ".selected-instrument #selected-instrument-name",
         consolePartChoosedTF: ".b_duration_block .b_block_value",
         consolePartCourseVal1: ".b_rate",
         consolePartCourseVal2: ".b_rate",
@@ -1224,17 +1224,21 @@
                 this.saveUserData();
             }
         },
-	    slideToolsLeft: function () {
-		    var $last = $('.b_instruments_filter_content div:last'); 
-		    $last.remove().css({ 'margin-left': '-400px' });
-		    $('.b_instruments_filter_content div:first').before($last);
-		    $last.animate({ 'margin-left': '0px' }, 1000);
-	    },
-	    slideToolsRight: function () {
+	    slideToolsLeft: function (e) {
+            console.log('slideToolsLeft');
 		    var $last = $('.b_instruments_filter_content div:last');
-		    $last.remove().css({ 'margin-left': '-400px' });
+		    $last.remove().css({ 'margin-left': '-400px' }).removeClass('active');
 		    $('.b_instruments_filter_content div:first').before($last);
-		    $last.animate({ 'margin-left': '0px' }, 1000);
+		    $last.animate({ 'margin-left': '0px' }, 1000).addClass('active');
+		    this.updateToolType(e);
+	    },
+	    slideToolsRight: function (e) {
+		    console.log('slideToolsRight');
+		    var $last = $('.b_instruments_filter_content div:last');
+		    $last.remove().css({ 'margin-left': '-400px' }).removeClass('active');
+		    $('.b_instruments_filter_content div:first').before($last);
+		    $last.animate({ 'margin-left': '0px' }, 1000).addClass('active');
+		    this.updateToolType(e);
 	    },
         toggleCandle: function (e) {
             var $target = $(e.target),
@@ -1689,7 +1693,7 @@
         },
 
         initialize: function () {
-
+	        console.log('initialize');
             this.consoles = new Consoles();
             this.opened_options = new OpenedOptions();
             this.option_kinds = new OptionKinds();
@@ -1730,6 +1734,7 @@
             }, 1000);
         },
         render: function () {
+	        console.log('render');
             el.html($("#page-login").html());
         },
         addLazyUpdateRequest: function (selector, value) {
@@ -2070,10 +2075,10 @@
                 all_tools = false;
 
             if (target_tool_type == null) {
-                target_tool_type = $target.parent().attr("data-type");
+                target_tool_type = $target.parent().parent().find('.b_instruments_filter_content .active').attr("data-type");
             }
-
-            this.setToolType(id, target_tool_type);
+	        //HARDCODE
+            this.setToolType(1, target_tool_type);
         },
         setToolType: function (console_id, tool_type) {
             console.log('setToolType');
@@ -2123,7 +2128,9 @@
                 }
             }
 
+	        $('.b_instrument_block .b_list').hide().html(tools_html).show(1000);
             item.tools.html(tools_html);
+
             if (item.left_panel != null && item.left_panel[0] != null) {
                 item.left_panel.html(tools_left_panel_html);
             }
@@ -2479,6 +2486,9 @@
 
 
         appendConsole: function (item) {
+            console.log('appendConsole');
+	        $('.options-wrapper').html($('#trade-widget').html());
+
             if (item.kind == undefined) {
                 item.kind = "classic";
             }
@@ -2764,7 +2774,6 @@
 
         },
         changeTool: function (e, fromHook) {
-            console.log('changeTool');
             if (fromHook == true) {
                 var $target = e;
             } else {
@@ -2774,16 +2783,20 @@
             var id = $console.attr("data-id");
             var data = $target.attr("data-value");
             var item = this.consoles.get(id);
+
             if (fromHook != true) {
-                timeframe = item.get("timeframe");
+                //timeframe = item.get("timeframe");
                 if (item.getTool(parseInt(data)) != null) {
                     $console.attr("data-tool-type", item.getTool(parseInt(data)).tool_type);
                 }
                 item.changeParam("tool", data);
 
-                if (!$.inArray(timeframe, settings.getAllowedByTool(item.get("kind"), data))) {
-                    $console.find(".bin_selectable.tf .change-timeframe").eq(0).click();
-                }
+	            $target.parent().find('.instrument').removeClass('active');
+	            $target.addClass('active');
+
+                // if (!$.inArray(timeframe, settings.getAllowedByTool(item.get("kind"), data))) {
+                //     $console.find(".bin_selectable.tf .change-timeframe").eq(0).click();
+                // }
             }
             view.saveConsoles();
         },
@@ -5652,7 +5665,6 @@
 
                     if (partner_params.clearDirAfterChangeTool) {
                         this.changeParam("set-direction", null);
-
                         this.setFixedDirection();
                     }
 
@@ -6358,6 +6370,7 @@
             if (this.get("kind") != view.kind) {
                 return;
             }
+
             var tool_type, new_html = "", len1, kind, template, found;
 
             if ($("#template_tool_types")[0] != null) {
@@ -6445,7 +6458,6 @@
 
         },
         setTools: function (tool_t) {
-            console.log('setTools');
 
             var body = $("#console-tools").html(),
                 body_left_panel = $("#left-panel-tools").html(),
@@ -6470,9 +6482,8 @@
 
             }
 
+	        $('.b_instrument_block .b_list').hide().html(tools_html).show(1000);
             this.tools.html(tools_html);
-
-	        $('.b_instrument_block').html(tools_html);
 
             if (this.left_panel != null && this.left_panel[0] != null) {
                 this.left_panel.html(tools_left_panel_html);
@@ -6566,24 +6577,23 @@
             this.changeParam("timeframe", this.get("timeframe"));
         },
         getTool: function (id) {
-            if (settings_wss[this.get("kind")] != null && settings_wss[this.get("kind")].tools != undefined)
+            if (settings_wss[this.kind] != null && settings_wss[this.kind].tools != undefined)
                 if (typeof (id) == "string") {
-                    for (var i in settings_wss[this.get("kind")].tools) {
-                        if (settings_wss[this.get("kind")].tools[i].tool_name == id) {
-                            return settings_wss[this.get("kind")].tools[i];
+                    for (var i in settings_wss[this.kind].tools) {
+                        if (settings_wss[this.kind].tools[i].tool_name == id) {
+                            return settings_wss[this.kind].tools[i];
                         }
                     }
                 } else {
 
-                    for (var i in settings_wss[this.get("kind")].tools) {
-                        if (settings_wss[this.get("kind")].tools[i].tool_id == id) {
-                            return settings_wss[this.get("kind")].tools[i];
+                    for (var i in settings_wss[this.kind].tools) {
+                        if (settings_wss[this.kind].tools[i].tool_id == id) {
+                            return settings_wss[this.kind].tools[i];
                         }
                     }
                 }
         },
         getTools: function () {
-	        console.log('getTools');
             if (settings_wss[this.get("kind")] != null && settings_wss[this.get("kind")].tools != undefined) {
                 return settings_wss[this.get("kind")].tools;
             } else {
@@ -6614,7 +6624,6 @@
             }
         },
         getToolTypes: function () {
-            console.log('getToolTypes');
             if (settings_wss[this.get("kind")] != null && settings_wss[this.get("kind")] != undefined) {
                 return settings_wss[this.get("kind")].tool_types;
             } else {
@@ -10141,7 +10150,7 @@
         var toolNames = [];
         if ($('.console').length > 0) {
             $('.console').each(function (key, elem) {
-                curTool = $(elem).find('.b_instrument_block').find('.b_block_value')[0].innerText;
+                curTool = 6 //$(elem).find('.b_instrument_block').find('.b_block_value')[0].innerText;
                 $(elem).find('.b_instrument_block').find('.change-tool').each(function (key, tool) {
                     if ($(tool)[0].innerText == curTool) {
                         toolNames[$(elem).attr('data-id')] = $(tool).attr('data-value');
@@ -10454,7 +10463,7 @@
                                 if (partner_params.drawGraphProcess == true) {
                                     graph.set("needRedraw", true);
                                 } else {
-                                    setTimeout(chart.drawConsole(graph), 0);
+                                    //setTimeout(chart.drawConsole(graph), 0);
                                 }
                                 graph.set("last_draw_time", utcTime);
                             }
@@ -10534,7 +10543,7 @@
                             //    graph.set("needRedraw", true);
                             //} else {
 
-                            chart.drawOpened(graph);
+                            //chart.drawOpened(graph);
                             //}
                             graph.set("last_draw_time", utcTime);
                         }
@@ -10574,7 +10583,7 @@
                     for (var i = 0; i < length; i++) {
                         var graph = view.opened_options.models[i];
                         if (graph.get("data").length > 0 && graph.get("closed") != true) {
-                            chart.drawOpened(graph);
+                            //chart.drawOpened(graph);
                         }
                         graph = null;
                     }
@@ -10588,7 +10597,7 @@
                     for (var i = 0; i < length; i++) {
                         var graph = view.consoles.models[i];
                         if (graph.get("data") != null && graph.get("data").length > 0) {
-                            chart.drawConsole(graph);
+                            //chart.drawConsole(graph);
                         }
                         graph = null;
                     }
@@ -10801,11 +10810,11 @@
 
             if (graph.get("candle") == true && partner_params.use_candle == true) {
                 //graph.set("timesize", "M1-300-14400");
-                chart.drawConsoleWithCandle(graph);
+                //chart.drawConsoleWithCandle(graph);
             } else {
                 //chart.drawConsoleWithChartsJS(graph);
                 //graph.set("timesize", "M1-300-14400");
-                chart.drawConsoleWithGraph(graph);
+                //chart.drawConsoleWithGraph(graph);
             }
 
             drawTime = microtime(true) - drawTime;
