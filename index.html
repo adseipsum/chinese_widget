@@ -35,14 +35,14 @@
                         <div id="trader-financial-control-panel">
                         <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4" style="margin-top: 32px; padding-right: 10px">
                             <div class="bezel-button-big branded-bezel-button-big" style="min-width: 100% !important; width: 100% !important; padding-top: 5px !important">
-                                <div class="row center-block ng-scope" style="font-size: 10pt;line-height:13pt" translate="general.trade-amount">trade amount</div>
+                                <div class="row center-block" style="font-size: 10pt;line-height:13pt">trade amount</div>
                                 <div class="row center-block" style="width: 100%">
                                     <div class="col-sm-4 pull-left white-16-300 minus" style="padding-top: 8px; padding-left: 10px">
                                         <i class="fa fa-minus"></i>
                                     </div>
                                     <div class="col-sm-16 center-block" style="font-size: 20pt; font-weight:100;">
                                         $
-                                        <input id="trade-amount" style="width: 42px; font-size: 20pt; font-weight:100;" type="text" class="" value="10">
+                                        <input id="trade-amount" type="text" class="b_invest_select deposit_invest" value="10" style="width: 42px; font-size: 20pt; font-weight:100;">
                                     </div>
 
                                     <div class="col-sm-4 pull-left white-16-300 plus" style="padding-top: 8px; padding-right: 10px">
@@ -1452,111 +1452,7 @@
     </script>
 
     <script type="text/template" id="trade-widget">
-        <div class="option-title asset display-4" id="short-term-option-0" style="padding-left: 0px">
-            <div class="trans-bg-medium white-9-300 text-uppercase level-border">
-                <div class="row">
-                    <div class="trans-bg-darker" style="height: 60px; display: flex; justify-content: space-around;">
 
-                        <div style="margin:auto;padding:0 5px;">
-                            <div uib-dropdown="" dropdown-append-to="appendToEl" class="text-lowercase dropdown">
-                                <a uib-dropdown-toggle="" id="asset-level-toggle-0"
-                                   uib-tooltip="Expiry every 5 Minutes"
-                                   tooltip-placement="bottom-left" class="dropdown-toggle"
-                                   aria-haspopup="true" aria-expanded="false">
-        <span class="bezel-button-small branded-bezel-button-small"
-              style="margin-top: 4px; height: 40px !important"><i
-                class="fa fa-clock-o brand-main-color"
-                style="font-size: 14pt"></i> 5m</span>
-                                </a>
-                                <div style="position: absolute; z-index: 25; margin: 0px; padding: 0px; display: none; left: 147px; top: 1px;">
-                                    <div class="enscroll-track scrollbar-tracker-right scroller-undefined"
-                                         style="position: relative;"><a href=""
-                                                                        class="scrollbar-handler-right"
-                                                                        style="position: absolute; z-index: 1;">
-                                        <div class="top"></div>
-                                        <div class="bottom"></div>
-                                    </a></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div style="border-right: 1px solid #414548; margin:auto; text-align: left; padding-right: 5%">
-                            <div class="small-caption brand-main-color text-uppercase">expiry</div>
-                            <div id="asset-expire-0" data-no-entry-time="2017-08-28T10:09:00Z" class="white-18-300"
-                                 style="margin-top: -2px">10:10
-                            </div>
-                        </div>
-                        <div style="margin: auto">
-                            <payout type="schedule" payout="asset.payout" currency-sign="currencySign"
-                                    identifier="'scheduled-' + idx" amount="amount" class="ng-isolate-scope">
-                                <div style="margin-top: 2px; text-align: left">
-
-                                    <!-- ngIf: display === 2 -->
-
-                                    <!-- ngIf: display !== 2 -->
-                                    <div ng-if="display !== 2" class="ng-scope">
-                                        <div class="payout-label small-caption brand-main-color text-uppercase"
-                                             ng-style="labelStyle" style="margin-bottom: -6px;">
-                                            <span style="padding-right:20px" class="ng-binding">Payout</span>
-                                        </div>
-
-                                        <div style="padding-top:2px">
-                                            <div class="payout-amount white-17-300 ng-binding"
-                                                 style="font-size:1.1vw;display:inline-block" id="payout-scheduled-0">
-                                                $43.8
-                                            </div>
-                                            <span ng-style="display === 3 ? { 'padding-left':'10px'} : { 'padding-left':'2px' }"
-                                                  id="payout-percentage-scheduled-0" class="payout-percent ng-binding"
-                                                  style="padding-left: 2px;">75%</span>
-                                        </div>
-                                    </div><!-- end ngIf: display !== 2 -->
-
-                                </div>
-                            </payout>
-                        </div>
-                    </div><!-- end ngIf: display==4 -->
-
-                    <div class="trans-bg-medium options-wrapper" ng-show="noEntryTimeLeft > 0" style="">
-
-                        <div class="asset-ticker-container">
-                            <div style="position: relative;overflow:hidden">
-                                <canvas id="ticker-0"
-                                        ng-style="display === 2 ? { 'height':'160px'} : { 'height': '120px' }"
-                                        style="height: 120px;"></canvas>
-                                <div class="entry-zone"
-                                     ng-style="display === 2 ? { 'top':'63px', 'left': '36px' } : { }">
-                                    <div id="level-time-left-0" class="time-left ng-binding">00:02:14</div>
-                                    <span class="label entry-zone-label ng-scope" translate="options.entry-zone">entry zone</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- ngIf: display!==4 -->
-
-                        <div class="buttons-container"
-                             ng-style="display === 4 ? { 'padding-top':'0px'} : { 'padding-top': '60px' }"
-                             style="max-width: 135px; padding-top: 0px;">
-                            <span class="bezel-button branded-bezel-high-button short-term" id="scheduled-high-0"
-                                  style="margin: 10px 0px">High</span>
-                            <span class="bezel-button branded-bezel-low-button short-term" id="scheduled-low-0"
-                                  style="margin: 10px 0px">Low</span>
-                        </div>
-
-                    </div>
-
-                    <div class="row trans-bg" style="height: 125px; padding-top: 40px;">
-                        <div class="col-sm-24" style="display: flex; align-items: center; justify-content: center;">
-                            <div class="spinner" style="max-width: 50%">
-                                <div class="rect1"></div>
-                                <div class="rect2"></div>
-                                <div class="rect3"></div>
-                                <div class="rect4"></div>
-                                <div class="rect5"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </script>
 
     <script type="text/template" id="chart-widget">
@@ -1712,7 +1608,7 @@
 
     </script>
 
-    <script id="console-range_classic" type="text/template">
+    <script id="console-classic" type="text/template">
         <div class="console" id="console-{{id}}" data-id="{{id}}">
             <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4 ng-scope" id="rates-container">
                 <div class="col-sm-23 top-row" id="instrument-rates-view">
@@ -1775,15 +1671,259 @@
                     <div class="options-container overflow-hidden">
                         <div class="col-sm-6 widgets-container">
                             <div id="short-term-view" class="options-wrapper">
+                                <div class="option-title asset display-4" id="short-term-option-0" style="padding-left: 0px">
+                                <div class="trans-bg-medium white-9-300 text-uppercase level-border">
+                                    <div class="row">
+                                        <div class="trans-bg-darker" style="height: 60px; display: flex; justify-content: space-around;">
+                                            <div style="margin:auto;padding:0 2px;">
+                                                <div dropdown-append-to="appendToEl" class="text-lowercase dropdown b_duration_block">
+                                                    <a id="asset-level-toggle-0" class="dropdown-toggle">
+                                                        <span class="bezel-button-small branded-bezel-button-small"
+                                                              style="margin-top: 4px; height: 40px !important">
+                                                            <i class="fa fa-clock-o brand-main-color" style="font-size: 14pt"></i>
+                                                            <span class="b_block_value"></span>
+                                                        </span>
+                                                    </a>
+                                                    <ul class="dropdown-menu asset-dropdown b_list" style="margin: 0px; min-width: 148px; width: 135.5px; padding-right: 10px; outline: none; overflow: hidden;" id="asset-level-dropdown-0" role="menu" tabindex="0">
+
+                                                    </ul>
+                                                    <div style="position: absolute; z-index: 25; margin: 0px; padding: 0px; display: none; left: 147px; top: 1px;">
+                                                        <div class="enscroll-track scrollbar-tracker-right scroller-undefined"
+                                                             style="position: relative;"><a href=""
+                                                                                            class="scrollbar-handler-right"
+                                                                                            style="position: absolute; z-index: 1;">
+                                                            <div class="top"></div>
+                                                            <div class="bottom"></div>
+                                                        </a></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div style="border-right: 1px solid #414548; margin:auto; text-align: left; padding-right: 5%">
+                                                <div class="small-caption brand-main-color text-uppercase">expiry</div>
+                                                <div id="asset-expire-0" class="white-18-300 b_available_block" style="margin-top: -2px">
+                                                    <span class="b_block_value">00:00</span>
+                                                </div>
+                                            </div>
+                                            <div style="margin: auto">
+                                                <div style="margin-top: 2px; text-align: left">
+                                                        <div class="payout-label small-caption brand-main-color text-uppercase" style="margin-bottom: -6px;">
+                                                            <span style="padding-right:20px">Payout</span>
+                                                        </div>
+                                                        <div class="payout" style="padding-top:2px">
+                                                            <div class="white-17-300 payout-amount currency win" style="font-size:1.1vw;display:inline-block">
+                                                            </div>
+                                                            <span id="payout-percentage-scheduled-0" class="payout-percent percent percent_win" style="padding-left: 2px;"></span>
+                                                            <span class="payout-percent" style="padding-left: 2px;">%</span>
+                                                        </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="trans-bg-medium options-wrapper" ng-show="noEntryTimeLeft > 0" style="">
+
+                                            <div class="asset-ticker-container">
+                                                <div style="position: relative;overflow:hidden">
+                                                    <canvas id="ticker-0"
+                                                            ng-style="display === 2 ? { 'height':'160px'} : { 'height': '120px' }"
+                                                            style="height: 120px;"></canvas>
+                                                    <div class="entry-zone b_expires_block">
+                                                        <div id="level-time-left-0" class="time-left b_block_value">00:00</div>
+                                                        <span class="label entry-zone-label">entry zone</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="buttons-container buttons" style="max-width: 135px; padding-top: 0px;">
+                                                <span class="bezel-button branded-bezel-high-button short-term call not" id="scheduled-high-0" data-action="set-direction"
+                                                      data-value="CALL"
+                                                      style="margin: 10px 0px">High</span>
+                                                <span class="bezel-button branded-bezel-low-button short-term put not" id="scheduled-low-0" data-action="set-direction"
+                                                      data-value="PUT"
+                                                      style="margin: 10px 0px">Low</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="row trans-bg" style="height: 125px; padding-top: 40px;">
+                                            <div class="col-sm-24" style="display: flex; align-items: center; justify-content: center;">
+                                                <div class="spinner" style="max-width: 50%">
+                                                    <div class="rect1"></div>
+                                                    <div class="rect2"></div>
+                                                    <div class="rect3"></div>
+                                                    <div class="rect4"></div>
+                                                    <div class="rect5"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             </div>
                         </div>
                         <div class="row trans-bg ng-scope" id="options-graph-container" style="">
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </script>
+
+    <script type="text/template" id="console-timeframes">
+        <li class="{{active}}">
+            <a class="pointer change-timeframe" data-value="{{timeframe_id}}" style="line-height: 20px !important">{{timeframe_name}}</a>
+        </li>
+    </script>
+
+    <!-- pain paginator -->
+    <script type="text/template" id="template_pager_page">
+        <div class="page closed-pages post_page {class}" data-page="{page}">{page}</div>
+    </script>
+
+    <script type="text/template" id="template_pager_divider">
+        <div class="dots"></div>
+    </script>
+
+    <!-- paint options history -->
+    <script type="text/template" id="binary_closed_line">
+        <tbody class="deal {{win}} {{direction}} {{direction_call_put}}">
+        <tr class="dealData">
+            <td class="deal-type">{{direction_text}}</td>
+            <td class="deal-direction">{{direction_td}}</td>
+            <td class="deal-asset">{{tool_name}}</td>
+            <td class="deal-timeframe">{{timeframe_name}}</td>
+            <td class="deal-expires"><span>{{expiration_date}}</span> {{expiration}}</td>
+            <td class="deal-rate">{{price_close}}</td>
+            <td class="deal-forecast">{{{forecast}}}</td>
+            <td class="deal-bet currency">{{sum}}</td>
+            <td class="deal-payout currency">{{payment}}</td>
+        </tr>
+        </tbody>
+    </script>
+
+    <!-- paint opened option -->
+    <script type="text/template" id="opened-option">
+        <tbody class="deal {{direction}} {{direction_call_put}} open open_options_bar" id="opened-{{id}}" data-id="{{id}}"
+               data-kind-id="{{kind_id}}">
+        <tr class="sell_tr">
+            <td colspan="8">
+                <div class="sell">
+                    <div class="sellTxt">
+                        <p class="early_percent_sum_value"></p>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="sell"><span class="option_sell_now_timer"></span></div>
+            </td>
+            <td class="sell_td">
+                <div class="button sell sell_now sell_now_button"><span class=sel_now_label"></span></div>
+            </td>
+        </tr>
+        <tr class="dealHead">
+            <td class="expander"></td>
+            <td class="deal-type">{{direction_text}}</td>
+            <td class="deal-direction">{{direction_tb}}</td>
+            <td class="deal-asset">{{tool_name}}</td>
+            <td class="deal-timeframe">{{timeframe_name}}</td>
+            <td class="deal-expires open_options_bar_body_optionends_time"></td>
+            <td class="deal-rate option_rate bin_open_option__info__values cource"> -</td>
+            <td class="deal-forecast">{{{forecast}}}</td>
+            <td class="deal-bet currency">{{invest}}</td>
+            <td class="deal-payout currency option_payout"><span class="bin_open_option__info__values__payout"> - </span>
+            </td>
+        </tr>
+
+        <tr class="dealChart option_body dealBody">
+            <td colspan="11" class="option_chart_container">
+                <div class="chart">
+                    <div class="graph-mark course"></div>
+                    <div style="display:none;" class="graph-mark line1 "></div>
+                    <div style="display:none;" class="graph-mark line2 "></div>
+                    <div style="display:none;" class="graph-mark line3 "></div>
+                    <div style="display:none;" class="graph-mark line4 "></div>
+                    <div id="plot-opened-{{id}}" class="option_graph"></div>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+
+
+    </script>
+
+    <!-- MESSAGES -->
+    <div id="messages" style="display: none;">
+        <div class="new-price" style="display: none;"></div>
+        <div class="finished" style="display: none;"></div>
+        <div class="error-wrong_sum" style="display: none;"></div>
+        <div class="error-min_sum" style="display: none;"></div>
+        <div class="error-insufficient_funds" style="display: none;"></div>
+        <div class="error-wrong_timeframe" style="display: none;"></div>
+        <div class="error-undefined_error" style="display: none;"></div>
+        <div class="error-wrong_pair" style="display: none;"></div>
+        <div class="error-inactive_user" style="display: none;"></div>
+        <div class="error-demo_period_ends" style="display: none;"></div>
+        <div class="error-connection-reload" style="display: none;"></div>
+        <div class="error-no-connection" style="display: none;"></div>
+        <div class="error-no-trading-time" style="display: none;"></div>
+        <div class="error-lock-time" style="display: none;"></div>
+        <div class="not_liq_symbol" style="display: none;"></div>
+        <div class="error-not_liq_symbol" style="display: none;"></div>
+        <div class="only_if_less_10000" style="display: none;"></div>
+        <div class="deposit-refilled" style="display: none;"></div>
+        <div class="error_auth" style="display: none;"></div>
+        <div class="all" style="display: none;"></div>
+        <div class="starred" style="display: none;"></div>
+        <div class="quote_changed" style="display: none;"></div>
+
+        <div class="classic_call" style="display: none;"></div>
+        <div class="classic_put" style="display: none;"></div>
+        <div class="touch_up" style="display: none;"></div>
+        <div class="touch_up_down" style="display: none;"></div>
+        <div class="touch_updown" style="display: none;"></div>
+        <div class="touch_down" style="display: none;"></div>
+        <div class="range_in" style="display: none;"></div>
+        <div class="range_out" style="display: none;"></div>
+        <div class="range_up" style="display: none;"></div>
+        <div class="range_down" style="display: none;"></div>
+        <div class="range_classic_up" style="display: none;"></div>
+        <div class="range_classic_down" style="display: none;"></div>
+        <div class="bin_buy_hidden_msg" style="display: none;"></div>
+
+        <div class="error-forbidden_option_kind" style="display: none;"></div>
+        <div class="error-forbidden_tool" style="display: none;"></div>
+        <div class="error-forbidden_group" style="display: none;"></div>
+        <div class="error-forbidden_loan" style="display: none;"></div>
+        <div class="error-forbidden_max_rev" style="display: none;"></div>
+        <div class="error-forbidden_max_opened" style="display: none;"></div>
+        <div class="error-forbidden_max_bid" style="display: none;"></div>
+
+        <div class="label_or" style="display: none;"></div>
+        <div class="label_and" style="display: none;"></div>
+        <div class="label_early_header" style="display: none;"></div>
+        <div class="old_browser" style="display: none;"></div>
+        <div class="not_avialible_for_guest" style="display: none;">Not available for guest</div>
+        <div class="sell_option_text" style="display: none;"></div>
+        <div class="days" style="display: none;"></div>
+        <div class="msg_closed_win" style="display: none;"></div>
+        <div class="msg_closed_lose" style="display: none;"></div>
+
+    </div>
+
+    <script type="text/template" id="modal-alert">
+
+        <div class="binsta__popup modal" id="{{id}}">
+            <div class="vert_centr">
+                <h3>{{header}}</h3>
+                {{{text}}}
+                <div class="popup_btns">
+                    <button class="button ok modal-button-ok {{button_class}}">{{button_name}}</button>
+                    <button class="button cancel bin_popup_cancel_btn modal-button-cancel label_cancel"></button>
+                </div>
+            </div>
+        </div>
+
+
+    </script>
+
 
 </body>
 </html>

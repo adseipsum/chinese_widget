@@ -260,12 +260,12 @@
         consolePartInvest: ".b_invest_select",
         consolePartChoosedTool: ".selected-instrument #selected-instrument-name",
         consolePartChoosedTF: ".b_duration_block .b_block_value",
-        consolePartCourseVal1: ".b_rate",
-        consolePartCourseVal2: ".b_rate",
+        consolePartCourseVal1: "#instrument-options-price",
+        consolePartCourseVal2: "#instrument-options-price",
         consolePartPayoutPercent: ".percent_win",
         consolePartPayoutPercentLose: ".b_refund",
-        consolePartPayoutWinVal: ".payout .value.win",
-        consolePartPayoutLoseVal: ".payout .value.refund",
+        consolePartPayoutWinVal: ".payout .win",
+        consolePartPayoutLoseVal: ".payout .refund",
         consolePartAllowedTimeVal: ".b_available_block .b_block_value",
         consolePartExpireTimeVal: ".b_expires_block .b_block_value",
         consolePartExpireDayVal: ".expire_day_val",
@@ -277,8 +277,8 @@
         consolePartTradeLineCallPutVal: ".binary_traders_choice__percent.callput",
         consolePartLeftPanel: ".bin_instruments_list .bin_instruments_list_table tbody",
         consolePartTimesizeElem: ".timesize",
-        consolePartCallButton: ".actionBtn.call",
-        consolePartPutButton: ".actionBtn.put",
+        consolePartCallButton: ".buttons .call",
+        consolePartPutButton: ".buttons .put",
         consolePartModalRequotePopup: ".bo_console__requote_popup",
         consolePartScheduleTimer: ".console__graph_schedule_timer",
         consoleLeftPanel: ".bin_instruments_list .bin_instruments_list_table tbody",
@@ -364,7 +364,6 @@
 
     var color_red = "rgba(244, 142, 43, 0.3)";
     var color_green = "rgba(137, 190, 74, 0.3)";
-
 
     var timeframes = {},
         tool_types = {},
@@ -631,7 +630,8 @@
             'click .drop_t': 'openMenu',
             'keyup .drop_t': 'openMenu',
             'click #slide-tools-left': 'slideToolsLeft',
-	        'click #slide-tools-right': 'slideToolsRight'
+	        'click #slide-tools-right': 'slideToolsRight',
+            'click .b_duration_block a': 'showTimeframesList'
             //'click .prevent, .disabled, .active': 'closeСlosestMenu'
 
             //'mouseleave .binsta_assets__item__value.with_dropdown':'closeMenu'
@@ -1225,7 +1225,6 @@
             }
         },
 	    slideToolsLeft: function (e) {
-            console.log('slideToolsLeft');
 		    var $last = $('.b_instruments_filter_content div:last');
 		    $last.remove().css({ 'margin-left': '-400px' }).removeClass('active');
 		    $('.b_instruments_filter_content div:first').before($last);
@@ -1233,13 +1232,15 @@
 		    this.updateToolType(e);
 	    },
 	    slideToolsRight: function (e) {
-		    console.log('slideToolsRight');
 		    var $last = $('.b_instruments_filter_content div:last');
 		    $last.remove().css({ 'margin-left': '-400px' }).removeClass('active');
 		    $('.b_instruments_filter_content div:first').before($last);
 		    $last.animate({ 'margin-left': '0px' }, 1000).addClass('active');
 		    this.updateToolType(e);
 	    },
+	    showTimeframesList: function(e){
+		    $('.b_duration_block .b_list').toggle();
+        },
         toggleCandle: function (e) {
             var $target = $(e.target),
                 $console = $target.parents(console_block),
@@ -1693,7 +1694,6 @@
         },
 
         initialize: function () {
-	        console.log('initialize');
             this.consoles = new Consoles();
             this.opened_options = new OpenedOptions();
             this.option_kinds = new OptionKinds();
@@ -2486,8 +2486,6 @@
 
 
         appendConsole: function (item) {
-            console.log('appendConsole');
-	        $('.options-wrapper').html($('#trade-widget').html());
 
             if (item.kind == undefined) {
                 item.kind = "classic";
@@ -2785,7 +2783,7 @@
             var item = this.consoles.get(id);
 
             if (fromHook != true) {
-                //timeframe = item.get("timeframe");
+                timeframe = item.get("timeframe");
                 if (item.getTool(parseInt(data)) != null) {
                     $console.attr("data-tool-type", item.getTool(parseInt(data)).tool_type);
                 }
@@ -2794,9 +2792,9 @@
 	            $target.parent().find('.instrument').removeClass('active');
 	            $target.addClass('active');
 
-                // if (!$.inArray(timeframe, settings.getAllowedByTool(item.get("kind"), data))) {
-                //     $console.find(".bin_selectable.tf .change-timeframe").eq(0).click();
-                // }
+                if (!$.inArray(timeframe, settings.getAllowedByTool(item.get("kind"), data))) {
+                    $console.find(".bin_selectable.tf .change-timeframe").eq(0).click();
+                }
             }
             view.saveConsoles();
         },
@@ -2886,7 +2884,6 @@
                 item = this.consoles.get(id);
             item.changeParam("payouts", data);
             item.changeParam("timeframe", data);
-
 
             view.saveConsoles();
         },
@@ -3710,7 +3707,7 @@
         },
         setOpenedTab: function (e) {
 
-            $('#bsw .deals-tabs .pull-right').css('display', 'none');
+            $('#main-container .deals-tabs .pull-right').css('display', 'none');
             var $target = $(e.target);
             $(".opened-tab").each(function () {
                 $(this).removeClass("active");
@@ -3746,7 +3743,7 @@
                     break;
 
                 case "journal":
-                    $('#bsw .deals-tabs .pull-right').css('display', 'block');
+                    $('#main-container .deals-tabs .pull-right').css('display', 'block');
                     if (view.user.isGuest()) {
                         //bw_alert("only for users");
                         return;
@@ -5056,6 +5053,7 @@
 
         },
         showTf: function (tf_to_show) {
+            console.log('showTf');
             $el = this.timeframes;
             $el.find("div[data-value='{id}']".replace("{id}", tf_to_show)).removeClass("hidden_by_hook_tool").show();
         },
@@ -5228,6 +5226,7 @@
 
                      return;
                      }*/
+                    console.log("Direction: " + value);
                     this.set("direction", value);
                     this.set("lastTime", null);
                     var okb = this.get("oneClickBuy");
@@ -5607,8 +5606,10 @@
                     break;
                 case "timeframe":
                     var timeframe = parseInt(value) || this.get("timeframe");
-                    if (this.getTimeframe(timeframe) != null)
-                        this.choosed_tf.html(this.getTimeframe(timeframe).timeframe_nom);
+
+                    if (this.getTimeframe(timeframe) != null) {
+	                    this.choosed_tf.html(this.getTimeframe(timeframe).timeframe_nom);
+                    }
                     view.timeframes[view.kind] = timeframe;
 
                     this.set("timeframe", timeframe);
@@ -5682,7 +5683,6 @@
                 case "timeframes":
                     var timeframe = parseInt(value) || this.get("timeframe");
 
-
                     this.el.find(".b_duration_block .b_block_value").html(this.getTimeframe(timeframe).timeframe_nom);
 
                     this.el.find(".b_duration_block .b_block_value").attr("data-timeframe", this.getTimeframe(timeframe).timeframe_id);
@@ -5694,7 +5694,7 @@
                     if (value != null) {
 
                         var current_price = parseFloat(value).toFixed(this.get("tool").decimal_count);
-                        this.el.find('.b_rate').html(current_price);
+                        this.el.find('#instrument-options-price').html(current_price);
                         if ($('.requote_alert').length) {
                             $('.requote_alert').find('.large').html(current_price);
                         }
@@ -5735,7 +5735,7 @@
                         var invest_ok = this.get("invest_ok");
                         //callput diff percent
 
-
+                        console.log("Invest: " + this.get("invest"));
                         var invest = this.get("invest"),
                             percent_win = this.get("percent_win"),
                             percent_win_up = this.get("percent_win_up"),
@@ -6521,8 +6521,10 @@
                 }
             }
 
+            if(timeframes_html) {
+	            this.timeframes.html(timeframes_html);
+            }
 
-            this.timeframes.html(timeframes_html);
             if (choose_first) {
                 this.timeframes.find(".change-timeframe").eq(0).click();
 
@@ -7653,7 +7655,6 @@
 
 //запуск программы
     var start = function () {
-
         if (ieVersion < 9) {
             l100n.localize_all_pages(language);
             alert($("#messages .old_browser").text());
@@ -7785,10 +7786,10 @@
 
                 if (json_data.error == "410") {
                     l100n.localize_all_pages(language);
-                    $('#bsw').find('.account-disabled').remove();
+                    $('#main-container').find('.account-disabled').remove();
                     $(".bsw_loader").hide();
                     $('.tabs').hide();
-                    $('#bsw').prepend("<h2 class='account-disabled-message' style='text-align:center'>" + view.messages.find(".account-disabled").text() + "</h2>");
+                    $('#main-container').prepend("<h2 class='account-disabled-message' style='text-align:center'>" + view.messages.find(".account-disabled").text() + "</h2>");
                     return;
                 }
 
@@ -8956,7 +8957,7 @@
             };
 
 
-        $('#bsw').prepend(Mustache.render(template, params));
+        $('#main-container').prepend(Mustache.render(template, params));
 
         try {
             // $('.binsta__overlay').fadeIn(200, function () {
