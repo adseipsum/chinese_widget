@@ -1456,162 +1456,14 @@
     </script>
 
     <script type="text/template" id="chart-widget">
-        <chart-component selected-instrument="selectedInstrument" block-selector="#options-graph-container"
-                         class="ng-isolate-scope">
-            <div id="chart-view" class="chart-view" oncontextmenu="angular.element(this).scope().syncStudies();"
-                 style="height:240px;position: relative">
-                <spinner enabled="spinner" class="theme-bg-darkest ng-isolate-scope">
-                    <div class="spinner-holder theme-bg-darkest ng-hide" ng-show="enabled" style="">
-                        <div class="spinner">
-                            <div class="rect1"></div>
-                            <div class="rect2"></div>
-                            <div class="rect3"></div>
-                            <div class="rect4"></div>
-                            <div class="rect5"></div>
-                        </div>
-                    </div>
-                </spinner>
-                <div class="chart-background"></div>
-                <section class="settings-section">
-                    <div class="flex-between" style="padding-left: 10px;">
-                        <div class="chart-settings-div text-left" id="chart-settings-div" style="width:26px">
-                            <i class="fa fa-gear chart-settings-item selected settings-button" ng-show="ischartLoaded"
-                               ng-click="toggleChartSettings();" style=""></i>
-                            <!-- ngIf: settingsIsOpen -->
-                        </div>
-
-                        <div class="flex-grow-2 white-10-300">
-                            <div class="ohlc-label white-12-300">
-                                <span translate="general.time" class="text-capitalize ng-scope">time</span>: <span
-                                    class="chartHUDate">09:01:00</span>
-                                <span translate="chart.ohlc.open" class="text-capitalize ng-scope"
-                                      style="padding-left: 10px">Open</span>: <span class="chartHUOpen">0.99068</span>
-                                <span translate="chart.ohlc.high" class="text-capitalize ng-scope"
-                                      style="padding-left: 10px">High</span>: <span class="chartHUHigh">0.99074</span>
-                                <span translate="chart.ohlc.low" class="text-capitalize ng-scope"
-                                      style="padding-left: 10px">Low</span>: <span class="chartHULow">0.99062</span>
-                                <span translate="chart.ohlc.close" class="text-capitalize ng-scope"
-                                      style="padding-left: 10px">Close</span>: <span class="chartHUClose">0.99068</span>
-                            </div>
-                        </div>
-
-                        <div class="zoom-container" ng-click="clearSettingsPopup()">
-                            <span class="button ng-scope bezel-button active" ng-click="setPeriod('1m')"
-                                  ng-class="{ 'bezel-button active': range == '1m', 'inactive': range != '1m' }"
-                                  translate="chart.candle-sizes.1-minute" style="">1m</span>
-                            <span class="button ng-scope inactive" ng-click="setPeriod('5m')"
-                                  ng-class="{ 'bezel-button active': range == '5m', 'inactive': range != '5m' }"
-                                  translate="chart.zoom.5-minutes" style="">5m</span>
-                            <span class="button ng-scope inactive" ng-click="setPeriod('15m')"
-                                  ng-class="{ 'bezel-button active': range == '15m', 'inactive': range != '15m' }"
-                                  translate="options.duration.abbr-15m">15m</span>
-                            <span class="button ng-scope inactive" ng-click="setPeriod('30m')"
-                                  ng-class="{ 'bezel-button active': range == '30m', 'inactive': range != '30m' }"
-                                  translate="chart.zoom.30-minutes">30m</span>
-                            <span class="button ng-scope inactive" ng-click="setPeriod('1h')"
-                                  ng-class="{ 'bezel-button active': range == '1h', 'inactive': range != '1h' }"
-                                  translate="chart.zoom.1-hour">1H</span>
-                            <span class="button ng-scope inactive" ng-click="setPeriod('1d')"
-                                  ng-class="{ 'bezel-button active': range == '1d', 'inactive': range != '1d' }"
-                                  translate="chart.candle-sizes.1-day">1d</span>
-                        </div>
-                    </div>
-                </section>
-
-                <div id="chart-container" class="chart-container" ng-click="clearSettingsPopup()">
-                    <div style="height:100%" class=""><span class="stx-btn stx_annotation_save" style="display: none;"
-                                                            id="annotationSave">save</span><span
-                            class="stx-btn stx_annotation_cancel" style="display: none; margin-left:10px;"
-                            id="annotationCancel">cancel</span>
-                        <div id="mSticky" style="display: none;"><span id="mStickyInterior"></span> <span
-                                id="mStickyRightClick" class=""><span id="overlayTrashCan" class="stx-btn"
-                                                                      style="display:none"><span class="stx-ico-trash">&nbsp;</span></span> <span
-                                id="mouseDeleteInstructions" style="display: none;"><span>(</span><span
-                                id="mouseDeleteText">right-click to delete</span><span id="mouseManageText">right-click to manage</span><span>)</span></span></span>
-                        </div>
-                        <div class="stx_crosshair stx_crosshair_x" style="left: 199.5px; display: none;"
-                             id="crossX"></div>
-                        <div class="stx_crosshair stx_crosshair_y"
-                             style="top: 101.547px; left: 0px; width: 1366px; display: none;" id="crossY"></div>
-                        <div class="stx_chart_controls" style="display: none; bottom: 22px;" id="chartControls">
-                            <div id="chartSize"><span id="zoomOut" class="stx-zoom-out"></span><span id="zoomIn"
-                                                                                                     class="stx-zoom-in"></span>
-                            </div>
-                        </div>
-                        <div class="stx-float-date" style="display: none; left: 199.5px; bottom: 0px;" id="floatDate">
-                            08-28 09:00
-                        </div>
-                        <div class="stx-ico-handle" style="display: none;" id="handleTemplate"><span></span></div>
-                        <div class="stx-panel-control" id="iconsTemplate" style="display: none;">
-                            <div class="stx-panel-title" style="display: none;"></div>
-                            <div class="stx-btn-panel"><span class="stx-ico-up"></span></div>
-                            <div class="stx-btn-panel"><span class="stx-ico-focus"></span></div>
-                            <div class="stx-btn-panel"><span class="stx-ico-down"></span></div>
-                            <div class="stx-btn-panel"><span class="stx-ico-edit"></span></div>
-                            <div class="stx-btn-panel"><span class="stx-ico-close"></span></div>
-                        </div>
-                        <div class="stx-baseline-handle fa" style="display: none;" id="baselineHandle"></div>
-                        <div class="stx-holder stx-panel-chart"
-                             style="right: 0px; top: 0px; left: 0px; height: 240px; display: block;">
-                            <div class="stx-subholder"
-                                 style="z-index: 1; left: 0px; width: 1373px; top: 0px; height: 221px;">
-                                <div class="stx-panel-control stx-show stx-chart-panel" id="iconsTemplate"
-                                     style="display: none;">
-                                    <div class="stx-panel-title chart-title" style="display: none;">AUDCAD 澳加</div>
-                                    <div class="stx-btn-panel" style="display: none;"><span class="stx-ico-up"></span>
-                                    </div>
-                                    <div class="stx-btn-panel" style="display: none;"><span
-                                            class="stx-ico-focus"></span></div>
-                                    <div class="stx-btn-panel" style="display: none;"><span class="stx-ico-down"></span>
-                                    </div>
-                                    <div class="stx-btn-panel" style="display: none;"><span class="stx-ico-edit"></span>
-                                    </div>
-                                    <div class="stx-btn-panel" style="display: none;"><span
-                                            class="stx-ico-close"></span></div>
-                                </div>
-                                <div id="home" class="stx_jump_today home" style="display: block;"><span></span></div>
-                            </div>
-                        </div>
-                        <div class="stx-ico-handle" style="display: none;" id="null"><span></span></div>
-                        <canvas style="position: absolute; left: 0px; width: 1423px; height: 240px;" height="384"
-                                width="2276"></canvas>
-                        <canvas style="position: absolute; left: 0px; width: 1423px; height: 240px;" height="384"
-                                width="2276"></canvas>
-                        <canvas style="position: absolute; left: 0px; width: 1423px; height: 240px;" height="384"
-                                width="2276"></canvas>
-                    </div>
-                </div>
-
-                <div ng-attr-id="{{'studyDialog-'+vm.idx}}" class="stx-dialog trans-bg-darker" id="studyDialog-0">
-                    <h4 class="title text-capitalize"></h4>
-                    <div class="pull-right" style="cursor: pointer !important" ng-click="dismissStudyDialog()">
-                        <i class="fa fa-close"></i>
-                    </div>
-                    <div id="inputs">
-                        <div class="inputTemplate" style="display: none">
-                            <div class="stx-heading"></div>
-                            <div class="stx-data"></div>
-                        </div>
-                    </div>
-                    <div id="outputs">
-                        <hr>
-                        <div class="outputTemplate" style="display: none">
-                            <div class="stx-heading"></div>
-                            <div class="stx-color"><span></span></div>
-                        </div>
-                    </div>
-                    <div id="parameters"></div>
-                    <div ng-click="createStudy()" class="bezel-button branded-bezel-button pull-right">Create</div>
-                </div>
-            </div>
-        </chart-component>
-
     </script>
 
     <script id="console-classic" type="text/template">
         <div class="console" id="console-{{id}}" data-id="{{id}}">
             <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4 ng-scope" id="rates-container">
                 <div class="col-sm-23 top-row" id="instrument-rates-view">
+                    <div class="row text-center" style="margin-top: 10px; margin-bottom: 15px">
+                    </div>
                     <div class="row display-group trans-bg-darker" style="padding-top: 6px; padding-bottom: 2px">
                         <div class="col-sm-5" style="text-align: left; padding-left: 15px">
                             <i id="slide-tools-left" class="fa fa-chevron-left"
@@ -1669,10 +1521,10 @@
                 </div>
                 <div class="row trans-bg options-container" id="options-instrument-container" style="">
                     <div class="options-container overflow-hidden">
-                        <div class="col-sm-6 widgets-container">
+                        <div class="col-sm-7 widgets-container">
                             <div id="short-term-view" class="options-wrapper">
                                 <div class="option-title asset display-4" id="short-term-option-0" style="padding-left: 0px">
-                                <div class="trans-bg-medium white-9-300 text-uppercase level-border">
+                                <div class="trans-bg-medium white-9-300 text-uppercase">
                                     <div class="row">
                                         <div class="trans-bg-darker" style="height: 60px; display: flex; justify-content: space-around;">
                                             <div style="margin:auto;padding:0 2px;">
@@ -1733,24 +1585,14 @@
                                                 </div>
                                             </div>
                                             <div class="buttons-container buttons" style="max-width: 135px; padding-top: 0px;">
-                                                <span class="bezel-button branded-bezel-high-button short-term call not" id="scheduled-high-0" data-action="set-direction"
+                                                <span class="bezel-button branded-bezel-high-button binary_actions__btn bb_click call" id="scheduled-high-0" data-action="set-direction"
                                                       data-value="CALL"
                                                       style="margin: 10px 0px">High</span>
-                                                <span class="bezel-button branded-bezel-low-button short-term put not" id="scheduled-low-0" data-action="set-direction"
+                                                <span class="bezel-button branded-bezel-low-button binary_actions__btn bb_click put" id="scheduled-low-0" data-action="set-direction"
                                                       data-value="PUT"
                                                       style="margin: 10px 0px">Low</span>
                                             </div>
-                                        </div>
-
-                                        <div class="row trans-bg" style="height: 125px; padding-top: 40px;">
-                                            <div class="col-sm-24" style="display: flex; align-items: center; justify-content: center;">
-                                                <div class="spinner" style="max-width: 50%">
-                                                    <div class="rect1"></div>
-                                                    <div class="rect2"></div>
-                                                    <div class="rect3"></div>
-                                                    <div class="rect4"></div>
-                                                    <div class="rect5"></div>
-                                                </div>
+                                            <div class="bin_buy">
                                             </div>
                                         </div>
                                     </div>
@@ -1758,10 +1600,58 @@
                             </div>
                             </div>
                         </div>
-                        <div class="row trans-bg ng-scope" id="options-graph-container" style="">
+                </div>
+            </div>
+            <div class="row trans-bg" id="options-graph-container" style="">
+                <div class="main_chart">
 
+                    <div class="chart">
+                        <div class="chartjs-tooltip"></div>
+
+                        <div class="graph-mark course"></div>
+                        <div class="graph-point"></div>
+
+                        <div class="bin_graph_range_line bin_graph_range_line_available allowed_line_txt">
+                            <span></span>
                         </div>
+                        <div class="bin_graph_range_line bin_graph_range_line_expires end_line_txt"><span></span>
+                        </div>
+
+                        <div class="b_graph_block_overlay"></div>
+                        <div class="b_graph_block_overlay_not_avalable"></div>
+
+                        <!--<div class="crosshair-elements">
+                            <div style="display:none;" class="graph-mark line1 left"></div>
+                            <div style="display:none;" class="graph-mark line2 left"></div>
+                            <div style="display:none;" class="graph-mark line3 left"></div>
+                            <div style="display:none;" class="graph-mark line4 left"></div>
+
+                          <div class="hover_value" style="display:none;"></div>
+                            <div class="hover_date" style="display:none;"></div>
+                            <div class="hover_crosshair_hor" style="display:none;"></div>
+                            <div class="hover_crosshair_ver" style="display:none;"></div>
+                            <div class="hover_crosshair_center" style="display:none;"></div>
+                        </div>-->
+
+                        <div class="b_gradient"></div>
+                        <div id="plot-{{id}}" class="b_content" style="width:100%; height:100%;"></div>
                     </div>
+                </div>
+            </div>
+            </div>
+        </div>
+
+    </script>
+
+    <script type="text/template" id="spinner">
+        <div class="row trans-bg" style="height: 125px; padding-top: 40px;">
+            <div class="col-sm-24" style="display: flex; align-items: center; justify-content: center;">
+                <div class="spinner" style="max-width: 50%">
+                    <div class="rect1"></div>
+                    <div class="rect2"></div>
+                    <div class="rect3"></div>
+                    <div class="rect4"></div>
+                    <div class="rect5"></div>
                 </div>
             </div>
         </div>
@@ -1909,21 +1799,75 @@
     </div>
 
     <script type="text/template" id="modal-alert">
-
-        <div class="binsta__popup modal" id="{{id}}">
-            <div class="vert_centr">
-                <h3>{{header}}</h3>
-                {{{text}}}
-                <div class="popup_btns">
-                    <button class="button ok modal-button-ok {{button_class}}">{{button_name}}</button>
-                    <button class="button cancel bin_popup_cancel_btn modal-button-cancel label_cancel"></button>
+        <div class="modal-dialog modal-sm bin_popup">
+            <div class="modal-content" id="{{id}}">
+                <div class="modal-frame">
+                    <div class="modal-border modal-body">
+                        <div class="modal-frame">
+                            <h3>{{header}}</h3>
+                            {{{text}}}
+                            <div class="popup_btns">
+                                <span class="bezel-button branded-bezel-high-button modal-button-ok ok {{button_class}}" style="margin: 10px 0px">{{button_name}}</span>
+                                <button class="button cancel bin_popup_cancel_btn modal-button-cancel label_cancel"></button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-
-
     </script>
 
+    <script type="text/template" id="modal-alert2">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content" uib-modal-transclude="">
+                <div id="confirm-modal" class="modal-frame approved">
+            <div class="modal-border modal-body" style="position: relative; z-index: 1000; height:280px;">
+                <!-- ngIf: !tradeInProgress && (!tradeComplete || openSuccess) --><div class="modal-body col-sm-14 ng-scope" ng-if="!tradeInProgress &amp;&amp; (!tradeComplete || openSuccess)">
+                <div>
+                    <span class="modal-headline ng-binding"></span><br>
+                    <span class="text-capitalize ng-scope" translate="positions.instrument-name">instrument name</span>: <span style="margin-right: 15px;" id="confirm-instrument" class="ng-binding">EURNZD 欧纽</span><br>
+                    <!--level 4 and above is long term-->
+                    <span class="text-capitalize ng-scope" translate="positions.expiry-time">expiry time</span>:
+                    <!-- ngIf: optionLevel < 4 && optionLevel >= -4 --><span id="summary-expiry-time" ng-if="optionLevel < 4 &amp;&amp; optionLevel >= -4" class="ng-binding ng-scope">22:00:00</span><!-- end ngIf: optionLevel < 4 && optionLevel >= -4 -->
+                    <!-- ngIf: optionLevel >= 4 || optionLevel < -4 -->
+                    <br>
+                    <span class="text-capitalize ng-scope" translate="positions.direction">direction</span>: <span id="confirm-direction" class="text-capitalize ng-binding">High</span><br><br>
+
+                    <span class="text-capitalize ng-scope" translate="positions.entry-time">open time</span>:
+                    <!--level 4 and above is long term-->
+                    <!-- ngIf: optionLevel < 4 && optionLevel >= -4 --><span style="margin-right: 15px;" id="summary-entry-time" ng-if="optionLevel < 4 &amp;&amp; optionLevel >= -4" class="ng-binding ng-scope">21:46:37</span><!-- end ngIf: optionLevel < 4 && optionLevel >= -4 -->
+                    <!-- ngIf: optionLevel >= 4 || optionLevel < -4 -->
+                    <br>
+                    <span class="text-capitalize ng-scope" translate="positions.open-position-modal.current-price">current price</span>:
+                    <span id="confirm-current-price" class="ng-binding">1.63539</span>
+                    <!-- ngIf: anyQuoteReceived --><span ng-if="anyQuoteReceived" class="ng-scope" style="">
+                        <i class="fa fa-caret-up price-up" ng-class="currentInstrument.arrowCssName" style="font-size: 12pt; margin-left: 5px"></i>
+                    </span><!-- end ngIf: anyQuoteReceived --><br>
+
+                    <span class="text-capitalize ng-scope" translate="general.amount">amount</span>: <span id="confirm-amount" class="ng-binding">$40</span><br>
+                    <span class="text-capitalize ng-scope" translate="options.payout">Payout</span>: <span id="confirm-payout" class="ng-binding">$70</span><br>
+                </div>
+            </div><!-- end ngIf: !tradeInProgress && (!tradeComplete || openSuccess) -->
+                <!-- ngIf: tradeInProgress || (tradeComplete && !openSuccess) -->
+                <div class="col-sm-10" style="padding-top: 115px; text-align: center">
+                    <!-- ngIf: !tradeInProgress && !tradeComplete --><div class="section-header ng-scope" ng-if="!tradeInProgress &amp;&amp; !tradeComplete">
+                    <span class="label modal-title ng-scope" style="padding: 0px; margin: 0px" translate="positions.open-position-modal.title">open position?</span>
+                </div><!-- end ngIf: !tradeInProgress && !tradeComplete -->
+                    <div ng-class="{ 'not-visible': !(!tradeInProgress &amp;&amp; !tradeComplete) }">
+                        <span class="bezel-button branded-bezel-high-button ng-scope" style="min-width: 100px !important; width: 100px !important" id="popupConfirm" ng-disabled="tradeInProgress" ng-click="confirm()" translate="positions.buttons.trade">trade</span>
+                        <span class="bezel-button branded-bezel-low-button ng-scope" style="min-width: 100px !important; width: 100px !important" id="popupCancel" ng-click="cancel()" translate="general.cancel">cancel</span>
+                    </div>
+                    <!-- ngIf: tradeComplete -->
+                </div>
+            </div>
+
+            <div class="modal-border modal-body modal-circled-corner"></div>
+            <div class="modal-body" style="height: 70px; width: 70px; top: 2px; right: -75px; position: absolute; z-index: 1002;"></div>
+            <i id="check" class="fa fa-check" ng-class="{'fa-check': !tradeComplete || openSuccess, 'fa-close': tradeComplete &amp;&amp; !openSuccess}" ng-attr-style="top: -11px; right:{{iconRightPosition}};position: absolute;z-index: 1003;color: white;font-size: 45px;" style="top: -11px; right:-85px;position: absolute;z-index: 1003;color: white;font-size: 45px;"></i>
+        </div>
+        </div>
+        </div>
+    </script>
 
 </body>
 </html>

@@ -288,11 +288,11 @@
     var graph_style = {
         globalToolLineWidth: 1,
         // globalToolColor: "rgb((75, 103, 160)",
-        globalToolColor: "rgb(186, 223, 229)",
+        globalToolColor: "rgb(7, 181, 185)",
         // globalToolColorTouch: "rgb(75, 103, 160)",
         globalToolColorTouch: "rgb(186, 223, 229)",
         // globalToolColorRange: "rgb(75, 103, 160)",
-        globalToolColorRange: "rgb(186, 223, 229)",
+        globalToolColorRange: "rgb(20, 35, 51)",
         globalToolShadowSize: 0,
         globalToolPointShow: true,
         globalToolHorizontalLineWidth: .5,
@@ -740,7 +740,7 @@
             var $target = $(e.target);
 
             if ($target.hasClass('ok') || $target.hasClass('cancel')) {
-                var id = $target.parents('.binsta__popup.modal').attr('data-console');
+                var id = $target.parents('.binsta__popup.modal-dialog').attr('data-console');
 
                 if ($target.hasClass('ok')) {
                     var item = this.consoles.get(id);
@@ -2360,7 +2360,7 @@
             } catch (e) {
             }
             $(e.target).parents(".bin_popup").remove();
-            $(e.target).parents(".modal").remove();
+            $(e.target).parents(".modal-dialog").remove();
             $(".invest-non-active").removeClass("invest-non-active");
 
         },
@@ -2492,7 +2492,7 @@
             }
             item.set("type", "history");
             if (item.get("oneClickBuy") == null) {
-                item.set("oneClickBuy", false);
+                item.set("oneClickBuy", true);
             }
             if (item.get("tool") == null) {
                 //TODO проверить, разрешЄн ли tool
@@ -2630,10 +2630,11 @@
                 item.el.next(".w_dub").remove();
             }
 
-            if (item.get("oneClickBuy") == true) {
-                item.set("oneClickBuy", false);
-                item.el.find(".console__one_click").trigger("click");
-            }
+            //prepends one click buy functional
+            // if (item.get("oneClickBuy") == true) {
+            //     item.set("oneClickBuy", false);
+            //     item.el.find(".console__one_click").trigger("click");
+            // }
 
             view.saveConsoles();
 
@@ -2799,6 +2800,7 @@
             view.saveConsoles();
         },
         buyOption: function (e) {
+	        console.log('buyOption');
             var $target = $(e.target),
                 $console = $target.parents(console_block),
                 id = $console.attr("data-id"),
@@ -2940,6 +2942,24 @@
 
             $(".body").fadeOut(300);
             $(".body.page-" + $target.attr("data-link")).stop(true, false).fadeIn(300);
+        },
+	    setToolsRates: function(data){
+		    var val, tool_rate;
+		    for (var i = 0; i < data.length; i++) {
+
+			    val = data[i];
+
+			    if (typeof (val.option_kind) != "undefined") {
+				    tool_rate[val.tool_id] = {
+					    option_kind: val.option_kind,
+					    tool_id: val.tool_id,
+					    timeframe_id: val.timeframe,
+					    percent: val.percent,
+                        price: val.price
+				    };
+			    }
+                console.log("Tool rate" + tool_rate);
+		    }
         },
         setPayoutRates: function (data) {
 
@@ -3244,7 +3264,7 @@
                 if (currency == "?" || currency == "P") {
 
                     var consoles_ls_default = [
-                        {id: 1, tool_id: 1, kind: "classic", invest: 200, timeframe: 1, oneClickBuy: false},
+                        {id: 1, tool_id: 1, kind: "classic", invest: 200, timeframe: 1, oneClickBuy: true},
                         {id: 2, tool_id: 1, kind: "touch_advanced", invest: 200, timeframe: 4, oneClickBuy: false},
                         {id: 3, tool_id: 1, kind: "range_advanced", invest: 200, timeframe: 4, oneClickBuy: false},
                         {id: 4, tool_id: 1, kind: "touch", invest: 200, timeframe: 4, oneClickBuy: false},
@@ -3255,7 +3275,7 @@
                 } else {
 
                     var consoles_ls_default = [
-                        {id: 1, tool_id: 1, kind: "classic", invest: 20, timeframe: 1, oneClickBuy: false},
+                        {id: 1, tool_id: 1, kind: "classic", invest: 20, timeframe: 1, oneClickBuy: true},
                         {id: 2, tool_id: 1, kind: "touch_advanced", invest: 20, timeframe: 4, oneClickBuy: false},
                         {id: 3, tool_id: 1, kind: "range_advanced", invest: 20, timeframe: 4, oneClickBuy: false},
                         {id: 4, tool_id: 1, kind: "touch", invest: 20, timeframe: 4, oneClickBuy: false},
@@ -5178,7 +5198,7 @@
                 return;
             }
             //PROFILING
-            if (js_params.profiling && action)
+            //if (js_params.profiling && action)
                 console.time(action);
 
             switch (action) {
@@ -5226,7 +5246,7 @@
 
                      return;
                      }*/
-                    console.log("Direction: " + value);
+
                     this.set("direction", value);
                     this.set("lastTime", null);
                     var okb = this.get("oneClickBuy");
@@ -5735,7 +5755,6 @@
                         var invest_ok = this.get("invest_ok");
                         //callput diff percent
 
-                        console.log("Invest: " + this.get("invest"));
                         var invest = this.get("invest"),
                             percent_win = this.get("percent_win"),
                             percent_win_up = this.get("percent_win_up"),
@@ -6466,7 +6485,6 @@
                 params;
 
             for (var i in tool_t) {
-
                 var inFavorite = $.inArray(parseInt(tool_t[i].tool_id), view.user.user_data.starredTools) != -1 ? 'inFavorites' : '';
                 params = {
                     tool_id: tool_t[i].tool_id,
@@ -7748,7 +7766,7 @@
 
         //([json_data.result,data]);
         //PROFILING
-        //if (js_params.profiling && json_data != null && json_data.result)
+        if (js_params.profiling && json_data != null && json_data.result)
             console.time(json_data.result);
         switch (json_data.result) {
 
@@ -7929,7 +7947,6 @@
                 break;
 
             case "hook_tool":
-
                 chart.hook_tool(json_data);
 
                 json_data = null;
@@ -8284,7 +8301,6 @@
             case "hook_signal":
                 log(["hook_signal", Js(json_data)]);
                 setSignals(json_data);
-
                 wipe(json_data);
                 json_data = null;
                 break;
@@ -9080,7 +9096,7 @@
             $('.binsta__overlay').fadeOut(300);
         } catch (e) {
         }
-        $(".modal").remove();
+        $(".modal-dialog").remove();
         $(".invest-non-active").removeClass("invest-non-active");
     }
 
@@ -10598,7 +10614,7 @@
                     for (var i = 0; i < length; i++) {
                         var graph = view.consoles.models[i];
                         if (graph.get("data") != null && graph.get("data").length > 0) {
-                            //chart.drawConsole(graph);
+                            chart.drawConsole(graph);
                         }
                         graph = null;
                     }
@@ -10620,11 +10636,11 @@
         }
 
         drawTime = null;
-        //setTimeout(updateAllCharts, graphMaxFrequency);
+        setTimeout(updateAllCharts, graphMaxFrequency);
     };
 
     if (partner_params.drawGraphProcess) {
-        //setTimeout(updateAllCharts, graphMaxFrequency);
+        setTimeout(updateAllCharts, graphMaxFrequency);
     }
 
     chart.getHistoryWss = function (params) {
@@ -10810,12 +10826,12 @@
             }
 
             if (graph.get("candle") == true && partner_params.use_candle == true) {
-                //graph.set("timesize", "M1-300-14400");
-                //chart.drawConsoleWithCandle(graph);
+                graph.set("timesize", "M1-300-14400");
+                chart.drawConsoleWithCandle(graph);
             } else {
                 //chart.drawConsoleWithChartsJS(graph);
-                //graph.set("timesize", "M1-300-14400");
-                //chart.drawConsoleWithGraph(graph);
+                graph.set("timesize", "M1-300-14400");
+                chart.drawConsoleWithGraph(graph);
             }
 
             drawTime = microtime(true) - drawTime;
