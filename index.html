@@ -1430,7 +1430,7 @@
                     }
                 } catch (e) {
                     console.log(e);
-                    window.location.replace(dynLoad.errorUrl);
+                    //window.location.replace(dynLoad.errorUrl);
                 }
             });
         }, 0);
@@ -1521,13 +1521,13 @@
                 </div>
                 <div class="row trans-bg options-container" id="options-instrument-container" style="">
                     <div class="options-container overflow-hidden">
-                        <div class="col-sm-7 widgets-container">
+                        <div class="col-sm-10 widgets-container">
                             <div id="short-term-view" class="options-wrapper">
                                 <div class="option-title asset display-4" id="short-term-option-0" style="padding-left: 0px">
                                 <div class="trans-bg-medium white-9-300 text-uppercase">
                                     <div class="row">
-                                        <div class="trans-bg-darker" style="height: 60px; display: flex; justify-content: space-around;">
-                                            <div style="margin:auto;padding:0 2px;">
+                                        <div class="trans-bg-darker" style="height: 100px; display: flex; justify-content: space-around;">
+                                            <div style="margin: auto 10px; padding:0 2px;">
                                                 <div dropdown-append-to="appendToEl" class="text-lowercase dropdown b_duration_block">
                                                     <a id="asset-level-toggle-0" class="dropdown-toggle">
                                                         <span class="bezel-button-small branded-bezel-button-small"
@@ -1557,7 +1557,7 @@
                                                 </div>
                                             </div>
                                             <div style="margin: auto">
-                                                <div style="margin-top: 2px; text-align: left">
+                                                <div style="margin: auto 10px; text-align: left">
                                                         <div class="payout-label small-caption brand-main-color text-uppercase" style="margin-bottom: -6px;">
                                                             <span style="padding-right:20px">Payout</span>
                                                         </div>
@@ -1569,15 +1569,10 @@
                                                         </div>
                                                 </div>
                                             </div>
-                                        </div>
-
-                                        <div class="trans-bg-medium options-wrapper" ng-show="noEntryTimeLeft > 0" style="">
-
                                             <div class="asset-ticker-container">
                                                 <div style="position: relative;overflow:hidden">
                                                     <canvas id="ticker-0"
-                                                            ng-style="display === 2 ? { 'height':'160px'} : { 'height': '120px' }"
-                                                            style="height: 120px;"></canvas>
+                                                            style="height: 100px;"></canvas>
                                                     <div class="entry-zone b_expires_block">
                                                         <div id="level-time-left-0" class="time-left b_block_value">00:00</div>
                                                         <span class="label entry-zone-label">entry zone</span>
@@ -1586,11 +1581,9 @@
                                             </div>
                                             <div class="buttons-container buttons" style="max-width: 135px; padding-top: 0px;">
                                                 <span class="bezel-button branded-bezel-high-button binary_actions__btn bb_click call" id="scheduled-high-0" data-action="set-direction"
-                                                      data-value="CALL"
-                                                      style="margin: 10px 0px">High</span>
+                                                      data-value="CALL">High</span>
                                                 <span class="bezel-button branded-bezel-low-button binary_actions__btn bb_click put" id="scheduled-low-0" data-action="set-direction"
-                                                      data-value="PUT"
-                                                      style="margin: 10px 0px">Low</span>
+                                                      data-value="PUT">Low</span>
                                             </div>
                                             <div class="bin_buy">
                                             </div>
