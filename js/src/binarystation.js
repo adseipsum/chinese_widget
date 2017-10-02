@@ -212,7 +212,7 @@
         consoleXAxisSize: 9,
         consoleYAxisSize: 10,
         directionsSetToInactivAfterBuy: true,
-        blockGuest: true,
+        blockGuest: false,
         showWidgets: false,
         autochartistBody: '.autochartist_widget .widget_body',
         reloadTime: 7000,
@@ -239,7 +239,7 @@
         formatDep: true,
         integerInvest: true,
         kindCleanDirection: true,
-        oneClickToAll: false,
+        oneClickToAll: true,
         fillOnlyChoosedDirection: true,
         clearDirAfterDoubleclick: true,
         clearDirAfterChangeTool: true,
@@ -608,9 +608,9 @@
 
             'click .invest-menu-toggle ': 'toggleInvestMenu',
             'click .toggle_open': 'toggleOpenForOption',
-            'mouseup input[type="number"]': 'setFixedInvest1',
-            'focusout .b_invest_select': 'setFixedInvest2',
-            'focusin .b_invest_select': 'setCurrentInvest',
+            // 'mouseup input[type="number"]': 'setFixedInvest1',
+            // 'focusout .b_invest_select': 'setFixedInvest2',
+            // 'change .b_invest_select': 'setCurrentInvest',
             'keyup .b_invest_select': function (e) {
                 if (e.keyCode == 13) {
                     $(e.target).parents('.sum').find('.dropdown').removeClass('show');
@@ -807,6 +807,7 @@
 
                     });
                 } else {
+                    console.log(2222);
                     _(view.consoles.models).each(function (elem) {
                         elem.set("oneClickBuy", false);
                         elem.el.removeClass("one-click-buy");
@@ -1145,7 +1146,7 @@
             e.stopPropagation();
         },
         toggleOneClick: function (e) {
-
+console.log("toggleOneClick");
             var $target = $(e.target),
                 $console = $target.parents(console_block),
                 id = $console.attr("data-id"),
@@ -1534,6 +1535,7 @@
             }
         },
         setFixedInvest1: function (e) {
+	        console.log('setFixedInvest1');
             //var freeMoney = parseFloat(view.user.getDeposit()) + parseFloat($(".user-credit-value")[0].innerHTML.replace(" ",""));
             var freeMoney = parseFloat(view.user.getDeposit());
             var $target = $(e.target),
@@ -1552,15 +1554,17 @@
             item.changeParam("set-invest");
         },
         setFixedInvest2: function (e) {
+	        console.log('setFixedInvest2');
             var $target = $(e.target);
             var target_val = parseInt($target.val()),
                 $console = $target.parents(console_block),
                 id = $console.attr("data-id"),
                 item = this.consoles.get(id);
-            item.changeParam('set-invest');
+            item.changeParam("set-invest");
             $target.val(isNaN(target_val) ? '' : target_val);
         },
         setCurrentInvest: function (e) {
+	        console.log('setCurrentInvest');
             current_invest = parseInt($(e.target).val());
         },
         setTimescale: function (e) {
@@ -1972,6 +1976,7 @@
 
         },
         showInvest: function (e) {
+	        console.log('showInvest');
             var timout, $this = $(e.target);
             clearTimeout(timout);
 
@@ -2801,12 +2806,14 @@
         },
         buyOption: function (e) {
 	        console.log('buyOption');
+
             var $target = $(e.target),
                 $console = $target.parents(console_block),
                 id = $console.attr("data-id"),
                 data = $target.attr("data-value");
 
             if (id == null) {
+	            console.log('id = null');
                 view.buyOptionAutochartist();
                 return;
             }
@@ -2816,7 +2823,6 @@
              }*/
 
             var item = this.consoles.get(id);
-
             item.setFixedDirection();
 
             var min_i = min_invest;
@@ -2832,9 +2838,9 @@
                     max_i = item.get("max_invest");
                 }
             }
-
+            //костыль!
+	        item.set("invest", $('.b_invest_select').val());
             if (parseFloat(item.get("invest")) < parseFloat(min_i) || parseFloat(item.get("invest")) > parseFloat(max_i)) {
-
                 item.el.find(".bin_buy").addClass("inactive");
                 item.set("invest_ok", false);
                 bw_alert(view.messages.find(".error-min_sum").text().replace("{min}", currency + intellectRound(min_i)).replace("{max}", currency + intellectRound(max_i)));
@@ -3114,7 +3120,7 @@
                     item.set("allow", hook_timeframes_cache[id1].allow == "yes");
 
                     item.changeParam("end-time");
-                    //item.changeParam("set-invest");
+                    item.changeParam("set-invest");
                     item.updateScheduleTimer();
                     item.updateHookTimeframesStatus();
                 }
@@ -3371,7 +3377,6 @@
 
 
                 for (var i in consoles_ls) {
-
                     view.consoles.add({
                         id: parseInt(consoles_ls[i].id),
                         tool: get_tool(parseInt(consoles_ls[i].tool_id)),
@@ -5428,8 +5433,6 @@
 
                     break;
                 case "set-invest":
-
-
                     var min_i = min_invest;
                     var max_i = max_invest;
                     if (this.get("min_invest") != null && this.get("max_invest") != null) {
@@ -5438,7 +5441,6 @@
                     }
                     var invest = this.invest.val();
                     var buttons = this.el.find('.actionBtn');
-
 
                     if (this.invest[0] != null) {
                         if (partner_params.integerInvest && invest != parseInt(invest) && invest != "") {
@@ -5617,6 +5619,7 @@
 
                     break;
                 case "oneClickBuy":
+	                console.log(value);
                     this.set("oneClickBuy", value);
                     getOnclickCondition(this, false);
                     break;
@@ -6142,11 +6145,10 @@
 
                     if (view.user.isGuest() && view.user.getDeposit() < parseFloat(this.get("invest"))) {
                         bw_alert(view.messages.find(".error-insufficient_funds").text());
-                        return;
+                        //return;
                     }
 
 //                 global_get_opened_options = false;
-
 
                     if (global_last_buy_blocked === true) {
                         //("prevent fast click");
@@ -6163,6 +6165,7 @@
                     global_console_last_buy_id = this.id;
 
                     var plugin = "site";
+
                     switch (this.get("kind")) {
                         case "classic":
                             var open_query = '{"command":"open_option","plugin":"{plugin}","sum":"{sum}","tool_id":"{tool_id}","direction":"{direction}","price_open":"{price_open}","timeframe_id":"{timeframe_id}","option_kind":"{option_kind}"}'
@@ -6293,14 +6296,15 @@
 
 
                     if (!(partner_params.blockGuest && view.user.isGuest())) {
-
                         if (this.get("direction") == null) {
                             console.log('direction is null');
                         }
                         if (this.get("direction") != null) {
                             // console.log(open_query);
+                            //trade request
                             wss_conn.send(open_query);
                             lastOpenOptionQuery = open_query;
+	                        bw_alert($("#messages .bin_buy_hidden_msg").html());
                         }
 
                         if (this.get("kind") == "range" && partner_params.fixedDirectionRange != null) {
