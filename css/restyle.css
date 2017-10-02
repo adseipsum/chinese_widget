@@ -13653,7 +13653,8 @@ input:-webkit-autofill {
 }
 
 .trans-bg-darker {
-    background-color: #171d20
+    background-color: #171d20;
+    display: inline-flex;
 }
 
 .panel, .panel-footer {
@@ -13868,7 +13869,6 @@ input:-webkit-autofill {
 
 #options-container {
     transition: all .5s ease;
-    overflow: hidden;
     height: 100%
 }
 
