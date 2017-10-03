@@ -110,280 +110,89 @@
                     <div id="bottom-container" class="">
                 </div>
             </div>
-            <div class="col-sm-24 ng-scope" ng-controller="BlotterController" id="positions-container" ng-show="!isGuestMode">
+            <div class="col-sm-24 ng-scope" ng-controller="BlotterController" id="positions-container">
                 <div>
-                    <!-- ngInclude: --><ng-include src="'/Scripts/Trader/Views/Blotter.html'" class="ng-scope"><div id="blotter-content" class="col-md-24 top-row bg-dark ng-scope" ng-init="initialize()">
-                    <!--<div class="position-tabs-toggle-button"><i id="blotter-toggle" class="fa" ng-class="positionTabButtonCss" ng-click="togglePositionTabMode()"></i></div>
-                        -->
+                    <ng-include src="'/Scripts/Trader/Views/Blotter.html'" class="ng-scope">
+                        <div id="blotter-content" class="col-md-24 top-row bg-dark ng-scope">
+
                     <div justified="true" class="ng-isolate-scope">
                         <ul class="nav nav-tabs nav-justified" ng-class="{'nav-stacked': vertical, 'nav-justified': justified}" ng-transclude="">
-                            <li ng-class="[{active: active, disabled: disabled}, classes]" class="text-capitalize uib-tab nav-item ng-scope ng-isolate-scope active" id="open-Positions-Header" heading="open positions (0)" ng-click="goToOpenPositions()">
-                                <a href="" ng-click="select($event)" class="nav-link ng-binding" uib-tab-heading-transclude="">open positions (0)</a>
-                            </li>
-                            <li ng-class="[{active: active, disabled: disabled}, classes]" class="text-capitalize uib-tab nav-item ng-scope ng-isolate-scope" id="closed-Positions-Header" heading="closed positions (133)" ng-click="goToClosedPositions()">
-                                <a href="" ng-click="select($event)" class="nav-link ng-binding" uib-tab-heading-transclude="">closed positions (133)</a>
-                            </li>
-                            <li ng-class="[{active: active, disabled: disabled}, classes]" class="text-capitalize uib-tab nav-item ng-scope ng-isolate-scope" id="financial-Transactions-Header" heading="financial transactions (2)" ng-click="goToFinancialTransactions()">
-                                <a href="" ng-click="select($event)" class="nav-link ng-binding" uib-tab-heading-transclude="">financial transactions (2)</a>
-                            </li>
-                            <li ng-class="[{active: active, disabled: disabled}, classes]" class="text-capitalize uib-tab nav-item ng-scope ng-isolate-scope" id="financial-Transactions-Header" heading="Expiry History" ng-click="goToExpiryHistory()">
-                                <a href="" ng-click="select($event)" class="nav-link ng-binding" uib-tab-heading-transclude="">Expiry History</a>
+                            <li class="text-capitalize uib-tab nav-item active" id="open-Positions-Header">
+                                <a href="" class="nav-link" uib-tab-heading-transclude="">open positions (0)</a>
                             </li>
                         </ul>
                         <div class="tab-content">
-                            <!-- ngRepeat: tab in tabset.tabs --><div class="tab-pane ng-scope active" ng-repeat="tab in tabset.tabs" ng-class="{active: tabset.active === tab.index}" uib-tab-content-transclude="tab">
-
-                            <!-- ngInclude: --><ng-include src="'/Scripts/Trader/Views/Positions/OpenPositions.html'" class="ng-scope"><div id="open-container" class="blotter-table ng-scope" ng-controller="OpenPositionsController" ng-init="initialize()">
-                            <table id="open-positions" class="table table-striped table-responsive no-margin">
+                            <div class="tab-pane ng-scope active" ng-repeat="tab in tabset.tabs" ng-class="{active: tabset.active === tab.index}" uib-tab-content-transclude="tab">
+                            <div id="open-container" class="blotter-table">
+                            <table id="open-positions" class="table table-striped table-responsive no-margin open_options_bar dealsTable">
                                 <thead>
                                 <tr>
-                                    <th class="branded text-capitalize pointer" data-ng-click="setSorting('instrument')">
+                                    <th class="branded text-capitalize pointer">
                                         <div class="th cursor-pointer grid-column-instrument">
-                                            <span class="text-capitalize ng-scope" translate="instruments.instrument">asset</span>
+                                            <span class="text-capitalize">Type</span>
                                             <span class="width-1-em inline-block">
-                            <!-- ngIf: openPositionsSortField == 'instrument' && !openPositionsSortDirection -->
-                                                <!-- ngIf: openPositionsSortField == 'instrument' && openPositionsSortDirection -->
-                        </span>
+                                            </span>
                                         </div>
                                     </th>
-                                    <th class="branded text-capitalize pointer" data-ng-click="setSorting('openDate')">
-                                        <div class="th cursor-pointer grid-column-entry-date">
-                                            <span class="text-capitalize ng-scope" translate="positions.entry-date">open date</span>
+                                    <th class="branded text-capitalize pointer">
+                                        <div class="th cursor-pointer grid-column-instrument">
+                                            <span class="text-capitalize">Dir</span>
                                             <span class="width-1-em inline-block">
-                            <!-- ngIf: openPositionsSortField == 'openDate' && !openPositionsSortDirection -->
-                                                <!-- ngIf: openPositionsSortField == 'openDate' && openPositionsSortDirection --><span class="fa fa-caret-down ng-scope" data-ng-if="openPositionsSortField == 'openDate' &amp;&amp; openPositionsSortDirection"></span><!-- end ngIf: openPositionsSortField == 'openDate' && openPositionsSortDirection -->
-                        </span>
+                                            </span>
                                         </div>
                                     </th>
-                                    <th class="branded text-capitalize pointer" data-ng-click="setSorting('openDate')">
-                                        <div class="th cursor-pointer grid-column-entry-time">
-                                            <span class="text-capitalize ng-scope" translate="positions.entry-time">open time</span>
+                                    <th class="branded text-capitalize pointer">
+                                        <div class="th cursor-pointer grid-column-instrument">
+                                            <span class="text-capitalize">Asset</span>
                                             <span class="width-1-em inline-block">
-                            <!-- ngIf: openPositionsSortField == 'openDate' && !openPositionsSortDirection -->
-                                                <!-- ngIf: openPositionsSortField == 'openDate' && openPositionsSortDirection --><span class="fa fa-caret-down ng-scope" data-ng-if="openPositionsSortField == 'openDate' &amp;&amp; openPositionsSortDirection"></span><!-- end ngIf: openPositionsSortField == 'openDate' && openPositionsSortDirection -->
-                        </span>
+                                            </span>
                                         </div>
                                     </th>
-                                    <th class="branded text-capitalize pointer" data-ng-click="setSorting('level')">
-                                        <div class="th cursor-pointer grid-column-type">
-                                            <span class="text-capitalize ng-scope" translate="options.type">type</span>
+                                    <th class="branded text-capitalize pointer">
+                                        <div class="th cursor-pointer grid-column-instrument">
+                                            <span class="text-capitalize">Timeframe</span>
                                             <span class="width-1-em inline-block">
-                            <!-- ngIf: openPositionsSortField == 'level' && !openPositionsSortDirection -->
-                                                <!-- ngIf: openPositionsSortField == 'level' && openPositionsSortDirection -->
-                        </span>
+                                            </span>
                                         </div>
                                     </th>
-                                    <th class="branded text-capitalize pointer" data-ng-click="setSorting('openPrice')">
-                                        <div class="th cursor-pointer grid-column-entry-price">
-                                            <span class="text-capitalize ng-scope" translate="positions.entry-price">entry price</span>
+                                    <th class="branded text-capitalize pointer">
+                                        <div class="th cursor-pointer grid-column-instrument">
+                                            <span class="text-capitalize">Expires</span>
                                             <span class="width-1-em inline-block">
-                            <!-- ngIf: openPositionsSortField == 'openPrice' && !openPositionsSortDirection -->
-                                                <!-- ngIf: openPositionsSortField == 'openPrice' && openPositionsSortDirection -->
-                        </span>
+                                            </span>
                                         </div>
                                     </th>
-                                    <th class="branded text-capitalize pointer" data-ng-click="setSorting('direction')">
-                                        <div class="th cursor-pointer grid-column-direction">
-                                            <span class="text-capitalize ng-scope" translate="positions.direction">direction</span>
+                                    <th class="branded text-capitalize pointer">
+                                        <div class="th cursor-pointer grid-column-instrument">
+                                            <span class="text-capitalize">Rate</span>
                                             <span class="width-1-em inline-block">
-                            <!-- ngIf: openPositionsSortField == 'direction' && !openPositionsSortDirection -->
-                                                <!-- ngIf: openPositionsSortField == 'direction' && openPositionsSortDirection -->
-                        </span>
+                                            </span>
                                         </div>
                                     </th>
-                                    <th class="branded text-capitalize pointer" data-ng-click="setSorting('amount')">
-                                        <div class="th cursor-pointer grid-column-amount">
-                                            <span class="text-capitalize ng-scope" translate="general.amount">amount</span>
+                                    <th class="branded text-capitalize pointer">
+                                        <div class="th cursor-pointer grid-column-instrument">
+                                            <span class="text-capitalize">Forecast</span>
                                             <span class="width-1-em inline-block">
-                            <!-- ngIf: openPositionsSortField == 'amount' && !openPositionsSortDirection -->
-                                                <!-- ngIf: openPositionsSortField == 'amount' && openPositionsSortDirection -->
-                        </span>
+                                            </span>
                                         </div>
                                     </th>
-                                    <th class="branded text-capitalize pointer" data-ng-click="setSorting('payout')">
-                                        <div class="th cursor-pointer grid-column-return">
-                                            <span class="text-capitalize ng-scope" translate="financial.return">return</span>
+                                    <th class="branded text-capitalize pointer">
+                                        <div class="th cursor-pointer grid-column-instrument">
+                                            <span class="text-capitalize">Investment</span>
                                             <span class="width-1-em inline-block">
-                            <!-- ngIf: openPositionsSortField == 'payout' && !openPositionsSortDirection -->
-                                                <!-- ngIf: openPositionsSortField == 'payout' && openPositionsSortDirection -->
-                        </span>
+                                            </span>
                                         </div>
                                     </th>
-                                    <th class="branded text-capitalize pointer" data-ng-click="setSorting('calculatedPayout')">
-                                        <div class="th cursor-pointer grid-column-payout">
-                                            <span class="text-capitalize ng-scope" translate="options.payout">Payout</span>
+                                    <th class="branded text-capitalize pointer">
+                                        <div class="th cursor-pointer grid-column-instrument">
+                                            <span class="text-capitalize">Payout</span>
                                             <span class="width-1-em inline-block">
-                            <!-- ngIf: openPositionsSortField == 'calculatedPayout' && !openPositionsSortDirection -->
-                                                <!-- ngIf: openPositionsSortField == 'calculatedPayout' && openPositionsSortDirection -->
-                        </span>
+                                            </span>
                                         </div>
                                     </th>
-                                    <th class="branded text-capitalize ng-scope" translate="general.actions">actions</th>
-                                    <th class="branded text-capitalize ng-scope" translate="general.status">status</th>
-                                    <th class="branded"></th>
                                 </tr>
                                 </thead>
-                                <tbody>
-                                <!-- ngRepeat: openPosition in displayedOpenPositions --><tr data-position-id="" ng-repeat-start="openPosition in displayedOpenPositions" class="table-row ng-scope">
-                                    <td class="instrument ng-binding"></td>
-                                    <td class="entry-date ng-binding"></td>
-                                    <td class="entry-time ng-binding"></td>
-                                    <td class="option-type ng-scope ng-binding" translate=""></td>
-                                    <td class="entry-price ng-binding"></td>
-                                    <td class="option-direction color-" translate=""></td>
-                                    <td class="amount ng-binding"></td>
-                                    <td class="return ng-binding"></td>
-                                    <td class="payout ng-binding"></td>
-                                    <td class="actions">
-                                        <!-- ngIf: openPosition.instrument && openPosition.level>=0 && openPosition.isInEntryZone -->
-                                        <!-- ngIf: openPosition.instrument && openPosition.level>=0 && !openPosition.isInEn-scope">
-                                    <td class="instrument ng-binding"></td>
-                                    <td class="entry-date ng-binding"></td>
-                                    <td class="entry-time ng-binding"></td>
-                                    <td class="option-type ng-scope ng-binding" translate=""></td>
-                                    <td class="entry-price ng-binding"></td>
-                                    <td class="option-direction color-" translate=""></td>
-                                    <td class="amount ng-binding"></td>
-                                    <td class="return ng-binding"></td>
-                                    <td class="payout ng-binding"></td>
-                                    <td class="actions">
-                                        <!-- ngIf: openPosition.instrument && openPosition.level>=0 && openPosition.isInEntryZone -->
-                                        <!-- ngIf: openPosition.instrument && openPosition.level>=0 && !openPosition.isInEntryZone -->
-                                    </td>
-                                    <td class="status" style="width: 330px;">
-                                        <!-- ngIf: openPosition.instrument -->
-                                    </td>
-                                    <td>
-                                        <!-- ngIf: openPosition.instrument -->
-                                    </td>
-                                </tr>
-                                <!-- ngIf: openPosition.showChart --><!-- end ngRepeat: openPosition in displayedOpenPositions --><tr data-position-id="" ng-repeat-start="openPosition in displayedOpenPositions" class="table-row ng-scope">
-                                    <td class="instrument ng-binding"></td>
-                                    <td class="entry-date ng-binding"></td>
-                                    <td class="entry-time ng-binding"></td>
-                                    <td class="option-type ng-scope ng-binding" translate=""></td>
-                                    <td class="entry-price ng-binding"></td>
-                                    <td class="option-direction color-" translate=""></td>
-                                    <td class="amount ng-binding"></td>
-                                    <td class="return ng-binding"></td>
-                                    <td class="payout ng-binding"></td>
-                                    <td class="actions">
-                                        <!-- ngIf: openPosition.instrument && openPosition.level>=0 && openPosition.isInEntryZone -->
-                                        <!-- ngIf: openPosition.instrument && openPosition.level>=0 && !openPosition.isInEntryZone -->
-                                    </td>
-                                    <td class="status" style="width: 330px;">
-                                        <!-- ngIf: openPosition.instrument -->
-                                    </td>
-                                    <td>
-                                        <!-- ngIf: openPosition.instrument -->
-                                    </td>
-                                </tr>
-                                <!-- ngIf: openPosition.showChart --><!-- end ngRepeat: openPosition in displayedOpenPositions --><tr data-position-id="" ng-repeat-start="openPosition in displayedOpenPositions" class="table-row ng-scope">
-                                    <td class="instrument ng-binding"></td>
-                                    <td class="entry-date ng-binding"></td>
-                                    <td class="entry-time ng-binding"></td>
-                                    <td class="option-type ng-scope ng-binding" translate=""></td>
-                                    <td class="entry-price ng-binding"></td>
-                                    <td class="option-direction color-" translate=""></td>
-                                    <td class="amount ng-binding"></td>
-                                    <td class="return ng-binding"></td>
-                                    <td class="payout ng-binding"></td>
-                                    <td class="actions">
-                                        <!-- ngIf: openPosition.instrument && openPosition.level>=0 && openPosition.isInEntryZone -->
-                                        <!-- ngIf: openPosition.instrument && openPosition.level>=0 && !openPosition.isInEntryZone -->
-                                    </td>
-                                    <td class="status" style="width: 330px;">
-                                        <!-- ngIf: openPosition.instrument -->
-                                    </td>
-                                    <td>
-                                        <!-- ngIf: openPosition.instrument -->
-                                    </td>
-                                </tr>
-                                <!-- ngIf: openPosition.showChart --><!-- end ngRepeat: openPosition in displayedOpenPositions --><tr data-position-id="" ng-repeat-start="openPosition in displayedOpenPositions" class="table-row ng-scope">
-                                    <td class="instrument ng-binding"></td>
-                                    <td class="entry-date ng-binding"></td>
-                                    <td class="entry-time ng-binding"></td>
-                                    <td class="option-type ng-scope ng-binding" translate=""></td>
-                                    <td class="entry-price ng-binding"></td>
-                                    <td class="option-direction color-" translate=""></td>
-                                    <td class="amount ng-binding"></td>
-                                    <td class="return ng-binding"></td>
-                                    <td class="payout ng-binding"></td>
-                                    <td class="actions">
-                                        <!-- ngIf: openPosition.instrument && openPosition.level>=0 && openPosition.isInEntryZone -->
-                                        <!-- ngIf: openPosition.instrument && openPosition.level>=0 && !openPosition.isInEntryZone -->
-                                    </td>
-                                    <td class="status" style="width: 330px;">
-                                        <!-- ngIf: openPosition.instrument -->
-                                    </td>
-                                    <td>
-                                        <!-- ngIf: openPosition.instrument -->
-                                    </td>
-                                </tr>
-                                <!-- ngIf: openPosition.showChart --><!-- end ngRepeat: openPosition in displayedOpenPositions --><tr data-position-id="" ng-repeat-start="openPosition in displayedOpenPositions" class="table-row ng-scope">
-                                    <td class="instrument ng-binding"></td>
-                                    <td class="entry-date ng-binding"></td>
-                                    <td class="entry-time ng-binding"></td>
-                                    <td class="option-type ng-scope ng-binding" translate=""></td>
-                                    <td class="entry-price ng-binding"></td>
-                                    <td class="option-direction color-" translate=""></td>
-                                    <td class="amount ng-binding"></td>
-                                    <td class="return ng-binding"></td>
-                                    <td class="payout ng-binding"></td>
-                                    <td class="actions">
-                                        <!-- ngIf: openPosition.instrument && openPosition.level>=0 && openPosition.isInEntryZone -->
-                                        <!-- ngIf: openPosition.instrument && openPosition.level>=0 && !openPosition.isInEntryZone -->
-                                    </td>
-                                    <td class="status" style="width: 330px;">
-                                        <!-- ngIf: openPosition.instrument -->
-                                    </td>
-                                    <td>
-                                        <!-- ngIf: openPosition.instrument -->
-                                    </td>
-                                </tr>
-                                <!-- ngIf: openPosition.showChart --><!-- end ngRepeat: openPosition in displayedOpenPositions --><tr data-position-id="" ng-repeat-start="openPosition in displayedOpenPositions" class="table-row ng-scope">
-                                    <td class="instrument ng-binding"></td>
-                                    <td class="entry-date ng-binding"></td>
-                                    <td class="entry-time ng-binding"></td>
-                                    <td class="option-type ng-scope ng-binding" translate=""></td>
-                                    <td class="entry-price ng-binding"></td>
-                                    <td class="option-direction color-" translate=""></td>
-                                    <td class="amount ng-binding"></td>
-                                    <td class="return ng-binding"></td>
-                                    <td class="payout ng-binding"></td>
-                                    <td class="actions">
-                                        <!-- ngIf: openPosition.instrument && openPosition.level>=0 && openPosition.isInEntryZone -->
-                                        <!-- ngIf: openPosition.instrument && openPosition.level>=0 && !openPosition.isInEntryZone -->
-                                    </td>
-                                    <td class="status" style="width: 330px;">
-                                        <!-- ngIf: openPosition.instrument -->
-                                    </td>
-                                    <td>
-                                        <!-- ngIf: openPosition.instrument -->
-                                    </td>
-                                </tr>
-                                <!-- ngIf: openPosition.showChart --><!-- end ngRepeat: openPosition in displayedOpenPositions --><tr data-position-id="" ng-repeat-start="openPosition in displayedOpenPositions" class="table-row ng-scope">
-                                    <td class="instrument ng-binding"></td>
-                                    <td class="entry-date ng-binding"></td>
-                                    <td class="entry-time ng-binding"></td>
-                                    <td class="option-type ng-scope ng-binding" translate=""></td>
-                                    <td class="entry-price ng-binding"></td>
-                                    <td class="option-direction color-" translate=""></td>
-                                    <td class="amount ng-binding"></td>
-                                    <td class="return ng-binding"></td>
-                                    <td class="payout ng-binding"></td>
-                                    <td class="actions">
-                                        <!-- ngIf: openPosition.instrument && openPosition.level>=0 && openPosition.isInEntryZone -->
-                                        <!-- ngIf: openPosition.instrument && openPosition.level>=0 && !openPosition.isInEntryZone -->
-                                    </td>
-                                    <td class="status" style="width: 330px;">
-                                        <!-- ngIf: openPosition.instrument -->
-                                    </td>
-                                    <td>
-                                        <!-- ngIf: openPosition.instrument -->
-                                    </td>
-                                </tr>
-                                <!-- ngIf: openPosition.showChart --><!-- end ngRepeat: openPosition in displayedOpenPositions -->
+                                <tbody class="dealsHead summary">
                                 </tbody>
                             </table>
                             <table-pagination count="0" records-per-page="8" page="0" class="ng-isolate-scope"><div class="row table-pagination">
@@ -395,7 +204,7 @@
                                     <i class="fa fa-fast-forward button active disabled" ng-click="fastForward()" ng-class="{ 'active': page < maxPage, 'disabled': page >= maxPage-1 }"></i>
                                 </div>
                             </div></table-pagination>
-                        </div></ng-include>
+                        </div>
                         </div><!-- end ngRepeat: tab in tabset.tabs --><div class="tab-pane ng-scope" ng-repeat="tab in tabset.tabs" ng-class="{active: tabset.active === tab.index}" uib-tab-content-transclude="tab">
 
                             <!-- ngInclude: --><ng-include src="'/Scripts/Trader/Views/Positions/ClosedPositions.html'" class="ng-scope"><div ng-controller="ClosedPositionsController" ng-init="initialize()" id="closed-container" class="blotter-table ng-scope">
@@ -1667,17 +1476,17 @@
     <!-- paint options history -->
     <script type="text/template" id="binary_closed_line">
         <tbody class="deal {{win}} {{direction}} {{direction_call_put}}">
-        <tr class="dealData">
-            <td class="deal-type">{{direction_text}}</td>
-            <td class="deal-direction">{{direction_td}}</td>
-            <td class="deal-asset">{{tool_name}}</td>
-            <td class="deal-timeframe">{{timeframe_name}}</td>
-            <td class="deal-expires"><span>{{expiration_date}}</span> {{expiration}}</td>
-            <td class="deal-rate">{{price_close}}</td>
-            <td class="deal-forecast">{{{forecast}}}</td>
-            <td class="deal-bet currency">{{sum}}</td>
-            <td class="deal-payout currency">{{payment}}</td>
-        </tr>
+            <tr class="table-row">
+                <td class="deal-type">{{direction_text}}</td>
+                <td class="deal-direction">{{direction_td}}</td>
+                <td class="deal-asset">{{tool_name}}</td>
+                <td class="deal-timeframe">{{timeframe_name}}</td>
+                <td class="deal-expires"><span>{{expiration_date}}</span> {{expiration}}</td>
+                <td class="deal-rate">{{price_close}}</td>
+                <td class="deal-forecast">{{{forecast}}}</td>
+                <td class="deal-bet currency">{{sum}}</td>
+                <td class="deal-payout currency">{{payment}}</td>
+            </tr>
         </tbody>
     </script>
 
@@ -1685,7 +1494,7 @@
     <script type="text/template" id="opened-option">
         <tbody class="deal {{direction}} {{direction_call_put}} open open_options_bar" id="opened-{{id}}" data-id="{{id}}"
                data-kind-id="{{kind_id}}">
-        <tr class="sell_tr">
+        <tr class="sell_tr table-row">
             <td colspan="8">
                 <div class="sell">
                     <div class="sellTxt">
@@ -1697,10 +1506,10 @@
                 <div class="sell"><span class="option_sell_now_timer"></span></div>
             </td>
             <td class="sell_td">
-                <div class="button sell sell_now sell_now_button"><span class=sel_now_label"></span></div>
+                <div class="button sell sell_now sell_now_button"><span class="pointer sel_now_label"></span></div>
             </td>
         </tr>
-        <tr class="dealHead">
+        <tr class="table-row">
             <td class="expander"></td>
             <td class="deal-type">{{direction_text}}</td>
             <td class="deal-direction">{{direction_tb}}</td>
