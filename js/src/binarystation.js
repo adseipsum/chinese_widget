@@ -6620,9 +6620,10 @@
 		},
 		getTools: function () {
 			if (settings_wss[this.get("kind")] != null && settings_wss[this.get("kind")].tools != undefined) {
-				return settings_wss[this.get("kind")].tools;
+				return settings_wss[this.get("kind")].tools.slice(0, 20);
 			} else {
-				return settings_wss["classic"].tools;
+				return settings_wss["classic"].tools.slice(0, 20);
+
 			}
 		},
 		getTimeframe: function (id) {
