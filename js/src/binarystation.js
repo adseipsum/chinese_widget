@@ -2112,7 +2112,7 @@
 
 			var tools_html = "", tools_left_panel_html = "";
 			var params;
-			for (var i in tools) {
+			for (var i in tools.slice(0,20)) {
 
 				if (all_tools
 					|| tools[i].tool_type == target_tool_type
@@ -6543,7 +6543,7 @@
 					}
 				}
 			}
-
+			
 			if(timeframes_html) {
 				this.timeframes.html(timeframes_html);
 			}
