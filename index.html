@@ -113,888 +113,213 @@
             </div>
             <div class="col-sm-24 ng-scope" ng-controller="BlotterController" id="positions-container">
                 <div>
-                    <ng-include src="'/Scripts/Trader/Views/Blotter.html'" class="ng-scope">
-                        <div id="blotter-content" class="col-md-24 top-row bg-dark ng-scope">
-
-                    <div justified="true" class="ng-isolate-scope">
-                        <ul class="nav nav-tabs nav-justified" ng-class="{'nav-stacked': vertical, 'nav-justified': justified}" ng-transclude="">
-                            <li class="text-capitalize uib-tab nav-item active" id="open-Positions-Header">
-                                <a href="" class="nav-link" uib-tab-heading-transclude="">open positions <span class="opened-options-count-value"></span></a>
-                            </li>
-                        </ul>
-                        <div class="tab-content">
-                            <div class="tab-pane ng-scope active" ng-repeat="tab in tabset.tabs" ng-class="{active: tabset.active === tab.index}" uib-tab-content-transclude="tab">
-                            <div id="open-container" class="blotter-table">
-                            <table id="open-positions" class="table table-striped table-responsive no-margin open_options_bar dealsTable">
-                                <thead>
-                                <tr>
-                                    <th class="branded text-capitalize pointer">
-                                        <div class="th cursor-pointer grid-column-instrument">
-                                            <span class="text-capitalize">Type</span>
-                                            <span class="width-1-em inline-block">
+                    <div id="blotter-content" class="col-md-24 top-row bg-dark ng-scope">
+                        <div justified="true">
+                            <ul id="tabs-switches" class="nav nav-tabs nav-justified">
+                                <li class="text-capitalize uib-tab nav-item active">
+                                    <a href="" data-tab="opened" class="nav-link opened-tab-set active">open positions (<span class="opened-options-count-value"></span>)</a>
+                                </li>
+                                <li class="text-capitalize uib-tab nav-item">
+                                    <a href="" data-tab="journal" class="nav-link opened-tab-set">history</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content">
+                                <div id="option-pages-container" class="tab-pane active">
+                                    <div id="open-container" class="blotter-table">
+                                        <table id="open-positions" class="table table-striped table-responsive no-margin open_options_bar dealsTable">
+                                            <thead>
+                                            <tr>
+                                                <th class="branded text-capitalize pointer">
+                                                    <div class="th cursor-pointer grid-column-instrument">
+                                                        <span class="text-capitalize">Type</span>
+                                                        <span class="width-1-em inline-block">
                                             </span>
-                                        </div>
-                                    </th>
-                                    <th class="branded text-capitalize pointer">
-                                        <div class="th cursor-pointer grid-column-instrument">
-                                            <span class="text-capitalize">Dir</span>
-                                            <span class="width-1-em inline-block">
-                                            </span>
-                                        </div>
-                                    </th>
-                                    <th class="branded text-capitalize pointer">
-                                        <div class="th cursor-pointer grid-column-instrument">
-                                            <span class="text-capitalize">Asset</span>
-                                            <span class="width-1-em inline-block">
-                                            </span>
-                                        </div>
-                                    </th>
-                                    <th class="branded text-capitalize pointer">
-                                        <div class="th cursor-pointer grid-column-instrument">
-                                            <span class="text-capitalize">Timeframe</span>
-                                            <span class="width-1-em inline-block">
-                                            </span>
-                                        </div>
-                                    </th>
-                                    <th class="branded text-capitalize pointer">
-                                        <div class="th cursor-pointer grid-column-instrument">
-                                            <span class="text-capitalize">Expires</span>
-                                            <span class="width-1-em inline-block">
-                                            </span>
-                                        </div>
-                                    </th>
-                                    <th class="branded text-capitalize pointer">
-                                        <div class="th cursor-pointer grid-column-instrument">
-                                            <span class="text-capitalize">Rate</span>
-                                            <span class="width-1-em inline-block">
-                                            </span>
-                                        </div>
-                                    </th>
-                                    <th class="branded text-capitalize pointer">
-                                        <div class="th cursor-pointer grid-column-instrument">
-                                            <span class="text-capitalize">Forecast</span>
-                                            <span class="width-1-em inline-block">
-                                            </span>
-                                        </div>
-                                    </th>
-                                    <th class="branded text-capitalize pointer">
-                                        <div class="th cursor-pointer grid-column-instrument">
-                                            <span class="text-capitalize">Investment</span>
-                                            <span class="width-1-em inline-block">
-                                            </span>
-                                        </div>
-                                    </th>
-                                    <th class="branded text-capitalize pointer">
-                                        <div class="th cursor-pointer grid-column-instrument">
-                                            <span class="text-capitalize">Payout</span>
-                                            <span class="width-1-em inline-block">
-                                            </span>
-                                        </div>
-                                    </th>
-                                </tr>
-                                </thead>
-                                <tbody class="dealsHead summary">
-                                </tbody>
-                            </table>
-                            <table-pagination count="0" records-per-page="8" page="0" class="ng-isolate-scope"><div class="row table-pagination">
-                                <div class="col-md-24 text-center">
-                                    <i class="fa fa-fast-backward button active disabled" ng-click="fastBackward()" ng-class="{ 'active': page > 0, 'disabled': page == 0 }"></i>
-                                    <i class="fa fa-backward button disabled" ng-click="backward()" ng-class="{ 'active': page > 0, 'disabled': page < 1 }"></i>
-                                    <span class="white-18-300 ng-binding" style="margin: 0px 20px">1</span>
-                                    <i class="fa fa-forward button disabled" ng-click="forward()" ng-class="{ 'active': page < maxPage, 'disabled': page >= maxPage-1 }"></i>
-                                    <i class="fa fa-fast-forward button active disabled" ng-click="fastForward()" ng-class="{ 'active': page < maxPage, 'disabled': page >= maxPage-1 }"></i>
-                                </div>
-                            </div></table-pagination>
-                        </div>
-                        </div><!-- end ngRepeat: tab in tabset.tabs --><div class="tab-pane ng-scope" ng-repeat="tab in tabset.tabs" ng-class="{active: tabset.active === tab.index}" uib-tab-content-transclude="tab">
-
-                            <!-- ngInclude: --><ng-include src="'/Scripts/Trader/Views/Positions/ClosedPositions.html'" class="ng-scope"><div ng-controller="ClosedPositionsController" ng-init="initialize()" id="closed-container" class="blotter-table ng-scope">
-                            <table id="closed-positions" class="table table-striped table-responsive no-margin">
-                                <thead>
-                                <tr>
-                                    <th class="branded text-capitalize pointer" data-ng-click="setSorting(closedPositionsSortFieldType.asset)">
-                                        <div class="th cursor-pointer">
-                                            <span class="text-capitalize ng-scope" translate="instruments.instrument">asset</span>
-                                            <span class="width-1-em inline-block">
-                            <!-- ngIf: closedPositionsSortField == closedPositionsSortFieldType.asset && !closedPositionsSortDirection -->
-                                                <!-- ngIf: closedPositionsSortField == closedPositionsSortFieldType.asset && closedPositionsSortDirection -->
-                        </span>
-                                        </div>
-                                    </th>
-                                    <th class="branded text-capitalize pointer" data-ng-click="setSorting(closedPositionsSortFieldType.openDate)">
-                                        <div class="th cursor-pointer">
-                                            <span class="text-capitalize ng-scope" translate="positions.entry-date">open date</span>
-                                            <span class="width-1-em inline-block">
-                            <!-- ngIf: closedPositionsSortField == closedPositionsSortFieldType.openDate && !closedPositionsSortDirection -->
-                                                <!-- ngIf: closedPositionsSortField == closedPositionsSortFieldType.openDate && closedPositionsSortDirection -->
-                        </span>
-                                        </div>
-                                    </th>
-                                    <th class="branded text-capitalize pointer" data-ng-click="setSorting(closedPositionsSortFieldType.openTime)">
-                                        <div class="th cursor-pointer">
-                                            <span class="text-capitalize ng-scope" translate="positions.entry-time">open time</span>
-                                            <span class="width-1-em inline-block">
-                            <!-- ngIf: closedPositionsSortField == closedPositionsSortFieldType.openTime && !closedPositionsSortDirection -->
-                                                <!-- ngIf: closedPositionsSortField == closedPositionsSortFieldType.openTime && closedPositionsSortDirection -->
-                        </span>
-                                        </div>
-                                    </th>
-                                    <th class="branded text-capitalize pointer" data-ng-click="setSorting(closedPositionsSortFieldType.expiryTime)">
-                                        <div class="th cursor-pointer">
-                                            <span class="text-capitalize ng-scope" translate="positions.expiry-time">expiry time</span>
-                                            <span class="width-1-em inline-block">
-                            <!-- ngIf: closedPositionsSortField == closedPositionsSortFieldType.expiryTime && !closedPositionsSortDirection -->
-                                                <!-- ngIf: closedPositionsSortField == closedPositionsSortFieldType.expiryTime && closedPositionsSortDirection --><span class="fa fa-caret-down ng-scope" data-ng-if="closedPositionsSortField == closedPositionsSortFieldType.expiryTime &amp;&amp; closedPositionsSortDirection"></span><!-- end ngIf: closedPositionsSortField == closedPositionsSortFieldType.expiryTime && closedPositionsSortDirection -->
-                        </span>
-                                        </div>
-                                    </th>
-                                    <th class="branded text-capitalize pointer" data-ng-click="setSorting(closedPositionsSortFieldType.closeTime)">
-                                        <div class="th cursor-pointer">
-                                            <span class="text-capitalize ng-scope" translate="positions.close-time">Close Time</span>
-                                            <span class="width-1-em inline-block">
-                            <!-- ngIf: closedPositionsSortField == closedPositionsSortFieldType.closeTime && !closedPositionsSortDirection -->
-                                                <!-- ngIf: closedPositionsSortField == closedPositionsSortFieldType.closeTime && closedPositionsSortDirection -->
-                        </span>
-                                        </div>
-                                    </th>
-                                    <th class="branded text-capitalize pointer" data-ng-click="setSorting(closedPositionsSortFieldType.type)">
-                                        <div class="th cursor-pointer">
-                                            <span class="text-capitalize ng-scope" translate="options.type">type</span>
-                                            <span class="width-1-em inline-block">
-                            <!-- ngIf: closedPositionsSortField == closedPositionsSortFieldType.type && !closedPositionsSortDirection -->
-                                                <!-- ngIf: closedPositionsSortField == closedPositionsSortFieldType.type && closedPositionsSortDirection -->
-                        </span>
-                                        </div>
-                                    </th>
-                                    <th class="branded text-capitalize pointer" data-ng-click="setSorting(closedPositionsSortFieldType.direction)">
-                                        <div class="th cursor-pointer">
-                                            <span class="text-capitalize ng-scope" translate="positions.direction">direction</span>
-                                            <span class="width-1-em inline-block">
-                            <!-- ngIf: closedPositionsSortField == closedPositionsSortFieldType.direction && !closedPositionsSortDirection -->
-                                                <!-- ngIf: closedPositionsSortField == closedPositionsSortFieldType.direction && closedPositionsSortDirection -->
-                        </span>
-                                        </div>
-                                    </th>
-                                    <th class="branded text-capitalize pointer" data-ng-click="setSorting(closedPositionsSortFieldType.amount)">
-                                        <div class="th cursor-pointer">
-                                            <span class="text-capitalize ng-scope" translate="general.amount">amount</span>
-                                            <span class="width-1-em inline-block">
-                            <!-- ngIf: closedPositionsSortField == closedPositionsSortFieldType.amount && !closedPositionsSortDirection -->
-                                                <!-- ngIf: closedPositionsSortField == closedPositionsSortFieldType.amount && closedPositionsSortDirection -->
-                        </span>
-                                        </div>
-                                    </th>
-                                    <th class="branded text-capitalize pointer" data-ng-click="setSorting(closedPositionsSortFieldType.entryPrice)">
-                                        <div class="th cursor-pointer">
-                                            <span class="text-capitalize ng-scope" translate="positions.entry-price">entry price</span>
-                                            <span class="width-1-em inline-block">
-                            <!-- ngIf: closedPositionsSortField == closedPositionsSortFieldType.entryPrice && !closedPositionsSortDirection -->
-                                                <!-- ngIf: closedPositionsSortField == closedPositionsSortFieldType.entryPrice && closedPositionsSortDirection -->
-                        </span>
-                                        </div>
-                                    </th>
-                                    <th class="branded text-capitalize pointer" data-ng-click="setSorting(closedPositionsSortFieldType.strikePrice)">
-                                        <div class="th cursor-pointer">
-                                            <span class="text-capitalize ng-scope" translate="positions.strike-price">strike price</span>
-                                            <span class="width-1-em inline-block">
-                            <!-- ngIf: closedPositionsSortField == closedPositionsSortFieldType.strikePrice && !closedPositionsSortDirection -->
-                                                <!-- ngIf: closedPositionsSortField == closedPositionsSortFieldType.strikePrice && closedPositionsSortDirection -->
-                        </span>
-                                        </div>
-                                    </th>
-                                    <th class="branded text-capitalize pointer" data-ng-click="setSorting(closedPositionsSortFieldType.returnAmount)">
-                                        <div class="th cursor-pointer">
-                                            <span class="text-capitalize ng-scope" translate="financial.return">return</span>
-                                            <span class="width-1-em inline-block">
-                            <!-- ngIf: closedPositionsSortField == closedPositionsSortFieldType.returnAmount && !closedPositionsSortDirection -->
-                                                <!-- ngIf: closedPositionsSortField == closedPositionsSortFieldType.returnAmount && closedPositionsSortDirection -->
-                        </span>
-                                        </div>
-                                    </th>
-                                    <th class="branded text-capitalize pointer" data-ng-click="setSorting(closedPositionsSortFieldType.payout)">
-                                        <div class="th cursor-pointer">
-                                            <span class="text-capitalize ng-scope" translate="options.payout">Payout</span>
-                                            <span class="width-1-em inline-block">
-                            <!-- ngIf: closedPositionsSortField == closedPositionsSortFieldType.payout && !closedPositionsSortDirection -->
-                                                <!-- ngIf: closedPositionsSortField == closedPositionsSortFieldType.payout && closedPositionsSortDirection -->
-                        </span>
-                                        </div>
-                                    </th>
-                                    <th class="branded text-capitalize pointer" data-ng-click="setSorting(closedPositionsSortFieldType.result)">
-                                        <div class="th cursor-pointer">
-                                            <span class="text-capitalize ng-scope" translate="positions.status">status</span>
-                                            <span class="width-1-em inline-block">
-                            <!-- ngIf: closedPositionsSortField == closedPositionsSortFieldType.result && !closedPositionsSortDirection -->
-                                                <!-- ngIf: closedPositionsSortField == closedPositionsSortFieldType.result && closedPositionsSortDirection -->
-                        </span>
-                                        </div>
-                                    </th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <!-- ngRepeat: closedPosition in displayedClosedPositions track by closedPosition.id --><tr ng-repeat="closedPosition in displayedClosedPositions track by closedPosition.id" class="table-row ng-scope" style="">
-                                    <td class="instrument ng-binding"></td>
-                                    <td class="entry-date ng-binding"></td>
-                                    <td class="entry-time ng-binding"></td>
-
-                                    <td class="expiry-time">
-                                        <!-- ngIf: closedPosition.level < 4 -->
-                                        <!-- ngIf: closedPosition.level >= 4 -->
-                                    </td>
-
-                                    <td class="close-time">
-                                        <!-- ngIf: closedPosition.level < 4 -->
-                                        <!-- ngIf: closedPosition.level >= 4 -->
-                                    </td>
-
-                                    <td class="option-type ng-scope" translate=""></td>
-                                    <!--<td class="option-type">{{ ::closedPosition.optionType }}</td>-->
-                                    <td class="option-direction color-"></td>
-                                    <td class="amount ng-binding"></td>
-                                    <td class="entry-price ng-binding"></td>
-                                    <td class="strike-price ng-binding"></td>
-                                    <td class="return ng-binding"></td>
-                                    <td class="payout ng-binding"></td>
-                                    <td class="option-status text-capitalize ng-binding" ng-class="{'win-color': closedPosition.result == 'Won', 'lose-color': closedPosition.result == 'Lost', 'tie-color': closedPosition.result == 'Draw'}"></td>
-                                </tr><!-- end ngRepeat: closedPosition in displayedClosedPositions track by closedPosition.id --><tr ng-repeat="closedPosition in displayedClosedPositions track by closedPosition.id" class="table-row ng-scope">
-                                    <td class="instrument ng-binding"></td>
-                                    <td class="entry-date ng-binding"></td>
-                                    <td class="entry-time ng-binding"></td>
-
-                                    <td class="expiry-time">
-                                        <!-- ngIf: closedPosition.level < 4 -->
-                                        <!-- ngIf: closedPosition.level >= 4 -->
-                                    </td>
-
-                                    <td class="close-time">
-                                        <!-- ngIf: closedPosition.level < 4 -->
-                                        <!-- ngIf: closedPosition.level >= 4 -->
-                                    </td>
-
-                                    <td class="option-type ng-scope" translate=""></td>
-                                    <!--<td class="option-type">{{ ::closedPosition.optionType }}</td>-->
-                                    <td class="option-direction color-"></td>
-                                    <td class="amount ng-binding"></td>
-                                    <td class="entry-price ng-binding"></td>
-                                    <td class="strike-price ng-binding"></td>
-                                    <td class="return ng-binding"></td>
-                                    <td class="payout ng-binding"></td>
-                                    <td class="option-status text-capitalize ng-binding" ng-class="{'win-color': closedPosition.result == 'Won', 'lose-color': closedPosition.result == 'Lost', 'tie-color': closedPosition.result == 'Draw'}"></td>
-                                </tr><!-- end ngRepeat: closedPosition in displayedClosedPositions track by closedPosition.id --><tr ng-repeat="closedPosition in displayedClosedPositions track by closedPosition.id" class="table-row ng-scope">
-                                    <td class="instrument ng-binding"></td>
-                                    <td class="entry-date ng-binding"></td>
-                                    <td class="entry-time ng-binding"></td>
-
-                                    <td class="expiry-time">
-                                        <!-- ngIf: closedPosition.level < 4 -->
-                                        <!-- ngIf: closedPosition.level >= 4 -->
-                                    </td>
-
-                                    <td class="close-time">
-                                        <!-- ngIf: closedPosition.level < 4 -->
-                                        <!-- ngIf: closedPosition.level >= 4 -->
-                                    </td>
-
-                                    <td class="option-type ng-scope" translate=""></td>
-                                    <!--<td class="option-type">{{ ::closedPosition.optionType }}</td>-->
-                                    <td class="option-direction color-"></td>
-                                    <td class="amount ng-binding"></td>
-                                    <td class="entry-price ng-binding"></td>
-                                    <td class="strike-price ng-binding"></td>
-                                    <td class="return ng-binding"></td>
-                                    <td class="payout ng-binding"></td>
-                                    <td class="option-status text-capitalize ng-binding" ng-class="{'win-color': closedPosition.result == 'Won', 'lose-color': closedPosition.result == 'Lost', 'tie-color': closedPosition.result == 'Draw'}"></td>
-                                </tr><!-- end ngRepeat: closedPosition in displayedClosedPositions track by closedPosition.id --><tr ng-repeat="closedPosition in displayedClosedPositions track by closedPosition.id" class="table-row ng-scope">
-                                    <td class="instrument ng-binding"></td>
-                                    <td class="entry-date ng-binding"></td>
-                                    <td class="entry-time ng-binding"></td>
-
-                                    <td class="expiry-time">
-                                        <!-- ngIf: closedPosition.level < 4 -->
-                                        <!-- ngIf: closedPosition.level >= 4 -->
-                                    </td>
-
-                                    <td class="close-time">
-                                        <!-- ngIf: closedPosition.level < 4 -->
-                                        <!-- ngIf: closedPosition.level >= 4 -->
-                                    </td>
-
-                                    <td class="option-type ng-scope" translate=""></td>
-                                    <!--<td class="option-type">{{ ::closedPosition.optionType }}</td>-->
-                                    <td class="option-direction color-"></td>
-                                    <td class="amount ng-binding"></td>
-                                    <td class="entry-price ng-binding"></td>
-                                    <td class="strike-price ng-binding"></td>
-                                    <td class="return ng-binding"></td>
-                                    <td class="payout ng-binding"></td>
-                                    <td class="option-status text-capitalize ng-binding" ng-class="{'win-color': closedPosition.result == 'Won', 'lose-color': closedPosition.result == 'Lost', 'tie-color': closedPosition.result == 'Draw'}"></td>
-                                </tr><!-- end ngRepeat: closedPosition in displayedClosedPositions track by closedPosition.id --><tr ng-repeat="closedPosition in displayedClosedPositions track by closedPosition.id" class="table-row ng-scope">
-                                    <td class="instrument ng-binding"></td>
-                                    <td class="entry-date ng-binding"></td>
-                                    <td class="entry-time ng-binding"></td>
-
-                                    <td class="expiry-time">
-                                        <!-- ngIf: closedPosition.level < 4 -->
-                                        <!-- ngIf: closedPosition.level >= 4 -->
-                                    </td>
-
-                                    <td class="close-time">
-                                        <!-- ngIf: closedPosition.level < 4 -->
-                                        <!-- ngIf: closedPosition.level >= 4 -->
-                                    </td>
-
-                                    <td class="option-type ng-scope" translate=""></td>
-                                    <!--<td class="option-type">{{ ::closedPosition.optionType }}</td>-->
-                                    <td class="option-direction color-"></td>
-                                    <td class="amount ng-binding"></td>
-                                    <td class="entry-price ng-binding"></td>
-                                    <td class="strike-price ng-binding"></td>
-                                    <td class="return ng-binding"></td>
-                                    <td class="payout ng-binding"></td>
-                                    <td class="option-status text-capitalize ng-binding" ng-class="{'win-color': closedPosition.result == 'Won', 'lose-color': closedPosition.result == 'Lost', 'tie-color': closedPosition.result == 'Draw'}"></td>
-                                </tr><!-- end ngRepeat: closedPosition in displayedClosedPositions track by closedPosition.id --><tr ng-repeat="closedPosition in displayedClosedPositions track by closedPosition.id" class="table-row ng-scope">
-                                    <td class="instrument ng-binding"></td>
-                                    <td class="entry-date ng-binding"></td>
-                                    <td class="entry-time ng-binding"></td>
-
-                                    <td class="expiry-time">
-                                        <!-- ngIf: closedPosition.level < 4 -->
-                                        <!-- ngIf: closedPosition.level >= 4 -->
-                                    </td>
-
-                                    <td class="close-time">
-                                        <!-- ngIf: closedPosition.level < 4 -->
-                                        <!-- ngIf: closedPosition.level >= 4 -->
-                                    </td>
-
-                                    <td class="option-type ng-scope" translate=""></td>
-                                    <!--<td class="option-type">{{ ::closedPosition.optionType }}</td>-->
-                                    <td class="option-direction color-"></td>
-                                    <td class="amount ng-binding"></td>
-                                    <td class="entry-price ng-binding"></td>
-                                    <td class="strike-price ng-binding"></td>
-                                    <td class="return ng-binding"></td>
-                                    <td class="payout ng-binding"></td>
-                                    <td class="option-status text-capitalize ng-binding" ng-class="{'win-color': closedPosition.result == 'Won', 'lose-color': closedPosition.result == 'Lost', 'tie-color': closedPosition.result == 'Draw'}"></td>
-                                </tr><!-- end ngRepeat: closedPosition in displayedClosedPositions track by closedPosition.id --><tr ng-repeat="closedPosition in displayedClosedPositions track by closedPosition.id" class="table-row ng-scope">
-                                    <td class="instrument ng-binding"></td>
-                                    <td class="entry-date ng-binding"></td>
-                                    <td class="entry-time ng-binding"></td>
-
-                                    <td class="expiry-time">
-                                        <!-- ngIf: closedPosition.level < 4 -->
-                                        <!-- ngIf: closedPosition.level >= 4 -->
-                                    </td>
-
-                                    <td class="close-time">
-                                        <!-- ngIf: closedPosition.level < 4 -->
-                                        <!-- ngIf: closedPosition.level >= 4 -->
-                                    </td>
-
-                                    <td class="option-type ng-scope" translate=""></td>
-                                    <!--<td class="option-type">{{ ::closedPosition.optionType }}</td>-->
-                                    <td class="option-direction color-"></td>
-                                    <td class="amount ng-binding"></td>
-                                    <td class="entry-price ng-binding"></td>
-                                    <td class="strike-price ng-binding"></td>
-                                    <td class="return ng-binding"></td>
-                                    <td class="payout ng-binding"></td>
-                                    <td class="option-status text-capitalize ng-binding" ng-class="{'win-color': closedPosition.result == 'Won', 'lose-color': closedPosition.result == 'Lost', 'tie-color': closedPosition.result == 'Draw'}"></td>
-                                </tr><!-- end ngRepeat: closedPosition in displayedClosedPositions track by closedPosition.id --><tr ng-repeat="closedPosition in displayedClosedPositions track by closedPosition.id" class="table-row ng-scope">
-                                    <td class="instrument ng-binding"></td>
-                                    <td class="entry-date ng-binding"></td>
-                                    <td class="entry-time ng-binding"></td>
-
-                                    <td class="expiry-time">
-                                        <!-- ngIf: closedPosition.level < 4 -->
-                                        <!-- ngIf: closedPosition.level >= 4 -->
-                                    </td>
-
-                                    <td class="close-time">
-                                        <!-- ngIf: closedPosition.level < 4 -->
-                                        <!-- ngIf: closedPosition.level >= 4 -->
-                                    </td>
-
-                                    <td class="option-type ng-scope" translate=""></td>
-                                    <!--<td class="option-type">{{ ::closedPosition.optionType }}</td>-->
-                                    <td class="option-direction color-"></td>
-                                    <td class="amount ng-binding"></td>
-                                    <td class="entry-price ng-binding"></td>
-                                    <td class="strike-price ng-binding"></td>
-                                    <td class="return ng-binding"></td>
-                                    <td class="payout ng-binding"></td>
-                                    <td class="option-status text-capitalize ng-binding" ng-class="{'win-color': closedPosition.result == 'Won', 'lose-color': closedPosition.result == 'Lost', 'tie-color': closedPosition.result == 'Draw'}"></td>
-                                </tr><!-- end ngRepeat: closedPosition in displayedClosedPositions track by closedPosition.id -->
-                                </tbody>
-                            </table>
-                            <table-pagination count="0" records-per-page="8" page="0" class="ng-isolate-scope"><div class="row table-pagination">
-                                <div class="col-md-24 text-center">
-                                    <i class="fa fa-fast-backward button active disabled" ng-click="fastBackward()" ng-class="{ 'active': page > 0, 'disabled': page == 0 }"></i>
-                                    <i class="fa fa-backward button disabled" ng-click="backward()" ng-class="{ 'active': page > 0, 'disabled': page < 1 }"></i>
-                                    <span class="white-18-300 ng-binding" style="margin: 0px 20px">1</span>
-                                    <i class="fa fa-forward button disabled" ng-click="forward()" ng-class="{ 'active': page < maxPage, 'disabled': page >= maxPage-1 }"></i>
-                                    <i class="fa fa-fast-forward button active disabled" ng-click="fastForward()" ng-class="{ 'active': page < maxPage, 'disabled': page >= maxPage-1 }"></i>
-                                </div>
-                            </div></table-pagination>
-                        </div></ng-include>
-                        </div><!-- end ngRepeat: tab in tabset.tabs --><div class="tab-pane ng-scope" ng-repeat="tab in tabset.tabs" ng-class="{active: tabset.active === tab.index}" uib-tab-content-transclude="tab">
-
-                            <!-- ngInclude: --><ng-include src="'/Scripts/Trader/Views/Positions/FinancialTransactions.html'" class="ng-scope"><div ng-controller="FinancialTransactionsController" ng-init="initialize()" class="blotter-table ng-scope" id="financial-transactions-container">
-                            <table id="financial-transactions" class="table table-striped table-responsive no-margin">
-                                <thead>
-                                <tr>
-                                    <th class="branded text-capitalize pointer" data-ng-click="setSorting('date')">
-                                        <span class="text-capitalize ng-scope" translate="financial.transaction-date">transaction date</span>
-                                        <span class="width-1-em inline-block">
-                        <!-- ngIf: financialTransactionsSortField == 'date' && !financialTransactionsSortDirection --><span class="fa fa-caret-up ng-scope" data-ng-if="financialTransactionsSortField == 'date' &amp;&amp; !financialTransactionsSortDirection"></span><!-- end ngIf: financialTransactionsSortField == 'date' && !financialTransactionsSortDirection -->
-                                            <!-- ngIf: financialTransactionsSortField == 'date' && financialTransactionsSortDirection -->
-                    </span>
-                                    </th>
-                                    <th class="branded text-capitalize pointer" data-ng-click="setSorting('date')">
-                                        <span class="text-capitalize ng-scope" translate="financial.transaction-time">transaction time</span>
-                                        <span class="width-1-em inline-block">
-                        <!-- ngIf: financialTransactionsSortField == 'date' && !financialTransactionsSortDirection --><span class="fa fa-caret-up ng-scope" data-ng-if="financialTransactionsSortField == 'date' &amp;&amp; !financialTransactionsSortDirection"></span><!-- end ngIf: financialTransactionsSortField == 'date' && !financialTransactionsSortDirection -->
-                                            <!-- ngIf: financialTransactionsSortField == 'date' && financialTransactionsSortDirection -->
-                    </span>
-                                    </th>
-                                    <th class="branded text-capitalize pointer" data-ng-click="setSorting('amount')">
-                                        <span class="text-capitalize ng-scope" translate="general.amount">amount</span>
-                                        <span class="width-1-em inline-block">
-                        <!-- ngIf: financialTransactionsSortField == 'amount' && !financialTransactionsSortDirection -->
-                                            <!-- ngIf: financialTransactionsSortField == 'amount' && financialTransactionsSortDirection -->
-                    </span>
-                                    </th>
-                                    <th class="branded text-capitalize pointer" data-ng-click="setSorting('type')">
-                                        <span class="text-capitalize ng-scope" translate="financial.transaction-type">transaction details</span>
-                                        <span class="width-1-em inline-block">
-                        <!-- ngIf: financialTransactionsSortField == 'type' && !financialTransactionsSortDirection -->
-                                            <!-- ngIf: financialTransactionsSortField == 'type' && financialTransactionsSortDirection -->
-                    </span>
-                                    </th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <!-- ngRepeat: transaction in displayedFinancialTransactions --><tr ng-repeat="transaction in displayedFinancialTransactions" class="table-row ng-scope" transaction-type-id="" transaction-id="">
-                                    <td class="ng-binding"></td>
-                                    <td class="ng-binding"></td>
-                                    <td class="amount ng-binding"></td>
-                                    <td class="transaction-details ng-binding"></td>
-                                </tr><!-- end ngRepeat: transaction in displayedFinancialTransactions --><tr ng-repeat="transaction in displayedFinancialTransactions" class="table-row ng-scope" transaction-type-id="" transaction-id="">
-                                    <td class="ng-binding"></td>
-                                    <td class="ng-binding"></td>
-                                    <td class="amount ng-binding"></td>
-                                    <td class="transaction-details ng-binding"></td>
-                                </tr><!-- end ngRepeat: transaction in displayedFinancialTransactions --><tr ng-repeat="transaction in displayedFinancialTransactions" class="table-row ng-scope" transaction-type-id="" transaction-id="">
-                                    <td class="ng-binding"></td>
-                                    <td class="ng-binding"></td>
-                                    <td class="amount ng-binding"></td>
-                                    <td class="transaction-details ng-binding"></td>
-                                </tr><!-- end ngRepeat: transaction in displayedFinancialTransactions --><tr ng-repeat="transaction in displayedFinancialTransactions" class="table-row ng-scope" transaction-type-id="" transaction-id="">
-                                    <td class="ng-binding"></td>
-                                    <td class="ng-binding"></td>
-                                    <td class="amount ng-binding"></td>
-                                    <td class="transaction-details ng-binding"></td>
-                                </tr><!-- end ngRepeat: transaction in displayedFinancialTransactions --><tr ng-repeat="transaction in displayedFinancialTransactions" class="table-row ng-scope" transaction-type-id="" transaction-id="">
-                                    <td class="ng-binding"></td>
-                                    <td class="ng-binding"></td>
-                                    <td class="amount ng-binding"></td>
-                                    <td class="transaction-details ng-binding"></td>
-                                </tr><!-- end ngRepeat: transaction in displayedFinancialTransactions --><tr ng-repeat="transaction in displayedFinancialTransactions" class="table-row ng-scope" transaction-type-id="" transaction-id="">
-                                    <td class="ng-binding"></td>
-                                    <td class="ng-binding"></td>
-                                    <td class="amount ng-binding"></td>
-                                    <td class="transaction-details ng-binding"></td>
-                                </tr><!-- end ngRepeat: transaction in displayedFinancialTransactions --><tr ng-repeat="transaction in displayedFinancialTransactions" class="table-row ng-scope" transaction-type-id="" transaction-id="">
-                                    <td class="ng-binding"></td>
-                                    <td class="ng-binding"></td>
-                                    <td class="amount ng-binding"></td>
-                                    <td class="transaction-details ng-binding"></td>
-                                </tr><!-- end ngRepeat: transaction in displayedFinancialTransactions --><tr ng-repeat="transaction in displayedFinancialTransactions" class="table-row ng-scope" transaction-type-id="" transaction-id="">
-                                    <td class="ng-binding"></td>
-                                    <td class="ng-binding"></td>
-                                    <td class="amount ng-binding"></td>
-                                    <td class="transaction-details ng-binding"></td>
-                                </tr><!-- end ngRepeat: transaction in displayedFinancialTransactions -->
-
-                                </tbody>
-                            </table>
-                            <table-pagination count="" records-per-page="8" page="0" class="ng-isolate-scope"><div class="row table-pagination">
-                                <div class="col-md-24 text-center">
-                                    <i class="fa fa-fast-backward button active disabled" ng-click="fastBackward()" ng-class="{ 'active': page > 0, 'disabled': page == 0 }"></i>
-                                    <i class="fa fa-backward button disabled" ng-click="backward()" ng-class="{ 'active': page > 0, 'disabled': page < 1 }"></i>
-                                    <span class="white-18-300 ng-binding" style="margin: 0px 20px">1</span>
-                                    <i class="fa fa-forward button disabled" ng-click="forward()" ng-class="{ 'active': page < maxPage, 'disabled': page >= maxPage-1 }"></i>
-                                    <i class="fa fa-fast-forward button active disabled" ng-click="fastForward()" ng-class="{ 'active': page < maxPage, 'disabled': page >= maxPage-1 }"></i>
-                                </div>
-                            </div></table-pagination>
-                        </div></ng-include>
-                        </div><!-- end ngRepeat: tab in tabset.tabs --><div class="tab-pane ng-scope" ng-repeat="tab in tabset.tabs" ng-class="{active: tabset.active === tab.index}" uib-tab-content-transclude="tab">
-
-                            <!-- ngInclude: --><ng-include src="'/Scripts/Trader/Views/Positions/ExpiryHistory.html'" class="ng-scope"><div ng-controller="ExpiryHistoryController" class="blotter-table ng-scope" id="expiry-history-container">
-                            <div class="flex-between expiry-history-tab" style="background-color: rgba(27,29,32,.8)">
-                                <form class="form-inline ng-pristine ng-valid-date ng-invalid ng-invalid-time ng-valid-maxlength" role="form" style="width:100%;">
-                                    <div style="padding-top:10px;margin-right: 45px;" class="pull-right">
-
-                                        <div class="form-group" style="margin-right:15px;">
-                                            <div class="input-group">
-                                                <span class="bezel-button branded-bezel-button action-button input-group-addon pull-left fa fa-calendar cursor-pointer" style="height:34px; margin-right:0;border: none;" ng-click="datePickerFrom.isOpen = true"></span>
-                                                <input style="width: 150px; margin-top:0;" ng-change="getQuotes()" placeholder="from" class="form-control timepicker-input ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty ng-valid-date" uib-datepicker-popup="" name="from-date" type="text" ng-model="dateFilter.from" is-open="datePickerFrom.isOpen" ng-click="datePickerFrom.isOpen = true"><div uib-datepicker-popup-wrap="" ng-model="date" ng-change="dateSelection(date)" template-url="uib/template/datepickerPopup/popup.html" class="ng-pristine ng-untouched ng-valid ng-scope ng-empty"><!-- ngIf: isOpen -->
-                                            </div>
-                                            </div>
-                                            <div uib-timepicker="" datetimepicker-neutral-timezone="" data-show-meridian="false" class="input-group ui-timepicker hide-arrows ng-pristine ng-untouched ng-isolate-scope ng-not-empty ng-invalid ng-invalid-time" ng-change="getQuotes()" ng-model="dateFilter.from"><table class="uib-timepicker">
-                                                <tbody>
-                                                <tr class="text-center" ng-show="::showSpinners">
-                                                    <td class="uib-increment hours"><a ng-click="incrementHours()" ng-class="{disabled: noIncrementHours()}" class="btn btn-link" ng-disabled="noIncrementHours()" tabindex="-1"><span class="glyphicon glyphicon-chevron-up"></span></a></td>
-                                                    <td>&nbsp;</td>
-                                                    <td class="uib-increment minutes"><a ng-click="incrementMinutes()" ng-class="{disabled: noIncrementMinutes()}" class="btn btn-link" ng-disabled="noIncrementMinutes()" tabindex="-1"><span class="glyphicon glyphicon-chevron-up"></span></a></td>
-                                                    <td ng-show="showSeconds" class="ng-hide">&nbsp;</td>
-                                                    <td ng-show="showSeconds" class="uib-increment seconds ng-hide"><a ng-click="incrementSeconds()" ng-class="{disabled: noIncrementSeconds()}" class="btn btn-link" ng-disabled="noIncrementSeconds()" tabindex="-1"><span class="glyphicon glyphicon-chevron-up"></span></a></td>
-                                                    <td ng-show="showMeridian" class="ng-hide"></td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="form-group uib-time hours" ng-class="{'has-error': invalidHours}">
-                                                        <input type="text" placeholder="HH" ng-model="hours" ng-change="updateHours()" class="form-control text-center ng-pristine ng-untouched ng-valid ng-empty ng-valid-maxlength" ng-readonly="::readonlyInput" maxlength="2" tabindex="0" ng-disabled="noIncrementHours()" ng-blur="blur()">
-                                                    </td>
-                                                    <td class="uib-separator">:</td>
-                                                    <td class="form-group uib-time minutes" ng-class="{'has-error': invalidMinutes}">
-                                                        <input type="text" placeholder="MM" ng-model="minutes" ng-change="updateMinutes()" class="form-control text-center ng-pristine ng-untouched ng-valid ng-empty ng-valid-maxlength" ng-readonly="::readonlyInput" maxlength="2" tabindex="0" ng-disabled="noIncrementMinutes()" ng-blur="blur()">
-                                                    </td>
-                                                    <td ng-show="showSeconds" class="uib-separator ng-hide">:</td>
-                                                    <td class="form-group uib-time seconds ng-hide" ng-class="{'has-error': invalidSeconds}" ng-show="showSeconds">
-                                                        <input type="text" placeholder="SS" ng-model="seconds" ng-change="updateSeconds()" class="form-control text-center ng-pristine ng-untouched ng-valid ng-empty ng-valid-maxlength" ng-readonly="readonlyInput" maxlength="2" tabindex="0" ng-disabled="noIncrementSeconds()" ng-blur="blur()">
-                                                    </td>
-                                                    <td ng-show="showMeridian" class="uib-time am-pm ng-hide"><button type="button" ng-class="{disabled: noToggleMeridian()}" class="btn btn-default text-center ng-binding" ng-click="toggleMeridian()" ng-disabled="noToggleMeridian()" tabindex="0"></button></td>
-                                                </tr>
-                                                <tr class="text-center" ng-show="::showSpinners">
-                                                    <td class="uib-decrement hours"><a ng-click="decrementHours()" ng-class="{disabled: noDecrementHours()}" class="btn btn-link" ng-disabled="noDecrementHours()" tabindex="-1"><span class="glyphicon glyphicon-chevron-down"></span></a></td>
-                                                    <td>&nbsp;</td>
-                                                    <td class="uib-decrement minutes"><a ng-click="decrementMinutes()" ng-class="{disabled: noDecrementMinutes()}" class="btn btn-link" ng-disabled="noDecrementMinutes()" tabindex="-1"><span class="glyphicon glyphicon-chevron-down"></span></a></td>
-                                                    <td ng-show="showSeconds" class="ng-hide">&nbsp;</td>
-                                                    <td ng-show="showSeconds" class="uib-decrement seconds ng-hide"><a ng-click="decrementSeconds()" ng-class="{disabled: noDecrementSeconds()}" class="btn btn-link" ng-disabled="noDecrementSeconds()" tabindex="-1"><span class="glyphicon glyphicon-chevron-down"></span></a></td>
-                                                    <td ng-show="showMeridian" class="ng-hide"></td>
-                                                </tr>
-                                                </tbody>
-                                            </table>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group" style="margin-right:15px;">
-                                            <div class="input-group">
-                                                <span class="bezel-button branded-bezel-button action-button input-group-addon pull-left fa fa-calendar cursor-pointer" style="height:34px; margin-right:0;border: none;" ng-click="datePickerTo.isOpen = true"></span>
-                                                <input style="width: 150px; margin-top:0;" placeholder="to" class="form-control timepicker-input ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty ng-valid-date" uib-datepicker-popup="" name="to-date" type="text" ng-model="dateFilter.to" ng-change="getQuotes()" is-open="datePickerTo.isOpen" ng-click="datePickerTo.isOpen = true"><div uib-datepicker-popup-wrap="" ng-model="date" ng-change="dateSelection(date)" template-url="uib/template/datepickerPopup/popup.html" class="ng-pristine ng-untouched ng-valid ng-scope ng-empty"><!-- ngIf: isOpen -->
-                                            </div>
-                                            </div>
-                                            <div uib-timepicker="" datetimepicker-neutral-timezone="" data-show-meridian="false" class="input-group ui-timepicker hide-arrows ng-pristine ng-untouched ng-isolate-scope ng-not-empty ng-invalid ng-invalid-time" ng-change="getQuotes()" ng-model="dateFilter.to"><table class="uib-timepicker">
-                                                <tbody>
-                                                <tr class="text-center" ng-show="::showSpinners">
-                                                    <td class="uib-increment hours"><a ng-click="incrementHours()" ng-class="{disabled: noIncrementHours()}" class="btn btn-link" ng-disabled="noIncrementHours()" tabindex="-1"><span class="glyphicon glyphicon-chevron-up"></span></a></td>
-                                                    <td>&nbsp;</td>
-                                                    <td class="uib-increment minutes"><a ng-click="incrementMinutes()" ng-class="{disabled: noIncrementMinutes()}" class="btn btn-link" ng-disabled="noIncrementMinutes()" tabindex="-1"><span class="glyphicon glyphicon-chevron-up"></span></a></td>
-                                                    <td ng-show="showSeconds" class="ng-hide">&nbsp;</td>
-                                                    <td ng-show="showSeconds" class="uib-increment seconds ng-hide"><a ng-click="incrementSeconds()" ng-class="{disabled: noIncrementSeconds()}" class="btn btn-link" ng-disabled="noIncrementSeconds()" tabindex="-1"><span class="glyphicon glyphicon-chevron-up"></span></a></td>
-                                                    <td ng-show="showMeridian" class="ng-hide"></td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="form-group uib-time hours" ng-class="{'has-error': invalidHours}">
-                                                        <input type="text" placeholder="HH" ng-model="hours" ng-change="updateHours()" class="form-control text-center ng-pristine ng-untouched ng-valid ng-empty ng-valid-maxlength" ng-readonly="::readonlyInput" maxlength="2" tabindex="0" ng-disabled="noIncrementHours()" ng-blur="blur()">
-                                                    </td>
-                                                    <td class="uib-separator">:</td>
-                                                    <td class="form-group uib-time minutes" ng-class="{'has-error': invalidMinutes}">
-                                                        <input type="text" placeholder="MM" ng-model="minutes" ng-change="updateMinutes()" class="form-control text-center ng-pristine ng-untouched ng-valid ng-empty ng-valid-maxlength" ng-readonly="::readonlyInput" maxlength="2" tabindex="0" ng-disabled="noIncrementMinutes()" ng-blur="blur()">
-                                                    </td>
-                                                    <td ng-show="showSeconds" class="uib-separator ng-hide">:</td>
-                                                    <td class="form-group uib-time seconds ng-hide" ng-class="{'has-error': invalidSeconds}" ng-show="showSeconds">
-                                                        <input type="text" placeholder="SS" ng-model="seconds" ng-change="updateSeconds()" class="form-control text-center ng-pristine ng-untouched ng-valid ng-empty ng-valid-maxlength" ng-readonly="readonlyInput" maxlength="2" tabindex="0" ng-disabled="noIncrementSeconds()" ng-blur="blur()">
-                                                    </td>
-                                                    <td ng-show="showMeridian" class="uib-time am-pm ng-hide"><button type="button" ng-class="{disabled: noToggleMeridian()}" class="btn btn-default text-center ng-binding" ng-click="toggleMeridian()" ng-disabled="noToggleMeridian()" tabindex="0"></button></td>
-                                                </tr>
-                                                <tr class="text-center" ng-show="::showSpinners">
-                                                    <td class="uib-decrement hours"><a ng-click="decrementHours()" ng-class="{disabled: noDecrementHours()}" class="btn btn-link" ng-disabled="noDecrementHours()" tabindex="-1"><span class="glyphicon glyphicon-chevron-down"></span></a></td>
-                                                    <td>&nbsp;</td>
-                                                    <td class="uib-decrement minutes"><a ng-click="decrementMinutes()" ng-class="{disabled: noDecrementMinutes()}" class="btn btn-link" ng-disabled="noDecrementMinutes()" tabindex="-1"><span class="glyphicon glyphicon-chevron-down"></span></a></td>
-                                                    <td ng-show="showSeconds" class="ng-hide">&nbsp;</td>
-                                                    <td ng-show="showSeconds" class="uib-decrement seconds ng-hide"><a ng-click="decrementSeconds()" ng-class="{disabled: noDecrementSeconds()}" class="btn btn-link" ng-disabled="noDecrementSeconds()" tabindex="-1"><span class="glyphicon glyphicon-chevron-down"></span></a></td>
-                                                    <td ng-show="showMeridian" class="ng-hide"></td>
-                                                </tr>
-                                                </tbody>
-                                            </table>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group" style="padding:0 5px;margin:0">
-                                            <div uib-dropdown="" class="text-lowercase instrument-selection dropdown">
-                                                <instrument-selection instruments="instruments" instrument="instrument" handler="changeInstrument" class="ng-isolate-scope"><div ng-class="{'instant-instrument-selection': instant, 'instrument-selection': !instant}" ng-style="instant ? {'width':'22px'}: {}" uib-dropdown="" is-open="isDropdownOpen" auto-close="outsideClick" class="dropdown instrument-selection" style="">
-                                                    <!-- ngIf: !instant --><a ng-if="!instant" uib-dropdown-toggle="" id="expiry-history-asset-toggle" class="ng-scope dropdown-toggle" aria-haspopup="true" aria-expanded="false" style="">
-                                                    <span class="bezel-button-small branded-bezel-button-small ng-binding" style="height: 40px !important">All Assets</span>
-                                                </a><!-- end ngIf: !instant -->
-                                                    <!-- ngIf: instant -->
-
-                                                    <div class="instrument-search-field ng-hide" ng-show="isDropdownOpen" ng-style="instant ? {'margin-top':'18px'}: {}" style="">
-                                                        <input type="text" name="search" ng-model="instrumentSearchQuery" ng-click="$event.stopPropagation()" class="ng-pristine ng-untouched ng-valid ng-empty" style="">
-                                                        <div class="fa fa-search search-icon" style="cursor: default;"></div>
                                                     </div>
-                                                    <ul class="dropdown-menu asset-dropdown ng-isolate-scope" enscroll="" uib-dropdown-menu="" role="menu" id="asset-dropdown" ng-style="instant ? {'margin-top':'38px'}: {}" style="width: 0px; padding-right: 10px; outline: none; overflow: hidden;" tabindex="0">
-                                                        <!-- ngRepeat: instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId --><li ng-repeat="instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId" class="ng-scope" style="">
-                                                        <a ng-click="selectInstrument(instrument)" class="pointer ng-binding" ng-class="{'disabled': !instrument.enabled}">All Assets</a>
-                                                    </li><!-- end ngRepeat: instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId --><li ng-repeat="instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId" class="ng-scope">
-                                                        <a ng-click="selectInstrument(instrument)" class="pointer ng-binding" ng-class="{'disabled': !instrument.enabled}">ALIBABA  阿里巴巴</a>
-                                                    </li><!-- end ngRepeat: instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId --><li ng-repeat="instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId" class="ng-scope">
-                                                        <a ng-click="selectInstrument(instrument)" class="pointer ng-binding" ng-class="{'disabled': !instrument.enabled}">AMAZON          亚马逊</a>
-                                                    </li><!-- end ngRepeat: instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId --><li ng-repeat="instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId" class="ng-scope">
-                                                        <a ng-click="selectInstrument(instrument)" class="pointer ng-binding" ng-class="{'disabled': !instrument.enabled}">APPLE 苹果公司</a>
-                                                    </li><!-- end ngRepeat: instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId --><li ng-repeat="instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId" class="ng-scope">
-                                                        <a ng-click="selectInstrument(instrument)" class="pointer ng-binding" ng-class="{'disabled': !instrument.enabled}">AUDCAD  澳加</a>
-                                                    </li><!-- end ngRepeat: instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId --><li ng-repeat="instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId" class="ng-scope">
-                                                        <a ng-click="selectInstrument(instrument)" class="pointer ng-binding" ng-class="{'disabled': !instrument.enabled}">AUDCHF  澳瑞</a>
-                                                    </li><!-- end ngRepeat: instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId --><li ng-repeat="instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId" class="ng-scope">
-                                                        <a ng-click="selectInstrument(instrument)" class="pointer ng-binding" ng-class="{'disabled': !instrument.enabled}">AUDJPY  澳日</a>
-                                                    </li><!-- end ngRepeat: instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId --><li ng-repeat="instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId" class="ng-scope">
-                                                        <a ng-click="selectInstrument(instrument)" class="pointer ng-binding" ng-class="{'disabled': !instrument.enabled}">AUDNZD 澳纽</a>
-                                                    </li><!-- end ngRepeat: instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId --><li ng-repeat="instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId" class="ng-scope">
-                                                        <a ng-click="selectInstrument(instrument)" class="pointer ng-binding" ng-class="{'disabled': !instrument.enabled}">AUDUSD  澳美</a>
-                                                    </li><!-- end ngRepeat: instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId --><li ng-repeat="instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId" class="ng-scope">
-                                                        <a ng-click="selectInstrument(instrument)" class="pointer ng-binding" ng-class="{'disabled': !instrument.enabled}">BARC 巴克莱银行</a>
-                                                    </li><!-- end ngRepeat: instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId --><li ng-repeat="instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId" class="ng-scope">
-                                                        <a ng-click="selectInstrument(instrument)" class="pointer ng-binding" ng-class="{'disabled': !instrument.enabled}">BMW 宝马</a>
-                                                    </li><!-- end ngRepeat: instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId --><li ng-repeat="instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId" class="ng-scope">
-                                                        <a ng-click="selectInstrument(instrument)" class="pointer ng-binding" ng-class="{'disabled': !instrument.enabled}">BP 英国石油公司</a>
-                                                    </li><!-- end ngRepeat: instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId --><li ng-repeat="instrument in instruments | filter:e:instrumentSearchQuery} track by instrument.symbolId" class="ng-scope">
-                                                        <a ng-click="selectInstrument(instrument)" class="pointer ng-binding" ng-class="{'disabled': !instrument.enabled}">CAC40  巴黎指数</a>
-                                                    </li><!-- end ngRepeat: instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId --><li ng-repeat="instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId" class="ng-scope">
-                                                        <a ng-click="selectInstrument(instrument)" class="pointer ng-binding" ng-class="{'disabled': !instrument.enabled}">CADCHF  加瑞</a>
-                                                    </li><!-- end ngRepeat: instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId --><li ng-repeat="instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId" class="ng-scope">
-                                                        <a ng-click="selectInstrument(instrument)" class="pointer ng-binding" ng-class="{'disabled': !instrument.enabled}">CADJPY  加日</a>
-                                                    </li><!-- end ngRepeat: instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId --><li ng-repeat="instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId" class="ng-scope">
-                                                        <a ng-click="selectInstrument(instrument)" class="pointer ng-binding" ng-class="{'disabled': !instrument.enabled}">CHFJPY  瑞日</a>
-                                                    </li><!-- end ngRepeat: instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId --><li ng-repeat="instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId" class="ng-scope">
-                                                        <a ng-click="selectInstrument(instrument)" class="pointer ng-binding" ng-class="{'disabled': !instrument.enabled}">COPPER   铜</a>
-                                                    </li><!-- end ngRepeat: instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId --><li ng-repeat="instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId" class="ng-scope">
-                                                        <a ng-click="selectInstrument(instrument)" class="pointer ng-binding" ng-class="{'disabled': !instrument.enabled}">DAX30  德国指数</a>
-                                                    </li><!-- end ngRepeat: instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId --><li ng-repeat="instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId" class="ng-scope">
-                                                        <a ng-click="selectInstrument(instrument)" class="pointer ng-binding" ng-class="{'disabled': !instrument.enabled}">DJIA 道琼斯指数</a>
-                                                    </li><!-- end ngRepeat: instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId --><li ng-repeat="instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId" class="ng-scope">
-                                                        <a ng-click="selectInstrument(instrument)" class="pointer ng-binding" ng-class="{'disabled': !instrument.enabled}">EURAUD  欧澳</a>
-                                                    </li><!-- end ngRepeat: instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId --><li ng-repeat="instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId" class="ng-scope">
-                                                        <a ng-click="selectInstrument(instrument)" class="pointer ng-binding" ng-class="{'disabled': !instrument.enabled}">EURCAD  欧加</a>
-                                                    </li><!-- end ngRepeat: instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId --><li ng-repeat="instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId" class="ng-scope">
-                                                        <a ng-click="selectInstrument(instrument)" class="pointer ng-binding" ng-class="{'disabled': !instrument.enabled}">EURCHF 欧瑞</a>
-                                                    </li><!-- end ngRepeat: instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId --><li ng-repeat="instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId" class="ng-scope">
-                                                        <a ng-click="selectInstrument(instrument)" class="pointer ng-binding" ng-class="{'disabled': !instrument.enabled}">EURGBP  欧镑</a>
-                                                    </li><!-- end ngRepeat: instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId --><li ng-repeat="instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId" class="ng-scope">
-                                                        <a ng-click="selectInstrument(instrument)" class="pointer ng-binding" ng-class="{'disabled': !instrument.enabled}">EURJPY 欧日</a>
-                                                    </li><!-- end ngRepeat: instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId --><li ng-repeat="instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId" class="ng-scope">
-                                                        <a ng-click="selectInstrument(instrument)" class="pointer ng-binding" ng-class="{'disabled': !instrument.enabled}">EURNZD 欧纽</a>
-                                                    </li><!-- end ngRepeat: instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId --><li ng-repeat="instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId" class="ng-scope">
-                                                        <a ng-click="selectInstrument(instrument)" class="pointer ng-binding" ng-class="{'disabled': !instrument.enabled}">EURUSD  欧美</a>
-                                                    </li><!-- end ngRepeat: instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId --><li ng-repeat="instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId" class="ng-scope">
-                                                        <a ng-click="selectInstrument(instrument)" class="pointer ng-binding disabled" ng-class="{'disabled': !instrument.enabled}">EURZAR</a>
-                                                    </li><!-- end ngRepeat: instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId --><li ng-repeat="instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId" class="ng-scope">
-                                                        <a ng-click="selectInstrument(instrument)" class="pointer ng-binding" ng-class="{'disabled': !instrument.enabled}">FACEBOOK  脸书</a>
-                                                    </li><!-- end ngRepeat: instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId --><li ng-repeat="instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId" class="ng-scope">
-                                                        <a ng-click="selectInstrument(instrument)" class="pointer ng-binding" ng-class="{'disabled': !instrument.enabled}">FTSE  富时指数</a>
-                                                    </li><!-- end ngRepeat: instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId --><li ng-repeat="instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId" class="ng-scope">
-                                                        <a ng-click="selectInstrument(instrument)" class="pointer ng-binding" ng-class="{'disabled': !instrument.enabled}">GAZPROM 俄罗斯天然气工业股份公司</a>
-                                                    </li><!-- end ngRepeat: instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId --><li ng-repeat="instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId" class="ng-scope">
-                                                        <a ng-click="selectInstrument(instrument)" class="pointer ng-binding" ng-class="{'disabled': !instrument.enabled}">GBPAUD 镑澳</a>
-                                                    </li><!-- end ngRepeat: instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId --><li ng-repeat="instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId" class="ng-scope">
-                                                        <a ng-click="selectInstrument(instrument)" class="pointer ng-binding" ng-class="{'disabled': !instrument.enabled}">GBPCAD 镑加</a>
-                                                    </li><!-- end ngRepeat: instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId --><li ng-repeat="instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId" class="ng-scope">
-                                                        <a ng-click="selectInstrument(instrument)" class="pointer ng-binding" ng-class="{'disabled': !instrument.enabled}">GBPCHF 镑瑞</a>
-                                                    </li><!-- end ngRepeat: instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId --><li ng-repeat="instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId" class="ng-scope">
-                                                        <a ng-click="selectInstrument(instrument)" class="pointer ng-binding" ng-class="{'disabled': !instrument.enabled}">GBPJPY 镑日</a>
-                                                    </li><!-- end ngRepeat: instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId --><li ng-repeat="instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId" class="ng-scope">
-                                                        <a ng-click="selectInstrument(instrument)" class="pointer ng-binding" ng-class="{'disabled': !instrument.enabled}">GBPNZD  镑纽</a>
-                                                    </li><!-- end ngRepeat: instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId --><li ng-repeat="instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId" class="ng-scope">
-                                                        <a ng-click="selectInstrument(instrument)" class="pointer ng-binding" ng-class="{'disabled': !instrument.enabled}">GBPUSD 镑美</a>
-                                                    </li><!-- end ngRepeat: instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId --><li ng-repeat="instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId" class="ng-scope">
-                                                        <a ng-click="selectInstrument(instrument)" class="pointer ng-binding" ng-class="{'disabled': !instrument.enabled}">GOLD 黄金</a>
-                                                    </li><!-- end ngRepeat: instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId --><li ng-repeat="instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId" class="ng-scope">
-                                                        <a ng-click="selectInstrument(instrument)" class="pointer ng-binding" ng-class="{'disabled': !instrument.enabled}">GOOGLE 谷歌</a>
-                                                    </li><!-- end ngRepeat: instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId --><li ng-repeat="instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId" class="ng-scope">
-                                                        <a ng-click="selectInstrument(instrument)" class="pointer ng-binding" ng-class="{'disabled': !instrument.enabled}">GPRO   GoPro公司</a>
-                                                    </li><!-- end ngRepeat: instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId --><li ng-repeat="instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId" class="ng-scope">
-                                                        <a ng-click="selectInstrument(instrument)" class="pointer ng-binding" ng-class="{'disabled': !instrument.enabled}">HSBC          汇丰银行</a>
-                                                    </li><!-- end ngRepeat: instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId --><li ng-repeat="instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId" class="ng-scope">
-                                                        <a ng-click="selectInstrument(instrument)" class="pointer ng-binding" ng-class="{'disabled': !instrument.enabled}">IBEX  IBEX 35指数</a>
-                                                    </li><!-- end ngRepeat: instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId --><li ng-repeat="instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId" class="ng-scope">
-                                                        <a ng-click="selectInstrument(instrument)" class="pointer ng-binding" ng-class="{'disabled': !instrument.enabled}">LUKOIL 卢克石油</a>
-                                                    </li><!-- end ngRepeat: instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId --><li ng-repeat="instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId" class="ng-scope">
-                                                        <a ng-click="selectInstrument(instrument)" class="pointer ng-binding" ng-class="{'disabled': !instrument.enabled}">MCARD 万事达卡</a>
-                                                    </li><!-- end ngRepeat: instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId --><li ng-repeat="instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId" class="ng-scope">
-                                                        <a ng-click="selectInstrument(instrument)" class="pointer ng-binding" ng-class="{'disabled': !instrument.enabled}">MICEX-RTS   MICEX指数</a>
-                                                    </li><!-- end ngRepeat: instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId --><li ng-repeat="instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId" class="ng-scope">
-                                                        <a ng-click="selectInstrument(instrument)" class="pointer ng-binding" ng-class="{'disabled': !instrument.enabled}">NSDQ 纳斯达克</a>
-                                                    </li><!-- end ngRepeat: instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId --><li ng-repeat="instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId" class="ng-scope">
-                                                        <a ng-click="selectInstrument(instrument)" class="pointer ng-binding" ng-class="{'disabled': !instrument.enabled}">NZDCAD 纽加</a>
-                                                    </li><!-- end ngRepeat: instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId --><li ng-repeat="instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId" class="ng-scope">
-                                                        <a ng-click="selectInstrument(instrument)" class="pointer ng-binding" ng-class="{'disabled': !instrument.enabled}">NZDCHF  纽瑞</a>
-                                                    </li><!-- end ngRepeat: instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId --><li ng-repeat="instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId" class="ng-scope">
-                                                        <a ng-click="selectInstrument(instrument)" class="pointer ng-binding" ng-class="{'disabled': !instrument.enabled}">NZDJPY 纽日</a>
-                                                    </li><!-- end ngRepeat: instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId --><li ng-repeat="instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId" class="ng-scope">
-                                                        <a ng-click="selectInstrument(instrument)" class="pointer ng-binding" ng-class="{'disabled': !instrument.enabled}">NZDUSD 纽美</a>
-                                                    </li><!-- end ngRepeat: instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId --><li ng-repeat="instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId" class="ng-scope">
-                                                        <a ng-click="selectInstrument(instrument)" class="pointer ng-binding" ng-class="{'disabled': !instrument.enabled}">OIL  原油</a>
-                                                    </li><!-- end ngRepeat: instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId --><li ng-repeat="instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId" class="ng-scope">
-                                                        <a ng-click="selectInstrument(instrument)" class="pointer ng-binding" ng-class="{'disabled': !instrument.enabled}">RIO 力拓集团</a>
-                                                    </li><!-- end ngRepeat: instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId --><li ng-repeat="instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId" class="ng-scope">
-                                                        <a ng-click="selectInstrument(instrument)" class="pointer ng-binding" ng-class="{'disabled': !instrument.enabled}">RTS 俄罗斯指数</a>
-                                                    </li><!-- end ngRepeat: instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId --><li ng-repeat="instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId" class="ng-scope">
-                                                        <a ng-click="selectInstrument(instrument)" class="pointer ng-binding" ng-class="{'disabled': !instrument.enabled}">SBERS 俄罗斯联邦储蓄银行</a>
-                                                    </li><!-- end ngRepeat: instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId --><li ng-repeat="instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId" class="ng-scope">
-                                                        <a ng-click="selectInstrument(instrument)" class="pointer ng-binding" ng-class="{'disabled': !instrument.enabled}">SILVER  白银</a>
-                                                    </li><!-- end ngRepeat: instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId --><li ng-repeat="instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId" class="ng-scope">
-                                                        <a ng-click="selectInstrument(instrument)" class="pointer ng-binding" ng-class="{'disabled': !instrument.enabled}">SP 标普500指数</a>
-                                                    </li><!-- end ngRepeat: instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId --><li ng-repeat="instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId" class="ng-scope">
-                                                        <a ng-click="selectInstrument(instrument)" class="pointer ng-binding" ng-class="{'disabled': !instrument.enabled}">TA25 特拉维夫25指数</a>
-                                                    </li><!-- end ngRepeat: instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId --><li ng-repeat="instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId" class="ng-scope">
-                                                        <a ng-click="selectInstrument(instrument)" class="pointer ng-binding" ng-class="{'disabled': !instrument.enabled}">TESCO 特易购</a>
-                                                    </li><!-- end ngRepeat: instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId --><li ng-repeat="instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId" class="ng-scope">
-                                                        <a ng-click="selectInstrument(instrument)" class="pointer ng-binding" ng-class="{'disabled': !instrument.enabled}">USDCAD 美加</a>
-                                                    </li><!-- end ngRepeat: instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId --><li ng-repeat="instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId" class="ng-scope">
-                                                        <a ng-click="selectInstrument(instrument)" class="pointer ng-binding" ng-class="{'disabled': !instrument.enabled}">USDCHF 美瑞</a>
-                                                    </li><!-- end ngRepeat: instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId --><li ng-repeat="instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId" class="ng-scope">
-                                                        <a ng-click="selectInstrument(instrument)" class="pointer ng-binding" ng-class="{'disabled': !instrument.enabled}">USDJPY 美日</a>
-                                                    </li><!-- end ngRepeat: instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId --><li ng-repeat="instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId" class="ng-scope">
-                                                        <a ng-click="selectInstrument(instrument)" class="pointer ng-binding" ng-class="{'disabled': !instrument.enabled}">VOD 沃达丰</a>
-                                                    </li><!-- end ngRepeat: instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId --><li ng-repeat="instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId" class="ng-scope">
-                                                        <a ng-click="selectInstrument(instrument)" class="pointer ng-binding" ng-class="{'disabled': !instrument.enabled}">VOWGEN 大众集团</a>
-                                                    </li><!-- end ngRepeat: instrument in instruments | filter: {name:instrumentSearchQuery} track by instrument.symbolId -->
-                                                    </ul><div style="position: absolute; z-index: 25; margin: 0px; padding: 0px; display: none; left: 7px; top: -25px;"><div class="enscroll-track scrollbar-tracker-right scroller-undefined" style="position: relative;"><a href="" class="scrollbar-handler-right" style="position: absolute; z-index: 1;"><div class="top"></div><div class="bottom"></div></a></div></div>
-                                                </div></instrument-selection>
+                                                </th>
+                                                <th class="branded text-capitalize pointer">
+                                                    <div class="th cursor-pointer grid-column-instrument">
+                                                        <span class="text-capitalize">Dir</span>
+                                                        <span class="width-1-em inline-block">
+                                            </span>
+                                                    </div>
+                                                </th>
+                                                <th class="branded text-capitalize pointer">
+                                                    <div class="th cursor-pointer grid-column-instrument">
+                                                        <span class="text-capitalize">Asset</span>
+                                                        <span class="width-1-em inline-block">
+                                            </span>
+                                                    </div>
+                                                </th>
+                                                <th class="branded text-capitalize pointer">
+                                                    <div class="th cursor-pointer grid-column-instrument">
+                                                        <span class="text-capitalize">Timeframe</span>
+                                                        <span class="width-1-em inline-block">
+                                            </span>
+                                                    </div>
+                                                </th>
+                                                <th class="branded text-capitalize pointer">
+                                                    <div class="th cursor-pointer grid-column-instrument">
+                                                        <span class="text-capitalize">Expires</span>
+                                                        <span class="width-1-em inline-block">
+                                            </span>
+                                                    </div>
+                                                </th>
+                                                <th class="branded text-capitalize pointer">
+                                                    <div class="th cursor-pointer grid-column-instrument">
+                                                        <span class="text-capitalize">Rate</span>
+                                                        <span class="width-1-em inline-block">
+                                            </span>
+                                                    </div>
+                                                </th>
+                                                <th class="branded text-capitalize pointer">
+                                                    <div class="th cursor-pointer grid-column-instrument">
+                                                        <span class="text-capitalize">Forecast</span>
+                                                        <span class="width-1-em inline-block">
+                                            </span>
+                                                    </div>
+                                                </th>
+                                                <th class="branded text-capitalize pointer">
+                                                    <div class="th cursor-pointer grid-column-instrument">
+                                                        <span class="text-capitalize">Investment</span>
+                                                        <span class="width-1-em inline-block">
+                                            </span>
+                                                    </div>
+                                                </th>
+                                                <th class="branded text-capitalize pointer">
+                                                    <div class="th cursor-pointer grid-column-instrument">
+                                                        <span class="text-capitalize">Payout</span>
+                                                        <span class="width-1-em inline-block">
+                                            </span>
+                                                    </div>
+                                                </th>
+                                            </tr>
+                                            </thead>
+                                            <tbody class="dealsHead summary">
+                                            </tbody>
+                                        </table>
+                                        <table-pagination count="0" records-per-page="8" page="0"
+                                                          class="ng-isolate-scope">
+                                            <div class="row table-pagination">
+                                                <div class="col-md-24 text-center">
+                                                    <i class="fa fa-fast-backward button active disabled"
+                                                       ng-click="fastBackward()"
+                                                       ng-class="{ 'active': page > 0, 'disabled': page == 0 }"></i>
+                                                    <i class="fa fa-backward button disabled" ng-click="backward()"
+                                                       ng-class="{ 'active': page > 0, 'disabled': page < 1 }"></i>
+                                                    <span class="white-18-300 ng-binding"
+                                                          style="margin: 0px 20px">1</span>
+                                                    <i class="fa fa-forward button disabled" ng-click="forward()"
+                                                       ng-class="{ 'active': page < maxPage, 'disabled': page >= maxPage-1 }"></i>
+                                                    <i class="fa fa-fast-forward button active disabled"
+                                                       ng-click="fastForward()"
+                                                       ng-class="{ 'active': page < maxPage, 'disabled': page >= maxPage-1 }"></i>
+                                                </div>
                                             </div>
-                                        </div>
+                                        </table-pagination>
                                     </div>
-                                </form>
-                            </div>
-
-                            <div>
-                                <table id="financial-transactions" class="table table-striped table-responsive no-margin">
-                                    <thead>
-                                    <tr>
-                                        <th class="branded text-capitalize pointer" data-ng-click="setSorting('assetName')">
-                                            <span class="text-capitalize ng-scope" translate="widget.general.instrument">Asset</span>
-                                            <span class="width-1-em inline-block">
-                            <!-- ngIf: expiredOptionsSortField == 'assetName' && !expiredOptionsSortDirection -->
-                                                <!-- ngIf: expiredOptionsSortField == 'assetName' && expiredOptionsSortDirection -->
-                        </span>
-                                        </th>
-                                        <th class="branded text-capitalize pointer" data-ng-click="setSorting('price')">
-                                            <span class="text-capitalize ng-scope" translate="widget.blotter.positions.expiry-rate">expiry rate</span>
-                                            <span class="width-1-em inline-block">
-                            <!-- ngIf: expiredOptionsSortField == 'price' && !expiredOptionsSortDirection -->
-                                                <!-- ngIf: expiredOptionsSortField == 'price' && expiredOptionsSortDirection -->
-                        </span>
-                                        </th>
-                                        <th class="branded text-capitalize pointer" data-ng-click="setSorting('closeTime')">
-                                            <span class="text-capitalize ng-scope" translate="positions.expiry-time">expiry time</span>
-                                            <span class="width-1-em inline-block">
-                            <!-- ngIf: expiredOptionsSortField == 'closeTime' && !expiredOptionsSortDirection -->
-                                                <!-- ngIf: expiredOptionsSortField == 'closeTime' && expiredOptionsSortDirection --><span class="fa fa-caret-down ng-scope" data-ng-if="expiredOptionsSortField == 'closeTime' &amp;&amp; expiredOptionsSortDirection"></span><!-- end ngIf: expiredOptionsSortField == 'closeTime' && expiredOptionsSortDirection -->
-                        </span>
-                                        </th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <!-- ngRepeat: quote in displayedQuoteHistory --><tr ng-repeat="quote in displayedQuoteHistory" class="table-row ng-scope">
-                                        <td class="ng-binding"></td>
-                                        <td class="amount ng-binding"></td>
-                                        <td class="ng-binding"></td>
-                                    </tr><!-- end ngRepeat: quote in displayedQuoteHistory --><tr ng-repeat="quote in displayedQuoteHistory" class="table-row ng-scope">
-                                        <td class="ng-binding"></td>
-                                        <td class="amount ng-binding"></td>
-                                        <td class="ng-binding"></td>
-                                    </tr><!-- end ngRepeat: quote in displayedQuoteHistory --><tr ng-repeat="quote in displayedQuoteHistory" class="table-row ng-scope">
-                                        <td class="ng-binding"></td>
-                                        <td class="amount ng-binding"></td>
-                                        <td class="ng-binding"></td>
-                                    </tr><!-- end ngRepeat: quote in displayedQuoteHistory --><tr ng-repeat="quote in displayedQuoteHistory" class="table-row ng-scope">
-                                        <td class="ng-binding"></td>
-                                        <td class="amount ng-binding"></td>
-                                        <td class="ng-binding"></td>
-                                    </tr><!-- end ngRepeat: quote in displayedQuoteHistory --><tr ng-repeat="quote in displayedQuoteHistory" class="table-row ng-scope">
-                                        <td class="ng-binding"></td>
-                                        <td class="amount ng-binding"></td>
-                                        <td class="ng-binding"></td>
-                                    </tr><!-- end ngRepeat: quote in displayedQuoteHistory --><tr ng-repeat="quote in displayedQuoteHistory" class="table-row ng-scope">
-                                        <td class="ng-binding"></td>
-                                        <td class="amount ng-binding"></td>
-                                        <td class="ng-binding"></td>
-                                    </tr><!-- end ngRepeat: quote in displayedQuoteHistory --><tr ng-repeat="quote in displayedQuoteHistory" class="table-row ng-scope">
-                                        <td class="ng-binding"></td>
-                                        <td class="amount ng-binding"></td>
-                                        <td class="ng-binding"></td>
-                                    </tr><!-- end ngRepeat: quote in displayedQuoteHistory --><tr ng-repeat="quote in displayedQuoteHistory" class="table-row ng-scope">
-                                        <td class="ng-binding"></td>
-                                        <td class="amount ng-binding"></td>
-                                        <td class="ng-binding"></td>
-                                    </tr><!-- end ngRepeat: quote in displayedQuoteHistory --><tr ng-repeat="quote in displayedQuoteHistory" class="table-row ng-scope">
-                                        <td class="ng-binding"></td>
-                                        <td class="amount ng-binding"></td>
-                                        <td class="ng-binding"></td>
-                                    </tr><!-- end ngRepeat: quote in displayedQuoteHistory --><tr ng-repeat="quote in displayedQuoteHistory" class="table-row ng-scope">
-                                        <td class="ng-binding"></td>
-                                        <td class="amount ng-binding"></td>
-                                        <td class="ng-binding"></td>
-                                    </tr><!-- end ngRepeat: quote in displayedQuoteHistory --><tr ng-repeat="quote in displayedQuoteHistory" class="table-row ng-scope">
-                                        <td class="ng-binding"></td>
-                                        <td class="amount ng-binding"></td>
-                                        <td class="ng-binding"></td>
-                                    </tr><!-- end ngRepeat: quote in displayedQuoteHistory --><tr ng-repeat="quote in displayedQuoteHistory" class="table-row ng-scope">
-                                        <td class="ng-binding"></td>
-                                        <td class="amount ng-binding"></td>
-                                        <td class="ng-binding"></td>
-                                    </tr><!-- end ngRepeat: quote in displayedQuoteHistory --><tr ng-repeat="quote in displayedQuoteHistory" class="table-row ng-scope">
-                                        <td class="ng-binding"></td>
-                                        <td class="amount ng-binding"></td>
-                                        <td class="ng-binding"></td>
-                                    </tr><!-- end ngRepeat: quote in displayedQuoteHistory --><tr ng-repeat="quote in displayedQuoteHistory" class="table-row ng-scope">
-                                        <td class="ng-binding"></td>
-                                        <td class="amount ng-binding"></td>
-                                        <td class="ng-binding"></td>
-                                    </tr><!-- end ngRepeat: quote in displayedQuoteHistory --><tr ng-repeat="quote in displayedQuoteHistory" class="table-row ng-scope">
-                                        <td class="ng-binding"></td>
-                                        <td class="amount ng-binding"></td>
-                                        <td class="ng-binding"></td>
-                                    </tr><!-- end ngRepeat: quote in displayedQuoteHistory --><tr ng-repeat="quote in displayedQuoteHistory" class="table-row ng-scope">
-                                        <td class="ng-binding"></td>
-                                        <td class="amount ng-binding"></td>
-                                        <td class="ng-binding"></td>
-                                    </tr><!-- end ngRepeat: quote in displayedQuoteHistory --><tr ng-repeat="quote in displayedQuoteHistory" class="table-row ng-scope">
-                                        <td class="ng-binding"></td>
-                                        <td class="amount ng-binding"></td>
-                                        <td class="ng-binding"></td>
-                                    </tr><!-- end ngRepeat: quote in displayedQuoteHistory --><tr ng-repeat="quote in displayedQuoteHistory" class="table-row ng-scope">
-                                        <td class="ng-binding"></td>
-                                        <td class="amount ng-binding"></td>
-                                        <td class="ng-binding"></td>
-                                    </tr><!-- end ngRepeat: quote in displayedQuoteHistory --><tr ng-repeat="quote in displayedQuoteHistory" class="table-row ng-scope">
-                                        <td class="ng-binding"></td>
-                                        <td class="amount ng-binding"></td>
-                                        <td class="ng-binding"></td>
-                                    </tr><!-- end ngRepeat: quote in displayedQuoteHistory --><tr ng-repeat="quote in displayedQuoteHistory" class="table-row ng-scope">
-                                        <td class="ng-binding"></td>
-                                        <td class="amount ng-binding"></td>
-                                        <td class="ng-binding"></td>
-                                    </tr><!-- end ngRepeat: quote in displayedQuoteHistory -->
-
-                                    </tbody>
-                                </table>
-                                <!-- ngIf: !filteringInProgress --><table-pagination count="0" records-per-page="20" page="0" ng-if="!filteringInProgress" class="ng-scope ng-isolate-scope"><div class="row table-pagination">
-                                <div class="col-md-24 text-center">
-                                    <i class="fa fa-fast-backward button active disabled" ng-click="fastBackward()" ng-class="{ 'active': page > 0, 'disabled': page == 0 }"></i>
-                                    <i class="fa fa-backward button disabled" ng-click="backward()" ng-class="{ 'active': page > 0, 'disabled': page < 1 }"></i>
-                                    <span class="white-18-300 ng-binding" style="margin: 0px 20px">1</span>
-                                    <i class="fa fa-forward button disabled" ng-click="forward()" ng-class="{ 'active': page < maxPage, 'disabled': page >= maxPage-1 }"></i>
-                                    <i class="fa fa-fast-forward button active disabled" ng-click="fastForward()" ng-class="{ 'active': page < maxPage, 'disabled': page >= maxPage-1 }"></i>
                                 </div>
-                            </div></table-pagination><!-- end ngIf: !filteringInProgress -->
-                            </div>
-                        </div></ng-include>
-                        </div><!-- end ngRepeat: tab in tabset.tabs -->
+
+
+
+
+                                <div id="history-pages-container" class="tab-pane deals history journal_options_block_hider">
+                                    <div class="blotter-table">
+                                        <table class="table table-striped table-responsive no-margin dealsTable">
+                                            <thead class="summary dealsHead">
+                                            <tr>
+                                                <th class="branded text-capitalize pointer">
+                                                    <div class="th cursor-pointer grid-column-instrument">
+                                                        <span class="text-capitalize">Type</span>
+                                                        <span class="width-1-em inline-block">
+                                            </span>
+                                                    </div>
+                                                </th>
+                                                <th class="branded text-capitalize pointer">
+                                                    <div class="th cursor-pointer grid-column-instrument">
+                                                        <span class="text-capitalize">Dir</span>
+                                                        <span class="width-1-em inline-block">
+                                            </span>
+                                                    </div>
+                                                </th>
+                                                <th class="branded text-capitalize pointer">
+                                                    <div class="th cursor-pointer grid-column-instrument">
+                                                        <span class="text-capitalize">Asset</span>
+                                                        <span class="width-1-em inline-block">
+                                            </span>
+                                                    </div>
+                                                </th>
+                                                <th class="branded text-capitalize pointer">
+                                                    <div class="th cursor-pointer grid-column-instrument">
+                                                        <span class="text-capitalize">Timeframe</span>
+                                                        <span class="width-1-em inline-block">
+                                            </span>
+                                                    </div>
+                                                </th>
+                                                <th class="branded text-capitalize pointer">
+                                                    <div class="th cursor-pointer grid-column-instrument">
+                                                        <span class="text-capitalize">Expires</span>
+                                                        <span class="width-1-em inline-block">
+                                            </span>
+                                                    </div>
+                                                </th>
+                                                <th class="branded text-capitalize pointer">
+                                                    <div class="th cursor-pointer grid-column-instrument">
+                                                        <span class="text-capitalize">Rate</span>
+                                                        <span class="width-1-em inline-block">
+                                            </span>
+                                                    </div>
+                                                </th>
+                                                <th class="branded text-capitalize pointer">
+                                                    <div class="th cursor-pointer grid-column-instrument">
+                                                        <span class="text-capitalize">Forecast</span>
+                                                        <span class="width-1-em inline-block">
+                                            </span>
+                                                    </div>
+                                                </th>
+                                                <th class="branded text-capitalize pointer">
+                                                    <div class="th cursor-pointer grid-column-instrument">
+                                                        <span class="text-capitalize">Investment</span>
+                                                        <span class="width-1-em inline-block">
+                                            </span>
+                                                    </div>
+                                                </th>
+                                                <th class="branded text-capitalize pointer">
+                                                    <div class="th cursor-pointer grid-column-instrument">
+                                                        <span class="text-capitalize">Payout</span>
+                                                        <span class="width-1-em inline-block">
+                                            </span>
+                                                    </div>
+                                                </th>
+                                            </tr>
+                                            </thead>
+                                            <tbody class="summary dealsHead">
+
+                                            </tbody>
+                                        </table>
+                                        <table-pagination count="0" records-per-page="8" page="0"
+                                                          class="ng-isolate-scope">
+                                            <div class="row table-pagination">
+                                                <div class="col-md-24 text-center">
+                                                    <i class="fa fa-fast-backward button active disabled"
+                                                       ng-click="fastBackward()"
+                                                       ng-class="{ 'active': page > 0, 'disabled': page == 0 }"></i>
+                                                    <i class="fa fa-backward button disabled" ng-click="backward()"
+                                                       ng-class="{ 'active': page > 0, 'disabled': page < 1 }"></i>
+                                                    <span class="white-18-300 ng-binding"
+                                                          style="margin: 0px 20px">1</span>
+                                                    <i class="fa fa-forward button disabled" ng-click="forward()"
+                                                       ng-class="{ 'active': page < maxPage, 'disabled': page >= maxPage-1 }"></i>
+                                                    <i class="fa fa-fast-forward button active disabled"
+                                                       ng-click="fastForward()"
+                                                       ng-class="{ 'active': page < maxPage, 'disabled': page >= maxPage-1 }"></i>
+                                                </div>
+                                            </div>
+                                        </table-pagination>
+                                    </div>
+                                </div>
                         </div>
                     </div>
-                </div>
-                    <div class="col-md-4 ng-scope"></div></ng-include>
+                    <div class="col-md-4 ng-scope"></div>
                 </div>
             </div>
         </div><!-- end ngIf: !connecting -->

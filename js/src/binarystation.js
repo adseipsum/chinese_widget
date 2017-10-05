@@ -3732,50 +3732,25 @@
 
 		},
 		setOpenedTab: function (e) {
-
-			$('#main-container .deals-tabs .pull-right').css('display', 'none');
+			$('#tabs-switches > li').removeClass('active');
 			var $target = $(e.target);
-			$(".opened-tab").each(function () {
-				$(this).removeClass("active");
-			});
-			$(".opened-tab-set").each(function () {
-				$(this).removeClass("active");
-			});
-			$(".w_content .opened-tab").each(function () {
-				$(this).addClass("hidden_tab");
-			});
-
-			$target.addClass("active").removeClass("hidden_tab");
-
-			$(".options_block_hider").addClass("hidden_tab");
-			$(".journal_options_block_hider").addClass("hidden_tab");
-			$(".closed_options_block_hider").addClass("hidden_tab");
-			try {
-				$("#closed-pages-container").addClass("hidden_tab");
-			} catch (e) {
-			}
-			try {
-				$("#history-pages-container").addClass("hidden_tab");
-			} catch (e) {
-			}
-			try {
-				$(".history_block_hider").addClass("hidden_tab");
-			} catch (e) {
-			}
 
 			switch ($target.attr("data-tab")) {
 				case "opened":
+					$("#history-pages-container").removeClass("active");
+					$("#option-pages-container").addClass("active");
 					$(".options_block_hider").removeClass("hidden_tab");
 					break;
 
 				case "journal":
-					$('#main-container .deals-tabs .pull-right').css('display', 'block');
 					if (view.user.isGuest()) {
 						//bw_alert("only for users");
 						return;
 					}
 
 					try {
+						$("#history-pages-container").addClass("active");
+						$("#option-pages-container").removeClass("active");
 						$("#closed-pages-container").removeClass("hidden_tab");
 					} catch (e) {
 					}
@@ -3795,7 +3770,7 @@
 					}
 
 					try {
-						$("#history-pages-container").removeClass("hidden_tab");
+						$("#history-pages-container").addClass("active");
 					} catch (e) {
 					}
 
@@ -3803,8 +3778,8 @@
 					$(".history_block_hider").removeClass("hidden_tab");
 					break;
 			}
-
-
+			$target.parent().addClass('active');
+			return false;
 		},
 
 
