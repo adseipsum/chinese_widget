@@ -2903,7 +2903,6 @@
 
 			_(this.consoles.models).each(function (item) {
 				if (item.get("tool").tool_id == params.tool_id && (params.request_id == null || params.request_id == 0) || params.request_id == item.el.attr("id")) {
-
 					item.cource_val.text((params.data[params.data.length - 1][1]).toFixed(item.get("tool").decimal_count));
 					item.cource_val2.text((params.data[params.data.length - 1][1]).toFixed(item.get("tool").decimal_count));
 					item.set("data", params.data);
@@ -6470,7 +6469,7 @@
 					tool_id: tool_t[i].tool_id,
 					tool_name: tool_t[i].tool_view_name,
 					currency: currency,
-					inFavorite: inFavorite
+					inFavorite: inFavorite,
 				};
 
 				if (tool_t[i].tool_view_name != null && tool_t[i].tool_view_name.length > 0 && tool_t[i].allowed_timeframes.length > 0) {
@@ -6485,6 +6484,15 @@
 
 			if (this.left_panel != null && this.left_panel[0] != null) {
 				this.left_panel.html(tools_left_panel_html);
+			}
+
+			var i = tools.length;
+			while (i >= 0){
+				if (tools[i] != null && tools[i].tool_id != null) {
+					subscribeWSS(wss_conn, tools[i].tool_id);
+					//$("#widgets-classic .instrument-list .b_list > div[data-value='" + tools[i].tool_id + "']").find('.val').append('222');
+				}
+				i--;
 			}
 
 
@@ -8810,7 +8818,6 @@
 					item.timeframe = get_timeframe(item.timeframe_id);
 
 					allowed = settings.getAllowedByTool(view.kind, item.tool_id);
-
 					subscribeWSS(wss_conn, item.tool_id);
 
 					if ($.inArray(parseInt(item.timeframe_id), allowed) != -1) {
@@ -10557,7 +10564,7 @@
 		if (view.checkIfWidgedExist("market_rates")) {
 			widgets.updateMarketRates(convertedPlotData);
 		}
-
+		widgets.updateToolsMarketRates(convertedPlotData);
 
 		data = null;
 		correction = null;
@@ -10711,7 +10718,6 @@
 //    for (var i in json_data.quotes) {
 //        newdata.push([parseInt(json_data.time[i]) * 1000+(isLondonInSummerTime?3600000:0), parseFloat(json_data.quotes[i])]);
 //    }
-
 
 			if (json_data.quotes == null)
 				return;
@@ -13101,7 +13107,6 @@
 
 		while (i >= 0) {
 			if (tools[i] != null && tools[i].tool_name != null) {
-
 				subscribeWSS(wss_conn, tools[i].tool_id);
 				$("." + tools[i].tool_name.replace("$", "") + "-line").show();
 			}
@@ -13221,6 +13226,37 @@
 			} else {
 				line.find(".percent").removeClass("minus");
 			}
+		}
+
+	};
+
+	widgets.updateToolsMarketRates = function (data) {
+
+		var rate, el = $(".market_rates_widget__table"), close, line;
+
+		for (var tool in data) {
+			var direction;
+			var el = $("#widgets-classic .instrument-list .b_list > div[data-value='" + get_tool(tool).tool_id + "']");
+			var rate = data[tool][0][1].toFixed(get_tool(tool).decimal_count);
+			// line = el.find("." + tool.replace("$", "") + "-line");
+			if(parseFloat(el.find('.rate').html()) > parseFloat(rate)){
+				el.find('.instrument-direction > i').removeClass('fa-caret-up price-up').addClass('fa-caret-down price-down');
+			}else{
+				el.find('.instrument-direction > i').removeClass('fa-caret-down price-down').addClass('fa-caret-up price-up');
+			}
+
+			el.find('.rate').html(' ' + rate);
+
+			// line.find(".rate").text(rate);
+			// close = el.find(".close_price").text();
+			// percent = widgets.getPercentMarketRates(rate, close);
+			// line.find(".percent").text(percent);
+
+			// if (parseFloat(percent) < 0) {
+			// 	line.find(".percent").addClass("minus");
+			// } else {
+			// 	line.find(".percent").removeClass("minus");
+			// }
 		}
 
 	};

@@ -4161,6 +4161,7 @@ tbody.collapse.in {
     background-clip: padding-box;
     background-color: #171d20;
     border-radius: 0 !important;
+    max-height: 185px;
     overflow: hidden;
 }
 
@@ -15667,8 +15668,4 @@ body, html {
 
 .win{
     min-width: 50px;
-}
-
-.option_graph{
-    height: 150px;
 }

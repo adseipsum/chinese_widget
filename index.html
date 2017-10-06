@@ -8,6 +8,9 @@
 
     <link rel="stylesheet" href="./css/restyle.css">
     <link id="broker-css" href="./css/restyle-traders.css" rel="stylesheet">
+    <!--<link rel="stylesheet" type="text/css" href="css/fa.css">-->
+    <!--<link rel="stylesheet" href="fonts/md/md.css">-->
+    <!---->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 
@@ -112,7 +115,7 @@
                 </div>
             </div>
             <div class="col-sm-24 ng-scope" ng-controller="BlotterController" id="positions-container">
-                <div>
+                <div>a
                     <div id="blotter-content" class="col-md-24 top-row bg-dark ng-scope">
                         <div justified="true">
                             <ul id="tabs-switches" class="nav nav-tabs nav-justified">
@@ -218,9 +221,6 @@
                                         </table-pagination>
                                     </div>
                                 </div>
-
-
-
 
                                 <div id="history-pages-container" class="tab-pane deals history journal_options_block_hider">
                                     <div class="blotter-table">
@@ -579,9 +579,13 @@
         <div class="change-tool option clearfix {{active}} {{inFavorite}} instrument rates-animation"
              data-value="{{tool_id}}"
              data-tool-type="{{tool_type}}">
-            <div class="row" style="padding-left: 30px">
-                <div class="favorite col-sm-7 instrument-name" data-value="{{tool_id}}"></div>
-                <span class="val">{{tool_name}}</span>
+            <div class="row" style="padding-left: 10px">
+                <div class="favorite col-lg-3 instrument-name" data-value="{{tool_id}}"></div>
+                <div class="col-lg-8 val">{{tool_name}}{{decimalCount}}</div>
+                <div class="col-lg-8 rate instrument-price bold-300"></div>
+                <div class="col-lg-5 instrument-direction">
+                    <i class="fa" style="font-size: 12pt;"></i>
+                </div>
             </div>
         </div>
     </script>
