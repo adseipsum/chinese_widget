@@ -207,7 +207,7 @@
 		use_clock: false,
 		tool_types_template: "without_span",
 		use_candle: false,
-		default_draw_type: "graph",
+		default_draw_type: "classic",
 		use_starred: false,
 		consoleXAxisSize: 9,
 		consoleYAxisSize: 10,
@@ -258,10 +258,10 @@
 		consolePartEndLineText: ".end_line_txt",
 		consolePartBinBuy: ".bin_buy",
 		consolePartInvest: ".b_invest_select",
-		consolePartChoosedTool: ".selected-instrument #selected-instrument-name",
+		consolePartChoosedTool: ".selected-instrument .selected-instrument-name",
 		consolePartChoosedTF: ".b_duration_block .b_block_value",
-		consolePartCourseVal1: "#instrument-options-price",
-		consolePartCourseVal2: "#instrument-options-price",
+		consolePartCourseVal1: ".instrument-options-price",
+		consolePartCourseVal2: ".instrument-options-price",
 		consolePartPayoutPercent: ".percent_win",
 		consolePartPayoutPercentLose: ".b_refund",
 		consolePartPayoutWinVal: ".payout .win",
@@ -629,9 +629,10 @@
 			//'click .binsta_assets__item__value__dropdown__list_item':'closeMenu'
 			'click .drop_t': 'openMenu',
 			'keyup .drop_t': 'openMenu',
-			'click #slide-tools-left': 'slideToolsLeft',
-			'click #slide-tools-right': 'slideToolsRight',
-			'click .b_duration_block a': 'showTimeframesList'
+			'click .slide-tools-left': 'slideToolsLeft',
+			'click .slide-tools-right': 'slideToolsRight',
+			'click .b_duration_block a': 'showTimeframesList',
+			'click .b_kind_block a': 'showKindsList'
 			//'click .prevent, .disabled, .active': 'closeСlosestMenu'
 
 			//'mouseleave .binsta_assets__item__value.with_dropdown':'closeMenu'
@@ -729,11 +730,11 @@
 				$opened = $target.parents(option_block);
 
 			$opened.toggleClass("open").toggleClass("mini");
-			$opened.find(".option_body").toggleClass("hidden_tab");
+			$opened.find(".option_body").toggleClass("hidden");
 
 			if ($opened.hasClass("open")) {
 				$opened.removeClass("mini");
-				$opened.find(".option_body").removeClass("hidden_tab");
+				$opened.find(".option_body").removeClass("hidden");
 			}
 		},
 		toggleOneClickAdvanced: function (e) {
@@ -807,7 +808,6 @@
 
 					});
 				} else {
-					console.log(2222);
 					_(view.consoles.models).each(function (elem) {
 						elem.set("oneClickBuy", false);
 						elem.el.removeClass("one-click-buy");
@@ -872,7 +872,7 @@
 				item.changeParam("payouts");
 
 				setTimeout(chart.drawConsole(item, true), 0);
-
+				console.log(3);
 			}
 		},
 		hidePayoutsThisDirection: function (e) {
@@ -888,6 +888,7 @@
 				;
 
 				setTimeout(chart.drawConsole(item, true), 0);
+				console.log(4);
 				item.changeParam("payouts");
 			}
 		},
@@ -1242,6 +1243,9 @@
 		showTimeframesList: function(e){
 			$('.b_duration_block .b_list').toggle();
 		},
+		showKindsList: function(e){
+			$('.b_kind_block .b_list').toggle();
+		},
 		toggleCandle: function (e) {
 			var $target = $(e.target),
 				$console = $target.parents(console_block),
@@ -1260,6 +1264,7 @@
 				item.showAllTexts();
 			}
 			setTimeout(chart.drawConsole(item), 0);
+			console.log(5);
 		},
 		hideAllTopElem: function () {
 			$(".tools .bin_console_prechoose_bar__value").hide();
@@ -1340,23 +1345,23 @@
 
 		setTradeMessage: function (header, before) {
 
-			$("#bin_options_types_block_lefter").addClass("hidden_tab");
-			$("#bin_instruments_types_block").addClass("hidden_tab");
+			$("#bin_options_types_block_lefter").addClass("hidden");
+			$("#bin_instruments_types_block").addClass("hidden");
 
 
 			//$(".console-tab").each(function () {
-			//    if (!$(this).hasClass("hidden_tab"))
+			//    if (!$(this).hasClass("hidden"))
 			//        $(this).slideUp(10, function () {
-			//            $(this).addClass("hidden_tab").slideDown(0);
+			//            $(this).addClass("hidden").slideDown(0);
 			//        });
 			//});
 			$(".console-tab").each(function () {
-				if (!$(this).hasClass("hidden_tab"))
-					$(this).addClass("hidden_tab");
+				if (!$(this).hasClass("hidden"))
+					$(this).addClass("hidden");
 			});
 
-			if (view.trades_closed.hasClass("hidden_tab")) {
-				view.trades_closed.removeClass("hidden_tab")
+			if (view.trades_closed.hasClass("hidden")) {
+				view.trades_closed.removeClass("hidden")
 			}
 
 			view.trades_closed_header.html(header);
@@ -1368,24 +1373,24 @@
 		},
 		setTradeMessage2: function (html) {
 
-			$("#bin_options_types_block_lefter").addClass("hidden_tab");
-			$("#bin_instruments_types_block").addClass("hidden_tab");
+			$("#bin_options_types_block_lefter").addClass("hidden");
+			$("#bin_instruments_types_block").addClass("hidden");
 
 			if (tradeStatus == "opened") {
 
 				//$(".console-tab").each(function () {
-				//    if (!$(this).hasClass("hidden_tab"))
+				//    if (!$(this).hasClass("hidden"))
 				//        $(this).slideUp(10, function () {
-				//            $(this).addClass("hidden_tab").slideDown(0);
+				//            $(this).addClass("hidden").slideDown(0);
 				//        });
 				//});
 				$(".console-tab").each(function () {
-					if (!$(this).hasClass("hidden_tab"))
-						$(this).addClass("hidden_tab");
+					if (!$(this).hasClass("hidden"))
+						$(this).addClass("hidden");
 				});
 
-				if (view.trades_closed.hasClass("hidden_tab")) {
-					view.trades_closed.removeClass("hidden_tab")
+				if (view.trades_closed.hasClass("hidden")) {
+					view.trades_closed.removeClass("hidden")
 				}
 
 				$("#bin_trade_message").show().find(".text").html(html);
@@ -1405,14 +1410,14 @@
 		},
 		setTradeMessage3: function (html) {
 
-			//$("#bin_options_types_block_lefter").addClass("hidden_tab");
-			//$("#bin_instruments_types_block").addClass("hidden_tab");
+			//$("#bin_options_types_block_lefter").addClass("hidden");
+			//$("#bin_instruments_types_block").addClass("hidden");
 
 			if (tradeStatus == "opened") {
 
 
-				if (trades_closed.hasClass("hidden_tab")) {
-					trades_closed.removeClass("hidden_tab")
+				if (trades_closed.hasClass("hidden")) {
+					trades_closed.removeClass("hidden")
 				}
 
 				try {
@@ -1431,23 +1436,23 @@
 		},
 		hideTradeMessage: function () {
 
-			$("#bin_options_types_block_lefter").removeClass("hidden_tab");
-			$("#bin_instruments_types_block").removeClass("hidden_tab");
+			$("#bin_options_types_block_lefter").removeClass("hidden");
+			$("#bin_instruments_types_block").removeClass("hidden");
 
 			var all_closed = true;
 			$(".console-tab").each(function () {
-				if (!$(this).hasClass("hidden_tab")) {
+				if (!$(this).hasClass("hidden")) {
 					all_closed = false;
 				}
 			});
 
-			if (!trades_closed.hasClass("hidden_tab")) {
+			if (!trades_closed.hasClass("hidden")) {
 
-				trades_closed.addClass("hidden_tab");
+				trades_closed.addClass("hidden");
 			}
 
 			if (all_closed) {
-				$(".console-tab").eq(0).removeClass("hidden_tab");
+				$(".console-tab").eq(0).removeClass("hidden");
 			}
 
 			subscribed_timeframes = [];
@@ -1570,7 +1575,7 @@
 		setTimescale: function (e) {
 			var $target = $(e.target),
 				target_tool_type = $target.attr("data-type"),
-				$console = $("#widgets-" + view.kind + " .bin_console"),
+				$console = $("#widgets-classic" + view.kind + " .bin_console"),
 				id = $console.attr("data-id"),
 				item = this.consoles.get(id);
 		},
@@ -2089,8 +2094,8 @@
 			console.log('setToolType');
 			var target_tool_type = tool_type,
 				item = this.consoles.get(console_id),
-				//timeframe = item.get("timeframe"),
-				//settings = settings_wss[item.get("kind")],
+				timeframe = item.get("timeframe"),
+				settings = settings_wss[item.get("kind")],
 				newhtml = "",
 				$console = $(item.el),
 				all_tools = false;
@@ -2190,9 +2195,10 @@
 			}
 		},
 		setKind: function (e) {
-			$(".console-tab").addClass("hidden_tab");
+			$(".console-tab").addClass("hidden");
 
 			var kind = $(e.target).attr("data-kind");
+
 			$('.b_options_types_item').removeClass("active");
 			$(e.target).addClass("active");
 			$(".drop_t").removeClass("active");
@@ -2249,6 +2255,7 @@
 
 
 			this.kind = kind;
+
 			var tool_type, found;
 			$(".bin_instrument_type").each(function (key, elem) {
 				tool_type = $(elem).attr("data-type");
@@ -2298,16 +2305,15 @@
 
 			view.redrawCurrentConsole();
 
-
 			view.checkConsolesCloseButton();
 			l100n.localize_all_pages(language);
-
 
 		},
 		redrawCurrentConsole: function () {
 			_(view.consoles.models).each(function (item) {
 				if (item.get("kind") == view.kind) {
 					setTimeout(chart.drawConsole(item, true), 0);
+					console.log(6);
 				}
 			});
 		},
@@ -2339,21 +2345,21 @@
 		showOptionsByKind: function (kind) {
 			var kind = kind || this.kind;
 			//([kind,"#widgets-" + kind, $("#widgets-" + kind)[0]]);
-			$("#widgets-" + kind).removeClass("hidden_tab").slideDown(0);
+			$("#widgets-" + kind).removeClass("hidden").slideDown(0);
 
 
 			$(".bin_console_main_block__graph_block .graph-mark").hide();
 
-			/*_(this.consoles.models).each(function (item) {
-			 chart.drawConsole(item);
-			 }, this);*/
+			// /*_(this.consoles.models).each(function (item) {
+			//  chart.drawConsole(item);
+			//  }, this);*/
 
 
 //        $(".open_options_bar[data-kind-id={kind}]"
-//                .replace("{kind}", this.option_kinds.getIdByName(kind))).removeClass("hidden_tab");
+//                .replace("{kind}", this.option_kinds.getIdByName(kind))).removeClass("hidden");
 //
 //        $(".open_options_bar:not([data-kind-id={kind}])"
-//                .replace("{kind}", this.option_kinds.getIdByName(kind))).addClass("hidden_tab");
+//                .replace("{kind}", this.option_kinds.getIdByName(kind))).addClass("hidden");
 		},
 		modalClose: function (e) {
 			try {
@@ -2491,7 +2497,6 @@
 
 
 		appendConsole: function (item) {
-
 			if (item.kind == undefined) {
 				item.kind = "classic";
 			}
@@ -2907,6 +2912,7 @@
 					item.cource_val2.text((params.data[params.data.length - 1][1]).toFixed(item.get("tool").decimal_count));
 					item.set("data", params.data);
 					setTimeout(chart.drawConsole(item), 0);
+					console.log(7);
 				}
 			}, this);
 
@@ -3207,6 +3213,7 @@
 			timeframes = null;
 		},
 		saveConsoles: function () {
+
 			var consoles = [];
 			_(this.consoles.models).each(function (item) {
 				consoles.push({
@@ -3225,7 +3232,7 @@
 				localStorage.consoles = Js(consoles);
 			}
 
-			var kind = "classic";
+			//var kind = "classic";
 
 			if (!isLocalstorageAvailable()) {
 
@@ -3393,7 +3400,7 @@
 
 			//(user_data.kind);
 			try {
-				$(view.el).find(".b_options_types_item[data-kind={1}]".replace("{1}", user_data.kind)).trigger("click");
+				//$(view.el).find(".b_options_types_item[data-kind={1}]".replace("{1}", user_data.kind)).trigger("click");
 			} catch (e) {
 				log(e);
 			}
@@ -3738,7 +3745,7 @@
 				case "opened":
 					$("#history-pages-container").removeClass("active");
 					$("#option-pages-container").addClass("active");
-					$(".options_block_hider").removeClass("hidden_tab");
+					$(".options_block_hider").removeClass("hidden");
 					break;
 
 				case "journal":
@@ -3750,15 +3757,15 @@
 					try {
 						$("#history-pages-container").addClass("active");
 						$("#option-pages-container").removeClass("active");
-						$("#closed-pages-container").removeClass("hidden_tab");
+						$("#closed-pages-container").removeClass("hidden");
 					} catch (e) {
 					}
 					option.getClosedBinaryOptionsWss();
-					$(".journal_options_block_hider").removeClass("hidden_tab");
+					$(".journal_options_block_hider").removeClass("hidden");
 					break;
 
 				case "closed":
-					$(".closed_options_block_hider").removeClass("hidden_tab");
+					$(".closed_options_block_hider").removeClass("hidden");
 					break;
 
 
@@ -3774,7 +3781,7 @@
 					}
 
 					option.getHistoryBinaryOptionsWss();
-					$(".history_block_hider").removeClass("hidden_tab");
+					$(".history_block_hider").removeClass("hidden");
 					break;
 			}
 			$target.parent().addClass('active');
@@ -4436,9 +4443,8 @@
 
 		getAdditionalLines: function () {
 
-
 			var data = this.get("data");
-			if (data.length == 0) {
+			if (!data) {
 				return;
 			}
 			var last_point = data[data.length - 1][1];
@@ -5389,7 +5395,7 @@
 					}
 
 					setTimeout(chart.drawConsole(this, true), 0);
-
+					console.log(8);
 					if (this.get("direction") == null && partner_params.directionsSetToInactivAfterBuy == true) {
 						if (okb)
 							this.el.find(".binary_actions__btn.active").removeClass("active");
@@ -5583,6 +5589,7 @@
 							})
 						}, 500);
 						setTimeout(chart.drawConsole(this), 0);
+						console.log(9);
 					}
 
 					this.setTimeframes();
@@ -5594,7 +5601,6 @@
 
 					break;
 				case "oneClickBuy":
-					console.log(value);
 					this.set("oneClickBuy", value);
 					getOnclickCondition(this, false);
 					break;
@@ -5671,6 +5677,7 @@
 					var that = this;
 					setTimeout(function () {
 						chart.drawConsole(that, true);
+						console.log(10);
 					}, 500);
 					//setTimeout(function () {
 					//    chart.drawConsole(that, true);
@@ -5692,7 +5699,7 @@
 					if (value != null) {
 
 						var current_price = parseFloat(value).toFixed(this.get("tool").decimal_count);
-						this.el.find('#instrument-options-price').html(current_price);
+						this.el.find('.instrument-options-price').html(current_price);
 						if ($('.requote_alert').length) {
 							$('.requote_alert').find('.large').html(current_price);
 						}
@@ -8133,7 +8140,6 @@
 				status_recieved = true;
 				break;
 			case "hook_quotes":
-				// console.log(Js(json_data.quotes));
 				delete json_data.error;
 				delete json_data.result;
 				var time1 = json_data.time;
@@ -8707,6 +8713,7 @@
 		var i = view.consoles.models.length - 1;
 		while (i--) {
 			setTimeout(chart.drawConsole(view.consoles.models[i]), 0);
+			console.log(11);
 		}
 		i = null;
 
@@ -10067,7 +10074,7 @@
 		common.checkTime(utcTime);
 
 		if (partner_params.use_clock) {
-			if (!view.trades_closed.hasClass("hidden_tab")) {
+			if (!view.trades_closed.hasClass("hidden")) {
 				var date = new Date(parseInt(uts));
 
 				var hours = date.getUTCHours();
@@ -10468,7 +10475,8 @@
 								if (partner_params.drawGraphProcess == true) {
 									graph.set("needRedraw", true);
 								} else {
-									//setTimeout(chart.drawConsole(graph), 0);
+									setTimeout(chart.drawConsole(graph), 0);
+									console.log(12);
 								}
 								graph.set("last_draw_time", utcTime);
 							}
@@ -10588,7 +10596,7 @@
 					for (var i = 0; i < length; i++) {
 						var graph = view.opened_options.models[i];
 						if (graph.get("data").length > 0 && graph.get("closed") != true) {
-							//chart.drawOpened(graph);
+							chart.drawOpened(graph);
 						}
 						graph = null;
 					}
@@ -10602,7 +10610,9 @@
 					for (var i = 0; i < length; i++) {
 						var graph = view.consoles.models[i];
 						if (graph.get("data") != null && graph.get("data").length > 0) {
+							console.log(1);
 							chart.drawConsole(graph);
+							console.log(13);
 						}
 						graph = null;
 					}
@@ -10785,7 +10795,6 @@
 			force = force || false,
 			data = graph.get("data");
 
-
 		if (data != null && data.length > 10) {
 			var currentLast = data[data.length - 1], iterator = 0, lastData = data.pop();
 
@@ -10796,7 +10805,6 @@
 			data.push(lastData);
 
 		}
-
 
 		if (graph.get("kind") == view.kind
 			&& ( data == null
@@ -10888,7 +10896,7 @@
 			min_max_offset = 0,
 			color = graph_style.globalToolColor,
 			graph_data = graph.get("data");
-
+		console.log(graph.get("kind"));
 		graph.prepare();
 		data = graph.getFormattedData();
 
@@ -11451,20 +11459,21 @@
 	};
 
 	chart.drawConsoleWithCandle = function (graph) {
+		console.log('drawConsoleWithCandle');
 
 		var plot = "#plot-" + graph.get("id"),
 			data = [],
 			data2 = [],
 			color = 'rgba(0, 150, 0, 0.5)';
 
-
-		data = graph.get("data");
+		//graph.prepare();
+		data = graph.getFormattedData();
 
 		$(graph.el).find(".graph-mark").hide();
 
 		graph.getAdditionalLines();
 
-		if (data.length > 0) {
+		if (data.length > 0 && data[0] != null) {
 			var tickDecimals = parseInt(graph.get("tool").decimal_count);
 
 			var minVal = data[0][1];
@@ -11486,10 +11495,10 @@
 			var plotDataChoosedVal = data[0][1];
 
 			var candle_data = graph.candlise_data(data);
-			//var data = google.visualization.arrayToDataTable(candle_data, true);
+			//var data = google.charts.arrayToDataTable(candle_data, true);
 
-			if (typeof(google.visualization.DataTable) !== "undefined") {
-				var dataTable = new google.visualization.DataTable();
+			if (typeof(google.charts.DataTable) !== "undefined") {
+				var dataTable = new google.charts.DataTable();
 
 				dataTable.addColumn('datetime', 'Time');
 				//dataTable.addColumn('string', 'string');
@@ -11513,7 +11522,7 @@
 				dataTable.addRows(candle_data);
 
 				if (graph.get("chart") == null) {
-					graph.set("chart", new google.visualization.CandlestickChart(document.getElementById(plot.substring(1))));
+					graph.set("chart", new google.charts.CandlestickChart(document.getElementById(plot.substring(1))));
 				}
 
 				if (!real_margin_lines) {
@@ -11607,8 +11616,6 @@
 					}
 				});
 			}
-
-
 		}
 
 		//wipe(data);
@@ -13231,12 +13238,10 @@
 	};
 
 	widgets.updateToolsMarketRates = function (data) {
-
 		var rate, el = $(".market_rates_widget__table"), close, line;
-
 		for (var tool in data) {
 			var direction;
-			var el = $("#widgets-classic .instrument-list .b_list > div[data-value='" + get_tool(tool).tool_id + "']");
+			var el = $("#widgets-" + view.kind + " .instrument-list .b_list > div[data-value='" + get_tool(tool).tool_id + "']");
 			var rate = data[tool][0][1].toFixed(get_tool(tool).decimal_count);
 			// line = el.find("." + tool.replace("$", "") + "-line");
 			if(parseFloat(el.find('.rate').html()) > parseFloat(rate)){
@@ -14449,6 +14454,7 @@
 			var id = $(this).attr('data-id');
 			var item = view.consoles.get(id);
 			setTimeout(chart.drawConsole(item, true), 0);
+			console.log(2);
 		});
 	});
 

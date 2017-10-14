@@ -4133,7 +4133,8 @@ tbody.collapse.in {
 }
 
 .dropdown {
-    position: relative
+    position: relative;
+    margin: 5px 0;
 }
 
 .dropdown-toggle:focus {
@@ -7154,7 +7155,7 @@ button.close {
 
 .hidden {
     display: none !important;
-    visibility: hidden !important
+    visibility: hidden !important;
 }
 
 .affix {
@@ -12545,36 +12546,36 @@ button.toast-close-button {
     font-weight: 100
 }
 
-#instrument-rates-view .disabled-instrument {
+.instrument-rates-view .disabled-instrument {
     color: #778899
 }
 
-#instrument-rates-view .instrument-list {
+.instrument-rates-view .instrument-list {
     margin: 0 !important;
     padding: 0 !important;
     width: 100% !important
 }
 
-#instrument-rates-view .instrument-list .instrument {
+.instrument-rates-view .instrument-list .instrument {
     cursor: pointer;
     padding-left: 10px;
     font-size: 12pt;
     padding: 5px
 }
 
-#instrument-rates-view .instrument-list .instrument.active {
+.instrument-rates-view .instrument-list .instrument.active {
     background-color: rgba(27, 29, 32, .7)
 }
 
-#instrument-rates-view .instrument-list .instrument{
+.instrument-rates-view .instrument-list .instrument{
     color: #fff
 }
 
-#instrument-rates-view .instrument-list .instrument:hover {
+.instrument-rates-view .instrument-list .instrument:hover {
     background-color: rgba(27, 29, 32, .3)
 }
 
-#instrument-rates-view #instrument-rates-search-box {
+.instrument-rates-view #instrument-rates-search-box {
     width: 90%;
     height: 30px;
     color: #fff;
@@ -12585,108 +12586,108 @@ button.toast-close-button {
     outline: 0
 }
 
-#instrument-rates-view .search-box {
+.instrument-rates-view .search-box {
     background-color: rgba(255, 255, 255, .3)
 }
 
-#instrument-rates-view .search-icon {
+.instrument-rates-view .search-icon {
     margin-left: -30px;
     font-size: 12pt;
     color: #fff
 }
 
-#instrument-rates-view #instrument-search {
+.instrument-rates-view #instrument-search {
     text-align: center;
     padding: 10px
 }
 
-#instrument-rates-view #rates-list-container {
+.instrument-rates-view #rates-list-container {
     transition: all .5s ease;
     overflow: hidden;
     height: 373px
 }
 
-#instrument-rates-view .rates-animation {
+.instrument-rates-view .rates-animation {
     transition: all .3s linear;
     height: 35px;
     overflow: hidden
 }
 
-#instrument-rates-view .rates-animation.ng-enter, #instrument-rates-view .rates-animation.ng-leave.ng-leave-active {
+.instrument-rates-view .rates-animation.ng-enter, .instrument-rates-view .rates-animation.ng-leave.ng-leave-active {
     opacity: 0;
     -webkit-transform: scaleX(1) translateX(-100px);
     transform: scaleX(1) translateX(-100px)
 }
 
-#instrument-rates-view .rates-animation.ng-enter.ng-enter-active, #instrument-rates-view .rates-animation.ng-leave {
+.instrument-rates-view .rates-animation.ng-enter.ng-enter-active, .instrument-rates-view .rates-animation.ng-leave {
     opacity: 1;
     -webkit-transform: scaleX(1) translateX(0);
     transform: scaleX(1) translateX(0)
 }
 
-#instrument-rates-view .instrument-list .instrument-name {
+.instrument-rates-view .instrument-list .instrument-name {
     overflow: hidden;
     padding-left: 20px;
     text-overflow: ellipsis;
     white-space: nowrap
 }
 
-#instrument-rates-view .instrument-list .instrument-price {
+.instrument-rates-view .instrument-list .instrument-price {
     padding-left: 10px
 }
 
-#instrument-rates-view .instrument-list .instrument-direction {
+.instrument-rates-view .instrument-list .instrument-direction {
     overflow: hidden
 }
 
-#instrument-rates-view .instrument-name {
+.instrument-rates-view .instrument-name {
     overflow: hidden;
     height: 40px;
 }
 
-#instrument-rates-view #ratesPanel {
+.instrument-rates-view #ratesPanel {
     height: 416px
 }
 
-#instrument-rates-view > section-header {
+.instrument-rates-view > section-header {
     padding: 11px
 }
 
-#instrument-rates-view .name {
+.instrument-rates-view .name {
     padding-left: 20px;
     white-space: nowrap;
     text-overflow: ellipsis
 }
 
-#instrument-rates-view .display-group .name {
+.instrument-rates-view .display-group .name {
     overflow: hidden
 }
 
-#instrument-rates-view .display-group .name > div {
+.instrument-rates-view .display-group .name > div {
     text-align: start;
     transition: .3s
 }
 
-#instrument-rates-view .display-group .left-btn {
+.instrument-rates-view .display-group .left-btn {
     font-size: 16pt;
     margin-left: 8px;
     margin-top: 2px
 }
 
-#instrument-rates-view .display-group .left-btn > i {
+.instrument-rates-view .display-group .left-btn > i {
     vertical-align: 50%;
     font-size: 14pt;
     font-weight: lighter;
     padding-right: 2px
 }
 
-#instrument-rates-view .display-group .right-btn {
+.instrument-rates-view .display-group .right-btn {
     font-size: 16pt;
     margin-left: 8px;
     margin-top: 2px
 }
 
-#instrument-rates-view .display-group .right-btn i {
+.instrument-rates-view .display-group .right-btn i {
     vertical-align: 50%;
     font-size: 14pt;
     font-weight: lighter;
@@ -13477,7 +13478,7 @@ button.toast-close-button {
 }
 
 @media (min-width: 1300px) and (max-width: 1539px) {
-    #instrument-rates-view .instrument-list .instrument {
+    .instrument-rates-view .instrument-list .instrument {
         padding-left: 3px !important
     }
 
@@ -13489,7 +13490,7 @@ button.toast-close-button {
         margin-bottom: -2px !important
     }
 
-    #instrument-rates-view .instrument-list .instrument-name {
+    .instrument-rates-view .instrument-list .instrument-name {
         padding-left: 3px !important
     }
 
