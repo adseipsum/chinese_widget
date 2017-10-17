@@ -872,7 +872,6 @@
 				item.changeParam("payouts");
 
 				setTimeout(chart.drawConsole(item, true), 0);
-				console.log(3);
 			}
 		},
 		hidePayoutsThisDirection: function (e) {
@@ -888,7 +887,6 @@
 				;
 
 				setTimeout(chart.drawConsole(item, true), 0);
-				console.log(4);
 				item.changeParam("payouts");
 			}
 		},
@@ -1242,9 +1240,11 @@
 		},
 		showTimeframesList: function(e){
 			$('.b_duration_block .b_list').toggle();
+			$('.b_kind_block .b_list').hide();
 		},
 		showKindsList: function(e){
 			$('.b_kind_block .b_list').toggle();
+			$('.b_duration_block .b_list').hide();
 		},
 		toggleCandle: function (e) {
 			var $target = $(e.target),
@@ -1264,7 +1264,6 @@
 				item.showAllTexts();
 			}
 			setTimeout(chart.drawConsole(item), 0);
-			console.log(5);
 		},
 		hideAllTopElem: function () {
 			$(".tools .bin_console_prechoose_bar__value").hide();
@@ -2278,6 +2277,7 @@
 			this.showOptionsByKind(kind);
 
 			_(view.consoles.models).each(function (item) {
+
 				if (partner_params.kindCleanDirection) {
 					item.changeParam("set-direction", null);
 					item.setFixedDirection();
@@ -2312,8 +2312,8 @@
 		redrawCurrentConsole: function () {
 			_(view.consoles.models).each(function (item) {
 				if (item.get("kind") == view.kind) {
+					console.log(view.kind);
 					setTimeout(chart.drawConsole(item, true), 0);
-					console.log(6);
 				}
 			});
 		},
@@ -2347,13 +2347,7 @@
 			//([kind,"#widgets-" + kind, $("#widgets-" + kind)[0]]);
 			$("#widgets-" + kind).removeClass("hidden").slideDown(0);
 
-
 			$(".bin_console_main_block__graph_block .graph-mark").hide();
-
-			// /*_(this.consoles.models).each(function (item) {
-			//  chart.drawConsole(item);
-			//  }, this);*/
-
 
 //        $(".open_options_bar[data-kind-id={kind}]"
 //                .replace("{kind}", this.option_kinds.getIdByName(kind))).removeClass("hidden");
@@ -2912,7 +2906,6 @@
 					item.cource_val2.text((params.data[params.data.length - 1][1]).toFixed(item.get("tool").decimal_count));
 					item.set("data", params.data);
 					setTimeout(chart.drawConsole(item), 0);
-					console.log(7);
 				}
 			}, this);
 
@@ -3232,7 +3225,7 @@
 				localStorage.consoles = Js(consoles);
 			}
 
-			//var kind = "classic";
+			var kind = "classic";
 
 			if (!isLocalstorageAvailable()) {
 
@@ -5395,7 +5388,6 @@
 					}
 
 					setTimeout(chart.drawConsole(this, true), 0);
-					console.log(8);
 					if (this.get("direction") == null && partner_params.directionsSetToInactivAfterBuy == true) {
 						if (okb)
 							this.el.find(".binary_actions__btn.active").removeClass("active");
@@ -5589,7 +5581,6 @@
 							})
 						}, 500);
 						setTimeout(chart.drawConsole(this), 0);
-						console.log(9);
 					}
 
 					this.setTimeframes();
@@ -5677,7 +5668,6 @@
 					var that = this;
 					setTimeout(function () {
 						chart.drawConsole(that, true);
-						console.log(10);
 					}, 500);
 					//setTimeout(function () {
 					//    chart.drawConsole(that, true);
@@ -8713,7 +8703,6 @@
 		var i = view.consoles.models.length - 1;
 		while (i--) {
 			setTimeout(chart.drawConsole(view.consoles.models[i]), 0);
-			console.log(11);
 		}
 		i = null;
 
@@ -10476,7 +10465,6 @@
 									graph.set("needRedraw", true);
 								} else {
 									setTimeout(chart.drawConsole(graph), 0);
-									console.log(12);
 								}
 								graph.set("last_draw_time", utcTime);
 							}
@@ -10610,9 +10598,7 @@
 					for (var i = 0; i < length; i++) {
 						var graph = view.consoles.models[i];
 						if (graph.get("data") != null && graph.get("data").length > 0) {
-							console.log(1);
 							chart.drawConsole(graph);
-							console.log(13);
 						}
 						graph = null;
 					}
@@ -10896,7 +10882,7 @@
 			min_max_offset = 0,
 			color = graph_style.globalToolColor,
 			graph_data = graph.get("data");
-		console.log(graph.get("kind"));
+
 		graph.prepare();
 		data = graph.getFormattedData();
 
@@ -14454,7 +14440,6 @@
 			var id = $(this).attr('data-id');
 			var item = view.consoles.get(id);
 			setTimeout(chart.drawConsole(item, true), 0);
-			console.log(2);
 		});
 	});
 

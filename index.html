@@ -46,7 +46,7 @@
                                     </div>
                                     <div class="col-sm-16 center-block" style="font-size: 20pt; font-weight:100;">
                                         $
-                                        <input id="trade-amount" type="text" class="b_invest_select deposit_invest" value="10" style="width: 42px; font-size: 20pt; font-weight:100;"/>
+                                        <input id="trade-amount" type="text" class="b_invest_select deposit_invest" value="10" style="width: 82px; font-size: 20pt; font-weight:100; text-align: center;"/>
                                     </div>
 
                                     <div class="col-sm-4 pull-left white-16-300 plus" style="padding-top: 8px; padding-right: 10px">
@@ -683,7 +683,7 @@
                                                 </div>
                                             </div>
                                             <div style="margin: auto">
-                                                <div style="margin: auto 10px; text-align: left">
+                                                <div style="margin: auto 10px; text-align: left;">
                                                     <div class="payout-label small-caption brand-main-color text-uppercase">
                                                         <span style="padding-right:20px">Payout</span>
                                                     </div>
@@ -761,6 +761,184 @@
     </div>
 </script>
 
+<script id="console-range_advanced" type="text/template">
+    <div class="console" id="console-{{id}}" data-id="{{id}}" class="range_advanced">
+        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4 ng-scope" id="rates-container">
+            <div class="col-sm-23 top-row instrument-rates-view">
+                <div class="row text-center" style="margin-top: 10px; margin-bottom: 15px">
+                </div>
+                <div class="row display-group trans-bg-darker" style="padding-top: 6px; padding-bottom: 2px">
+                    <div class="col-sm-5" style="text-align: left; padding-left: 15px">
+                        <i id="slide-tools-left" class="fa fa-chevron-left"
+                           style="cursor: pointer; color: rgb(255, 255, 255); font-size: 20pt; padding-top: 5px; font-weight: 100;"></i>
+                    </div>
+
+                    <div class="col-sm-14 white-18-300 text-center row col-sm-24 instrument-name b_instruments_filter_content">
+                    </div>
+
+                    <div class="col-sm-5 align-right" style="padding-right: 15px">
+                        <i  id="slide-tools-right" class="fa fa-chevron-right"
+                            style="cursor: pointer; color: rgb(255, 255, 255); font-size: 20pt; padding-top: 5px; font-weight: 100;"></i>
+                    </div>
+                </div>
+
+                <div class="row instrument-list trans-bg b_instrument_block" style="width: 259px; padding-right: 0px; outline: none; overflow: hidden;"
+                     tabindex="0">
+                    <div class="b_list">
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-1 ng-scope"></div>
+        </div>
+        <div class="col-sm-18 col-md-18 col-lg-20 col-xl-20 top-row" style="position: static;">
+            <div class="row trans-bg-medium section-header left-align" style="padding-bottom: 4px !important;">
+                <div class="col-sm-24">
+                    <div class="selected-instrument">
+                        <div class="label text-capitalize">Instrument</div>
+                        <span class="white-14-300 ng-binding" id="selected-instrument-name"></span>
+                        <span id="instrument-options-price" style="margin-left: 10px" class="selected-instrument-price white-14-300 inline-block"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row trans-bg options-container" id="options-instrument-container" style="">
+                <div class="options-container">
+                    <div class="col-sm-10 widgets-container">
+                        <div id="short-term-view" class="options-wrapper">
+                            <div class="option-title asset display-4" id="short-term-option-0" style="padding-left: 0px">
+                                <div class="trans-bg-medium white-9-300 text-uppercase">
+                                    <div class="row">
+                                        <div class="trans-bg-darker">
+                                            <div style="margin: auto 10px; padding:0 2px;">
+
+                                                <div class="text-lowercase dropdown b_kind_block chooseKind">
+                                                    <a id="asset-level-toggle-22" class="dropdown-toggle">
+                                            <span class="bezel-button-small branded-bezel-button-small" style="margin-top: 4px; height: 40px !important">
+                                                <span class="field noCloseDropdown b_block_value b_options_types_item" data-kind="range_advanced"></span>
+                                            </span>
+                                                    </a>
+                                                    <ul class="dropdown-menu asset-dropdown b_list" style="margin: 0px; min-width: 148px; width: 135.5px; padding-right: 10px; outline: none; overflow: hidden;" id="asset-level-dropdown-22" role="menu" tabindex="0">
+                                                        <li>
+                                                            <a class="option bin_options_type b_options_types_item" data-kind="classic" style="line-height: 20px !important"></a>
+                                                        </li>
+                                                        <li class="active">
+                                                            <a class="option bin_options_type b_options_types_item" data-kind="touch" style="line-height: 20px !important"></a>
+                                                        </li>
+                                                        <li>
+                                                            <a class="option bin_options_type b_options_types_item" data-kind="range_advanced" style="line-height: 20px !important"></a>
+                                                        </li>
+                                                    </ul>
+                                                    <div style="position: absolute; z-index: 25; margin: 0px; padding: 0px; display: none; left: 147px; top: 1px;">
+                                                        <div class="enscroll-track scrollbar-tracker-right scroller-undefined" style="position: relative;">
+                                                            <a href="" class="scrollbar-handler-right" style="position: absolute; z-index: 1;">
+                                                                <div class="top"></div>
+                                                                <div class="bottom"></div>
+                                                            </a></div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="text-lowercase dropdown b_duration_block">
+                                                    <a id="asset-level-toggle-0" class="dropdown-toggle">
+                                            <span class="bezel-button-small branded-bezel-button-small"
+                                                  style="margin-top: 4px; height: 40px !important">
+                                                <i class="fa fa-clock-o brand-main-color" style="font-size: 14pt"></i>
+                                                <span class="b_block_value"></span>
+                                            </span>
+                                                    </a>
+                                                    <ul class="dropdown-menu asset-dropdown b_list" style="margin: 0px; min-width: 148px; width: 135.5px; padding-right: 10px; outline: none; overflow: hidden;" id="asset-level-dropdown-0" role="menu" tabindex="0">
+                                                    </ul>
+                                                    <div style="position: absolute; z-index: 25; margin: 0px; padding: 0px; display: none; left: 147px; top: 1px;">
+                                                        <div class="enscroll-track scrollbar-tracker-right scroller-undefined" style="position: relative;">
+                                                            <a href="" class="scrollbar-handler-right" style="position: absolute; z-index: 1;">
+                                                                <div class="top"></div>
+                                                                <div class="bottom"></div>
+                                                            </a></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div style="border-right: 1px solid #414548; margin:auto; text-align: left; padding-right: 5%">
+                                                <div class="small-caption brand-main-color text-uppercase">expiry</div>
+                                                <div id="asset-expire-0" class="white-18-300 b_available_block" style="margin-top: -2px">
+                                                    <span class="b_block_value">00:00</span>
+                                                </div>
+                                            </div>
+                                            <div style="margin: auto">
+                                                <div style="margin: auto 10px; text-align: left;">
+                                                    <div class="payout-label small-caption brand-main-color text-uppercase">
+                                                        <span style="padding-right:20px">Payout</span>
+                                                    </div>
+                                                    <div class="payout" style="padding-top:2px">
+                                                        <div class="white-17-300 payout-amount currency win" style="font-size:1.1vw;display:inline-block">
+                                                        </div>
+                                                        <span id="payout-percentage-scheduled-0" class="payout-percent percent percent_win" style="padding-left: 2px;"></span>
+                                                        <span class="payout-percent" style="padding-left: 2px;">%</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="asset-ticker-container">
+                                                <div style="position: relative;overflow:hidden">
+                                                    <canvas id="ticker-0"
+                                                            style="height: 100px;"></canvas>
+                                                    <div class="entry-zone b_expires_block">
+                                                        <div id="level-time-left-0" class="time-left b_block_value">00:00</div>
+                                                        <span class="label entry-zone-label">entry zone</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="buttons-container buttons" style="max-width: 135px; padding-top: 0px;">
+                                    <span class="bezel-button branded-bezel-high-button binary_actions__btn bb_click call" id="scheduled-high-0" data-action="set-direction"
+                                          data-value="IN">IN</span>
+                                                <span class="bezel-button branded-bezel-low-button binary_actions__btn bb_click put" id="scheduled-low-0" data-action="set-direction"
+                                                      data-value="OUT">OUT</span>
+                                            </div>
+                                            <div class="bin_buy">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row trans-bg" id="options-graph-container" style="">
+                <div class="main_chart">
+
+                    <div class="chart">
+                        <div class="chartjs-tooltip"></div>
+
+                        <div class="graph-mark course"></div>
+                        <div class="graph-point"></div>
+
+                        <div class="bin_graph_range_line bin_graph_range_line_available allowed_line_txt">
+                            <span></span>
+                        </div>
+                        <div class="bin_graph_range_line bin_graph_range_line_expires end_line_txt"><span></span>
+                        </div>
+
+                        <div class="b_graph_block_overlay"></div>
+                        <div class="b_graph_block_overlay_not_avalable"></div>
+
+                        <!--<div class="crosshair-elements">
+                            <div style="display:none;" class="graph-mark line1 left"></div>
+                            <div style="display:none;" class="graph-mark line2 left"></div>
+                            <div style="display:none;" class="graph-mark line3 left"></div>
+                            <div style="display:none;" class="graph-mark line4 left"></div>
+
+                          <div class="hover_value" style="display:none;"></div>
+                            <div class="hover_date" style="display:none;"></div>
+                            <div class="hover_crosshair_hor" style="display:none;"></div>
+                            <div class="hover_crosshair_ver" style="display:none;"></div>
+                            <div class="hover_crosshair_center" style="display:none;"></div>
+                        </div>-->
+
+                        <div class="b_gradient"></div>
+                        <div id="plot-{{id}}" class="b_content"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
 
 <script id="console-classic" type="text/template">
     <div class="console" id="console-{{id}}" data-id="{{id}}">
@@ -863,7 +1041,7 @@
                                             </div>
                                         </div>
                                         <div style="margin: auto">
-                                            <div style="margin: auto 10px; text-align: left">
+                                            <div style="margin: auto 10px; text-align: left;">
                                                     <div class="payout-label small-caption brand-main-color text-uppercase">
                                                         <span style="padding-right:20px">Payout</span>
                                                     </div>
