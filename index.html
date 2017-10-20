@@ -12,6 +12,11 @@
     <!--<link rel="stylesheet" href="fonts/md/md.css">-->
     <!---->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+		// Load the Visualization API and the corechart package.
+		google.charts.load('current', {'packages':['corechart']});
+    </script>
 </head>
 
 <body style="background-image: none;" onmouseup="window.isMouseDown = false;">
@@ -30,6 +35,10 @@
             </button>
             <a class="navbar-brand" href="http://www.zevizo.cn" style="margin-left: 10px" target="_blank"></a>
         </div>
+            <div class="lang">
+                <div class="flag en set-lang" style="display: inline-block; cursor: pointer;" data-lang="en"></div>
+                <div class="flag zh-CN set-lang" style="display: inline-block; cursor: pointer;" data-lang="zh"></div>
+            </div>
         </div>
     </div>
         <div id="app-container" ng-if="!connecting">
@@ -39,7 +48,7 @@
                         <div id="trader-financial-control-panel">
                         <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4" style="margin-top: 32px; padding-right: 10px">
                             <div class="bezel-button-big branded-bezel-button-big" style="min-width: 100% !important; width: 100% !important; padding-top: 5px !important">
-                                <div class="row center-block" style="font-size: 10pt;line-height:13pt">trade amount</div>
+                                <div class="row center-block label_investment" style="font-size: 10pt;line-height:13pt">trade amount</div>
                                 <div class="row center-block" style="width: 100%">
                                     <div class="col-sm-4 pull-left white-16-300 minus" style="padding-top: 8px; padding-left: 10px">
                                         <i class="fa fa-minus"></i>
@@ -61,7 +70,7 @@
                                 <div class="flex">
                                     <div><i class="fa fa-money"></i></div>
                                     <div>
-                                        <div class="norm-caption-bold brand-main-color text-uppercase text-container">balance</div>
+                                        <div class="norm-caption-bold brand-main-color text-uppercase text-container user-available-label">balance</div>
                                         <div id="account-balance">
                                             <span class="user-available-value currency">0.0</span>
                                         </div>
@@ -70,31 +79,30 @@
                                 <div class="flex">
                                     <div><i class="fa fa-clock-o"></i></div>
                                     <div>
-                                        <div id="time-label" class="norm-caption-bold brand-main-color text-uppercase">Platform Time</div>
+                                        <div id="time-label" class="norm-caption-bold brand-main-color text-uppercase label_time">Platform Time</div>
                                         <div class="serverTime b_server_block"><span class="time"></span></div>
                                     </div>
                                 </div>
                                 <div class="flex">
                                     <div><i class="fa fa-user"></i></div>
                                     <div>
-                                        <div class="norm-caption-bold brand-main-color text-uppercase">logged in</div>
-                                        <div class="ng-binding">Hey, demo@gmail.com</div>
+                                        <div class="norm-caption-bold brand-main-color text-uppercase profile_label">logged in</div>
+                                        <div class="ng-binding"><span class="hey"></span>, demo@gmail.com</div>
                                     </div>
                                 </div>
                                 <div style="margin-right:2px">
-                <span ng-click="handleClick($event)">
-                    <span class="summary-button" uib-dropdown-toggle="">
-                        <i class="fa fa-gear" style="cursor:pointer"></i>
-                    </span>
-                    <!-- ngIf: showSummary -->
-                </span>
+                                    <span ng-click="handleClick($event)">
+                                        <span class="summary-button" uib-dropdown-toggle="">
+                                            <i class="fa fa-gear" style="cursor:pointer"></i>
+                                        </span>
+                                    </span>
                                 </div>
                             </div>
                             <div id="deposit-container" class="pull-right row" style="padding: 10px 0">
                                 <div class="pull-right deposit-withdrawl-container">
-                                    <a ng-if="brokerDepositUrl != '' &amp;&amp; !currentAccount.isDemo" ng-click="depositClicked()" class="ng-scope">
-                                    <span class="bezel-button branded-bezel-button action-button ng-scope" translate="financial.transaction-type.deposit">deposit</span>
-                                </a>
+                                    <a href="">
+                                        <span class="bezel-button branded-bezel-button action-button add_funds_label">deposit</span>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -114,16 +122,16 @@
                     <div id="bottom-container" class="">
                 </div>
             </div>
-            <div class="col-sm-24 ng-scope" ng-controller="BlotterController" id="positions-container">
+            <div class="col-sm-24" id="positions-container">
                 <div>
-                    <div id="blotter-content" class="col-md-24 top-row bg-dark ng-scope">
+                    <div id="blotter-content" class="col-md-24 top-row bg-dark">
                         <div justified="true">
                             <ul id="tabs-switches" class="nav nav-tabs nav-justified">
                                 <li class="text-capitalize uib-tab nav-item active">
                                     <a href="" data-tab="opened" class="nav-link opened-tab-set active">open positions (<span class="opened-options-count-value"></span>)</a>
                                 </li>
                                 <li class="text-capitalize uib-tab nav-item">
-                                    <a href="" data-tab="journal" class="nav-link opened-tab-set">history</a>
+                                    <a href="" data-tab="journal" class="nav-link opened-tab-set journal">history</a>
                                 </li>
                             </ul>
                             <div class="tab-content">
@@ -134,35 +142,35 @@
                                             <tr>
                                                 <th class="branded text-capitalize pointer">
                                                     <div class="th cursor-pointer grid-column-instrument">
-                                                        <span class="text-capitalize">Type</span>
+                                                        <span class="text-capitalize label_kind_operation">Type</span>
                                                         <span class="width-1-em inline-block">
                                             </span>
                                                     </div>
                                                 </th>
                                                 <th class="branded text-capitalize pointer">
                                                     <div class="th cursor-pointer grid-column-instrument">
-                                                        <span class="text-capitalize">Dir</span>
+                                                        <span class="text-capitalize label_dir">Dir</span>
                                                         <span class="width-1-em inline-block">
                                             </span>
                                                     </div>
                                                 </th>
                                                 <th class="branded text-capitalize pointer">
                                                     <div class="th cursor-pointer grid-column-instrument">
-                                                        <span class="text-capitalize">Asset</span>
+                                                        <span class="text-capitalize label_tool">Asset</span>
                                                         <span class="width-1-em inline-block">
                                             </span>
                                                     </div>
                                                 </th>
                                                 <th class="branded text-capitalize pointer">
                                                     <div class="th cursor-pointer grid-column-instrument">
-                                                        <span class="text-capitalize">Timeframe</span>
+                                                        <span class="text-capitalize label_duration">Timeframe</span>
                                                         <span class="width-1-em inline-block">
                                             </span>
                                                     </div>
                                                 </th>
                                                 <th class="branded text-capitalize pointer">
                                                     <div class="th cursor-pointer grid-column-instrument">
-                                                        <span class="text-capitalize">Expires</span>
+                                                        <span class="text-capitalize label_expires">Expires</span>
                                                         <span class="width-1-em inline-block">
                                             </span>
                                                     </div>
@@ -176,21 +184,21 @@
                                                 </th>
                                                 <th class="branded text-capitalize pointer">
                                                     <div class="th cursor-pointer grid-column-instrument">
-                                                        <span class="text-capitalize">Forecast</span>
+                                                        <span class="text-capitalize label_forecast">Forecast</span>
                                                         <span class="width-1-em inline-block">
                                             </span>
                                                     </div>
                                                 </th>
                                                 <th class="branded text-capitalize pointer">
                                                     <div class="th cursor-pointer grid-column-instrument">
-                                                        <span class="text-capitalize">Investment</span>
+                                                        <span class="text-capitalize label_operation_sum">Investment</span>
                                                         <span class="width-1-em inline-block">
                                             </span>
                                                     </div>
                                                 </th>
                                                 <th class="branded text-capitalize pointer">
                                                     <div class="th cursor-pointer grid-column-instrument">
-                                                        <span class="text-capitalize">Payout</span>
+                                                        <span class="text-capitalize payout-label">Payout</span>
                                                         <span class="width-1-em inline-block">
                                             </span>
                                                     </div>
@@ -228,28 +236,28 @@
                                                 </th>
                                                 <th class="branded text-capitalize pointer">
                                                     <div class="th cursor-pointer grid-column-instrument">
-                                                        <span class="text-capitalize">Dir</span>
+                                                        <span class="text-capitalize label_dir">Dir</span>
                                                         <span class="width-1-em inline-block">
                                             </span>
                                                     </div>
                                                 </th>
                                                 <th class="branded text-capitalize pointer">
                                                     <div class="th cursor-pointer grid-column-instrument">
-                                                        <span class="text-capitalize">Asset</span>
+                                                        <span class="text-capitalize label_tool">Asset</span>
                                                         <span class="width-1-em inline-block">
                                             </span>
                                                     </div>
                                                 </th>
                                                 <th class="branded text-capitalize pointer">
                                                     <div class="th cursor-pointer grid-column-instrument">
-                                                        <span class="text-capitalize">Timeframe</span>
+                                                        <span class="text-capitalize label_duration">Timeframe</span>
                                                         <span class="width-1-em inline-block">
                                             </span>
                                                     </div>
                                                 </th>
                                                 <th class="branded text-capitalize pointer">
                                                     <div class="th cursor-pointer grid-column-instrument">
-                                                        <span class="text-capitalize">Expires</span>
+                                                        <span class="text-capitalize label_expires">Expires</span>
                                                         <span class="width-1-em inline-block">
                                             </span>
                                                     </div>
@@ -277,7 +285,7 @@
                                                 </th>
                                                 <th class="branded text-capitalize pointer">
                                                     <div class="th cursor-pointer grid-column-instrument">
-                                                        <span class="text-capitalize">Payout</span>
+                                                        <span class="text-capitalize payout-label">Payout</span>
                                                         <span class="width-1-em inline-block">
                                             </span>
                                                     </div>
@@ -615,7 +623,7 @@
             <div class="row trans-bg-medium section-header left-align" style="padding-bottom: 4px !important;">
                 <div class="col-sm-24">
                     <div class="selected-instrument">
-                        <div class="label text-capitalize">Instrument</div>
+                        <div class="label text-capitalize label_asset">Instrument</div>
                         <span class="white-14-300 ng-binding" id="selected-instrument-name"></span>
                         <span id="instrument-options-price" style="margin-left: 10px" class="selected-instrument-price white-14-300 inline-block"></span>
                     </div>
@@ -677,7 +685,7 @@
                                                 </div>
                                             </div>
                                             <div style="border-right: 1px solid #414548; margin:auto; text-align: left; padding-right: 5%">
-                                                <div class="small-caption brand-main-color text-uppercase">expiry</div>
+                                                <div class="small-caption brand-main-color text-uppercase label_expires">expiry</div>
                                                 <div id="asset-expire-0" class="white-18-300 b_available_block" style="margin-top: -2px">
                                                     <span class="b_block_value">00:00</span>
                                                 </div>
@@ -718,6 +726,16 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div class="option-type-toggle">
+                        <span class="small-white-text">classic</span>
+                        <div class="inline-block no-padding">
+                            <label id="short-long-toggle" class="switch branded-switch no-margin no-padding">
+                                <input type="checkbox" class="">
+                                <i class="inactive"></i>
+                            </label>
+                        </div>
+                        <span class="small-white-text">candle</span>
                     </div>
                 </div>
             </div>
@@ -794,7 +812,7 @@
             <div class="row trans-bg-medium section-header left-align" style="padding-bottom: 4px !important;">
                 <div class="col-sm-24">
                     <div class="selected-instrument">
-                        <div class="label text-capitalize">Instrument</div>
+                        <div class="label text-capitalize label_asset">Instrument</div>
                         <span class="white-14-300 ng-binding" id="selected-instrument-name"></span>
                         <span id="instrument-options-price" style="margin-left: 10px" class="selected-instrument-price white-14-300 inline-block"></span>
                     </div>
@@ -856,7 +874,7 @@
                                                 </div>
                                             </div>
                                             <div style="border-right: 1px solid #414548; margin:auto; text-align: left; padding-right: 5%">
-                                                <div class="small-caption brand-main-color text-uppercase">expiry</div>
+                                                <div class="small-caption brand-main-color text-uppercase label_expires">expiry</div>
                                                 <div id="asset-expire-0" class="white-18-300 b_available_block" style="margin-top: -2px">
                                                     <span class="b_block_value">00:00</span>
                                                 </div>
@@ -897,6 +915,16 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div class="option-type-toggle">
+                        <span class="small-white-text">classic</span>
+                        <div class="inline-block no-padding">
+                            <label id="short-long-toggle" class="switch branded-switch no-margin no-padding">
+                                <input type="checkbox" class="">
+                                <i class="inactive"></i>
+                            </label>
+                        </div>
+                        <span class="small-white-text">candle</span>
                     </div>
                 </div>
             </div>
@@ -973,7 +1001,7 @@
             <div class="row trans-bg-medium section-header left-align" style="padding-bottom: 4px !important;">
                 <div class="col-sm-24">
                     <div class="selected-instrument">
-                        <div class="label text-capitalize">Instrument</div>
+                        <div class="label text-capitalize label_asset">Instrument</div>
                         <span class="white-14-300 selected-instrument-name"></span>
                         <span style="margin-left: 10px" class="instrument-options-price selected-instrument-price white-14-300 inline-block"></span>
                     </div>
@@ -1035,7 +1063,7 @@
                                             </div>
                                         </div>
                                         <div style="border-right: 1px solid #414548; margin:auto; text-align: left; padding-right: 5%">
-                                            <div class="small-caption brand-main-color text-uppercase">expiry</div>
+                                            <div class="small-caption brand-main-color text-uppercase label_expires">expires</div>
                                             <div id="asset-expire-0" class="white-18-300 b_available_block" style="margin-top: -2px">
                                                 <span class="b_block_value">00:00</span>
                                             </div>
@@ -1065,9 +1093,9 @@
                                         </div>
                                         <div class="buttons-container buttons" style="max-width: 135px; padding-top: 0px;">
                                             <span class="bezel-button branded-bezel-high-button binary_actions__btn bb_click call" id="scheduled-high-0" data-action="set-direction"
-                                                  data-value="CALL">High</span>
+                                                  data-value="CALL">Call</span>
                                             <span class="bezel-button branded-bezel-low-button binary_actions__btn bb_click put" id="scheduled-low-0" data-action="set-direction"
-                                                  data-value="PUT">Low</span>
+                                                  data-value="PUT">Put</span>
                                         </div>
                                         <div class="bin_buy">
                                         </div>
@@ -1076,6 +1104,16 @@
                             </div>
                         </div>
                         </div>
+                    </div>
+                    <div class="option-type-toggle">
+                        <span class="small-white-text">classic</span>
+                        <div class="inline-block no-padding">
+                            <label id="short-long-toggle" class="switch branded-switch no-margin no-padding">
+                                <input type="checkbox" class="">
+                                <i class="inactive"></i>
+                            </label>
+                        </div>
+                        <span class="small-white-text">candle</span>
                     </div>
             </div>
         </div>
@@ -1346,7 +1384,6 @@
         </div>
     </script>
 
-        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 </body>
 </html>
 

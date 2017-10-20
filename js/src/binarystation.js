@@ -206,7 +206,7 @@
 		requote_style: "custom_modal",
 		use_clock: false,
 		tool_types_template: "without_span",
-		use_candle: false,
+		use_candle: true,
 		default_draw_type: "classic",
 		use_starred: false,
 		consoleXAxisSize: 9,
@@ -569,7 +569,7 @@
 			'click .accept_autochartist': 'acceptAutochartist',
 			'click .button_close_requote_modal_p4': 'closeRequoteModal',
 			'click .closeReqoute': 'closeRequotePopup',
-			'click .bo_console__btn': 'toggleCandle',
+			//'click .bo_console__btn': 'toggleCandle',
 			'click .add-to-starred': 'addStarredTool',
 			'click .remove-from-starred': 'removeStarredTool',
 			'click .favorite': 'toggleStarredTool',
@@ -632,7 +632,8 @@
 			'click .slide-tools-left': 'slideToolsLeft',
 			'click .slide-tools-right': 'slideToolsRight',
 			'click .b_duration_block a': 'showTimeframesList',
-			'click .b_kind_block a': 'showKindsList'
+			'click .b_kind_block a': 'showKindsList',
+			'click .option-type-toggle i': 'toggleCandle'
 			//'click .prevent, .disabled, .active': 'closeСlosestMenu'
 
 			//'mouseleave .binsta_assets__item__value.with_dropdown':'closeMenu'
@@ -1252,7 +1253,7 @@
 				id = $console.attr("data-id"),
 				item = this.consoles.get(id);
 
-			$target.parent().find('.bo_console__btn_item').toggleClass('active');
+			$target.parent().find('i').toggleClass('active');
 
 			if (item.get("candle") == true) {
 				item.set("candle", false);
@@ -4753,6 +4754,10 @@
 			minVal = null;
 			maxVal = null;
 
+		},
+
+		getData: function () {
+			return this.get("data");
 		},
 
 		getFormattedData: function () {
@@ -10807,7 +10812,7 @@
 			}
 
 			if (graph.get("candle") == true && partner_params.use_candle == true) {
-				graph.set("timesize", "M1-300-14400");
+				//graph.set("timesize", "M1-300-14400");
 				chart.drawConsoleWithCandle(graph);
 			} else {
 				//chart.drawConsoleWithChartsJS(graph);
@@ -11445,21 +11450,19 @@
 	};
 
 	chart.drawConsoleWithCandle = function (graph) {
-		console.log('drawConsoleWithCandle');
-
 		var plot = "#plot-" + graph.get("id"),
 			data = [],
 			data2 = [],
 			color = 'rgba(0, 150, 0, 0.5)';
 
-		//graph.prepare();
-		data = graph.getFormattedData();
+		graph.prepare();
+		data = graph.getData();
 
 		$(graph.el).find(".graph-mark").hide();
-
+		graph.allowed_line_txt.hide();
 		graph.getAdditionalLines();
 
-		if (data.length > 0 && data[0] != null) {
+		if (data && data.length > 0 && data[0] != null) {
 			var tickDecimals = parseInt(graph.get("tool").decimal_count);
 
 			var minVal = data[0][1];
@@ -11482,9 +11485,8 @@
 
 			var candle_data = graph.candlise_data(data);
 			//var data = google.charts.arrayToDataTable(candle_data, true);
-
-			if (typeof(google.charts.DataTable) !== "undefined") {
-				var dataTable = new google.charts.DataTable();
+			if (typeof(google.visualization.DataTable) !== "undefined") {
+				var dataTable = new google.visualization.DataTable();
 
 				dataTable.addColumn('datetime', 'Time');
 				//dataTable.addColumn('string', 'string');
@@ -11508,7 +11510,7 @@
 				dataTable.addRows(candle_data);
 
 				if (graph.get("chart") == null) {
-					graph.set("chart", new google.charts.CandlestickChart(document.getElementById(plot.substring(1))));
+					graph.set("chart", new google.visualization.CandlestickChart(document.getElementById(plot.substring(1))));
 				}
 
 				if (!real_margin_lines) {
@@ -11564,17 +11566,18 @@
 
 				graph.get("chart").draw(dataTable, {
 					legend: 'none',
-					colors: ['black'],
-					width: 317,
+					backgroundColor: 'none',
+					colors: ['white'],
+					//width: 317,
 					//tooltip: { isHtml: true },
-					height: 225,
-					fontSize: 8,
-					chartArea: {left: 50, top: 10, width: "90%", height: "85%"},
-					bar: {groupWidth: "90%"},
+					//height: 225,
+					fontSize: 16,
+					chartArea: {left: 80, top: 10, width: "90%", height: "85%"},
+					bar: {groupWidth: "70%"},
 
 					vAxis: {
 						//  title: "Percentage Uptime",
-						textStyle: {color: '#005500', fontSize: '10', paddingRight: '100', marginRight: '100'},
+						textStyle: {color: '#FFFFFF', fontSize: '16', paddingRight: '100', marginRight: '100'},
 						viewWindowMode: 'explicit',
 						viewWindow: {
 							max: maxVal,
@@ -11584,14 +11587,15 @@
 
 					candlestick: {
 						risingColor: {
-							strokeWidth: 0,
-							fill: "rgb(0,129,77)",
-							Pfstroke: "rgb(0,129,77)"
+							strokeWidth: 1,
+							fill: "rgb(254,45,110)",
+							stroke: "rgb(0,0,0)"
 						},
 						fallingColor: {
-							strokeWidth: 0,
-							stroke: "rgb(177,44,45)",
-							fill: "rgb(177,44,45)"
+							strokeWidth: 1,
+							fill: "rgb(52,126,130)",
+							stroke: "rgb(0,0,0)"
+
 						}
 					},
 					series: {

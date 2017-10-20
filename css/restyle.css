@@ -14682,7 +14682,7 @@ body {
 }
 
 .flag.en {
-    background-image: url(/Content/Images/flags/en.png)
+    background-image: url(../img/flags/en.png)
 }
 
 .flag.ar {
@@ -14690,7 +14690,7 @@ body {
 }
 
 .flag.zh-CN {
-    background-image: url(/Content/Images/flags/zh-CN.png)
+    background-image: url(../img/flags/zh-CN.png)
 }
 
 .flag.zh-TW {
@@ -15669,4 +15669,15 @@ body, html {
 
 .win{
     min-width: 50px;
+}
+
+.lang{
+    color: white;
+    float: right;
+}
+
+.lang > div{
+    right: 0;
+    float: right;
+    margin: 5px;
 }

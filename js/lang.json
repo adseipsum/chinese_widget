@@ -7,7 +7,7 @@
   },
   "mes2": {
     "selector": ".label_asset",
-    "en": "Asset",
+    "en": "Instrument",
     "ru": "Инстр.",
     "zh": "儀器"
   },
@@ -48,13 +48,13 @@
     "zh": "你的取款"
   },
   "mes9": {
-    "selector": "#widgets-classic .actionBtn.call .name",
+    "selector": "#widgets-classic .call",
     "en": "CALL",
     "ru": "ВЫШЕ",
     "zh": "上面"
   },
   "mes10": {
-    "selector": "#widgets-classic .actionBtn.put .name",
+    "selector": "#widgets-classic .put",
     "en": "PUT",
     "ru": "НИЖЕ",
     "zh": "下面"
@@ -97,7 +97,7 @@
   },
   "mes17": {
     "selector": ".label_investment",
-    "en": "Investment",
+    "en": "Trade amount",
     "ru": "Ставка",
     "zh": "投資”"
   },
@@ -209,6 +209,12 @@
     "ru": "Истекает",
     "zh": "期限"
   },
+  "mes34b": {
+    "selector": ".label_dir",
+    "en": "Dir",
+    "ru": "Направление",
+    "zh": "开仓日期"
+  },
   "mes35": {
     "selector": ".label_invest",
     "en": "Current payout",
@@ -234,13 +240,13 @@
     "zh": "收盤價"
   },
   "mes38": {
-    "selector": ".label_payout",
+    "selector": ".payout-label",
     "en": "Payout",
     "ru": "Прибыльность",
     "zh": "付款"
   },
   "mes39": {
-    "selector": ".opened-tab.opened",
+    "selector": "#positions-container .opened-tab-set",
     "en": "Open options",
     "ru": "Открытые опционы",
     "zh": "打開選項"
@@ -252,7 +258,7 @@
     "zh": "封閉選項"
   },
   "mes41": {
-    "selector": ".opened-tab.journal",
+    "selector": "#positions-container .journal",
     "en": "Trade history",
     "ru": "История торговли",
     "zh": "交易歷史"
@@ -613,9 +619,9 @@
   },
   "mes99": {
     "selector": ".user-available-label",
-    "en": "Available amount",
+    "en": "Balance",
     "ru": "Доступно средств",
-    "zh": ""
+    "zh": "余额"
   },
   "mes100": {
     "selector": "#widgets-range_classic .actionBtn.call .name",
@@ -699,7 +705,7 @@
     "selector": ".label_duration",
     "en": "Timeframe",
     "ru": "Длительность",
-    "zh": ""
+    "zh": "类型"
   },
   "mes133": {
     "selector": ".label_available",
@@ -955,13 +961,13 @@
   },
   "mes175": {
     "selector": ".label_time",
-    "en": "Time",
+    "en": "Platform Time",
     "ru": "Время",
     "zh": "已完成"
   },
   "mes176": {
     "selector": ".label_operation_sum",
-    "en": "Amount",
+    "en": "Investment",
     "ru": "Cумма",
     "zh": "已完成"
   },
@@ -1110,43 +1116,43 @@
     "selector": ".label_scale_5minutes",
     "en": "5 minutes",
     "ru": "5 минут",
-    "zh": ""
+    "zh": "???"
   },
   "mes205": {
     "selector": ".label_scale_15minutes",
     "en": "15 minutes",
     "ru": "15 минут",
-    "zh": ""
+    "zh": "???"
   },
   "mes206": {
     "selector": ".label_scale_30minutes",
     "en": "30 minutes",
     "ru": "30 минут",
-    "zh": ""
+    "zh": "???"
   },
   "mes207": {
     "selector": ".label_scale_4hours",
     "en": "4 hours",
     "ru": "4 часа",
-    "zh": ""
+    "zh": "???"
   },
   "mes208": {
     "selector": ".label_scale_1day",
     "en": "1 day",
     "ru": "1 день",
-    "zh": ""
+    "zh": "???"
   },
   "mes209": {
     "selector": ".deposit_plus",
     "en": "Deposit",
     "ru": "Пополнение",
-    "zh": ""
+    "zh": "???"
   },
   "mes210": {
     "selector": ".deposit_minus",
     "en": "Withdraw",
     "ru": "Снятие",
-    "zh": ""
+    "zh": "???"
   },
   "mes211": {
     "selector": ".empty-symbols",
@@ -1324,7 +1330,7 @@
     "selector": ".add_funds_label",
     "en": "Deposit",
     "ru": "Пополнить счет",
-    "zh": ""
+    "zh": "入金"
   },
   "mes241": {
     "selector": ".get_funds_label",
@@ -1334,9 +1340,9 @@
   },
   "mes242": {
     "selector": ".profile_label",
-    "en": "Profile",
+    "en": "Logged in",
     "ru": "Профиль",
-    "zh": ""
+    "zh": "登录"
   },
   "mes243": {
     "selector": ".exit_label",
@@ -1373,5 +1379,11 @@
     "en": "<h3>Sorry</h3><p>You lose <strong class='currency'>{{sum}}</strong>. </p>",
     "ru": "<h3>Сожалеем</h3><p>Вы проиграли <strong class='currency'>{{sum}}</strong>. </p>",
     "zh": ""
+  },
+  "mse249": {
+    "selector": ".hey",
+    "en": "Hey",
+    "ru": "Привет",
+    "zh": "喂"
   }
 }
